@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,eAAe,CAAC;EACd,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,IAAI;EACrB,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,IAAI;EACZ;;;IAGE;EACF,YAAY,EAAE,GAAG;EACjB;;IAEE;EACF,2BAA2B,EAAE,WAAW;CAezC;;AAdE,AAAD,oBAAM,CAAC;EACL,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,GAAG;EACV,QAAQ,EAAE,QAAQ;EAClB,gBAAgB,EEdZ,IAAI;CFeT;;AACA,AAAD,sBAAQ,CAAC;EACP,QAAQ,EAAE,QAAQ;EAClB,KAAK,EElBD,IAAI;EFmBR,SAAS,EAAE,IAAI;EACf,WAAW,EEIP,aAAa,EAAE,KAAK;EFHxB,WAAW,EAAE,CAAC;EACd,YAAY,EAAE,IAAI;CACnB",
+    "sources": [
+        "../../src/components/comp77/containerMenuStaff/contaktSection/contactButton.scss",
+        "../../src/sass/index.scss",
+        "../../src/sass/_variables.scss",
+        "../../src/sass/_functions.scss"
+    ],
+    "names": [],
+    "file": "contactButton.css"
+}

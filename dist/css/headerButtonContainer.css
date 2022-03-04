@@ -1,0 +1,33 @@
+.header-button-container {
+  height: 100%;
+  width: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  cursor: auto;
+  /*
+  property below solve problem of sparkling button 
+  */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.header-button-container__label {
+  color: #fff;
+  font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: 400;
+  font-family: "Jost", sans-serif;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=headerButtonContainer.css.map */

@@ -1,0 +1,19 @@
+.brand-logo__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.brand-logo__text {
+  color: #fff;
+  mix-blend-mode: difference;
+  font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: 400;
+  font-family: "Jost", sans-serif;
+  letter-spacing: 3px;
+}
+/*# sourceMappingURL=brandLogo.css.map */

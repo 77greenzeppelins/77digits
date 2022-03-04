@@ -1,0 +1,30 @@
+.clock {
+  width: 100px;
+  border-radius: 5px;
+}
+
+.clock__city {
+  color: #4d4d4d;
+  font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: 400;
+  font-family: "Jost", sans-serif;
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
+
+.clock__digit {
+  color: #4d4d4d;
+  font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: 400;
+  font-family: "Jost", sans-serif;
+  letter-spacing: 1px;
+}
+/*# sourceMappingURL=clock.css.map */

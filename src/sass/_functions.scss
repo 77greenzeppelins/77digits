@@ -1,0 +1,4 @@
+//set colors from variable $colors
+@function setColor($color) {
+  @return map-get($colors, $color);
+}

@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAKG,AAAD,kCAAQ,CAAC;EACP,KAAK,EEJA,IAAI;EFKT,SAAS,EEoBF,4BAAC;EFnBR,WAAW,EAAE,GAAG;EAChB,cAAc,EAAE,GAAG;EACnB,WAAW,EAAE,GAAG;CACjB",
+    "sources": [
+        "../../src/components/comp77/containerAboutStaff/containerAboutCarouselStaff/carouselPanelProgresIndicator.scss",
+        "../../src/sass/index.scss",
+        "../../src/sass/_variables.scss",
+        "../../src/sass/_functions.scss"
+    ],
+    "names": [],
+    "file": "carouselPanelProgresIndicator.css"
+}

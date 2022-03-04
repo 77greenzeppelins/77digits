@@ -1,0 +1,28 @@
+.menu-button-container {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 10;
+}
+
+.menu-button-container__label {
+  color: #fff;
+  mix-blend-mode: difference;
+  font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: 400;
+  font-family: "Jost", sans-serif;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=menuButtonContainer.css.map */

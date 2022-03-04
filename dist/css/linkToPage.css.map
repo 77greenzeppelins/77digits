@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACG,AAAD,wBAAY,CAAC;EACX,2BAA2B,EAAE,WAAW;CACzC",
+    "sources": [
+        "../../src/components/comp77/links/linkToPage/linkToPage.scss"
+    ],
+    "names": [],
+    "file": "linkToPage.css"
+}

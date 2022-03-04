@@ -1,0 +1,54 @@
+.cookies {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 150;
+}
+
+.cookies__container {
+  margin-inline: auto;
+  max-width: 1000px;
+  padding: 0 20px 10px 20px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cookies__text {
+  text-align: center;
+  color: #fff;
+  font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+  font-weight: 100;
+  letter-spacing: 1.5px;
+  line-height: 1;
+}
+
+.cookies__button {
+  letter-spacing: 0.5px;
+  border-radius: 5px;
+  padding: 1px 7px;
+  color: #fff;
+  font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+  font-weight: 100;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.cookies__link {
+  color: #fff;
+  white-space: pre;
+  font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+  font-weight: 100;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+/*# sourceMappingURL=cookiesIndex.css.map */

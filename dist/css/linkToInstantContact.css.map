@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAGG,AAAD,mCAAY,CAAC;EACX,KAAK,EAAE,OAAO;EACd,MAAM,EAAE,OAAO;EACf,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,2BAA2B,EAAE,WAAW;CACzC",
+    "sources": [
+        "../../src/components/comp77/links/linkToInstantContact/linkToInstantContact.scss",
+        "../../src/sass/index.scss",
+        "../../src/sass/_variables.scss",
+        "../../src/sass/_functions.scss"
+    ],
+    "names": [],
+    "file": "linkToInstantContact.css"
+}

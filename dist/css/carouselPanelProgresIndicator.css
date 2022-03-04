@@ -1,0 +1,8 @@
+.carousel-progres-indicator__label {
+  color: #fff;
+  font-size: clamp(1.5rem, 5.1vw, 1.4rem);
+  font-weight: 100;
+  letter-spacing: 3px;
+  line-height: 1.5;
+}
+/*# sourceMappingURL=carouselPanelProgresIndicator.css.map */

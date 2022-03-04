@@ -1,0 +1,19 @@
+@import '../../../sass/index.scss';
+
+.date-displayer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  &__line {
+    color: darken(setColor(light), 70%);
+    font-size: $fontSmall;
+
+    // font-size: $fontLarge;
+    // font-size: $fontMiddle;
+
+    user-select: none;
+    font-weight: 400;
+    font-family: $sanSerif;
+    letter-spacing: 3px;
+  }
+}

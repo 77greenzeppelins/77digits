@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAEG,AAAD,sBAAY,CAAC;EACX,OAAO,EAAE,IAAI;CACd;;AAEA,AAAD,iBAAO,CAAC;EAEN,KAAK,EENA,IAAI;EFiBT,cAAc,EAAE,UAAU;EAO1B,SAAS,EEDH,4BAAC;EFEP,WAAW,EAAE,IAAI;EACjB,WAAW,EAAE,GAAG;EAChB,WAAW,EEAJ,MAAM,EAAE,UAAU;EFCzB,cAAc,EAAE,GAAG;CACpB",
+    "sources": [
+        "../../src/components/comp77/brandLogo/brandLogo.scss",
+        "../../src/sass/index.scss",
+        "../../src/sass/_variables.scss",
+        "../../src/sass/_functions.scss"
+    ],
+    "names": [],
+    "file": "brandLogo.css"
+}

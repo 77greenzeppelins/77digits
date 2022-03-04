@@ -1,0 +1,53 @@
+.contacts-pop-up__wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  background-color: #f0f0f0;
+}
+
+.contacts-pop-up__content {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contacts-pop-up__close-button {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100px;
+  height: 100px;
+}
+
+.contacts-pop-up__bar {
+  height: 100%;
+  width: 2px;
+  background-color: #000;
+}
+
+.contacts-pop-up__bar.left {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.contacts-pop-up__bar.right {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+/*# sourceMappingURL=contactsPopUp.css.map */

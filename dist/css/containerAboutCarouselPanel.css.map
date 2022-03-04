@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,+BAA+B,CAAC;EAC9B,QAAQ,EAAE,KAAK;EACf,aAAa,EAAE,IAAI;EACnB,SAAS,EAAE,MAAM;EACjB,OAAO,EAAE,gBAAgB;EACzB,IAAI,EAAE,CAAC;EACP,KAAK,EAAE,CAAC;EACR,MAAM,EAAE,CAAC;EACT,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;EAC9B,WAAW,EAAE,MAAM;CAapB;;AAZE,AAAD,mDAAqB,CAAC;EACpB,KAAK,EAAE,IAAI;EACX,KAAK,EEdA,IAAI;CFgBV;;AACA,AAAD,wCAAU,CAAC;EACT,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;EAC9B,WAAW,EAAE,MAAM;CACpB",
+    "sources": [
+        "../../src/components/comp77/containerAboutStaff/containerAboutCarouselStaff/containerAboutCarouselPanel.scss",
+        "../../src/sass/index.scss",
+        "../../src/sass/_variables.scss",
+        "../../src/sass/_functions.scss"
+    ],
+    "names": [],
+    "file": "containerAboutCarouselPanel.css"
+}

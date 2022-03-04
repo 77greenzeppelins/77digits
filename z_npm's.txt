@@ -1,0 +1,41 @@
+.....SASS
+npm install --save-dev sass
+
+.....router
+npm install react-router
+
+.....state management
+npm i valtio
+
+
+-------------/3D section/-------------------------
+
+.....R3F
+npm install three @react-three/fiber
+
+.....drei
+npm install @react-three/drei
+
+
+
+
+-------------/animation section/-------------------------
+
+(!) I'm going to install sepatare packages for <web> and <three>
+
+.....let's start with <web> package
+npm install @react-spring/web
+
+.....let's start with <three> package
+npm install @react-spring/three
+
+.....
+npm install @use-gesture/react
+
+---------------/lodasah/-----------------------------
+
+------------//-------------------------------------
+npm install react-device-detect --save
+
+------------/...to make your WebGL accessible/------------------------------
+npm install @react-three/a11y

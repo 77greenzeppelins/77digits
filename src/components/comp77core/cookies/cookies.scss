@@ -1,0 +1,50 @@
+@import '../../../sass/index.scss';
+
+.cookies {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 150;
+  opacity: 0;
+
+  &__container {
+    margin-inline: auto;
+    max-width: 1000px;
+    padding: 0 20px 10px 20px;
+    height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    // background-color: setColor(grey);
+    // transform: translateY(-100%);
+  }
+  &__text {
+    text-align: center;
+    color: setColor(light);
+    font-size: $fontSmall;
+    font-weight: 100;
+    letter-spacing: 1.5px;
+    line-height: 1;
+  }
+  &__button {
+    letter-spacing: 0.5px;
+    // background-color: setColor(myBlue);
+    border-radius: 5px;
+    padding: 1px 7px;
+    color: setColor(light);
+    font-size: $fontSmall;
+    font-weight: 100;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  &__link {
+    color: setColor(light);
+    // text-decoration: underline;
+    white-space: pre;
+    font-size: $fontSmall;
+    font-weight: 100;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+}

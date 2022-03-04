@@ -1,0 +1,186 @@
+.container-menu-2D-staff-links-to-containers {
+  position: fixed;
+  bottom: 100px;
+  width: 100%;
+}
+
+.container-menu-2D-staff-links-to-containers__wrapper {
+  margin-inline: auto;
+  max-width: 1000px;
+  padding: 0 20px 10px 20px;
+  height: 80vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container-menu-2D-staff-instant-contact {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.container-menu-2D-staff-instant-contact__wrapper {
+  margin-inline: auto;
+  max-width: 1000px;
+  padding: 0 20px 10px 20px;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: greenyellow;
+}
+
+.links-to-containers__wrapper {
+  position: relative;
+  padding-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
+
+.link-to-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  position: relative;
+  height: 4rem;
+  /*
+  why such padding?
+  it's required by <ContactsPopUp> to cover whole dedicated space; character of EB Garamond makes some pixels of "W-letter" visible 
+  */
+  padding-left: 5px;
+  /*
+  property below solve problem of sparkling button 
+  */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.link-to-container__bar {
+  height: 100%;
+  width: 2px;
+  position: absolute;
+  background-color: #000;
+}
+
+.link-to-container__label {
+  position: absolute;
+  color: #000;
+  font-size: 4rem;
+  font-family: "EB Garamond", serif;
+  line-height: 1;
+  padding-left: 20px;
+}
+
+.contact-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  position: relative;
+  height: 4rem;
+  /*
+  why such padding?
+  it's required by <ContactsPopUp> to cover whole dedicated space; character of EB Garamond makes some pixels of "W-letter" visible 
+  */
+  padding-left: 5px;
+  /*
+  property below solve problem of sparkling button 
+  */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact-button__bar {
+  height: 100%;
+  width: 2px;
+  position: absolute;
+  background-color: #000;
+}
+
+.contact-button__label {
+  position: absolute;
+  color: #000;
+  font-size: 4rem;
+  font-family: "EB Garamond", serif;
+  line-height: 1;
+  padding-left: 20px;
+}
+
+.contacts-pop-up__wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  background-color: #fff;
+}
+
+.contacts-pop-up__content {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contacts-pop-up__close-button {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100px;
+  height: 100px;
+}
+
+.contacts-pop-up__bar {
+  height: 100%;
+  width: 2px;
+  background-color: #000;
+}
+
+.contacts-pop-up__bar.left {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.contacts-pop-up__bar.right {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+/*# sourceMappingURL=indexContainerMenu2DStaff.css.map */

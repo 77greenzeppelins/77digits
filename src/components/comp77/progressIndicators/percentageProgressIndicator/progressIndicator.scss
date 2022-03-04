@@ -1,0 +1,35 @@
+@import '../../../../sass/index.scss';
+
+.progress-indicator {
+  display: flex;
+  //   flex-direction: column;
+  &__number {
+    /*
+    style of <Header>
+    */
+    // color: setColor(light);
+    // font-size: $fontSmall;
+    // user-select: none;
+    // font-weight: 400;
+    // font-family: $sanSerif;
+    // letter-spacing: 3px;
+    /*
+    style of <Cookies> + $fontMiddle;
+    */
+    color: setColor(light);
+    font-size: $fontMiddle;
+    font-weight: 100;
+    letter-spacing: 3px;
+    line-height: 1.5;
+  }
+  &__percentage {
+    /*
+    style of <Cookies> + $fontMiddle;
+    */
+    color: setColor(light);
+    font-size: $fontMiddle;
+    font-weight: 100;
+    letter-spacing: 3px;
+    line-height: 1.5;
+  }
+}

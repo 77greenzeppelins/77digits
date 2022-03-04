@@ -1,0 +1,33 @@
+@import '../../../sass/index.scss';
+
+.container-about {
+  // position: relative;
+  position: fixed;
+  //   display: none;
+  width: 100%;
+  height: 100%;
+
+  &__bottom {
+    /*
+    ???
+    "min-width" without "margin-inline: auto" gives "center layout"
+    "width" without "margin-inline: auto" gives "left-side layout"
+    */
+    // margin-inline: auto;
+    // min-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__bottom-content {
+    height: 100%;
+    min-width: 200px;
+    width: 350px;
+    /*
+    change layout if screen width is larger then 600px
+    */
+    @media (min-width: 600px) {
+      width: 500px;
+    }
+  }
+}

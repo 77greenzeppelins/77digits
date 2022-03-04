@@ -1,0 +1,19 @@
+@import '../../../sass/index.scss';
+
+.header {
+  position: fixed;
+  top: 0;
+  height: 80px;
+  width: 100%;
+  z-index: 150;
+
+  &__container {
+    margin-inline: auto;
+    max-width: 1000px;
+    padding: 0 20px 0 20px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

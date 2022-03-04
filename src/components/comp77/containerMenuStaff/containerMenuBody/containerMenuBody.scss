@@ -1,0 +1,16 @@
+@import '../../../../sass/index.scss';
+
+.container-menu-body {
+  margin-inline: auto;
+  max-width: 1000px;
+  padding: 0 20px 10px 20px;
+  height: 100%;
+  // position: fixed;
+  // left: 0;
+  // right: 0;
+  // bottom: 100px;
+  // height: $containerMenuBodyHeight;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

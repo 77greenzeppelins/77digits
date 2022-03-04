@@ -1,0 +1,32 @@
+@import '../../../sass/index.scss';
+
+.fake-loader {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      font-size: 100px;
+      line-height: 1;
+      color: setColor(light);
+      font-family: serif;
+    }
+  }
+  &__images-container {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  &__image {
+    width: 90%;
+    height: 90%;
+    position: absolute;
+  }
+  &__percentage {
+  }
+}

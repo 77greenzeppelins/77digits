@@ -1,0 +1,15 @@
+@import '../../../sass/index.scss';
+
+.multipurposeOverlay {
+  position: fixed;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  // background-color: setColor(dark);
+  background-color: setColor(myGrey);
+  // background-color: setColor(myYellow);
+  // background-color: #799f0c;
+
+  //   pointer-events: none;
+}

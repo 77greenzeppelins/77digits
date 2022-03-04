@@ -1,0 +1,199 @@
+.container-about-introduction {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.container-about-introduction__wrapper {
+  margin-inline: auto;
+  max-width: 1000px;
+  padding: 0 20px 10px 40px;
+  height: 100%;
+  padding-top: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.container-about-introduction__button-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  /*
+    property below solve problem of sparkling button 
+    */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container-about-introduction__button {
+  width: 100%;
+  height: 100%;
+}
+
+.container-about-introduction__button-bar {
+  position: absolute;
+  top: 7%;
+  bottom: 5%;
+  left: 0;
+  width: 2px;
+  height: 80%;
+  background-color: #fff;
+  pointer-events: none;
+}
+
+.container-about-introduction__button-bar.en {
+  top: 4%;
+  bottom: 7%;
+}
+
+.container-about-introduction__button-line {
+  position: absolute;
+  color: #fff;
+  font-size: 4rem;
+  font-family: "EB Garamond", serif;
+  line-height: 1;
+  left: 10%;
+  pointer-events: none;
+}
+
+.container-about-introduction__button-line.top {
+  top: 0;
+  letter-spacing: 5px;
+}
+
+.container-about-introduction__button-line.top.en {
+  letter-spacing: 1.5px;
+}
+
+.container-about-introduction__button-line.middle {
+  font-size: 2rem;
+  top: 40%;
+}
+
+.container-about-introduction__button-line.bottom {
+  top: 40%;
+  left: 30%;
+}
+
+.container-about-introduction__separator {
+  height: 10%;
+}
+
+.container-about-carousel-panel {
+  position: fixed;
+  margin-inline: auto;
+  max-width: 1000px;
+  padding: 0 20px 10px 20px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container-about-carousel-panel__progress-indicator {
+  width: 50px;
+  color: #fff;
+}
+
+.container-about-carousel-panel__buttons {
+  width: 120px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.carousel-panel-button__wrapper {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50px;
+  height: 50px;
+  /*
+  property below solve problem of sparkling button 
+  */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.carousel-panel-button__overlay {
+  position: absolute;
+  height: 100%;
+  width: 10px;
+  background-color: #ff0099;
+  z-index: 10;
+}
+
+.carousel-panel-button__frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px #fff solid;
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+.carousel-panel-button__arrow-up {
+  position: absolute;
+  top: 45%;
+  width: 20%;
+  height: 20%;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 1;
+}
+
+.carousel-panel-button__arrow-down {
+  position: absolute;
+  bottom: 45%;
+  width: 20%;
+  height: 20%;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 1;
+}
+
+.carousel-progres-indicator__label {
+  color: #fff;
+  font-size: clamp(1.5rem, 5.1vw, 1.4rem);
+  font-weight: 100;
+  letter-spacing: 3px;
+  line-height: 1.5;
+}
+/*# sourceMappingURL=indexContainerAbout2DStaff.css.map */

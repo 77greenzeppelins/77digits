@@ -1,0 +1,39 @@
+.container-about-carousel-panel {
+  position: fixed;
+  margin-inline: auto;
+  max-width: 1000px;
+  padding: 0 20px 10px 20px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container-about-carousel-panel__progress-indicator {
+  width: 50px;
+  color: #fff;
+}
+
+.container-about-carousel-panel__buttons {
+  width: 120px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+/*# sourceMappingURL=containerAboutCarouselPanel.css.map */

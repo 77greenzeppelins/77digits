@@ -1,0 +1,65 @@
+@import '../../../sass/index.scss';
+
+.page-main {
+  &__container {
+    position: relative;
+    width: 100%;
+    /*
+    I've been using "100vh" but it generated size changes when browser 
+    */
+    height: 100%;
+  }
+  &__canvas {
+    position: fixed;
+    // top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  &__observer-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: -1;
+    // z-index: 100;
+  }
+  &__observer-section {
+    width: 100%;
+    height: 100vh;
+    border-bottom: 1px solid setColor(myBlue);
+  }
+}
+
+//_________________________________________________________________
+.container {
+  width: 90%;
+}
+.parent {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 5px;
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.magic-wrapper {
+  height: 35px;
+  overflow-y: hidden;
+  width: 100%;
+}
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+.magic {
+  padding-bottom: 30px;
+}

@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAGG,AAAD,+BAAY,CAAC;EACX,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,GAAG;EACX,gBAAgB,EAAE,OAA4B;EAC9C,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;CACpB",
+    "sources": [
+        "../../src/components/comp77core/menu/menuLinksToPages.scss",
+        "../../src/sass/index.scss",
+        "../../src/sass/_variables.scss",
+        "../../src/sass/_functions.scss"
+    ],
+    "names": [],
+    "file": "menuLinksToPages.css"
+}

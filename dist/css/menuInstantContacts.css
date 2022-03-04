@@ -1,0 +1,58 @@
+.menu-instant-contacts__container {
+  width: 100%;
+  height: 30%;
+  background-color: #0d0d0d;
+}
+
+.menu-instant-contacts__wrapper {
+  margin-inline: auto;
+  height: 100%;
+  max-width: 650px;
+  background-color: #141414;
+}
+
+@media (min-width: 360px) {
+  .menu-instant-contacts__wrapper {
+    width: 95%;
+  }
+}
+
+@media (min-width: 480px) {
+  .menu-instant-contacts__wrapper {
+    width: 80%;
+  }
+}
+
+@media (min-width: 576px) {
+  .menu-instant-contacts__wrapper {
+    width: 85%;
+  }
+}
+
+.menu-instant-contacts__links {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.menu-instant-contacts__link {
+  width: 100px;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+/*# sourceMappingURL=menuInstantContacts.css.map */

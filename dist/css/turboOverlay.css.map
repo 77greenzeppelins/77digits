@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,oBAAoB,CAAC;EACnB,QAAQ,EAAE,KAAK;EACf,MAAM,EAAE,CAAC;EACT,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,GAAG;EAEZ,gBAAgB,EEJR,OAAO;CFShB",
+    "sources": [
+        "../../src/components/comp77core/turboOverlay/turboOverlay.scss",
+        "../../src/sass/index.scss",
+        "../../src/sass/_variables.scss",
+        "../../src/sass/_functions.scss"
+    ],
+    "names": [],
+    "file": "turboOverlay.css"
+}

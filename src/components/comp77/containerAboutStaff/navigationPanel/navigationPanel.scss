@@ -1,0 +1,20 @@
+.navigation-panel {
+  &__container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__button-container {
+    width: 50px;
+    height: 100%;
+  }
+  &__progress-indicator {
+    height: 100%;
+    color: setColor(light);
+    opacity: 0.5;
+    display: flex;
+    align-items: flex-end;
+  }
+}

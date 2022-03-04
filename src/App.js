@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './sass/app.scss';
 
+/*
+Components
+*/
+import RoutesSwitcher from '../src/components/comp77core/router/RoutesSwitcher';
+import TurboOverlay from './components/comp77core/turboOverlay/TurboOverlay';
+import ContainerIntroPanel from './components/comp77/containerIntroStaff/ContainerIntroPanel';
+import OrientationManager from './components/comp77core/orientationManager/OrientationManager';
+/*
+------------------------------------------------------------------------
+*/
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <RoutesSwitcher />
+      <TurboOverlay />
+      <OrientationManager />
+      {/*-----for Canvas sake--------------------------------------------*/}
+      <ContainerIntroPanel />
+    </>
   );
 }
 

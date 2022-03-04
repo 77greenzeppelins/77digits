@@ -1,0 +1,25 @@
+@import '../../../sass/index.scss';
+
+.header-button-container {
+  height: 100%;
+  width: 70px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  cursor: auto;
+  /*
+  property below solve problem of sparkling button 
+  */
+  -webkit-tap-highlight-color: transparent;
+  &__label {
+    // background-color: transparent;
+    color: setColor(light);
+    font-size: $fontSmall;
+    user-select: none;
+    font-weight: 400;
+    font-family: $sanSerif;
+    letter-spacing: 3px;
+    cursor: pointer;
+  }
+}

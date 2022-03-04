@@ -1,0 +1,44 @@
+/*
+colors
+*/
+$colors: (
+  light: #fff,
+  brokenLight: #f0f0f0,
+  grey: grey,
+  myGrey: #141517,
+  dark: #000,
+  myYellow: #ffe000,
+  myPink: #ff0099,
+  myBlue: #004ff9,
+  darkNavy: #000c40,
+  venusSky: #2b6873,
+);
+/*
+mediaBreakpoints
+*/
+$smallPhone: 360px;
+$mediumPhone: 480px;
+$smallTablet: 576px;
+$standardTablet: 768px;
+$largeTablet: 992px;
+/*
+font sizes
+*/
+$fontVerySmall: #{'clamp(0.5rem, 2.8vw, 0.6rem)'};
+$fontSmall: #{'clamp(0.7rem, 2.8vw, 0.8rem)'};
+$fontLarge: #{'clamp(3rem, 3.1vw, 1.4rem)'};
+$fontMiddle: #{'clamp(1.5rem, 5.1vw, 1.4rem)'};
+$fontMedium: #{'clamp(0.9rem, 4.5vw, 1.8rem)'};
+// $fontMobile: #{'clamp(2rem, 2.8vw, 2.8rem)'};
+$fontMobile: 2rem;
+
+/*
+font family
+*/
+$sanSerif: 'Jost', sans-serif;
+$serif: 'EB Garamond', serif;
+/*
+Container Menu Staff
+*/
+$instantContactHeight: 320px;
+$containerMenuBodyHeight: #{'calc(100vh - 320px)'};

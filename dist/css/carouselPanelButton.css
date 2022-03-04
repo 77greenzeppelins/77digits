@@ -1,0 +1,60 @@
+.carousel-panel-button__wrapper {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50px;
+  height: 50px;
+  /*
+  property below solve problem of sparkling button 
+  */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.carousel-panel-button__overlay {
+  position: absolute;
+  height: 100%;
+  width: 10px;
+  background-color: #ff0099;
+  z-index: 10;
+}
+
+.carousel-panel-button__frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px #fff solid;
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+.carousel-panel-button__arrow-up {
+  position: absolute;
+  top: 45%;
+  width: 20%;
+  height: 20%;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 1;
+}
+
+.carousel-panel-button__arrow-down {
+  position: absolute;
+  bottom: 45%;
+  width: 20%;
+  height: 20%;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 1;
+}
+/*# sourceMappingURL=carouselPanelButton.css.map */

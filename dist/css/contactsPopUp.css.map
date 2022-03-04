@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAGG,AAAD,yBAAU,CAAC;EAET,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,KAAK,EAAE,CAAC;EACR,gBAAgB,EENL,OAAO;CFOnB;;AACA,AAAD,yBAAU,CAAC;EACT,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EAEX,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;CACpB;;AACA,AAAD,8BAAe,CAAC;EACd,QAAQ,EAAE,QAAQ;EAClB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;CAGd;;AACA,AAAD,qBAAM,CAAC;EACL,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,GAAG;EACV,gBAAgB,EE1BZ,IAAI;CFiCT;;AAVA,AAIC,qBAJI,AAIH,KAAK,CAAC;EACL,SAAS,EAAE,aAAa;CACzB;;AANF,AAOC,qBAPI,AAOH,MAAM,CAAC;EACN,SAAS,EAAE,cAAc;CAC1B",
+    "sources": [
+        "../../src/components/comp77/containerMenuStaff/contaktSection/contactsPopUp.scss",
+        "../../src/sass/index.scss",
+        "../../src/sass/_variables.scss",
+        "../../src/sass/_functions.scss"
+    ],
+    "names": [],
+    "file": "contactsPopUp.css"
+}

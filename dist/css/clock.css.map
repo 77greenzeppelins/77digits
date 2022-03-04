@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,MAAM,CAAC;EACL,KAAK,EAAE,KAAK;EACZ,aAAa,EAAE,GAAG;CAmBnB;;AAjBE,AAAD,YAAO,CAAC;EACN,KAAK,EAAE,OAA4B;EACnC,SAAS,EEiBH,4BAAC;EFhBP,WAAW,EAAE,IAAI;EACjB,WAAW,EAAE,GAAG;EAChB,WAAW,EEkBJ,MAAM,EAAE,UAAU;EFjBzB,cAAc,EAAE,GAAG;EACnB,WAAW,EAAE,MAAM;CACpB;;AACA,AAAD,aAAQ,CAAC;EACP,KAAK,EAAE,OAA4B;EACnC,SAAS,EEQH,4BAAC;EFPP,WAAW,EAAE,IAAI;EACjB,WAAW,EAAE,GAAG;EAChB,WAAW,EESJ,MAAM,EAAE,UAAU;EFRzB,cAAc,EAAE,GAAG;CACpB",
+    "sources": [
+        "../../src/components/comp77/clock/clock.scss",
+        "../../src/sass/index.scss",
+        "../../src/sass/_variables.scss",
+        "../../src/sass/_functions.scss"
+    ],
+    "names": [],
+    "file": "clock.css"
+}

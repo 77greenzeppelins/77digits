@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,6BAA6B,CAAC;EAC5B,QAAQ,EAAE,KAAK;EACf,MAAM,EAAE,CAAC;EACT,KAAK,EAAE,IAAI;EAEX,MAAM,EAAE,KAAK;CAiBd;;AAdE,AAAD,sCAAU,CAAC;EACT,aAAa,EAAE,IAAI;EACnB,SAAS,EAAE,MAAM;EACjB,OAAO,EAAE,gBAAgB;EACzB,MAAM,EAAE,IAAI;EACZ,WAAW,EAAE,KAAK;EAClB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EAEtB,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,UAAU;CAGxB",
+    "sources": [
+        "../../src/components/comp77/containerAboutStaff/containerAboutIntroduction/containerAboutIntroduction.scss",
+        "../../src/sass/index.scss",
+        "../../src/sass/_variables.scss",
+        "../../src/sass/_functions.scss"
+    ],
+    "names": [],
+    "file": "containerAboutIntroduction.css"
+}

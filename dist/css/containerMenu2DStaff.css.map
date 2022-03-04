@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,4CAA4C,CAAC;EAC3C,QAAQ,EAAE,KAAK;EACf,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,IAAI;CAcZ;;AAZE,AAAD,qDAAU,CAAC;EACT,aAAa,EAAE,IAAI;EACnB,SAAS,EAAE,MAAM;EACjB,OAAO,EAAE,gBAAgB;EACzB,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;EAGb,eAAe,EAAE,aAAa;EAC9B,WAAW,EAAE,MAAM;CAEpB;;AAGH,AAAA,wCAAwC,CAAC;EACvC,QAAQ,EAAE,KAAK;EACf,MAAM,EAAE,CAAC;EACT,KAAK,EAAE,IAAI;CAcZ;;AAZE,AAAD,iDAAU,CAAC;EACT,aAAa,EAAE,IAAI;EACnB,SAAS,EAAE,MAAM;EACjB,OAAO,EAAE,gBAAgB;EACzB,MAAM,EAAE,KAAK;EACb,OAAO,EAAE,IAAI;EAGb,eAAe,EAAE,aAAa;EAC9B,WAAW,EAAE,MAAM;CAEpB",
+    "sources": [
+        "../../src/components/comp77/containerMenuStaff/containerMenu2DStaff.scss",
+        "../../src/sass/index.scss",
+        "../../src/sass/_variables.scss",
+        "../../src/sass/_functions.scss"
+    ],
+    "names": [],
+    "file": "containerMenu2DStaff.css"
+}
