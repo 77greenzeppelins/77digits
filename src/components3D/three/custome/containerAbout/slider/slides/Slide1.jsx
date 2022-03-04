@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
+//, { useRef, useEffect }
 import { useThree } from '@react-three/fiber';
 /*
 Components
@@ -26,11 +27,12 @@ const [fontSmall, fontMiddle, fontLarge] = [
 /*
 ----------------------------------------------------------------------
 */
-const Slide1 = ({ slideId }) => {
+
+const Slide1 = React.forwardRef(({ slideId }, ref) => {
   /*
   References
   */
-  const group = useRef();
+  // const group = useRef();
   /*
   Global State Section
     {containerAboutSlideIndex: 0,...}
@@ -40,94 +42,131 @@ const Slide1 = ({ slideId }) => {
   useThree() Staff
   */
   const { viewport } = useThree();
-  /*
-  Spring Section
-  */
 
-  const spring = useSpring({
+  /*
+  Spring for TextVerses
+  */
+  const springTextVerse = useSpring({
     from: { position: [0, 0, -1] },
     to: {
       position: [
-        0,
-        0,
-        slideId === canvasGlobalState.containerAboutSlideIndex &&
         /*
+        x-axis
+        */
+        0,
+        /*
+        x-axis
+        */
+        0,
+        /*
+        z-axis
         in case of Slider1 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
         */
-        canvasGlobalState.currentContainer === 'aboutContainer'
+        canvasGlobalState.currentContainer === 'aboutContainer' &&
+        slideId === canvasGlobalState.containerAboutSlideIndex
+          ? 0
+          : slideId < canvasGlobalState.containerAboutSlideIndex
           ? 0
           : -2,
       ],
     },
+    config: { mass: 10, tension: 70, friction: 30 },
+  });
+
+  /*
+  Spring for main group
+  */
+  const springGroup = useSpring({
+    from: { position: [0, 0, -1] },
+    to: {
+      position: [
+        /*
+        x-axis
+        */
+        0,
+        /*
+        y-axis
+        in case of Slider1 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
+        */
+        canvasGlobalState.currentContainer === 'aboutContainer' &&
+        slideId < canvasGlobalState.containerAboutSlideIndex
+          ? 1
+          : 0,
+        /*
+        z-axis
+        */
+        0,
+      ],
+    },
+    config: { mass: 10, tension: 70, friction: 30 },
   });
   /*
   useEffect Test
   */
-  useEffect(() => {
-    console.log('slideId:', slideId);
-    console.log(
-      'canvasGlobalState.containerAboutSlideIndex:',
-      canvasGlobalState.containerAboutSlideIndex
-    );
-    console.log(
-      'canvasGlobalState.currentContainer:',
-      canvasGlobalState.currentContainer
-    );
-  }, [
-    slideId,
-    canvasGlobalState.containerAboutSlideIndex,
-    canvasGlobalState.currentContainer,
-  ]);
+  // useEffect(() => {
+  //   console.log('slideId:', slideId);
+  //   console.log(
+  //     'canvasGlobalState.containerAboutSlideIndex:',
+  //     canvasGlobalState.containerAboutSlideIndex
+  //   );
+  //   console.log(
+  //     'canvasGlobalState.currentContainer:',
+  //     canvasGlobalState.currentContainer
+  //   );
+  // }, [
+  //   slideId,
+  //   canvasGlobalState.containerAboutSlideIndex,
+  //   canvasGlobalState.currentContainer,
+  // ]);
 
   /*
   JSX
   */
   return (
-    <a.group ref={group} position={spring.position}>
-      <TextVerse
-        textProps={{
-          position: [
-            0, 0, 0,
-            //     0, 0, 0,
-            //   topPositionY + index * reducePositionY,
-            //   topPositionZ + index * reducePositionZ,
-          ],
-        }}
-        text="SLIDE 0"
-        font="garamont"
-        fontResponsiveness={
-          viewport.width < 3.0
-            ? fontSmall
-            : viewport.width < 5.5
-            ? fontMiddle
-            : fontLarge
-        }
-        whiteSpace="nowrap" //'normal' "nowrap"
-        maxWidth={viewport.width / 9}
-      />
-      <TextVerse
-        textProps={{
-          position: [
-            0, -0.05, 0,
-            //     0, 0, 0,
-            //   topPositionY + index * reducePositionY,
-            //   topPositionZ + index * reducePositionZ,
-          ],
-        }}
-        text="content of slide 0"
-        font="garamont"
-        fontResponsiveness={
-          viewport.width < 3.0
-            ? fontSmall
-            : viewport.width < 5.5
-            ? fontMiddle
-            : fontLarge
-        }
-        whiteSpace="nowrap" //'normal' "nowrap"
-        maxWidth={viewport.width / 9}
-      />
+    <a.group ref={ref} position={springGroup.position}>
+      <a.group position={springTextVerse.position}>
+        <TextVerse
+          // textProps={{
+          //   position: [0, 0, 0],
+          // }}
+          text="SLIDE 1"
+          font="garamont"
+          fontResponsiveness={
+            viewport.width < 3.0
+              ? fontSmall
+              : viewport.width < 5.5
+              ? fontMiddle
+              : fontLarge
+          }
+          whiteSpace="nowrap" //'normal' "nowrap"
+          maxWidth={viewport.width / 9}
+        />
+      </a.group>
+      <a.group position={springTextVerse.position}>
+        <TextVerse
+          textProps={{
+            position: [
+              0, -0.05, 0,
+              //     0, 0, 0,
+              //   topPositionY + index * reducePositionY,
+              //   topPositionZ + index * reducePositionZ,
+            ],
+          }}
+          text="content of slide 1"
+          font="garamont"
+          fontResponsiveness={
+            viewport.width < 3.0
+              ? fontSmall
+              : viewport.width < 5.5
+              ? fontMiddle
+              : fontLarge
+          }
+          whiteSpace="nowrap" //'normal' "nowrap"
+          maxWidth={viewport.width / 9}
+        />
+      </a.group>
     </a.group>
   );
-};
+});
 
 export default Slide1;

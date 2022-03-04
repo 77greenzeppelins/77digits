@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 /*
 Assets
 */
@@ -11,10 +11,10 @@ import image33 from '../../../assets/images/33_1.jpg';
 import image50 from '../../../assets/images/50_1.jpg';
 import image51 from '../../../assets/images/51_1.jpg';
 import image63 from '../../../assets/images/63_1.jpg';
-import image85 from '../../../assets/images/85_1.jpg';
 import image77 from '../../../assets/images/77_1.jpg';
-import image78 from '../../../assets/images/78_1.jpg';
-import image94 from '../../../assets/images/94_1.jpg';
+// import image78 from '../../../assets/images/78_1.jpg';
+// import image85 from '../../../assets/images/85_1.jpg';
+// import image94 from '../../../assets/images/94_1.jpg';
 import image100 from '../../../assets/images/100_3.png';
 
 /*
@@ -48,7 +48,6 @@ const FakeLoader = () => {
   Basic data
   Why don't we store this data in separate file?
   last piece of config includes "onRest: () => setVal(false)"
-  
   */
   const images = useMemo(
     () => [
@@ -134,33 +133,33 @@ const FakeLoader = () => {
         to: { opacity: 1 },
         delay: 9 * delayFactor,
       },
-      {
-        id: 78,
-        src: image78,
-        label: 'obrazek z numerem 78',
-        config: { duration: 0 },
-        from: { opacity: 0 },
-        to: { opacity: 1 },
-        delay: 11 * delayFactor,
-      },
-      {
-        id: 85,
-        src: image85,
-        label: 'obrazek z numerem 85',
-        config: { duration: 0 },
-        from: { opacity: 0 },
-        to: { opacity: 1 },
-        delay: 12 * delayFactor,
-      },
-      {
-        id: 94,
-        src: image94,
-        label: 'obrazek z numerem 94',
-        config: { duration: 0 },
-        from: { opacity: 0 },
-        to: { opacity: 1 },
-        delay: 13 * delayFactor,
-      },
+      // {
+      //   id: 78,
+      //   src: image78,
+      //   label: 'obrazek z numerem 78',
+      //   config: { duration: 0 },
+      //   from: { opacity: 0 },
+      //   to: { opacity: 1 },
+      //   delay: 11 * delayFactor,
+      // },
+      // {
+      //   id: 85,
+      //   src: image85,
+      //   label: 'obrazek z numerem 85',
+      //   config: { duration: 0 },
+      //   from: { opacity: 0 },
+      //   to: { opacity: 1 },
+      //   delay: 12 * delayFactor,
+      // },
+      // {
+      //   id: 94,
+      //   src: image94,
+      //   label: 'obrazek z numerem 94',
+      //   config: { duration: 0 },
+      //   from: { opacity: 0 },
+      //   to: { opacity: 1 },
+      //   delay: 13 * delayFactor,
+      // },
       {
         id: 100,
         src: image100,
@@ -217,13 +216,13 @@ const FakeLoader = () => {
   /*
   useEffect
   */
-  useEffect(() => {
-    console.log(
-      'canvasGlobalState.currentContainer:',
-      canvasGlobalState.currentContainer
-    );
-    console.log('val:', val);
-  }, [val, canvasGlobalState.currentContainer]);
+  // useEffect(() => {
+  //   console.log(
+  //     'canvasGlobalState.currentContainer:',
+  //     canvasGlobalState.currentContainer
+  //   );
+  //   console.log('val:', val);
+  // }, [val, canvasGlobalState.currentContainer]);
 
   return (
     /*
