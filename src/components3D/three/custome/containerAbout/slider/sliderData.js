@@ -23,3 +23,12 @@ const arrayOfSlides = [
 ];
 
 export { arrayOfSlides };
+
+/*
+//____s1
+
+"Jesteś Ty i Ja"
+"Wiesz co widzę?"
+
+""
+*/
