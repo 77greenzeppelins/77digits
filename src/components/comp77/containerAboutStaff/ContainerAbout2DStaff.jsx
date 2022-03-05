@@ -19,7 +19,9 @@ Basic Data
 
 "slidesArrayNumber" is just a number for fakeSlider...
 */
-const topHeightFactor = 0.835;
+// const topHeightFactor = 0.835; //03.04
+const topHeightFactor = 0.9;
+
 const bottomHeightFactor = 1 - topHeightFactor;
 const slidesArrayNumber = 4;
 
@@ -51,10 +53,10 @@ const ContainerAbout2DStaff = () => {
   return (
     canvasGlobalState.currentContainer === 'aboutContainer' && (
       <div className="container-about">
-        <div
+        {/* <div
           className="container-about__top"
           style={{ height: windowSize.height * topHeightFactor }}
-        ></div>
+        ></div> */}
 
         <div
           className="container-about__bottom"

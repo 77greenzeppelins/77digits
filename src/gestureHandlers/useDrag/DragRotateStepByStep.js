@@ -15,14 +15,14 @@ Global State Staff
 /*
 Basic Data
 */
-const [
-  defaultX,
-  defaultY,
-  defaultZ,
-  defaultLimitX,
-  //   defaultLimitY,
-  defaultLimitZ,
-] = [0, 0, 0, 0, 0, 0];
+const [defaultX, defaultY, defaultZ] = [0, 0, 0];
+
+let horizontalRotationValue = 0;
+let verticalRotationValue = 0;
+let someBool = null;
+let leftRotation = 0;
+let rightRotation = 0;
+
 /*
 --------------------------------------------------------------------------
 */
@@ -36,12 +36,6 @@ const DragRotateStepByStep = ({
   rotationX,
   rotationY,
   rotationZ,
-  rightDragLimitX,
-  leftDragLimitX,
-  rightDragLimitY,
-  leftDragLimitY,
-  rightDragLimitZ,
-  leftDragLimitZ,
 }) => {
   /*
   Spring Section
@@ -53,6 +47,7 @@ const DragRotateStepByStep = ({
       rotationZ || defaultZ,
     ],
     config: config.molasses,
+    // config: { duration: 2000 },
   }));
 
   /*
@@ -60,15 +55,26 @@ const DragRotateStepByStep = ({
   */
   const mainHandler = useCallback(
     /*
-    Why "active" is crucial attribute of gesture state?
-    Because "dragging" cause by user exist only when "active = 1"; if zero no changes take place; i.e. object rotates only if "active = 1" so automatically return to "initial settings of rotation" 
+    What "down" does ?
     */
-    ({ active, movement: [movementX, movementY], last }) => {
-      if (Math.abs(movementX) > 200) {
-        console.log('DragRotateStepByStep / movementX', movementX);
-        console.log('DragRotateStepByStep / movementY', movementY);
+    ({ down, movement: [movementX, movementY] }) => {
+      /*
+      Test 2
+      I'm looking for 
+      */
+      if (movementX > 0 && !down) {
+        someBool = true;
+        horizontalRotationValue += 1;
+        console.log('DragRotateStepByStep / someBool', someBool);
       }
-
+      if (movementX < 0 && !down) {
+        someBool = false;
+        horizontalRotationValue -= 1;
+        console.log('DragRotateStepByStep / someBool', someBool);
+      }
+      /*
+      Spring API
+      */
       api.start({
         /*
         logic explanation: the main idea is that I want to restrict rotation of "frame-like components" to certain value; i.e. no full "360 deg" rotation;
@@ -83,51 +89,36 @@ const DragRotateStepByStep = ({
           /*
           calculate X
           */
-          active && movementX !== 0
-            ? movementX > 0
-              ? rightDragLimitX || defaultLimitX
-              : leftDragLimitX || defaultLimitX
-            : rotationX || defaultX,
+          0,
+          //   someBool
+          //     ? verticalRotationValue * Math.PI * 0.5
+          //     : verticalRotationValue * Math.PI * 0.5,
 
           /*
           calculate Y
           */
-          //   active && movementX !== 0
-          //     ? movementX > 0
-          //       ? rightDragLimitY || defaultLimitY
-          //       : leftDragLimitY || defaultLimitY
-          //     : rotationY || defaultY,
+          someBool
+            ? horizontalRotationValue * Math.PI * 0.5
+            : horizontalRotationValue * Math.PI * 0.5,
+
           /*
-          Firs check: if user drags more intense then "200"; if not no changes in rotation; if yes process second check;
-          Second check: if drag generates positive value of  "movementX"
+          calculate z
           */
-          Math.abs(movementX) > 200 && movementX !== 0
-            ? movementX > 0
-              ? Math.PI * 0.5
-              : -Math.PI * 0.5
-            : null,
-          /*
-            calculate z
-            */
-          active && movementX !== 0
-            ? movementX > 0
-              ? rightDragLimitZ || defaultLimitZ
-              : leftDragLimitZ || defaultLimitZ
-            : rotationZ || defaultZ,
+          0,
         ],
       });
     },
     [
       api,
-      rotationX,
-      rightDragLimitX,
-      leftDragLimitX,
+      //   rotationX,
+      //   rightDragLimitX,
+      //   leftDragLimitX,
       //   rotationY,
       //   rightDragLimitY,
       //   leftDragLimitY,
-      rotationZ,
-      rightDragLimitZ,
-      leftDragLimitZ,
+      //   rotationZ,
+      //   rightDragLimitZ,
+      //   leftDragLimitZ,
     ]
   );
 

@@ -1,30 +1,37 @@
 import { useCallback } from 'react';
 // import { useThree } from '@react-three/fiber';
-import { useSpring, config } from '@react-spring/three';
+/*
+Gesture Staff
+*/
 import { useDrag } from '@use-gesture/react';
 /*
-GlobalState
+Spring Staff
 */
-// import { useSnapshot } from 'valtio';
+import { useSpring, config } from '@react-spring/three';
+/*
+Global State Staff
+*/
 import { canvasState } from '../../states/canvasState';
 /*
 Basic Data
 */
 const [
-  // defoultFactorX,
-  // defoultFactorY,
-  // defoultFactorZ,
-  defoultX,
-  defoultY,
-  defoultZ,
-  defoultLimitX,
-  defoultLimitY,
-  defoultLimitZ,
+  defaultX,
+  defaultY,
+  defaultZ,
+  defaultLimitX,
+  defaultLimitY,
+  defaultLimitZ,
 ] = [0, 0, 0, 0, 0, 0];
 /*
 --------------------------------------------------------------------------
 */
 const DragRotateReturn = ({
+  /*
+  Props explanation:'
+  "rotationX" is actually initial value for "rotation.x"; important when we want to start with some rotation i.e. object has some starting/initial velue;
+  same refers to "rotationY", "rotationZ"
+  */
   rotationX,
   rotationY,
   rotationZ,
@@ -34,26 +41,15 @@ const DragRotateReturn = ({
   leftDragLimitY,
   rightDragLimitZ,
   leftDragLimitZ,
-  clickDoesNothing,
 }) => {
-  /*
-  Props explanation:'
-  "rotationX" is actually initial value for "rotation.z"; imortant whwn we want to start with some rotation i.e. object has some starting/initial velue;
-
-  */
-  /*
-  Global States for SpringValues;
-  canvasState = {}
-  */
-  // const canvasGlobalState = useSnapshot(canvasState);
   /*
   Spring Section
   */
   const [{ orbitImitation }, api] = useSpring(() => ({
     orbitImitation: [
-      rotationX || defoultX,
-      rotationY || defoultY,
-      rotationZ || defoultZ,
+      rotationX || defaultX,
+      rotationY || defaultY,
+      rotationZ || defaultZ,
     ],
     config: config.molasses,
   }));
@@ -62,9 +58,13 @@ const DragRotateReturn = ({
   Main Callback Section
   */
   const mainHandler = useCallback(
+    /*
+    Why "active" is crucial attribute of gesture state?
+    Because "dragging" cause by user exist only when "active = 1"; if zero no changes take place; i.e. object rotates only if "active = 1" so automatically return to "initial settings of rotation" 
+    */
     ({ active, movement: [movementX, movementY], last }) => {
       /*
-      What it does / what issue it solves ?
+      What this "if statement" does / what issue it solves ?
       I lost from time to time "clickability" of <AnsverYes> / <AnswerNo> buttons
       I don't know why....
       It doesn't solve my problem in 100%....
@@ -95,25 +95,25 @@ const DragRotateReturn = ({
           */
           active && movementX !== 0
             ? movementX > 0
-              ? rightDragLimitX || defoultLimitX
-              : leftDragLimitX || defoultLimitX
-            : rotationX || defoultX,
+              ? rightDragLimitX || defaultLimitX
+              : leftDragLimitX || defaultLimitX
+            : rotationX || defaultX,
           /*
           calculate Y
           */
           active && movementX !== 0
             ? movementX > 0
-              ? rightDragLimitY || defoultLimitY
-              : leftDragLimitY || defoultLimitY
-            : rotationY || defoultY,
+              ? rightDragLimitY || defaultLimitY
+              : leftDragLimitY || defaultLimitY
+            : rotationY || defaultY,
           /*
             calculate z
             */
           active && movementX !== 0
             ? movementX > 0
-              ? rightDragLimitZ || defoultLimitZ
-              : leftDragLimitZ || defoultLimitZ
-            : rotationZ || defoultZ,
+              ? rightDragLimitZ || defaultLimitZ
+              : leftDragLimitZ || defaultLimitZ
+            : rotationZ || defaultZ,
         ],
       });
     },
@@ -133,15 +133,25 @@ const DragRotateReturn = ({
 
   /*
   Gesture Section
+  Here we set the drag hook; by means of "mainHandler" we define component movement based on gesture data;
   */
-  const dragRotateReturn = useDrag(mainHandler, {
-    rubberband: true,
+  const dragRotateReturn = useDrag(
+    mainHandler,
     /*
+    This is a sort of "config object" that embraces "gesture options"
+    */
+    {
+      // rubberband: true,
+      /*
     react only to horizontal user's dragging; 
     */
-    axis: 'x',
-  });
+      axis: 'x',
+    }
+  );
 
+  /*
+  Final "return staff" of this function
+  */
   return [orbitImitation, dragRotateReturn];
 };
 
@@ -149,9 +159,18 @@ export default DragRotateReturn;
 
 /*
 Props
+
+const [
+  rightDragLimitX, 
+  leftDragLimitX, 
+  rightDragLimitY, 
+  leftDragLimitY] = [
+     -0.25, 
+     -0.25, 
+      1, 
+     -1];
 */
-// const [rightDragLimitX, leftDragLimitX, rightDragLimitY, leftDragLimitY] = [
-//   -0.25, -0.25, 1, -1];
+
 /*
 Call this gesture!!!
 */

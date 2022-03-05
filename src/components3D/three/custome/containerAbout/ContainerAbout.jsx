@@ -35,8 +35,9 @@ const ContainerAbout = () => {
     >
       {/*-----Slider Section-----------------------------------*/}
       <Slider />
+
       {/*-----Bottom Section-----------------------------------*/}
-      <Suspense fallback={null}>
+      {/* <Suspense fallback={null}>
         <Banner
           groupProps={{
             name: 'GroupForLogoInFrame2',
@@ -46,7 +47,7 @@ const ContainerAbout = () => {
           }}
           backgroundColor={backgroundColors.containerAbout}
         />
-      </Suspense>
+      </Suspense> */}
     </group>
   );
 };

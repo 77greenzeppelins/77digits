@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 //, { useRef, useEffect }
 import { useThree } from '@react-three/fiber';
 /*
 Components
 */
 import TextVerse from '../../../../../drei/text/textVerse/TextVerse';
+import SpinningBox from '../../../spinningBox/SpinningBox';
 /*
 Global State Staf
 */
@@ -13,7 +14,7 @@ import { canvasState } from '../../../../../../states/canvasState';
 /*
 Spring data
 */
-import { a, useSpring, config } from '@react-spring/three';
+import { a, useSpring } from '@react-spring/three';
 /*
  Basic Data
  */
@@ -30,7 +31,7 @@ const [textHeader, fontSmall, fontMiddle, fontLarge] = [
 /*
 ----------------------------------------------------------------------
 */
-const Slide0 = React.forwardRef(({ slideId }, ref) => {
+const Slide0Test = React.forwardRef(({ slideId }, ref) => {
   /*
   References
   */
@@ -48,7 +49,7 @@ const Slide0 = React.forwardRef(({ slideId }, ref) => {
   /*
   Spring for TextVerses
   */
-  const springTextVerse = useSpring({
+  const springSlideContent = useSpring({
     from: { position: [0, 0, -2] },
     to: {
       position: [
@@ -103,35 +104,19 @@ const Slide0 = React.forwardRef(({ slideId }, ref) => {
     config: { mass: 10, tension: 70, friction: 30 },
   });
   /*
-  useEffect Test
-  */
-  // useEffect(() => {
-  //   console.log('slideId:', slideId);
-  //   console.log(
-  //     'canvasGlobalState.containerAboutSlideIndex:',
-  //     canvasGlobalState.containerAboutSlideIndex
-  //   );
-  //   console.log(
-  //     'canvasGlobalState.currentContainer:',
-  //     canvasGlobalState.currentContainer
-  //   );
-  // }, [
-  //   slideId,
-  //   canvasGlobalState.containerAboutSlideIndex,
-  //   canvasGlobalState.currentContainer,
-  // ]);
-  // console.log('textHeader.position:', textHeader.position);
-  /*
   JSX
+  What is "GroupForAnimationLevelSlide"?
+  What is "GroupForAnimationLevelSlideContent"
   */
   return (
     <a.group
+      name="GroupForAnimationLevelSlide"
       ref={ref}
       // scale={[0,0,0]}
       position={springGroup.position}
     >
       {/*-----Header Text----------------------------------------------*/}
-      <a.group position={springTextVerse.position}>
+      <a.group position={springSlideContent.position}>
         <TextVerse
           textProps={{
             // position: [0, 0.09, 0],
@@ -151,32 +136,46 @@ const Slide0 = React.forwardRef(({ slideId }, ref) => {
         />
       </a.group>
 
-      {/*-----*/}
-      <a.group position={springTextVerse.position}>
-        <TextVerse
-          textProps={{
-            position: [
-              0, -0.05, 0,
-              //     0, 0, 0,
-              //   topPositionY + index * reducePositionY,
-              //   topPositionZ + index * reducePositionZ,
-            ],
-          }}
-          text="content of slide 0"
-          font="garamont"
-          fontResponsiveness={
-            viewport.width < 3.0
-              ? fontSmall
-              : viewport.width < 5.5
-              ? fontMiddle
-              : fontLarge
-          }
-          whiteSpace="nowrap" //'normal' "nowrap"
-          maxWidth={viewport.width / 9}
-        />
-      </a.group>
+      {/*-----Body Section------------------------------------------
+      Thera are several <grup> 
+      "GroupForAnimationLevelSlider" it's a sort of "high-top-animation"; refers to slide content behaviour; 
+      */}
+      <Suspense fallback={null}>
+        <a.group
+          name="GroupForAnimationLevelSlideContent"
+          position={springSlideContent.position}
+        >
+          <group
+            name="GroupForImportedSpinningBoxLayout"
+            scale={[0.4, 0.4, 0.4]}
+            position={[0, -0.05, 0]}
+          >
+            <SpinningBox />
+          </group>
+        </a.group>
+      </Suspense>
     </a.group>
   );
 });
 
-export default Slide0;
+export default Slide0Test;
+
+/*
+  useEffect Test
+  */
+// useEffect(() => {
+//   console.log('slideId:', slideId);
+//   console.log(
+//     'canvasGlobalState.containerAboutSlideIndex:',
+//     canvasGlobalState.containerAboutSlideIndex
+//   );
+//   console.log(
+//     'canvasGlobalState.currentContainer:',
+//     canvasGlobalState.currentContainer
+//   );
+// }, [
+//   slideId,
+//   canvasGlobalState.containerAboutSlideIndex,
+//   canvasGlobalState.currentContainer,
+// ]);
+// console.log('textHeader.position:', textHeader.position);

@@ -20,6 +20,7 @@ Gesture Staff
 "DragRotateReturn" works as pseudoOrbitController; it just rotate obiect along with defined axis;
 */
 import DragRotateReturn from '../../../../../../gestureHandlers/useDrag/DragRotateReturn';
+
 /*
 Spring Staff
 */
@@ -68,23 +69,27 @@ const VenusInFrame = ({ groupProps, rotationX }) => {
   /*
   Gesture Section
   */
-  const [orbitImitation, dragRotateReturn] = DragRotateReturn({
+  const [orbitImitation, dragRotateReturn] = DragRotateReturn(
     /*
-    set initial value of "rotation.z";
+    it's a section of "custome args"
     */
-    // rotationX: rotationX,
-    /*
-    set behaviour along x-axis i.e. should frame lean to top or to bottom or mix top & bottom;
-    */
-    rightDragLimitX: rightDragLimitX,
-    leftDragLimitX: leftDragLimitX,
-    /*
-    set behaviour along y-axis i.e. should frame lean to left or to right or mix left & right;
-    */
-    rightDragLimitY: rightDragLimitY,
-    leftDragLimitY: leftDragLimitY,
-  });
-
+    {
+      /*
+      set initial value of "rotation.z";
+      */
+      // rotationX: rotationX,
+      /*
+      set behaviour along x-axis i.e. should frame lean to top or to bottom or mix top & bottom;
+      */
+      rightDragLimitX: rightDragLimitX,
+      leftDragLimitX: leftDragLimitX,
+      /*
+      set behaviour along y-axis i.e. should frame lean to left or to right or mix left & right;
+      */
+      rightDragLimitY: rightDragLimitY,
+      leftDragLimitY: leftDragLimitY,
+    }
+  );
   /*
   JSX
   */
