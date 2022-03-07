@@ -116,7 +116,7 @@ const Slide0Test = React.forwardRef(({ slideId }, ref) => {
       position={springGroup.position}
     >
       {/*-----Header Text----------------------------------------------*/}
-      <a.group position={springSlideContent.position}>
+      {/* <a.group position={springSlideContent.position}>
         <TextVerse
           textProps={{
             // position: [0, 0.09, 0],
@@ -134,7 +134,7 @@ const Slide0Test = React.forwardRef(({ slideId }, ref) => {
           whiteSpace="nowrap" //'normal' "nowrap"
           maxWidth={viewport.width / 9}
         />
-      </a.group>
+      </a.group> */}
 
       {/*-----Body Section------------------------------------------
       Thera are several <grup> 
@@ -147,7 +147,7 @@ const Slide0Test = React.forwardRef(({ slideId }, ref) => {
         >
           <group
             name="GroupForImportedSpinningBoxLayout"
-            scale={[0.4, 0.4, 0.4]}
+            scale={[0.3, 0.3, 0.3]}
             position={[0, -0.05, 0]}
           >
             <SpinningBox />

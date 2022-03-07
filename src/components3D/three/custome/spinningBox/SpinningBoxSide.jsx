@@ -29,7 +29,7 @@ const SpinningBoxSide = ({ groupProps }) => {
         groupProps={{ name: 'groupForMediumFrame' }}
         portrait={true}
       />
-      <UniversalCanvasWithoutMap portrait={true} bgColor={0x001111} />
+      <UniversalCanvasWithoutMap portrait={true} bgColor={0xffe000} />
     </a.group>
   );
 };

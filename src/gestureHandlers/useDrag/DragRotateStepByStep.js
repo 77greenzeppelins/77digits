@@ -16,12 +16,8 @@ Global State Staff
 Basic Data
 */
 const [defaultX, defaultY, defaultZ] = [0, 0, 0];
-
-let horizontalRotationValue = 0;
-let verticalRotationValue = 0;
+let horizontalDragValue = 0;
 let someBool = null;
-let leftRotation = 0;
-let rightRotation = 0;
 
 /*
 --------------------------------------------------------------------------
@@ -56,22 +52,37 @@ const DragRotateStepByStep = ({
   const mainHandler = useCallback(
     /*
     What "down" does ?
+    documentation: "true when a mouse button or touch is down"
     */
     ({ down, movement: [movementX, movementY] }) => {
       /*
       Test 2
-      I'm looking for 
+      I'm looking for "unique set of properties" i.e the one that "happens once" within "current gesture"; bare "movementX" triggers multiply times within every drag; i.e within particular user's drads this value changes a number of time 
       */
-      if (movementX > 0 && !down) {
+      if (movementX > 50 && !down) {
+        console.log('movementX', movementX);
         someBool = true;
-        horizontalRotationValue += 1;
-        console.log('DragRotateStepByStep / someBool', someBool);
+        horizontalDragValue += 1;
       }
-      if (movementX < 0 && !down) {
+      if (movementX < 50 && !down) {
         someBool = false;
-        horizontalRotationValue -= 1;
-        console.log('DragRotateStepByStep / someBool', someBool);
+        horizontalDragValue -= 1;
       }
+      /*
+      refactoring of Test 2
+      */
+      // !down
+      //   ? movementX > 0
+      //     ? (someBool = true)
+      //     : (someBool = false)
+      //   : (someBool = null);
+
+      // !down
+      //   ? movementX > 0
+      //     ? (horizontalDragValue += 1)
+      //     : (horizontalDragValue -= 1)
+      //   : (someBool = null);
+
       /*
       Spring API
       */
@@ -90,16 +101,12 @@ const DragRotateStepByStep = ({
           calculate X
           */
           0,
-          //   someBool
-          //     ? verticalRotationValue * Math.PI * 0.5
-          //     : verticalRotationValue * Math.PI * 0.5,
-
           /*
           calculate Y
           */
           someBool
-            ? horizontalRotationValue * Math.PI * 0.5
-            : horizontalRotationValue * Math.PI * 0.5,
+            ? horizontalDragValue * Math.PI * 0.5
+            : horizontalDragValue * Math.PI * 0.5,
 
           /*
           calculate z
@@ -130,12 +137,9 @@ const DragRotateStepByStep = ({
     mainHandler,
     /*
     This is a sort of "config object" that embraces "gesture options"
+    "axis: 'x'" => react only to horizontal user's dragging;
     */
     {
-      // rubberband: true,
-      /*
-    react only to horizontal user's dragging; 
-    */
       axis: 'x',
     }
   );

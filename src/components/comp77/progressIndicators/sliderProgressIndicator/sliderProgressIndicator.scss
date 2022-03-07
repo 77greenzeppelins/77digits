@@ -2,11 +2,13 @@
 
 .slider-progres-indicator {
   &__wrapper {
+    display: flex;
+    justify-content: flex-end;
   }
   &__label {
     color: setColor(light);
-    // font-size: $fontMiddle;
-    font-size: 1.2rem;
+    font-size: $fontMedium;
+    // font-size: 1.2rem;
     font-weight: 100;
     letter-spacing: 3px;
     line-height: 1.5;

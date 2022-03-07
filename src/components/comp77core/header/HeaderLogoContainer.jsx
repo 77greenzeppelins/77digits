@@ -44,6 +44,8 @@ const HeaderLogoContainer = ({ onClickHandler }) => {
         /*
         case: user is in "aboutContainer" and clicks "77digitsButton"; it should be untouchable;
         */
+        opacity:
+          canvasGlobalState.currentContainer === 'aboutContainer' ? 0 : 1,
         pointerEvents:
           canvasGlobalState.currentContainer === 'aboutContainer'
             ? 'none'

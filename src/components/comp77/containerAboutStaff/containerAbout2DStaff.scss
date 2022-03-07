@@ -1,37 +1,118 @@
 @import '../../../sass/index.scss';
 
 .container-about {
-  // position: fixed;
-  // width: 100%;
-  // height: 100%;
+  position: fixed;
+  width: 100%;
   /*
   remember that <ContainerAbout2DStaff> covers <ContainerAbout> (3D)
   */
-  &__bottom {
+  &__content {
     /*
-    ???
-    "min-width" without "margin-inline: auto" gives "center layout"
-    "width" without "margin-inline: auto" gives "left-side layout"
+    Why "height: 1px" ?
     */
-    // margin-inline: auto;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 10px;
+    margin-inline: auto;
+    max-width: 1000px;
+    // padding: 0 20px 0 20px;
+    position: relative;
+    // background-color: #fff;
   }
-  &__bottom-content {
-    height: 100%;
-    min-width: 200px;
-    // width: 350px; // size if banner is used;
-    width: 250px;
 
+  /*
+  staff from left side
+  */
+  &__left-bar {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    width: 1px;
     /*
-    change layout if screen width is larger then 600px
+    height in JS
     */
-    @media (min-width: 600px) {
-      width: 500px;
-    }
+    background-color: lighten(setColor(dark), 20%);
   }
+  &__left-text {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    // width: 1px;
+  }
+  &__text-paragraph {
+    color: setColor(light);
+    font-family: $serif;
+    // font-size: $fontLarge;
+    font-size: 4rem;
+    letter-spacing: 2px;
+  }
+  &__left-arrow {
+    position: absolute;
+    top: 50px;
+    // left: 21px;
+    right: 71px;
+  }
+  &__left-arrow-content {
+    position: absolute;
+    // bottom: 20%;
+    bottom: 1%;
+  }
+
+  /*
+  staff from right side
+  */
+  &__right-arrow {
+    position: absolute;
+    top: 50px;
+    right: 71px;
+  }
+  &__right-arrow-content {
+    position: absolute;
+    bottom: 21%;
+  }
+
+  &__right-bar {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    // margin-top: 50px;
+    width: 1px;
+    background-color: setColor(light);
+    opacity: 0.3;
+  }
+
+  &__navigation {
+    position: absolute;
+    top: 50px;
+    right: 21px;
+    display: flex;
+    align-items: flex-end;
+  }
+  &__navigation-content {
+  }
+
+  // &__bottom {
+  //   /*
+  //   ???
+  //   "min-width" without "margin-inline: auto" gives "center layout"
+  //   "width" without "margin-inline: auto" gives "left-side layout"
+  //   */
+  //   // margin-inline: auto;
+  //   width: 100%;
+  //   position: fixed;
+  //   bottom: 0;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
+  // &__bottom-content {
+  //   height: 100%;
+  //   min-width: 200px;
+  //   // width: 350px; // size if banner is used;
+  //   width: 250px;
+  //   /*
+  //   change layout if screen width is larger then 600px
+  //   */
+  //   @media (min-width: 600px) {
+  //     width: 500px;
+  //   }
+  // }
 }

@@ -41,10 +41,6 @@ const SpinningBox = () => {
     */
     {
       /*
-      set initial value of "rotation.z";
-      */
-      // rotationX: rotationX,
-      /*
       set behaviour along x-axis i.e. should frame lean to top or to bottom or mix top & bottom;
       */
       //   rightDragLimitX: useDragData.rightDragLimitX,

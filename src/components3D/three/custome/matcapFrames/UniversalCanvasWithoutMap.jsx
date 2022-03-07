@@ -34,7 +34,7 @@ const UniversalCanvasWithoutMap = ({ bgColor, banner }) => {
           1,
         ]}
       />
-      <meshBasicMaterial color={bgColor || 0xffffff} opacity={true} />
+      <meshBasicMaterial color={bgColor || 0x000000} />
     </mesh>
     //   </A11y>
     // </>

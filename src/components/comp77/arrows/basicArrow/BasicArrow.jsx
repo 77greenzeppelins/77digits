@@ -13,8 +13,8 @@ import ButtonHover from '../../../../gestureHandlers/useHover/ButtonsHover';
 const BasicArrow = React.forwardRef(
   ({ arrowDirection, onClick, arrowOpacity }, ref) => {
     /*
-  Gesture Handler
-  */
+    Gesture Handler
+    */
     const { opacityValue, scaleValue, buttonHover } = ButtonHover({
       opacityEnter: 1,
       opacityLeave: 0.2,
@@ -51,3 +51,44 @@ const BasicArrow = React.forwardRef(
 );
 
 export default BasicArrow;
+
+/*
+userExperience Section / onClick Handlers
+*/
+// const goForward = useCallback(() => {
+//   if (canvasGlobalState.containerAboutSlideIndex < slidesArrayNumber - 1) {
+//     canvasState.containerAboutSlideIndex += 1;
+//     canvasState.containerAboutSlidingDirection = 'forward';
+//   }
+// }, [canvasGlobalState.containerAboutSlideIndex, slidesArrayNumber]);
+
+// const goBackward = useCallback(() => {
+//   if (
+//     /*
+//     this condition means: "do nothing if index === 0, work only if index > 0"
+//     */
+//     canvasGlobalState.containerAboutSlideIndex > 0
+//   ) {
+//     canvasState.containerAboutSlideIndex -= 1;
+//     canvasState.containerAboutSlidingDirection = 'backward';
+//   }
+// }, [canvasGlobalState.containerAboutSlideIndex]);
+
+/*
+  useEffect for Tests
+  */
+// useEffect(() => {
+//   if (canvasGlobalState.containerAboutSlidingDirection === 'forward') {
+//     console.log(
+//       'canvasGlobalState.containerAboutSlideIndex:',
+//       canvasGlobalState.containerAboutSlideIndex
+//     );
+//     console.log(
+//       'canvasGlobalState.containerAboutSlidingDirection:',
+//       canvasGlobalState.containerAboutSlidingDirection
+//     );
+//   }
+// }, [
+//   canvasGlobalState.containerAboutSlidingDirection,
+//   canvasGlobalState.containerAboutSlideIndex,
+// ]);

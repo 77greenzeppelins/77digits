@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 /*
 Components
 */
-import Banner from './banner/Banner';
 import Slider from './slider/Slider';
 /*
 Global State Staff
@@ -13,7 +12,7 @@ import { canvasState } from '../../../../states/canvasState';
 BasicData
 */
 // const backgroundColor = 0xc2bebb;
-import { backgroundColors } from '../../../../data/colors';
+// import { backgroundColors } from '../../../../data/colors';
 
 /*
 ------------------------------------------------------------------------
