@@ -73,7 +73,6 @@ const Slide0Test = React.forwardRef(({ slideId }, ref) => {
           : -2,
       ],
     },
-    // config: config.wobbly,
     config: { mass: 10, tension: 70, friction: 30 },
   });
 
