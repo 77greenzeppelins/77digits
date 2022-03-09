@@ -2,6 +2,10 @@ import { proxy } from 'valtio';
 
 const canvasState = proxy({
   /*
+  Tests
+  */
+  spinningBox1: false,
+  /*
   ------------------------------------------Universal Property
   ___currentContainer
   ...is changed within onClick events that allowe user to jump from container to container;

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 /*
 Global State Staff
 */
@@ -25,7 +25,14 @@ const CrescentArrow = React.forwardRef(
   "arrowSide" => left (right is default)
   */
   (
-    { slidesArrayNumber, arrowDirection, arrowOpacity, frameSide, arrowSide },
+    {
+      slidesArrayNumber,
+      arrowDirection,
+      arrowOpacity,
+      frameSide,
+      arrowSide,
+      rotated,
+    },
     ref
   ) => {
     /*
@@ -66,44 +73,27 @@ userExperience Section / onClick Handlers
     }, [canvasGlobalState.containerAboutSlideIndex]);
 
     /*
-    ...
-    */
-    useEffect(() => {
-      //   console.log('CrescentArrow / slidesArrayNumber:', slidesArrayNumber);
-      //   console.log('CrescentArrow / arrowDirection:', arrowDirection);
-      //   console.log('CrescentArrow / arrowOpacity:', arrowOpacity);
-      console.log(
-        'CrescentArrow / canvasGlobalState.containerAboutSlideIndex:',
-        canvasGlobalState.containerAboutSlideIndex
-      );
-    }, [
-      //   slidesArrayNumber,
-      //   arrowDirection,
-      //   arrowOpacity,
-      canvasGlobalState.containerAboutSlideIndex,
-    ]);
-
-    /*
     JSX
     */
     return (
       <div
-        className="crescent-arrow__container"
+        className={`crescent-arrow__container ${rotated}`}
+        // className="crescent-arrow__container"
         onClick={arrowDirection === 'arrow-up' ? goForward : goBackward}
         // onClick={fakeOnClick}
       >
         {/*-----arrow section-------------------------------------------------*/}
         <div
-          //   className="crescent-arrow__bolthead-container"
-          className={`crescent-arrow__bolthead-container ${arrowSide}`}
+          className="crescent-arrow__bolthead-container"
+          // className={`crescent-arrow__bolthead-container ${arrowSide}`}
           style={{
             opacity: arrowOpacity,
             // transform: 'rotate(180deg)',
             // transformOrigin: '75%',
           }}
         >
-          <div className="crescent-arrow__bolthead left" />
-          <div className="crescent-arrow__bolthead right" />
+          <div className="crescent-arrow__bolthead bar1" />
+          <div className="crescent-arrow__bolthead bar2" />
         </div>
 
         {/*-----frame section-------------------------------------------------*/}
@@ -112,7 +102,8 @@ userExperience Section / onClick Handlers
           /*
           ...
           */
-          className={`crescent-arrow__frame ${frameSide}`}
+          className="crescent-arrow__frame"
+          // className={`crescent-arrow__frame ${frameSide}`}
           {...buttonHover()}
           /*
           this "stylisation" is triggered when user hovers over "button-frame" 

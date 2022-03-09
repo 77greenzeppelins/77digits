@@ -1,10 +1,9 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 //, { useRef, useEffect }
-import { useThree } from '@react-three/fiber';
+// import { useThree } from '@react-three/fiber';
 /*
 Components
 */
-import TextVerse from '../../../../../drei/text/textVerse/TextVerse';
 import SpinningBox from '../../../spinningBox/SpinningBox';
 /*
 Global State Staf
@@ -16,17 +15,26 @@ Spring data
 */
 import { a, useSpring } from '@react-spring/three';
 /*
+Hook Staff
+*/
+import useWindowSize from '../../../../../../hooks/useWindowSize';
+/*
+Assets
+import all images  
+*/
+import containerAbout_Slide0_box1_image1 from '../../../../../../assets/textures/containerAbout_Slide0_box1_image1.png';
+import containerAbout_Slide0_box1_image2 from '../../../../../../assets/textures/containerAbout_Slide0_box1_image2.png';
+/*
  Basic Data
  */
-const [textHeader, fontSmall, fontMiddle, fontLarge] = [
-  { text: 'JESTEŚ TY', position: [0, 0.2, 0] },
-  /*
-  fonts size depends on "viewport.width"
-  */
-  0.025,
-  0.035,
-  0.045,
-];
+import {
+  slide0Box1Layout,
+  slide0Box1Data,
+  slide0Box2Layout,
+  slide0Box2Data,
+} from './slidesData';
+
+const [mobile, desktop] = [850, 1000];
 
 /*
 ----------------------------------------------------------------------
@@ -37,6 +45,21 @@ const Slide0Test = React.forwardRef(({ slideId }, ref) => {
   */
   // const group = useRef();
   /*
+  Hook Section
+  Why this hook?
+  */
+  const windowSize = useWindowSize();
+
+  useEffect(() => {
+    // console.log('lide0Box1Layout.mobile. scale', slide0Box1Layout.mobile.scale);
+    if (windowSize.width < mobile) {
+      console.log('Slide0Test / mobile layout');
+    } else {
+      console.log('Slide0Test / desktop layout');
+    }
+  }, [windowSize.width]);
+
+  /*
   Global State Section
     {containerAboutSlideIndex: 0,...}
   */
@@ -44,7 +67,7 @@ const Slide0Test = React.forwardRef(({ slideId }, ref) => {
   /*
   useThree() Staff
   */
-  const { viewport } = useThree();
+  // const { viewport } = useThree();
 
   /*
   Spring for TextVerses
@@ -55,13 +78,6 @@ const Slide0Test = React.forwardRef(({ slideId }, ref) => {
       position: [
         0,
         0,
-        /*
-        test for y-axis
-        */
-        // canvasGlobalState.currentContainer === 'aboutContainer' &&
-        // slideId < canvasGlobalState.containerAboutSlideIndex
-        //   ? 1
-        //   : 0,
         /*
         in case of Slider1 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
         */
@@ -85,14 +101,8 @@ const Slide0Test = React.forwardRef(({ slideId }, ref) => {
       position: [
         0,
         /*
-        in case of Slider1 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
+        in case of Slider) this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
         */
-        // canvasGlobalState.currentContainer === 'aboutContainer' &&
-        // slideId === canvasGlobalState.containerAboutSlideIndex
-        //   ? 0
-        //   : slideId < canvasGlobalState.containerAboutSlideIndex
-        //   ? 5
-        //   : 0,
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId < canvasGlobalState.containerAboutSlideIndex
           ? 1
@@ -114,43 +124,64 @@ const Slide0Test = React.forwardRef(({ slideId }, ref) => {
       // scale={[0,0,0]}
       position={springGroup.position}
     >
-      {/*-----Header Text----------------------------------------------*/}
-      {/* <a.group position={springSlideContent.position}>
-        <TextVerse
-          textProps={{
-            // position: [0, 0.09, 0],
-            position: textHeader.position,
-          }}
-          text={textHeader.text}
-          font="garamont"
-          fontResponsiveness={
-            viewport.width < 3.0
-              ? fontSmall
-              : viewport.width < 5.5
-              ? fontMiddle
-              : fontLarge
-          }
-          whiteSpace="nowrap" //'normal' "nowrap"
-          maxWidth={viewport.width / 9}
-        />
-      </a.group> */}
-
-      {/*-----Body Section------------------------------------------
-      Thera are several <grup> 
-      "GroupForAnimationLevelSlider" it's a sort of "high-top-animation"; refers to slide content behaviour; 
-      */}
+      {/*-----Body Section------------------------------------------*/}
       <Suspense fallback={null}>
         <a.group
           name="GroupForAnimationLevelSlideContent"
           position={springSlideContent.position}
         >
-          <group
-            name="GroupForImportedSpinningBoxLayout"
-            scale={[0.3, 0.3, 0.3]}
-            position={[0, -0.05, 0]}
-          >
-            <SpinningBox />
-          </group>
+          <SpinningBox
+            groupProps={{
+              name: 'groupForSpinningBox_slide_0_Box_1_Data',
+              // scale: slide0Box1Layout.mobile.scale,
+              // position: slide0Box1Layout.mobile.position,
+              // scale: [0.25, 0.25, 0.25],
+              // position: [0, -0.01, 0],
+              // slide0Box1Layout.mobile.scale,
+              scale:
+                windowSize.width < mobile
+                  ? slide0Box1Layout.mobile.scale
+                  : slide0Box1Layout.desktop.scale,
+              position:
+                windowSize.width < mobile
+                  ? slide0Box1Layout.mobile.position
+                  : slide0Box1Layout.desktop.position,
+              // ...slide0Box1Layout.mobile,
+            }}
+            spinningBoxConfig={slide0Box1Data}
+            /*
+            set value of rotation generated by useFrame()
+            */
+            setRotationYSpeed={0.1}
+            /*
+            set initial value of rotation for "DragRotateStepByStep"
+            */
+            setDragRotationX={Math.PI * -0.02}
+            /*
+            array of images that goes to
+            */
+            images={[
+              containerAbout_Slide0_box1_image1,
+              containerAbout_Slide0_box1_image2,
+            ]}
+            portrait={true}
+          />
+          <SpinningBox
+            groupProps={{
+              name: 'groupForSpinningBox_slide_0_Box_2_Data',
+              scale:
+                windowSize.width < mobile
+                  ? slide0Box2Layout.mobile.scale
+                  : slide0Box2Layout.desktop.scale,
+              position:
+                windowSize.width < mobile
+                  ? slide0Box2Layout.mobile.position
+                  : slide0Box2Layout.desktop.position,
+            }}
+            spinningBoxConfig={slide0Box2Data}
+            setRotationYSpeed={-0.12}
+            banner={true}
+          />
         </a.group>
       </Suspense>
     </a.group>

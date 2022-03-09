@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useRef, useState } from 'react';
 // import { useThree } from '@react-three/fiber';
 /*
 Gesture Staff
@@ -17,7 +17,7 @@ Basic Data
 */
 const [defaultX, defaultY, defaultZ] = [0, 0, 0];
 let horizontalDragValue = 0;
-let someBool = null;
+// let someBool = null;
 
 /*
 --------------------------------------------------------------------------
@@ -29,19 +29,25 @@ const DragRotateStepByStep = ({
   "rotationX" is actually initial value for "rotation.x"; important when we want to start with some rotation i.e. object has some starting/initial velue;
   same refers to "rotationY", "rotationZ"
   */
+  componentID,
   rotationX,
   rotationY,
   rotationZ,
 }) => {
   /*
+  state
+  */
+  // const [switcher, setSwitcher] = useState(0);
+  /*
   Spring Section
   */
-  const [{ rotateStepByStep }, api] = useSpring(() => ({
+  const [{ rotateStepByStep, gestureCounter }, api] = useSpring(() => ({
     rotateStepByStep: [
       rotationX || defaultX,
       rotationY || defaultY,
       rotationZ || defaultZ,
     ],
+    gestureCounter: [0, 0, 0],
     config: config.molasses,
     // config: { duration: 2000 },
   }));
@@ -54,18 +60,18 @@ const DragRotateStepByStep = ({
     What "down" does ?
     documentation: "true when a mouse button or touch is down"
     */
-    ({ down, movement: [movementX, movementY] }) => {
+    ({ down, movement: [movementX, movementY], memo }) => {
       /*
-      Test 2
-      I'm looking for "unique set of properties" i.e the one that "happens once" within "current gesture"; bare "movementX" triggers multiply times within every drag; i.e within particular user's drads this value changes a number of time 
+      Why such "if statement condition" ?
+      I'm looking for "unique set of properties" i.e the one that "happens once" within "current gesture"; bare "movementX" triggers multiply times within every drag; i.e within particular user's drags this value changes a number of time;
+      Why such boolean value?
+
       */
       if (movementX > 50 && !down) {
-        console.log('movementX', movementX);
-        someBool = true;
         horizontalDragValue += 1;
       }
+
       if (movementX < 50 && !down) {
-        someBool = false;
         horizontalDragValue -= 1;
       }
       /*
@@ -100,33 +106,24 @@ const DragRotateStepByStep = ({
           /*
           calculate X
           */
-          0,
+          rotationX || defaultX,
           /*
           calculate Y
           */
-          someBool
-            ? horizontalDragValue * Math.PI * 0.5
-            : horizontalDragValue * Math.PI * 0.5,
-
+          horizontalDragValue * Math.PI * 0.5,
           /*
           calculate z
           */
+          rotationZ || defaultZ,
+        ],
+        gestureCounter: [
+          0,
+          movementX > 50 && !down ? 1 * Math.PI * 0.5 : -1 * Math.PI * 0.5,
           0,
         ],
       });
     },
-    [
-      api,
-      //   rotationX,
-      //   rightDragLimitX,
-      //   leftDragLimitX,
-      //   rotationY,
-      //   rightDragLimitY,
-      //   leftDragLimitY,
-      //   rotationZ,
-      //   rightDragLimitZ,
-      //   leftDragLimitZ,
-    ]
+    [api, rotationX, rotationZ]
   );
 
   /*
@@ -147,7 +144,7 @@ const DragRotateStepByStep = ({
   /*
   Final "return staff" of this function
   */
-  return [rotateStepByStep, dragRotateStepByStep];
+  return [rotateStepByStep, gestureCounter, dragRotateStepByStep];
 };
 
 export default DragRotateStepByStep;

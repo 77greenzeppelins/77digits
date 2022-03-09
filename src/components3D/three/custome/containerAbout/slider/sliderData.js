@@ -4,9 +4,6 @@ const arrayOfSlides = [
   */
   {
     text: 'SLIDER_1',
-    // text1: 'Jesteś Ty i Ja',
-    // text2: 'Nasze spotkanie ma w sobie potencjał.',
-    // text3: 'Daje nam szansę na stworzenie nowej jakości',
   },
   /*
   slide2

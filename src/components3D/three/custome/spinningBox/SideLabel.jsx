@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useThree } from '@react-three/fiber';
 /*
 Components
@@ -7,8 +7,8 @@ import TextVerse from '../../../drei/text/textVerse/TextVerse';
 /*
 Global State Staff
 */
-import { useSnapshot } from 'valtio';
-import { canvasState } from '../../../../states/canvasState';
+// import { useSnapshot } from 'valtio';
+// import { canvasState } from '../../../../states/canvasState';
 /*
 Basic Data
 */
@@ -23,9 +23,9 @@ const SideLabel = ({ groupProps, labelProps }) => {
   */
   const { viewport } = useThree();
 
-  useEffect(() => {
-    console.log('labelProps:', labelProps);
-  }, [labelProps]);
+  // useEffect(() => {
+  //   console.log('labelProps:', labelProps);
+  // }, [labelProps]);
 
   /*
   JSX
