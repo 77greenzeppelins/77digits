@@ -4,6 +4,7 @@ import { useThree } from '@react-three/fiber';
 Components
 */
 import TextVerse from '../../../drei/text/textVerse/TextVerse';
+import UniversalCanvasWithoutMap from '../matcapFrames/UniversalCanvasWithoutMap';
 /*
 Global State Staff
 */
@@ -17,7 +18,7 @@ const [fontSmall, fontMedium, fontLarge] = [0.07, 0.08, 0.09];
 /*
 ----------------------------------------------------------------------------
 */
-const SideLabel = ({ groupProps, labelProps }) => {
+const SideLabel = ({ labelProps, portrait, banner }) => {
   /*
   useThree Section
   */
@@ -31,34 +32,35 @@ const SideLabel = ({ groupProps, labelProps }) => {
   JSX
   */
   return (
-    <group {...groupProps}>
-      {/*-----Awers-------------------------------------------------*/}
-      {
+    <group
+      rotation={[
+        0,
         /*
-      What is going on here?
-      If textAwers === false no <TextVerse> is produced; instead <UniversalCanvas> with map is produced in <SpinningBpx>
+      if textAwers is false user can see the image
       */
-        labelProps.textAwers !== false && (
-          <TextVerse
-            textProps={{ position: [0, 0, 0.01] }}
-            // text={textHeader.text}
-            text={labelProps.textAwers}
-            font="garamont"
-            fontResponsiveness={
-              viewport.width < 3.0
-                ? fontSmall
-                : viewport.width < 5.5
-                ? fontMedium
-                : fontLarge
-            }
-            textAlign="center"
-            whiteSpace="normal" //'normal' "nowrap"
-            maxWidth={viewport.width * 0.01}
-          />
-        )
-      }
-
-      {/*-----Rewers-------------------------------------------------*/}
+        !labelProps.textAwers ? Math.PI : 0,
+        0,
+      ]}
+    >
+      <TextVerse
+        textProps={{ position: [0, 0, 0.015] }}
+        // text={textHeader.text}
+        text={
+          labelProps.textAwers ? labelProps.textAwers : labelProps.textRewers
+        }
+        font="garamont"
+        fontResponsiveness={
+          viewport.width < 3.0
+            ? fontSmall
+            : viewport.width < 5.5
+            ? fontMedium
+            : fontLarge
+        }
+        textAlign="center"
+        whiteSpace="normal" //'normal' "nowrap"
+        maxWidth={viewport.width * 0.01}
+      />
+      <UniversalCanvasWithoutMap portrait={portrait} banner={banner} />
     </group>
   );
 };
