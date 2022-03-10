@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 /*
 Components
@@ -22,15 +22,30 @@ import { a } from '@react-spring/three';
 ----------------------------------------------------------------------
 */
 const SpinningBox = ({
+  /*
+  props for main <group> of this component
+  */
   groupProps,
+  /*
+  props for <SpinningBoxSide>
+  */
   spinningBoxConfig,
-  setRotationYSpeed,
-  setDragRotationX,
-  //........... setHorizontalDragCounter,
-  setDragComponentID,
   images,
   portrait,
   banner,
+  // canvasProps,
+  // frameProps,
+  /*
+  props for "DragRotateStepByStep"'s args;
+  */
+  setDragRotationX,
+  setDragRotationY,
+  axisLimitation,
+  /*
+  props for useFrame animations
+  */
+  setRotationYSpeed,
+  setRotationXSpeed,
 }) => {
   /*
   References
@@ -41,57 +56,72 @@ const SpinningBox = ({
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
-  useThree() Staff
+  Component State
   */
-  // const { viewport } = useThree();
+  const [sideIndex, setSideIndex] = useState(1);
   /*
   Call this gesture!!!
   returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
   */
-  const [rotateStepByStep, gestureCounter, dragRotateStepByStep] =
-    DragRotateStepByStep(
-      /*
+  const [rotateStepByStep, dragRotateStepByStep] = DragRotateStepByStep(
+    /*
     it's a section of "custome args"; just send some settings to drag hook;
     */
-      {
-        /*
-      
+    {
+      /*
+      set initial values for rotation 
       */
-        rotationX: setDragRotationX || 0,
-        /*
-      ........test
+      rotationX: setDragRotationX || 0,
+      rotationY: setDragRotationY || 0,
+      /*
+      set axis that is active
       */
-        // setHorizontalDragCounter: setHorizontalDragCounter,
-        componentID: setDragComponentID,
-        /*
-      set behaviour along x-axis i.e. should frame lean to top or to bottom or mix top & bottom;
-      */
-        //   rightDragLimitX: useDragData.rightDragLimitX,
-        //   leftDragLimitX: useDragData.leftDragLimitX,
-        /*
-      set behaviour along y-axis i.e. should frame lean to left or to right or mix left & right;
-      */
-        //   rightDragLimitY: useDragData.rightDragLimitY,
-        //   leftDragLimitY: useDragData.leftDragLimitY,
-      }
+      axisLimitation: axisLimitation,
+    }
+  );
+
+  /*
+  useEffect Section
+  */
+  useEffect(() => {
+    console.log(
+      'SpinningBox / autorotatingGroup.current.children:',
+      autorotatingGroup.current.children
     );
+    // autorotatingGroup.current.children.forEach(item => {
+    //   console.log('item.rotation', item.rotation.z);
+    //   if (portrait) {
+    //     item.rotation.y += Math.PI * 0.5;
+    //   }
+    // });
+    // if (portrait) {
+    //   autorotatingGroup.current.children[0].rotation.y = Math.PI * 0.5;
+    // }
+  }, [portrait]);
+
   /*
   useFrame Section
   */
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
-    if (canvasGlobalState.currentContainer === 'aboutContainer') {
-      // autorotatingGroup.current.rotation.y = time * setRotationYSpeed || 0;
+    if (
+      canvasGlobalState.currentContainer === 'aboutContainer' &&
+      setRotationYSpeed
+    ) {
+      autorotatingGroup.current.rotation.y = time * setRotationYSpeed || 0;
       // autorotatingGroup.current.rotation.y += 0.002;
       // autorotatingGroup.current.rotation.x = Math.sin(time * 0.1);
       // autorotatingGroup.current.rotation.y = Math.cos(time * 0.4) * 0.4;
       // autorotatingGroup.current.rotation.z = Math.sin(time * 0.4) * 0.5;
     }
-  });
 
-  /*
-  useEffect Tests
-  */
+    // if (
+    //   canvasGlobalState.currentContainer === 'aboutContainer' &&
+    //   setRotationXSpeed
+    // ) {
+    //   autorotatingGroup.current.rotation.x = time * setRotationXSpeed || 0;
+    // }
+  });
 
   /*
   JSX
@@ -102,21 +132,29 @@ const SpinningBox = ({
       name="GroupForGestureAnimation"
       {...dragRotateStepByStep()}
       rotation={rotateStepByStep}
-      // rotation={gestureCounter}
     >
       <a.group ref={autorotatingGroup}>
         {spinningBoxConfig.map(({ sideProps, labelProps }, index) => (
           <SpinningBoxSide
+            key={index}
+            index={index}
+            sideIndex={sideIndex}
             groupSideProps={sideProps}
             labelProps={labelProps}
-            key={index}
             /*
             We want to pass an image to some box's sides; to do this first check if congigObject of this particular "box side" has "textAwers"; if it hasn't i.e. the value is "false", choose some image instead text;
-            "labelProps.textAwers" has impact on components rendered in <SpinningBoxSide>'s children,,,
+            "labelProps.textAwers" controls the flow of "conditional rendering"  in <SpinningBoxSide> / <UniversalCanvac> or <UniversalCanvasWithouImage>
             */
-            image={!labelProps.textAwers && images[labelProps.imagesIndex]}
+            // image={
+            //   (!labelProps.textAwers || !labelProps.textRewers) &&
+            //   images[labelProps.imagesIndex]
+            // }
+            image={images[labelProps.imagesIndex]}
             portrait={portrait}
             banner={banner}
+
+            // frameProps={frameProps}
+            // canvasProps={canvasProps}
           />
         ))}
       </a.group>

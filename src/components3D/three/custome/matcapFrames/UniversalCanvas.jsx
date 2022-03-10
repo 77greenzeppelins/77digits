@@ -22,36 +22,46 @@ import {
 /*
 ----------------------------------------------------------------------------
 */
-const UniversalCanvas = ({ image, bgColor, banner }) => {
-  /*
+const UniversalCanvas = React.forwardRef(
+  ({ meshProps, image, bgColor, banner, isDoubleSide }, ref) => {
+    /*
   Image Loader
   */
-  const [map] = useLoader(THREE.TextureLoader, [image]);
+    const [map] = useLoader(THREE.TextureLoader, [image]);
 
-  /*
+    /*
   JSX
   */
-  return (
-    // <>
-    // <A11y role="image" description="77digits logo">
-    <mesh>
-      <planeGeometry
-        args={[
-          banner
-            ? bannerWidthSize + sizeFactor
-            : portraitWidthSize + sizeFactor,
-          banner
-            ? bannerHeightSize + sizeFactor
-            : portraitHeightSize + sizeFactor,
-          1,
-          1,
-        ]}
-      />
-      <meshBasicMaterial color={bgColor || 0xffffff} map={map} opacity={true} />
-    </mesh>
-    // </A11y>
-    // </>
-  );
-};
+    return (
+      // <>
+      // <A11y role="image" description="77digits logo">
+      <mesh ref={ref} {...meshProps}>
+        <planeGeometry
+          args={[
+            banner
+              ? bannerWidthSize + sizeFactor
+              : portraitWidthSize + sizeFactor,
+            banner
+              ? bannerHeightSize + sizeFactor
+              : portraitHeightSize + sizeFactor,
+            1,
+            1,
+          ]}
+        />
+        <meshBasicMaterial
+          color={bgColor || 0xffffff}
+          map={map}
+          opacity={true}
+          /*
+        in case "canvas" should be visible from both side pass this boolean; used in: <SpinningBoxSide> because the side is pivotal
+        */
+          side={isDoubleSide ? THREE.DoubleSide : THREE.FrontSide}
+        />
+      </mesh>
+      // </A11y>
+      // </>
+    );
+  }
+);
 
 export default UniversalCanvas;

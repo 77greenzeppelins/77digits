@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 /*
 Components
 */
 import UniversalFrame from '../matcapFrames/UniversalFrame';
-import UniversalCanvasWithoutMap from '../matcapFrames/UniversalCanvasWithoutMap';
 import UniversalCanvas from '../matcapFrames/UniversalCanvas';
 import SideLabel from './SideLabel';
 /*
@@ -20,15 +19,30 @@ import { a } from '@react-spring/three';
 ----------------------------------------------------------------------
 */
 const SpinningBoxSide = ({
+  index,
+  sideIndex,
   groupSideProps,
   labelProps,
+  canvasProps,
+  frameProps,
   image,
   portrait,
   banner,
 }) => {
   /*
-JSX
-*/
+  References
+  */
+  const universalCanvas = useRef();
+  /*
+  useEffect Section
+  */
+  useEffect(() => {
+    index === sideIndex &&
+      console.log('SpinningBoxSide / my index is:', sideIndex);
+  }, [sideIndex, index]);
+  /*
+  JSX
+  */
   return (
     <a.group
       name="GroupForSpinningBoxSides"
@@ -43,22 +57,26 @@ JSX
         banner={banner}
       />
       {
-        /*
-        Why conditional rendering?
-        Becouse some sides have textures;
-        */
-        labelProps.textAwers ? (
-          <UniversalCanvasWithoutMap
-            portrait={portrait}
-            banner={banner}
-            bgColor={0x000000}
-          />
-        ) : (
-          <UniversalCanvas portrait={portrait} banner={banner} image={image} />
-        )
+        <UniversalCanvas
+          ref={universalCanvas}
+          meshProps={{
+            /*
+            if textRewers = false just rotate <UC> so that initially it's invisible;
+            */
+            rotation: [0, !labelProps.textRewers ? Math.PI : 0, 0],
+            /*
+            to avoid ... test
+            */
+            // visible:
+            //   universalCanvas.current.rotation.y === Math.PI ? false : true,
+            // visible: labelProps.textRewers ? true : true,
+          }}
+          portrait={portrait}
+          banner={banner}
+          image={image}
+        />
       }
-
-      <SideLabel labelProps={labelProps} />
+      <SideLabel labelProps={labelProps} portrait={portrait} banner={banner} />
     </a.group>
   );
 };

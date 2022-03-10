@@ -1,4 +1,5 @@
 import React from 'react';
+import * as THREE from 'three';
 /*
 Basic Data
 */
@@ -14,7 +15,7 @@ import {
 ----------------------------------------------------------------------------
 */
 
-const UniversalCanvasWithoutMap = ({ bgColor, banner }) => {
+const UniversalCanvasWithoutMap = ({ bgColor, banner, isDoubleSide }) => {
   /*
   JSX
   */
@@ -34,7 +35,13 @@ const UniversalCanvasWithoutMap = ({ bgColor, banner }) => {
           1,
         ]}
       />
-      <meshBasicMaterial color={bgColor || 0x000000} />
+      <meshBasicMaterial
+        color={bgColor || 0x000000}
+        /*
+        in case "canvas" should be visible from both side pass this boolean; used in: <SpinningBoxSide> because the side is pivotal
+        */
+        side={isDoubleSide ? THREE.DoubleSide : THREE.FrontSide}
+      />
     </mesh>
     //   </A11y>
     // </>
