@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 /*
 Components
@@ -7,8 +7,8 @@ import SpinningBoxSide from './SpinningBoxSide';
 /*
 Global State Staf
 */
-import { useSnapshot } from 'valtio';
-import { canvasState } from '../../../../states/canvasState';
+// import { useSnapshot } from 'valtio';
+// import { canvasState } from '../../../../states/canvasState';
 /*
 Gesture Section
 */
@@ -42,6 +42,10 @@ const SpinningBox = ({
   setDragRotationY,
   axisLimitation,
   /*
+  props for spring
+  */
+  animationDelay,
+  /*
   props for useFrame animations
   */
   setRotationYSpeed,
@@ -54,11 +58,7 @@ const SpinningBox = ({
   /*
   Global State
   */
-  const canvasGlobalState = useSnapshot(canvasState);
-  /*
-  Component State
-  */
-  const [sideIndex, setSideIndex] = useState(1);
+  // const canvasGlobalState = useSnapshot(canvasState);
   /*
   Call this gesture!!!
   returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
@@ -104,16 +104,16 @@ const SpinningBox = ({
   */
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
-    if (
-      canvasGlobalState.currentContainer === 'aboutContainer' &&
-      setRotationYSpeed
-    ) {
-      autorotatingGroup.current.rotation.y = time * setRotationYSpeed || 0;
-      // autorotatingGroup.current.rotation.y += 0.002;
-      // autorotatingGroup.current.rotation.x = Math.sin(time * 0.1);
-      // autorotatingGroup.current.rotation.y = Math.cos(time * 0.4) * 0.4;
-      // autorotatingGroup.current.rotation.z = Math.sin(time * 0.4) * 0.5;
-    }
+    // if (
+    //   canvasGlobalState.currentContainer === 'aboutContainer' &&
+    //   setRotationYSpeed
+    // ) {
+    //   autorotatingGroup.current.rotation.y = time * setRotationYSpeed || 0;
+    //   // autorotatingGroup.current.rotation.y += 0.002;
+    //   // autorotatingGroup.current.rotation.x = Math.sin(time * 0.1);
+    //   // autorotatingGroup.current.rotation.y = Math.cos(time * 0.4) * 0.4;
+    //   // autorotatingGroup.current.rotation.z = Math.sin(time * 0.4) * 0.5;
+    // }
 
     // if (
     //   canvasGlobalState.currentContainer === 'aboutContainer' &&
@@ -138,7 +138,7 @@ const SpinningBox = ({
           <SpinningBoxSide
             key={index}
             index={index}
-            sideIndex={sideIndex}
+            databaseIndex={labelProps.imagesIndex}
             groupSideProps={sideProps}
             labelProps={labelProps}
             /*
@@ -152,9 +152,10 @@ const SpinningBox = ({
             image={images[labelProps.imagesIndex]}
             portrait={portrait}
             banner={banner}
-
+            axisLimitation={axisLimitation}
             // frameProps={frameProps}
             // canvasProps={canvasProps}
+            animationDelay={animationDelay}
           />
         ))}
       </a.group>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useThree } from '@react-three/fiber';
 /*
 Drei Staff
@@ -43,6 +43,7 @@ const AnswerYes = ({ groupProps, thisMatcapMaterial }) => {
   canvasState = {..., isRaphaelMoving: 0, isPlatoAnswer: false,}
   */
   // const canvasGlobalState = useSnapshot(canvasState);
+
   /*
   Spring Section
   Concept: animate scale of text to mimic "pulse"
