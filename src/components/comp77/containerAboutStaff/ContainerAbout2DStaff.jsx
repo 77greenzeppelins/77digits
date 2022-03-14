@@ -2,6 +2,7 @@ import React from 'react';
 /*
 Components
 */
+import HeroSlider from './heroSlider/HeroSlider';
 import NavigationPanel from './navigationPanel/NavigationPanel';
 /*
 Global State Staff
@@ -49,26 +50,20 @@ const ContainerAbout2DStaff = () => {
     canvasGlobalState.currentContainer === 'aboutContainer' && (
       <div className="container-about">
         <div className="container-about__body">
-          {/*-----Hero Section-------------------------------------------------*/}
+          {}
           <div
             className={
               windowSize.width < minForTablet
                 ? 'container-about__hero-mobile'
                 : 'container-about__hero-tablet'
             }
-            // style={{ height: windowSize.width > tablet && windowSize.width }}
           >
-            <h1 className="container-about__hero-label">Jesteś Ty</h1>
-
+            {/* <h1 className="container-about__hero-label">Jesteś Ty</h1> */}
+            <HeroSlider />
             {
-              /*
-            in case of "tablet width size" <NavigationPanel> is displayed in hero section
-            */
+              /* Why conditional rendering? Becouse this section is rendered only on devices that are at least "tablet-size"; */
               windowSize.width > minForTablet && (
-                <div
-                  className="container-about__hero-navigation"
-                  style={{ height: windowSize.height * 0.5 }}
-                >
+                <div className="container-about__navigation-container">
                   <NavigationPanel
                     slidesArrayNumber={slidesArrayNumber}
                     orientation={true}
@@ -77,13 +72,15 @@ const ContainerAbout2DStaff = () => {
               )
             }
           </div>
+
+          {/*-----Hero Section-------------------------------------------------*/}
         </div>
         {/*-----Footer Section-----------------------------------------------*/}
         {
           /*
-        Why conditional rendering?
-        Becouse this section is rendered only on mobile;
-        */
+          Why conditional rendering?
+          Becouse this section is rendered only on mobile i.e. smallert then tablet;
+          */
           windowSize.width < minForTablet && (
             <div
               className="container-about__footer"

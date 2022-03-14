@@ -1,5 +1,5 @@
 /*
-Slides Layout
+Slide0's Layout
 */
 const slide0Box1Layout = {
   mobile: { scale: [0.27, 0.27, 0.27], position: [0, 0, 0] },
@@ -20,7 +20,7 @@ const slide0Box1Data = [
     sideProps: { position: [0, 0, 0.365], rotation: [0, 0, 0] },
     labelProps: {
       imagesIndex: 0,
-      textAwers: 'Laureatka prestiżowej nagrody',
+      textAwers: 'Laureat prestiżowej nagrody (Nobla?)',
       textRewers: false,
     },
     frameProps: { portrair: true },
@@ -31,7 +31,7 @@ const slide0Box1Data = [
     sideProps: { position: [-0.365, 0, -0], rotation: [0, Math.PI * 0.5, 0] },
     labelProps: {
       imagesIndex: 1,
-      textAwers: 'Przyszłość tego narodu',
+      textAwers: 'Przyszłość branży medycznej',
       textRewers: false,
     },
     frameProps: { portrair: true },
@@ -44,7 +44,7 @@ const slide0Box1Data = [
     labelProps: {
       imagesIndex: 2,
       textAwers: false,
-      textRewers: 'Autor muzycznych arcydzieł',
+      textRewers: 'Autorka wspaniałych dzieł muzycznych',
     },
     frameProps: { portrair: true },
     canvasProps: { portrair: true },
@@ -56,16 +56,12 @@ const slide0Box1Data = [
     labelProps: {
       imagesIndex: 3,
       textAwers: false,
-      textRewers: 'Producent unikalnych rozwiązań',
+      textRewers: 'Producent unikalnych rozwiązań technicznych',
     },
     frameProps: { portrair: true },
     canvasProps: { portrair: true },
   },
 ];
-
-/*
-----------------------------------------------------------------------
-*/
 
 const slide0Box2Data = [
   /* Panel Front */
@@ -73,7 +69,7 @@ const slide0Box2Data = [
     sideProps: { position: [0, 0, 0.28], rotation: [0, 0, 0] },
     labelProps: {
       imagesIndex: 0,
-      textAwers: 'Szef wszystkich szefów',
+      textAwers: 'Szefowa wszystkich szefów',
       textRewers: false,
     },
     frameProps: { banner: true },
@@ -87,7 +83,7 @@ const slide0Box2Data = [
     },
     labelProps: {
       imagesIndex: 1,
-      textAwers: 'Autorka poczytnego bloga',
+      textAwers: 'Twórczyni wybitnego bloga',
       textRewers: false,
     },
     frameProps: { banner: true },
@@ -98,7 +94,7 @@ const slide0Box2Data = [
     sideProps: { position: [0, 0, -0.28], rotation: [0, 0, 0] },
     labelProps: {
       imagesIndex: 2,
-      textAwers: 'Bizneswoman dekady',
+      textAwers: 'Bizneswoman dekady!',
       textRewers: false,
     },
     frameProps: { banner: true },
@@ -116,4 +112,70 @@ const slide0Box2Data = [
     canvasProps: { banner: true },
   },
 ];
-export { slide0Box1Layout, slide0Box1Data, slide0Box2Layout, slide0Box2Data };
+
+/*
+Slide0's Layout
+*/
+const slide1Box1Layout = {
+  mobile: { scale: [0.27, 0.27, 0.27], position: [0, 0, 0] },
+  desktop: { scale: [0.35, 0.35, 0.35], position: [-0.05, 0, 0] },
+};
+
+const slide1Box1Data = [
+  /* Panel Front */
+  {
+    sideProps: { position: [0, 0, 0.365], rotation: [0, 0, 0] },
+    labelProps: {
+      imagesIndex: 0,
+      textAwers: 'Web developer',
+      textRewers: false,
+    },
+    frameProps: { portrair: true },
+    canvasProps: { portrair: true },
+  },
+  /* Panel Left  */
+  {
+    sideProps: { position: [-0.365, 0, -0], rotation: [0, Math.PI * 0.5, 0] },
+    labelProps: {
+      imagesIndex: 1,
+      textAwers: 'Przyszłość branży medycznej',
+      textRewers: false,
+    },
+    frameProps: { portrair: true },
+    canvasProps: { portrair: true },
+  },
+
+  /* Panel Back */
+  {
+    sideProps: { position: [0, 0, -0.365], rotation: [0, 0, 0] },
+    labelProps: {
+      imagesIndex: 2,
+      textAwers: false,
+      // textRewers: 'Autorka podziwianych dzieł muzycznych',
+      textRewers: 'Autorka wspaniałych dzieł muzycznych',
+    },
+    frameProps: { portrair: true },
+    canvasProps: { portrair: true },
+  },
+
+  /* Panel Right */
+  {
+    sideProps: { position: [0.365, 0, -0], rotation: [0, Math.PI * 0.5, 0] },
+    labelProps: {
+      imagesIndex: 3,
+      textAwers: false,
+      textRewers: 'Producent unikalnych rozwiązań technicznych',
+    },
+    frameProps: { portrair: true },
+    canvasProps: { portrair: true },
+  },
+];
+
+export {
+  slide0Box1Layout,
+  slide0Box1Data,
+  slide0Box2Layout,
+  slide0Box2Data,
+  slide1Box1Layout,
+  slide1Box1Data,
+};

@@ -1,10 +1,8 @@
-import React from 'react';
-//, { useRef, useEffect }
-import { useThree } from '@react-three/fiber';
+import React, { Suspense, useMemo } from 'react';
 /*
 Components
 */
-import TextVerse from '../../../../../drei/text/textVerse/TextVerse';
+import SpinningBox from '../../../spinningBox/SpinningBox';
 /*
 Global State Staf
 */
@@ -15,52 +13,60 @@ Spring data
 */
 import { a, useSpring } from '@react-spring/three';
 /*
+Hook Staff
+*/
+import useWindowSize from '../../../../../../hooks/useWindowSize';
+/*
+Assets
+import images for <SpinningBox> / <SpinningBoxSide> / <UniversalCanvas> / image  
+*/
+import containerAbout_Slide0_box1_image1 from '../../../../../../assets/textures/containerAbout_Slide0_box1_image1.png';
+import containerAbout_Slide0_box1_image2 from '../../../../../../assets/textures/containerAbout_Slide0_box1_image2.png';
+/*
  Basic Data
  */
-const [fontSmall, fontMiddle, fontLarge] = [
-  /*
-  fonts size depends on "viewport.width"
-  */
-  0.025, 0.035, 0.045,
-];
+import { slide1Box1Layout, slide1Box1Data } from './slidesData';
+
+const minForTablet = 850;
 
 /*
 ----------------------------------------------------------------------
 */
 
-const Slide1 = React.forwardRef(({ slideId }, ref) => {
+const Slide1 = ({ slideId }) => {
   /*
-  References
+  Hook Section
+  Why this hook?
   */
-  // const group = useRef();
+  const windowSize = useWindowSize();
   /*
   Global State Section
     {containerAboutSlideIndex: 0,...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
-  useThree() Staff
+  Arrays of images
   */
-  const { viewport } = useThree();
-
+  const imagesPortrait = useMemo(
+    () => [
+      containerAbout_Slide0_box1_image1,
+      containerAbout_Slide0_box1_image2,
+      containerAbout_Slide0_box1_image1,
+      containerAbout_Slide0_box1_image2,
+    ],
+    []
+  );
   /*
-  Spring for TextVerses
+  Spring for animation entitled: "going from behind the scene"; it animates slide's content move on z-axis...
   */
-  const springTextVerse = useSpring({
-    from: { position: [0, 0, -1] },
+  const springSlideContent = useSpring({
+    from: { position: [0, 0, -2] },
     to: {
       position: [
-        /*
-        x-axis
-        */
+        0,
         0,
         /*
-        x-axis
-        */
-        0,
-        /*
-        z-axis
-        in case of Slider1 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
+        in case of Slider1 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout"; i.e. user doesn't see how "frames" go from behind the scene;;
         */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId === canvasGlobalState.containerAboutSlideIndex
@@ -74,99 +80,86 @@ const Slide1 = React.forwardRef(({ slideId }, ref) => {
   });
 
   /*
-  Spring for main group
+  Spring for animation entiled: "go away from here to heven"it animates slide move on y-axis...
   */
   const springGroup = useSpring({
-    from: { position: [0, 0, -1] },
+    from: { position: [0, 0, 0] },
     to: {
       position: [
-        /*
-        x-axis
-        */
         0,
         /*
-        y-axis
-        in case of Slider1 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
+        in case of Slider0 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
         */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId < canvasGlobalState.containerAboutSlideIndex
           ? 1
           : 0,
-        /*
-        z-axis
-        */
         0,
       ],
     },
     config: { mass: 10, tension: 70, friction: 30 },
   });
-  /*
-  useEffect Test
-  */
-  // useEffect(() => {
-  //   console.log('slideId:', slideId);
-  //   console.log(
-  //     'canvasGlobalState.containerAboutSlideIndex:',
-  //     canvasGlobalState.containerAboutSlideIndex
-  //   );
-  //   console.log(
-  //     'canvasGlobalState.currentContainer:',
-  //     canvasGlobalState.currentContainer
-  //   );
-  // }, [
-  //   slideId,
-  //   canvasGlobalState.containerAboutSlideIndex,
-  //   canvasGlobalState.currentContainer,
-  // ]);
 
   /*
   JSX
   */
   return (
-    <a.group ref={ref} position={springGroup.position}>
-      <a.group position={springTextVerse.position}>
-        <TextVerse
-          // textProps={{
-          //   position: [0, 0, 0],
-          // }}
-          text="SLIDE 1"
-          font="garamont"
-          fontResponsiveness={
-            viewport.width < 3.0
-              ? fontSmall
-              : viewport.width < 5.5
-              ? fontMiddle
-              : fontLarge
-          }
-          whiteSpace="nowrap" //'normal' "nowrap"
-          maxWidth={viewport.width / 9}
-        />
-      </a.group>
-      <a.group position={springTextVerse.position}>
-        <TextVerse
-          textProps={{
-            position: [
-              0, -0.05, 0,
-              //     0, 0, 0,
-              //   topPositionY + index * reducePositionY,
-              //   topPositionZ + index * reducePositionZ,
-            ],
-          }}
-          text="content of slide 1"
-          font="garamont"
-          fontResponsiveness={
-            viewport.width < 3.0
-              ? fontSmall
-              : viewport.width < 5.5
-              ? fontMiddle
-              : fontLarge
-          }
-          whiteSpace="nowrap" //'normal' "nowrap"
-          maxWidth={viewport.width / 9}
-        />
-      </a.group>
+    <a.group
+      name="GroupForAnimationLevelSlideOfSlide_0"
+      position={springGroup.position}
+    >
+      {/*-----Body Section------------------------------------------*/}
+      <Suspense fallback={null}>
+        <a.group
+          name="GroupForAnimationLevelSlideContentOfSlide_0"
+          position={springSlideContent.position}
+        >
+          <SpinningBox
+            groupProps={{
+              name: 'groupForSpinningBox_slide_0_Box_1_Data',
+              /*
+              a bit of responsiveness; 
+              */
+              scale:
+                windowSize.width < minForTablet
+                  ? slide1Box1Layout.mobile.scale
+                  : slide1Box1Layout.desktop.scale,
+              position:
+                windowSize.width < minForTablet
+                  ? slide1Box1Layout.mobile.position
+                  : slide1Box1Layout.desktop.position,
+              // ...slide0Box1Layout.mobile,
+            }}
+            /*
+            array of props; using map() we get 4 <SpinningBoxSide>
+            */
+            spinningBoxConfig={slide1Box1Data}
+            /*
+            array of images ultimately used in <UniversalCanvas>
+            */
+            images={imagesPortrait}
+            /*
+            prop for <UniversalFrame> & <UniversalCanvas>
+            */
+            portrait={true}
+            /*
+            set value of rotation generated by useFrame()
+            */
+            setRotationYSpeed={0.1}
+            /*
+            props for "DragRotateStepByStep"
+            */
+            setDragRotationX={0}
+            axisLimitation="x"
+            animationDelay={9000}
+            isSideRotating={
+              slideId === canvasGlobalState.containerAboutSlideIndex
+            }
+          />
+        </a.group>
+      </Suspense>
     </a.group>
   );
-});
+};
 
 export default Slide1;

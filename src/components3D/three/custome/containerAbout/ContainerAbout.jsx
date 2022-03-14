@@ -25,18 +25,19 @@ const ContainerAbout = () => {
   const canvasGlobalState = useSnapshot(canvasState);
 
   return (
-    <group
-      name="GroupForContainerAbout"
-      /*
+    canvasGlobalState.currentContainer === 'aboutContainer' && (
+      <group
+        name="GroupForContainerAbout"
+        /*
       this position is [-5,0,0]; it's required to properly position the whole container;
       */
-      position={canvasGlobalState.aboutContainerPosition}
-    >
-      {/*-----Slider Section-----------------------------------*/}
-      <Slider />
+        position={canvasGlobalState.aboutContainerPosition}
+      >
+        {/*-----Slider Section-----------------------------------*/}
+        <Slider />
 
-      {/*-----Bottom Section-----------------------------------*/}
-      {/* <Suspense fallback={null}>
+        {/*-----Bottom Section-----------------------------------*/}
+        {/* <Suspense fallback={null}>
         <Banner
           groupProps={{
             name: 'GroupForLogoInFrame2',
@@ -47,7 +48,8 @@ const ContainerAbout = () => {
           backgroundColor={backgroundColors.containerAbout}
         />
       </Suspense> */}
-    </group>
+      </group>
+    )
   );
 };
 

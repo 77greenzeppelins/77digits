@@ -7,8 +7,8 @@ import SpinningBoxSide from './SpinningBoxSide';
 /*
 Global State Staf
 */
-// import { useSnapshot } from 'valtio';
-// import { canvasState } from '../../../../states/canvasState';
+import { useSnapshot } from 'valtio';
+import { canvasState } from '../../../../states/canvasState';
 /*
 Gesture Section
 */
@@ -45,6 +45,7 @@ const SpinningBox = ({
   props for spring
   */
   animationDelay,
+  isSideRotating,
   /*
   props for useFrame animations
   */
@@ -58,7 +59,7 @@ const SpinningBox = ({
   /*
   Global State
   */
-  // const canvasGlobalState = useSnapshot(canvasState);
+  const canvasGlobalState = useSnapshot(canvasState);
   /*
   Call this gesture!!!
   returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
@@ -83,45 +84,47 @@ const SpinningBox = ({
   /*
   useEffect Section
   */
-  useEffect(() => {
-    console.log(
-      'SpinningBox / autorotatingGroup.current.children:',
-      autorotatingGroup.current.children
-    );
-    // autorotatingGroup.current.children.forEach(item => {
-    //   console.log('item.rotation', item.rotation.z);
-    //   if (portrait) {
-    //     item.rotation.y += Math.PI * 0.5;
-    //   }
-    // });
-    // if (portrait) {
-    //   autorotatingGroup.current.children[0].rotation.y = Math.PI * 0.5;
-    // }
-  }, [portrait]);
+  // useEffect(() => {
+  // console.log('SpinningBox / isSideRotating:', isSideRotating);
+  // autorotatingGroup.current.children.forEach(item => {
+  //   console.log('item.rotation', item.rotation.z);
+  //   if (portrait) {
+  //     item.rotation.y += Math.PI * 0.5;
+  //   }
+  // });
+  // if (portrait) {
+  //   autorotatingGroup.current.children[0].rotation.y = Math.PI * 0.5;
+  // }
+  // }, [isSideRotating]);
 
   /*
   useFrame Section
   */
-  useFrame(({ clock }) => {
-    const time = clock.getElapsedTime();
-    // if (
-    //   canvasGlobalState.currentContainer === 'aboutContainer' &&
-    //   setRotationYSpeed
-    // ) {
-    //   autorotatingGroup.current.rotation.y = time * setRotationYSpeed || 0;
-    //   // autorotatingGroup.current.rotation.y += 0.002;
-    //   // autorotatingGroup.current.rotation.x = Math.sin(time * 0.1);
-    //   // autorotatingGroup.current.rotation.y = Math.cos(time * 0.4) * 0.4;
-    //   // autorotatingGroup.current.rotation.z = Math.sin(time * 0.4) * 0.5;
-    // }
-
-    // if (
-    //   canvasGlobalState.currentContainer === 'aboutContainer' &&
-    //   setRotationXSpeed
-    // ) {
-    //   autorotatingGroup.current.rotation.x = time * setRotationXSpeed || 0;
-    // }
-  });
+  // useFrame(({ clock }) => {
+  //   const time = clock.getElapsedTime();
+  //   /*
+  //   Autorotation of portrait; i.e rotate along y-axis;
+  //   */
+  //   if (
+  //     canvasGlobalState.currentContainer === 'aboutContainer' &&
+  //     setRotationYSpeed
+  //   ) {
+  //     autorotatingGroup.current.rotation.y = time * setRotationYSpeed || 0;
+  //     //   // autorotatingGroup.current.rotation.y += 0.002;
+  //     //   // autorotatingGroup.current.rotation.x = Math.sin(time * 0.1);
+  //     //   // autorotatingGroup.current.rotation.y = Math.cos(time * 0.4) * 0.4;
+  //     //   // autorotatingGroup.current.rotation.z = Math.sin(time * 0.4) * 0.5;
+  //   }
+  //   /*
+  //   Autorotation of banner
+  //   */
+  //   // if (
+  //   //   canvasGlobalState.currentContainer === 'aboutContainer' &&
+  //   //   setRotationXSpeed
+  //   // ) {
+  //   //   autorotatingGroup.current.rotation.x = time * setRotationXSpeed || 0;
+  //   // }
+  // });
 
   /*
   JSX
@@ -156,6 +159,7 @@ const SpinningBox = ({
             // frameProps={frameProps}
             // canvasProps={canvasProps}
             animationDelay={animationDelay}
+            isSideRotating={isSideRotating}
           />
         ))}
       </a.group>

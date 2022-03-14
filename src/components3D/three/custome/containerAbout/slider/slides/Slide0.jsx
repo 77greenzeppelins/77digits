@@ -1,10 +1,8 @@
-import React from 'react';
-//, { useRef, useEffect }
-import { useThree } from '@react-three/fiber';
+import React, { Suspense, useMemo } from 'react';
 /*
 Components
 */
-import TextVerse from '../../../../../drei/text/textVerse/TextVerse';
+import SpinningBox from '../../../spinningBox/SpinningBox';
 /*
 Global State Staf
 */
@@ -13,56 +11,78 @@ import { canvasState } from '../../../../../../states/canvasState';
 /*
 Spring data
 */
-import { a, useSpring, config } from '@react-spring/three';
+import { a, useSpring } from '@react-spring/three';
+/*
+Hook Staff
+*/
+import useWindowSize from '../../../../../../hooks/useWindowSize';
+/*
+Assets
+import images for <SpinningBox> / <SpinningBoxSide> / <UniversalCanvas> / image  
+*/
+import containerAbout_Slide0_box1_image1 from '../../../../../../assets/textures/containerAbout_Slide0_box1_image1.png';
+import containerAbout_Slide0_box1_image2 from '../../../../../../assets/textures/containerAbout_Slide0_box1_image2.png';
+import containerAbout_Slide0_box2_image1 from '../../../../../../assets/textures/containerAbout_Slide0_box2_image1.png';
+import containerAbout_Slide0_box2_image2 from '../../../../../../assets/textures/containerAbout_Slide0_box2_image2.png';
 /*
  Basic Data
  */
-const [textHeader, fontSmall, fontMiddle, fontLarge] = [
-  { text: 'JESTEŚ TY', position: [0, 0.2, 0] },
-  /*
-  fonts size depends on "viewport.width"
-  */
-  0.025,
-  0.035,
-  0.045,
-];
+import {
+  slide0Box1Layout,
+  slide0Box1Data,
+  slide0Box2Layout,
+  slide0Box2Data,
+} from './slidesData';
+
+const minForTablet = 850;
 
 /*
 ----------------------------------------------------------------------
 */
-const Slide0 = React.forwardRef(({ slideId }, ref) => {
+const Slide0 = ({ slideId }) => {
   /*
-  References
+  Hook Section
+  Why this hook?
   */
-  // const group = useRef();
+  const windowSize = useWindowSize();
   /*
   Global State Section
     {containerAboutSlideIndex: 0,...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
-  useThree() Staff
+  Arrays of images
   */
-  const { viewport } = useThree();
+  const imagesPortrait = useMemo(
+    () => [
+      containerAbout_Slide0_box1_image1,
+      containerAbout_Slide0_box1_image2,
+      containerAbout_Slide0_box1_image1,
+      containerAbout_Slide0_box1_image2,
+    ],
+    []
+  );
 
+  const imagesBanner = useMemo(
+    () => [
+      containerAbout_Slide0_box2_image1,
+      containerAbout_Slide0_box2_image2,
+      containerAbout_Slide0_box2_image1,
+      containerAbout_Slide0_box2_image2,
+    ],
+    []
+  );
   /*
-  Spring for TextVerses
+  Spring for animation of "going from behind the scene"i.e on z-axis...
   */
-  const springTextVerse = useSpring({
+  const springSlideContent = useSpring({
     from: { position: [0, 0, -2] },
     to: {
       position: [
         0,
         0,
         /*
-        test for y-axis
-        */
-        // canvasGlobalState.currentContainer === 'aboutContainer' &&
-        // slideId < canvasGlobalState.containerAboutSlideIndex
-        //   ? 1
-        //   : 0,
-        /*
-        in case of Slider1 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
+        in case of Slider1 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout"; i.e. user doesn't see how "frames" go from behind the scene;;
         */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId === canvasGlobalState.containerAboutSlideIndex
@@ -72,12 +92,11 @@ const Slide0 = React.forwardRef(({ slideId }, ref) => {
           : -2,
       ],
     },
-    // config: config.wobbly,
     config: { mass: 10, tension: 70, friction: 30 },
   });
 
   /*
-  Spring for main group
+  Spring for animation entiled: "go away from here to heven"it animates slide move on y-axis...
   */
   const springGroup = useSpring({
     from: { position: [0, 0, 0] },
@@ -85,14 +104,8 @@ const Slide0 = React.forwardRef(({ slideId }, ref) => {
       position: [
         0,
         /*
-        in case of Slider1 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
+        in case of Slider0 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
         */
-        // canvasGlobalState.currentContainer === 'aboutContainer' &&
-        // slideId === canvasGlobalState.containerAboutSlideIndex
-        //   ? 0
-        //   : slideId < canvasGlobalState.containerAboutSlideIndex
-        //   ? 5
-        //   : 0,
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId < canvasGlobalState.containerAboutSlideIndex
           ? 1
@@ -103,80 +116,130 @@ const Slide0 = React.forwardRef(({ slideId }, ref) => {
     config: { mass: 10, tension: 70, friction: 30 },
   });
   /*
-  useEffect Test
-  */
-  // useEffect(() => {
-  //   console.log('slideId:', slideId);
-  //   console.log(
-  //     'canvasGlobalState.containerAboutSlideIndex:',
-  //     canvasGlobalState.containerAboutSlideIndex
-  //   );
-  //   console.log(
-  //     'canvasGlobalState.currentContainer:',
-  //     canvasGlobalState.currentContainer
-  //   );
-  // }, [
-  //   slideId,
-  //   canvasGlobalState.containerAboutSlideIndex,
-  //   canvasGlobalState.currentContainer,
-  // ]);
-  // console.log('textHeader.position:', textHeader.position);
-  /*
   JSX
+  What is "GroupForAnimationLevelSlide"?
+  What is "GroupForAnimationLevelSlideContent"
   */
   return (
     <a.group
-      ref={ref}
-      // scale={[0,0,0]}
+      name="GroupForAnimationLevelSlideOfSlide_0"
       position={springGroup.position}
     >
-      {/*-----Header Text----------------------------------------------*/}
-      <a.group position={springTextVerse.position}>
-        <TextVerse
-          textProps={{
-            // position: [0, 0.09, 0],
-            position: textHeader.position,
-          }}
-          text={textHeader.text}
-          font="garamont"
-          fontResponsiveness={
-            viewport.width < 3.0
-              ? fontSmall
-              : viewport.width < 5.5
-              ? fontMiddle
-              : fontLarge
-          }
-          whiteSpace="nowrap" //'normal' "nowrap"
-          maxWidth={viewport.width / 9}
-        />
-      </a.group>
+      {/*-----Body Section------------------------------------------*/}
+      <Suspense fallback={null}>
+        <a.group
+          name="GroupForAnimationLevelSlideContentOfSlide_0"
+          position={springSlideContent.position}
+        >
+          <SpinningBox
+            groupProps={{
+              name: 'groupForSpinningBox_slide_0_Box_1_Data',
+              /*
+              a bit of responsiveness; 
+              */
+              scale:
+                windowSize.width < minForTablet
+                  ? slide0Box1Layout.mobile.scale
+                  : slide0Box1Layout.desktop.scale,
+              position:
+                windowSize.width < minForTablet
+                  ? slide0Box1Layout.mobile.position
+                  : slide0Box1Layout.desktop.position,
+              // ...slide0Box1Layout.mobile,
+            }}
+            /*
+            array of props; using map() we get 4 <SpinningBoxSide>
+            */
+            spinningBoxConfig={slide0Box1Data}
+            /*
+            array of images ultimately used in <UniversalCanvas>
+            */
+            images={imagesPortrait}
+            /*
+            prop for <UniversalFrame> & <UniversalCanvas>
+            */
+            portrait={true}
+            /*
+            set value of rotation generated by useFrame()
+            */
+            setRotationYSpeed={0.1}
+            /*
+            props for "DragRotateStepByStep"
+            */
+            setDragRotationX={0}
+            axisLimitation="x"
+            animationDelay={9000}
+            isSideRotating={
+              slideId === canvasGlobalState.containerAboutSlideIndex
+            }
+          />
 
-      {/*-----*/}
-      <a.group position={springTextVerse.position}>
-        <TextVerse
-          textProps={{
-            position: [
-              0, -0.05, 0,
-              //     0, 0, 0,
-              //   topPositionY + index * reducePositionY,
-              //   topPositionZ + index * reducePositionZ,
-            ],
-          }}
-          text="content of slide 0"
-          font="garamont"
-          fontResponsiveness={
-            viewport.width < 3.0
-              ? fontSmall
-              : viewport.width < 5.5
-              ? fontMiddle
-              : fontLarge
-          }
-          whiteSpace="nowrap" //'normal' "nowrap"
-          maxWidth={viewport.width / 9}
-        />
-      </a.group>
+          <SpinningBox
+            groupProps={{
+              name: 'groupForSpinningBox_slide_0_Box_2_Data',
+              /*
+              a bit of responsiveness; 
+              */
+              scale:
+                windowSize.width < minForTablet
+                  ? slide0Box2Layout.mobile.scale
+                  : slide0Box2Layout.desktop.scale,
+              position:
+                windowSize.width < minForTablet
+                  ? slide0Box2Layout.mobile.position
+                  : slide0Box2Layout.desktop.position,
+              // ...slide0Box1Layout.mobile,
+            }}
+            /*
+            array of props; using map() we get 4 <SpinningBoxSide>
+            */
+            spinningBoxConfig={slide0Box2Data}
+            /*
+            array of images ultimately used in <UniversalCanvas>
+            */
+            images={imagesBanner}
+            /*
+            prop for <UniversalFrame> & <UniversalCanvas>
+            */
+            banner={true}
+            /*
+            set value of rotation generated by useFrame()
+            */
+            setRotationXSpeed={-0.1}
+            /*
+            props for "DragRotateStepByStep"
+            */
+            setDragRotationX={0}
+            axisLimitation="y"
+            animationDelay={11000}
+            isSideRotating={
+              slideId === canvasGlobalState.containerAboutSlideIndex
+            }
+          />
+        </a.group>
+      </Suspense>
     </a.group>
   );
-});
+};
 
 export default Slide0;
+
+/*
+  useEffect Test
+  */
+// useEffect(() => {
+//   console.log('slideId:', slideId);
+//   console.log(
+//     'canvasGlobalState.containerAboutSlideIndex:',
+//     canvasGlobalState.containerAboutSlideIndex
+//   );
+//   console.log(
+//     'canvasGlobalState.currentContainer:',
+//     canvasGlobalState.currentContainer
+//   );
+// }, [
+//   slideId,
+//   canvasGlobalState.containerAboutSlideIndex,
+//   canvasGlobalState.currentContainer,
+// ]);
+// console.log('textHeader.position:', textHeader.position);

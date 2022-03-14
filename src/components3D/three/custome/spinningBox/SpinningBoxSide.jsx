@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 /*
 Components
 */
@@ -8,8 +8,8 @@ import SideLabel from './SideLabel';
 /*
 Global State Staf
 */
-import { useSnapshot } from 'valtio';
-import { canvasState } from '../../../../states/canvasState';
+// import { useSnapshot } from 'valtio';
+// import { canvasState } from '../../../../states/canvasState';
 /*
 Spring Section
 */
@@ -19,8 +19,6 @@ import { a, useSpring, config } from '@react-spring/three';
 ----------------------------------------------------------------------
 */
 const SpinningBoxSide = ({
-  index,
-  sideIndex,
   databaseIndex,
   groupSideProps,
   labelProps,
@@ -31,6 +29,7 @@ const SpinningBoxSide = ({
   banner,
   axisLimitation,
   animationDelay,
+  isSideRotating,
 }) => {
   /*
   References
@@ -43,17 +42,33 @@ const SpinningBoxSide = ({
   /*
   Global State
   */
-  const canvasGlobalState = useSnapshot(canvasState);
+  // const canvasGlobalState = useSnapshot(canvasState);
   /*
   Component State
   */
   // const [val, setVal] = useState(null);
+
+  /*
+  useEffect Section
+  */
+  // useEffect(() => {
+  // console.log('SpinningBox / isSideRotating:', isSideRotating);
+  // autorotatingGroup.current.children.forEach(item => {
+  //   console.log('item.rotation', item.rotation.z);
+  //   if (portrait) {
+  //     item.rotation.y += Math.PI * 0.5;
+  //   }
+  // });
+  // if (portrait) {
+  //   autorotatingGroup.current.children[0].rotation.y = Math.PI * 0.5;
+  // }
+  // }, [isSideRotating]);
+
   /*
   SpringSection
   */
   const { springValue } = useSpring({
-    // loop: { reverse: val === databaseIndex ? true : false },
-    loop: { reverse: true },
+    loop: { reverse: isSideRotating },
     from: { springValue: rotation },
     to: {
       springValue: [
@@ -74,14 +89,31 @@ const SpinningBoxSide = ({
             ? Math.PI * 0.5 + Math.PI
             : Math.PI
           : 0,
+        /*
+        z-axis value
+        */
         rotation[2],
       ],
     },
     // config: { mass: 20, tension: 70, friction: 30 },
     config: config.molasses,
     delay: animationDelay,
-    pause:
-      canvasGlobalState.currentContainer === 'aboutContainer' ? false : true,
+    /*
+    There is an issue when user click and go to another slide...
+    I've tried to solve it using souse and cancel
+    Seems that cancel works in contrast to pouse; 
+    */
+    // pause:
+    //   canvasGlobalState.currentContainer === 'aboutContainer' && isSideRotating
+    //     ? false
+    //     : true,
+    cancel: isSideRotating ? false : true,
+    /*
+    this doesn't work / doesn't solve the issu of "clicking":
+     // loop: true,
+     // reverse: true,
+     // loop: { reverse: true, delay: animationDelay },
+    */
   });
 
   /*
