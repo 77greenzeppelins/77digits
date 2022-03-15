@@ -51,8 +51,8 @@ const CrescentArrow = React.forwardRef(
       scaleLeave: 1,
     });
     /*
-userExperience Section / onClick Handlers
-*/
+    userExperience Section / onClick Handlers
+    */
     const goForward = useCallback(() => {
       if (canvasGlobalState.containerAboutSlideIndex < slidesArrayNumber - 1) {
         canvasState.containerAboutSlideIndex += 1;
@@ -78,14 +78,12 @@ userExperience Section / onClick Handlers
     return (
       <div
         className={`crescent-arrow__container ${rotated}`}
-        // className="crescent-arrow__container"
         onClick={arrowDirection === 'arrow-up' ? goForward : goBackward}
-        // onClick={fakeOnClick}
       >
-        {/*-----arrow section-------------------------------------------------*/}
+        {/*-----arrow section----------------------------------------*/}
         <div
-          className="crescent-arrow__bolthead-container"
-          // className={`crescent-arrow__bolthead-container ${arrowSide}`}
+          // className="crescent-arrow__bolthead-container"
+          className={`crescent-arrow__bolthead-container ${arrowSide}`}
           style={{
             opacity: arrowOpacity,
             // transform: 'rotate(180deg)',
@@ -96,7 +94,7 @@ userExperience Section / onClick Handlers
           <div className="crescent-arrow__bolthead bar2" />
         </div>
 
-        {/*-----frame section-------------------------------------------------*/}
+        {/*-----frame section----------------------------------------*/}
 
         <animated.div
           /*

@@ -102,12 +102,20 @@ const Slide0 = ({ slideId }) => {
     from: { position: [0, 0, 0] },
     to: {
       position: [
-        0,
         /*
-        in case of Slider0 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout";
+        in case of mobile animation goes along the y-axis;
         */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
-        slideId < canvasGlobalState.containerAboutSlideIndex
+        slideId < canvasGlobalState.containerAboutSlideIndex &&
+        windowSize.width < minForTablet
+          ? -1
+          : 0,
+        /*
+        in case of tablet/desctop animation goes along the y-axis;
+        */
+        canvasGlobalState.currentContainer === 'aboutContainer' &&
+        slideId < canvasGlobalState.containerAboutSlideIndex &&
+        windowSize.width > minForTablet
           ? 1
           : 0,
         0,

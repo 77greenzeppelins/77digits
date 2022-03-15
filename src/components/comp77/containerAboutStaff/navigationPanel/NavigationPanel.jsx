@@ -32,30 +32,23 @@ const NavigationPanel = ({ slidesArrayNumber, orientation }) => {
         className="navigation-panel__button-container left"
         style={{ transform: orientation && 'rotate(180deg)' }}
       >
+        {/*-----Arrow down / backward--------------------------------*/}
         <CrescentArrow
           slidesArrayNumber={slidesArrayNumber}
           arrowDirection="arrow-down"
           /*
-                initially and if user clicks to firs slide, arrow shoud be "opaque"
-                */
+          initially and if user clicks to first slide, arrow shoud be "opaque"
+          */
           arrowOpacity={
             canvasGlobalState.containerAboutSlideIndex === 0 ? 0.1 : 1
           }
-          frameSide="right"
-          arrowSide="left"
           rotated="rotated"
+          // frameSide="right"
+          arrowSide={orientation && 'left'}
+          // arrowSide="right"
         />
-        {/* <BasicArrrow
-          arrowDirection={'arrow-up'}
-          onClick={goForward}
-          arrowOpacity={
-            canvasGlobalState.containerAboutSlideIndex === slidesArrayNumber - 1
-              ? 0.1
-              : 1
-          }
-        /> */}
       </div>
-
+      {/*-----progress indicator--------------------------------*/}
       <div
         className="navigation-panel__progress-indicator"
         style={{
@@ -70,26 +63,21 @@ const NavigationPanel = ({ slidesArrayNumber, orientation }) => {
         className="navigation-panel__button-container right"
         style={{ transform: orientation && 'rotate(0deg)' }}
       >
+        {/*-----Arrow up / forward----------------------------------*/}
         <CrescentArrow
           slidesArrayNumber={slidesArrayNumber}
           arrowDirection="arrow-up"
           /*
-                if user clicks to final slide, arrow shoud be "opaque"
-                */
+          if user clicks to final slide, arrow shoud be "opaque"
+          */
           arrowOpacity={
             canvasGlobalState.containerAboutSlideIndex === slidesArrayNumber - 1
               ? 0.1
               : 1
           }
-          frameSide="left"
+          // frameSide="left"
+          arrowSide="right"
         />
-        {/* <BasicArrrow
-          arrowDirection={'arrow-down'}
-          onClick={goBackward}
-          arrowOpacity={
-            canvasGlobalState.containerAboutSlideIndex === 0 ? 0.1 : 1
-          }
-        /> */}
       </div>
     </div>
   );

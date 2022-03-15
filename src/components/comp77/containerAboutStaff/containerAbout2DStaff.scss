@@ -3,7 +3,6 @@
 .container-about {
   position: fixed;
   width: 100%;
-
   /*
   remember that <ContainerAbout2DStaff> covers <ContainerAbout> (3D)
   */
@@ -15,19 +14,16 @@
     height: 1px;
     margin-inline: auto;
     max-width: 1000px;
-    // padding: 0 20px 0 20px;
-    // background-color: #fff;
     display: flex;
     justify-content: flex-end;
   }
-
   /*
-  Test
+  only for tablet and desktop
   */
   &__hero-tablet {
+    position: relative;
     height: 100vh;
     width: 300px;
-    // padding-top: 200px;
     padding-top: 30vh;
     padding-right: 20px;
     display: flex;
@@ -38,33 +34,25 @@
       padding-top: 22vh;
     }
   }
-  &__hero-mobile {
-    width: 100%;
-    padding-top: 100px;
-    display: flex;
-    justify-content: center;
-  }
-  &__hero-label {
-    font-family: $serif;
-    font-weight: 400;
-    letter-spacing: 2px;
-    font-size: 4rem;
-    color: setColor(light);
-    text-align: right;
-    @media (min-width: 850px) {
-      font-size: 5rem;
-    }
-    @media (min-width: 1000px) {
-      font-size: 6rem;
-    }
-  }
-  &__navigation-container {
+  &__navigation-tablet {
+    position: absolute;
+    bottom: 0;
     height: 30vh;
     width: 50px;
     display: flex;
     justify-content: flex-end;
   }
 
+  /*
+  only for mobile 
+  */
+  &__hero-mobile {
+    position: relative;
+    width: 100%;
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+  }
   &__footer {
     /*
     ???
@@ -80,7 +68,7 @@
     justify-content: center;
     align-items: center;
   }
-  &__navigator-mobile {
+  &__navigation-mobile {
     height: 100%;
     min-width: 200px;
     // width: 350px; // size if banner is used;

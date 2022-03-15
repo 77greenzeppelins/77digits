@@ -19,7 +19,7 @@ Basic Data
 */
 const slidesArrayNumber = 5;
 const bottomHeightFactor = 0.12;
-const [minForTablet, desktop] = [850, 100];
+const minForTablet = 850;
 
 /*
 -------------------------------------------------------------------------------
@@ -36,11 +36,10 @@ const ContainerAbout2DStaff = () => {
   */
   if (canvasGlobalState.currentContainer !== 'aboutContainer') {
     canvasState.containerAboutSlideIndex = 0;
+    canvasState.containerAboutSlidingDirection = 'none';
   }
   /*
-  Why this hooks?
-  I need to calculate height of div with "container-menu_instant-contact" class;
-  Why? I want this div to covers "3D frames" that resize according to device height;
+  Hooks
   */
   const windowSize = useWindowSize();
   /*
@@ -50,7 +49,7 @@ const ContainerAbout2DStaff = () => {
     canvasGlobalState.currentContainer === 'aboutContainer' && (
       <div className="container-about">
         <div className="container-about__body">
-          {}
+          {/*-----Body Section------------------------------------------*/}
           <div
             className={
               windowSize.width < minForTablet
@@ -58,12 +57,11 @@ const ContainerAbout2DStaff = () => {
                 : 'container-about__hero-tablet'
             }
           >
-            {/* <h1 className="container-about__hero-label">Jesteś Ty</h1> */}
             <HeroSlider />
             {
               /* Why conditional rendering? Becouse this section is rendered only on devices that are at least "tablet-size"; */
               windowSize.width > minForTablet && (
-                <div className="container-about__navigation-container">
+                <div className="container-about__navigation-tablet">
                   <NavigationPanel
                     slidesArrayNumber={slidesArrayNumber}
                     orientation={true}
@@ -72,10 +70,8 @@ const ContainerAbout2DStaff = () => {
               )
             }
           </div>
-
-          {/*-----Hero Section-------------------------------------------------*/}
         </div>
-        {/*-----Footer Section-----------------------------------------------*/}
+        {/*-----Footer Section------------------------------------------*/}
         {
           /*
           Why conditional rendering?
@@ -90,7 +86,7 @@ const ContainerAbout2DStaff = () => {
                   windowSize.height * bottomHeightFactor,
               }}
             >
-              <div className="container-about__navigator-mobile">
+              <div className="container-about__navigation-mobile">
                 <NavigationPanel slidesArrayNumber={slidesArrayNumber} />
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 /*
 Global State Staff
 */
@@ -7,20 +7,18 @@ import { canvasState } from '../../../../../states/canvasState';
 /*
 Spring Staff
 */
-import { animated, useTransition, config } from '@react-spring/web';
+
+import { animated, useTransition } from '@react-spring/web';
 
 /*
 -------------------------------------------------------------------------
 */
-const Slide0 = ({ slideId }) => {
+
+const Slide1 = ({ slideId }) => {
   /*
   Global State Section
   */
   const canvasGlobalState = useSnapshot(canvasState);
-  /*
-  
-  */
-  const [initialValue, setInitialValue] = useState(true);
   /*
   Spring Section
   */
@@ -33,34 +31,30 @@ const Slide0 = ({ slideId }) => {
     enter: { opacity: 1 },
     leave: { opacity: 0 },
     config: {
-      duration: initialValue
+      duration: condition
         ? 600
         : canvasGlobalState.containerAboutSlidingDirection === 'forward'
         ? 0
-        : 600,
+        : 0,
     },
     // config: config.molasses,
-    delay: initialValue
-      ? 1000
+    delay: condition
+      ? 200
       : canvasGlobalState.containerAboutSlidingDirection === 'forward'
       ? 0
-      : 200,
-    onRest: () => setInitialValue(false),
+      : 0,
   });
 
   /*
   useEffect
   */
   useEffect(() => {
-    if (condition) {
-      console.log(
-        'Slide0 / canvasGlobalState.containerAboutSlidingDirection:',
-        canvasGlobalState.containerAboutSlidingDirection
-      );
-      console.log('Slide0 / condition:', condition);
-    }
-    console.log('Slide0 / slideId:', slideId);
-  }, [canvasGlobalState.containerAboutSlidingDirection, condition, slideId]);
+    console.log(
+      'Slide1 / canvasGlobalState.containerAboutSlidingDirection:',
+      canvasGlobalState.containerAboutSlidingDirection
+    );
+    console.log('Slide1 / condition:', condition);
+  }, [canvasGlobalState.containerAboutSlidingDirection, condition]);
 
   /*
   JSX
@@ -70,11 +64,11 @@ const Slide0 = ({ slideId }) => {
       item && (
         <animated.div className="slide__container">
           <animated.h1 className="slide__label" style={styles}>
-            <span>Jesteś</span> <span>Ty</span>
+            Jestem Ja
           </animated.h1>
         </animated.div>
       )
   );
 };
 
-export default Slide0;
+export default Slide1;
