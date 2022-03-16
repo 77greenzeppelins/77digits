@@ -5,8 +5,8 @@
     padding: 0px 10px 0px 10px;
   }
   &__label-h {
-    // display: flex;
-    // flex-direction: column;
+    display: flex;
+    justify-content: center;
     font-family: $serif;
     font-weight: 400;
     letter-spacing: 2px;
@@ -28,12 +28,14 @@
     }
   }
   &__label-p {
-    font-family: $serif;
+    padding: 5vh 10px 0px 10px;
+
+    font-family: $sanSerif;
     font-weight: 200;
     letter-spacing: 2px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: setColor(light);
-    text-align: right;
+    text-align: justify;
     /*
     to avoid manipulations in JS with conditional classes & useWindowSize hook; 
     */
@@ -42,10 +44,10 @@
       flex-direction: column;
     }
     @media (min-width: 850px) {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
     @media (min-width: 1000px) {
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
   }
 }

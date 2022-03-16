@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 /*
 Global State Staff
 */
@@ -7,14 +7,17 @@ import { canvasState } from '../../../../../states/canvasState';
 /*
 Spring Staff
 */
-
 import { animated, useTransition } from '@react-spring/web';
+/*
+BasicData
+*/
+const paragraph1Text =
+  'Kimkolwiek jesteś, to dobry moment, aby połączyć nasza potencjały';
 
 /*
--------------------------------------------------------------------------
+------------------------------------------------------------------------
 */
-
-const Slide1 = ({ slideId }) => {
+const Slide2Body = ({ slideId }) => {
   /*
   Global State Section
   */
@@ -37,7 +40,6 @@ const Slide1 = ({ slideId }) => {
         ? 0
         : 0,
     },
-    // config: config.molasses,
     delay: condition
       ? 200
       : canvasGlobalState.containerAboutSlidingDirection === 'forward'
@@ -46,29 +48,26 @@ const Slide1 = ({ slideId }) => {
   });
 
   /*
-  useEffect
-  */
-  useEffect(() => {
-    console.log(
-      'Slide1 / canvasGlobalState.containerAboutSlidingDirection:',
-      canvasGlobalState.containerAboutSlidingDirection
-    );
-    console.log('Slide1 / condition:', condition);
-  }, [canvasGlobalState.containerAboutSlidingDirection, condition]);
-
-  /*
   JSX
   */
   return transition(
-    (styles, item) =>
-      item && (
-        <animated.div className="slide__container">
-          <animated.h1 className="slide__label" style={styles}>
-            Jestem Ja
-          </animated.h1>
-        </animated.div>
+    ({ opacity }, transitionCondition) =>
+      transitionCondition && (
+        <div className="slide2__body">
+          <animated.p
+            className="slide2__label-p"
+            style={{
+              opacity: opacity.to({
+                range: [0.0, 0.5, 1.0],
+                output: [0, 0.2, 1],
+              }),
+            }}
+          >
+            {paragraph1Text}
+          </animated.p>
+        </div>
       )
   );
 };
 
-export default Slide1;
+export default Slide2Body;

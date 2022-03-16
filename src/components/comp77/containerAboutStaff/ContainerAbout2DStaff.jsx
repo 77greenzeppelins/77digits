@@ -2,8 +2,9 @@ import React from 'react';
 /*
 Components
 */
-import HeroSlider from './heroSlider/HeroSlider';
+import SectionA from './sectionA/SectionA';
 import NavigationPanel from './navigationPanel/NavigationPanel';
+import SectionB from './sectionB/SectionB';
 /*
 Global State Staff
 */
@@ -38,6 +39,11 @@ const ContainerAbout2DStaff = () => {
     canvasState.containerAboutSlideIndex = 0;
     canvasState.containerAboutSlidingDirection = 'none';
   }
+
+  console.log(
+    'canvasGlobalState.containerAboutSlideIndex',
+    canvasGlobalState.containerAboutSlideIndex
+  );
   /*
   Hooks
   */
@@ -48,34 +54,45 @@ const ContainerAbout2DStaff = () => {
   return (
     canvasGlobalState.currentContainer === 'aboutContainer' && (
       <div className="container-about">
+        {/*-----Body Section------------------------------------------*/}
         <div className="container-about__body">
-          {/*-----Body Section------------------------------------------*/}
-          <div
-            className={
-              windowSize.width < minForTablet
-                ? 'container-about__hero-mobile'
-                : 'container-about__hero-tablet'
-            }
-          >
-            <HeroSlider />
-            {
-              /* Why conditional rendering? Becouse this section is rendered only on devices that are at least "tablet-size"; */
-              windowSize.width > minForTablet && (
-                <div className="container-about__navigation-tablet">
-                  <NavigationPanel
-                    slidesArrayNumber={slidesArrayNumber}
-                    orientation={true}
-                  />
-                </div>
-              )
-            }
-          </div>
+          {canvasGlobalState.containerAboutSlideIndex < 2 ? (
+            <div
+              className={
+                windowSize.width < minForTablet
+                  ? 'container-about__hero-mobile'
+                  : 'container-about__hero-tablet'
+              }
+            >
+              <SectionA />
+              {
+                /* Why conditional rendering? Because this section is rendered only on devices that are at least "tablet-size"; */
+                windowSize.width >= minForTablet && (
+                  <div className="container-about__navigation-tablet">
+                    <NavigationPanel
+                      slidesArrayNumber={slidesArrayNumber}
+                      orientation={true}
+                    />
+                  </div>
+                )
+              }
+            </div>
+          ) : (
+            <div
+              className="container-about__sectionB-container"
+              style={{
+                height: windowSize.height,
+              }}
+            >
+              <SectionB />
+            </div>
+          )}
         </div>
         {/*-----Footer Section------------------------------------------*/}
         {
           /*
           Why conditional rendering?
-          Becouse this section is rendered only on mobile i.e. smallert then tablet;
+          Because this section is rendered only on mobile i.e. devices that are smallert then tablet; it works with <SectionA> & <SectionB>
           */
           windowSize.width < minForTablet && (
             <div
