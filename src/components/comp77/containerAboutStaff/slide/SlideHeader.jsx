@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 /*
 Global State Staff
 */
 import { useSnapshot } from 'valtio';
-import { canvasState } from '../../../../../states/canvasState';
+import { canvasState } from '../../../../states/canvasState';
 /*
 Spring Staff
 */
 import { animated, useTransition } from '@react-spring/web';
 
 /** */
-const Slide2Header = ({ slideId }) => {
+const SlideHeader = ({ slideId, header }) => {
   /*
   Global State Section
   */
@@ -41,13 +41,21 @@ const Slide2Header = ({ slideId }) => {
   });
 
   /*
+  
+  */
+  useEffect(() => {
+    console.log('slideId', slideId);
+    console.log('header', header);
+  }, [slideId, header]);
+
+  /*
   JSX
   */
   return transition(
     ({ opacity }, transitionCondition) =>
       transitionCondition && (
         <animated.h1
-          className="slide2__header"
+          className="slide__header"
           style={{
             opacity: opacity.to({
               range: [0.0, 0.5, 1.0],
@@ -55,10 +63,11 @@ const Slide2Header = ({ slideId }) => {
             }),
           }}
         >
-          <span>Ty </span> <span> &amp; Ja</span>
+          {/* <span>Ty </span> <span> &amp; Ja</span> */}
+          {header && header.map((item, i) => <span key={i}>{item}</span>)}
         </animated.h1>
       )
   );
 };
 
-export default Slide2Header;
+export default SlideHeader;

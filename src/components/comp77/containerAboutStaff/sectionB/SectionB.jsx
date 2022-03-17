@@ -2,9 +2,9 @@ import React from 'react';
 /*
 Components
 */
-import NavigationPanel from '../navigationPanel/NavigationPanel';
-import Slide2Header from './slides/Slide2Header';
-import Slide2Body from './slides/Slide2Body';
+
+import SlideHeader from '../slide/SlideHeader';
+import SlideBody from '../slide/SlideBody';
 /*
 Hooks
 */
@@ -12,17 +12,17 @@ import useWindowSize from '../../../../hooks/useWindowSize';
 /*
 Basic Data
 */
+import { slidesData } from '../slide/slidesData';
 const minForTablet = 850;
 
+/*
+------------------------------------------------------------------
+*/
 const SectionB = () => {
   /*
   Hooks
   */
   const windowSize = useWindowSize();
-  const slidesArrayNumber = 5;
-  const paragraph1Text =
-    'Kimkolwiek jesteś, to dobry moment, aby połączyć nasza potencjały';
-
   /*
   JSX
   */
@@ -38,39 +38,26 @@ const SectionB = () => {
       <div
         className={
           windowSize.width < minForTablet
-            ? 'sectionB__partA-mobile'
-            : 'sectionB__partA-tablet'
+            ? 'sectionB__partA-slide-wrapper-mobile'
+            : 'sectionB__partA-slide-wrapper-tablet'
         }
       >
-        <div className="sectionB__partA-header-container">
-          <Slide2Header slideId={2} />
-        </div>
-        {
-          /*
-          render only if device is tablet or desktor; i.e. windowSize.width >= minForTablet
-          */
-          windowSize.width >= minForTablet && (
-            <div className="sectionB__partA-navigation-container">
-              <NavigationPanel
-                slidesArrayNumber={slidesArrayNumber}
-                orientation={true}
-              />
-            </div>
-          )
-        }
+        {slidesData.map(({ slideId, header }) => (
+          <SlideHeader key={slideId} slideId={slideId} header={header} />
+        ))}
       </div>
 
       {/*---Body------------------------------------------*/}
       <div
         className={
           windowSize.width < minForTablet
-            ? 'sectionB__partB-mobile'
-            : 'sectionB__partB-tablet'
+            ? 'sectionB__partB-slide-wrapper-mobile'
+            : 'sectionB__partB-slide-wrapper-tablet'
         }
       >
-        <div className="sectionB__partB-body-container">
-          <Slide2Body slideId={2} />
-        </div>
+        {slidesData.map(({ slideId, paragraphs }) => (
+          <SlideBody key={slideId} slideId={slideId} paragraphs={paragraphs} />
+        ))}
       </div>
     </div>
   );

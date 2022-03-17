@@ -2,9 +2,7 @@ import React from 'react';
 /*
 Components
 */
-import Slide0 from './slides/Slide0';
-import Slide1 from './slides/Slide1';
-import Slide2 from './slides/Slide2';
+import SlideHeader from '../slide/SlideHeader';
 /*
 Hooks
 */
@@ -12,6 +10,7 @@ import useWindowSize from '../../../../hooks/useWindowSize';
 /*
 Basic Data
 */
+import { slidesData } from '../slide/slidesData';
 const minForTablet = 850;
 
 /*
@@ -43,27 +42,10 @@ const SectionA = () => {
             : 'sectionA__slide-tablet'
         }
       >
-        <Slide0 slideId={0} />
+        {slidesData.map(({ slideId, header }) => (
+          <SlideHeader key={slideId} slideId={slideId} header={header} />
+        ))}
       </div>
-      <div
-        className={
-          windowSize.width < minForTablet
-            ? 'sectionA__slide-mobile'
-            : 'sectionA__slide-tablet'
-        }
-      >
-        <Slide1 slideId={1} />
-      </div>
-
-      {/* <div
-        className={
-          windowSize.width < minForTablet
-            ? 'sectionA__slide-mobile'
-            : 'sectionA__slide-tablet'
-        }
-      >
-        <Slide2 slideId={2} windowSize={windowSize} />
-      </div> */}
     </div>
   );
 };

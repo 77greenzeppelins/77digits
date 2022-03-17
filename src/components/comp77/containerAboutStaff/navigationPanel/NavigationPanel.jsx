@@ -26,7 +26,9 @@ const NavigationPanel = ({ slidesArrayNumber, orientation }) => {
   return (
     <div
       className="navigation-panel__container"
-      style={{ flexDirection: orientation && 'column-reverse' }}
+      style={{
+        flexDirection: orientation && 'column-reverse',
+      }}
     >
       <div
         className="navigation-panel__button-container left"

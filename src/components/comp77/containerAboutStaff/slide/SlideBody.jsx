@@ -3,7 +3,7 @@ import React from 'react';
 Global State Staff
 */
 import { useSnapshot } from 'valtio';
-import { canvasState } from '../../../../../states/canvasState';
+import { canvasState } from '../../../../states/canvasState';
 /*
 Spring Staff
 */
@@ -17,7 +17,7 @@ const paragraph1Text =
 /*
 ------------------------------------------------------------------------
 */
-const Slide2Body = ({ slideId }) => {
+const SlideBody = ({ slideId, paragraphs }) => {
   /*
   Global State Section
   */
@@ -53,21 +53,23 @@ const Slide2Body = ({ slideId }) => {
   return transition(
     ({ opacity }, transitionCondition) =>
       transitionCondition && (
-        <div className="slide2__body">
-          <animated.p
-            className="slide2__label-p"
-            style={{
-              opacity: opacity.to({
-                range: [0.0, 0.5, 1.0],
-                output: [0, 0.2, 1],
-              }),
-            }}
-          >
-            {paragraph1Text}
-          </animated.p>
+        <div className="slide__body">
+          {paragraphs.map(p => (
+            <animated.p
+              className="slide__paragraph"
+              style={{
+                opacity: opacity.to({
+                  range: [0.0, 0.5, 1.0],
+                  output: [0, 0.2, 1],
+                }),
+              }}
+            >
+              {p}
+            </animated.p>
+          ))}
         </div>
       )
   );
 };
 
-export default Slide2Body;
+export default SlideBody;

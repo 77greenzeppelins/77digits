@@ -1,12 +1,10 @@
-@import '../../../../../sass/index.scss';
+@import '../../../../sass/index.scss';
 
-.slide2 {
-  &__container {
-    padding: 0px 10px 0px 10px;
-  }
-  &__label-h {
-    display: flex;
-    justify-content: center;
+.slide {
+  &__header {
+    /*
+    style taken from "slide__label" / Slide0
+    */
     font-family: $serif;
     font-weight: 400;
     letter-spacing: 2px;
@@ -27,9 +25,12 @@
       font-size: 6rem;
     }
   }
-  &__label-p {
-    padding: 5vh 10px 0px 10px;
-
+  &__body {
+    // position: absolute;
+    // width: 80%;
+  }
+  &__paragraph {
+    padding-bottom: 7vh;
     font-family: $sanSerif;
     font-weight: 200;
     letter-spacing: 2px;
@@ -39,15 +40,12 @@
     /*
     to avoid manipulations in JS with conditional classes & useWindowSize hook; 
     */
-    @media (min-width: 850px) {
-      display: flex;
-      flex-direction: column;
-    }
+
     @media (min-width: 850px) {
       font-size: 1.5rem;
     }
     @media (min-width: 1000px) {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
   }
 }

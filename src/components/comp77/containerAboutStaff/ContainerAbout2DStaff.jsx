@@ -56,55 +56,67 @@ const ContainerAbout2DStaff = () => {
       <div className="container-about">
         {/*-----Body Section------------------------------------------*/}
         <div className="container-about__body">
-          {canvasGlobalState.containerAboutSlideIndex < 2 ? (
-            <div
-              className={
-                windowSize.width < minForTablet
-                  ? 'container-about__hero-mobile'
-                  : 'container-about__hero-tablet'
-              }
-            >
-              <SectionA />
-              {
-                /* Why conditional rendering? Because this section is rendered only on devices that are at least "tablet-size"; */
-                windowSize.width >= minForTablet && (
-                  <div className="container-about__navigation-tablet">
-                    <NavigationPanel
-                      slidesArrayNumber={slidesArrayNumber}
-                      orientation={true}
-                    />
-                  </div>
-                )
-              }
-            </div>
-          ) : (
-            <div
-              className="container-about__sectionB-container"
-              style={{
-                height: windowSize.height,
-              }}
-            >
-              <SectionB />
-            </div>
-          )}
+          {
+            /*
+            Why conditional rendering? Because within this container we can distinguish two sections that have various layouts;
+            */
+            canvasGlobalState.containerAboutSlideIndex < 2 ? (
+              // canvasGlobalState.containerAboutSlideIndex < 0 ? (
+              <div
+                className={
+                  windowSize.width < minForTablet
+                    ? 'container-about__sectionA-mobile'
+                    : 'container-about__sectionA-tablet'
+                }
+              >
+                <SectionA />
+              </div>
+            ) : (
+              <div
+                className="container-about__sectionB-container"
+                style={{
+                  height: windowSize.height,
+                }}
+              >
+                <SectionB />
+              </div>
+            )
+          }
         </div>
-        {/*-----Footer Section------------------------------------------*/}
         {
           /*
-          Why conditional rendering?
-          Because this section is rendered only on mobile i.e. devices that are smallert then tablet; it works with <SectionA> & <SectionB>
+          Why conditional rendering? Because there are various layouts for mobile & tablet
           */
-          windowSize.width < minForTablet && (
+          windowSize.width < minForTablet ? (
             <div
-              className="container-about__footer"
+              className="container-about__navigation-mobile"
               style={{
-                height:
-                  windowSize.width < minForTablet &&
-                  windowSize.height * bottomHeightFactor,
+                height: windowSize.height * bottomHeightFactor,
               }}
             >
-              <div className="container-about__navigation-mobile">
-                <NavigationPanel slidesArrayNumber={slidesArrayNumber} />
+              <NavigationPanel slidesArrayNumber={slidesArrayNumber} />
+            </div>
+          ) : (
+            <div className="container-about__navigation-tablet">
+              <div
+                style={{
+                  position: 'absolute',
+                  height: windowSize.height * 0.3,
+                  width: '50px',
+                  /*
+                  "top: -windowSize.height * 0.3" allowes to overflow "height: 0px" from "parent class"...
+                  */
+                  top: -windowSize.height * 0.3,
+                }}
+              >
+                <NavigationPanel
+                  slidesArrayNumber={slidesArrayNumber}
+                  orientation={true}
+                  containerStyle={{
+                    height: windowSize.height * 0.3,
+                    width: '50px',
+                  }}
+                />
               </div>
             </div>
           )
