@@ -3,7 +3,8 @@ import React from 'react';
 Components
 */
 import LinksToContainers from './linksToContainers/LinksToContainers';
-import ContactSection from './contactSection/ContactSection';
+import ContactButton from './contactButton/ContactButton';
+import ContactOverlay from './contactOverlay/ContactOverlay';
 /*
 Global State Staff
 */
@@ -13,7 +14,18 @@ import { canvasState } from '../../../../states/canvasState';
 Spring Staff
 */
 import { animated, useTransition } from '@react-spring/web';
+/*
+react-device-detect Staff
+*/
+import { isMobileOnly } from 'react-device-detect';
+/*
+Basic Data
+*/
+import { colorsPalette } from '../../../../data/colors';
 
+/*
+------------------------------------------------------------------------
+*/
 const ContainerMenuBody = () => {
   /*
   Global State Section
@@ -34,6 +46,7 @@ const ContainerMenuBody = () => {
       delay: 400,
     }
   );
+
   /*
   JSX
   */
@@ -41,17 +54,29 @@ const ContainerMenuBody = () => {
     ({ animatedValue }, value) =>
       value && (
         <animated.div
-          className="container-menu-body"
+          className="container-menu-top-content"
           /*
            */
           style={{
             opacity: animatedValue,
           }}
         >
-          {/*-----Contact Button + Contact Overlay-------------------*/}
-          <ContactSection />
+          {/*-----Contact Button-------------------*/}
+          <ContactOverlay
+            isMobileOnly={isMobileOnly}
+            specialColor={colorsPalette.p4royalBlue}
+            specialBgColor={colorsPalette.p4antiqueWhiteRGB}
+          />
+          <ContactButton
+            isMobileOnly={isMobileOnly}
+            specialColor={colorsPalette.p4royalBlue}
+          />
           {/*-----Links to containers--------------------------------*/}
-          <LinksToContainers />
+          <LinksToContainers
+            isMobileOnly={isMobileOnly}
+            specialColor={colorsPalette.p4royalBlue}
+          />
+          {}
         </animated.div>
       )
   );

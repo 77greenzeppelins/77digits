@@ -15,7 +15,7 @@ Hooks
 import useWindowSize from '../../../hooks/useWindowSize';
 /*
 Basic Data
-"topHeightFactor" & "bottomHeightFactor" defines general layout of this component; i.e. divide page into two parts; bottom part is ment to cover 3D objects, pseudo-buttons;
+"topHeightFactor" & "bottomHeightFactor" defines general layout of this component; i.e. divide page into two parts; bottom part is ment to cover 3D objects rendered by <ContactFrame>; they look like rotating buttons, yet they don't have buttons'functionality... ;
 */
 const topHeightFactor = 0.755;
 const bottomHeightFactor = 1 - topHeightFactor;

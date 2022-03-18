@@ -96,14 +96,14 @@ const Slide0 = ({ slideId }) => {
   });
 
   /*
-  Spring for animation entiled: "go away from here to heven"it animates slide move on y-axis...
+  Spring for animation entiled: "go away from here to top or left"it animates slide move on y-axis...
   */
   const springGroup = useSpring({
     from: { position: [0, 0, 0] },
     to: {
       position: [
         /*
-        in case of mobile animation goes along the y-axis;
+        in case of "mobile" animation goes along the y-axis;
         */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId < canvasGlobalState.containerAboutSlideIndex &&
@@ -111,7 +111,7 @@ const Slide0 = ({ slideId }) => {
           ? -1
           : 0,
         /*
-        in case of tablet/desctop animation goes along the y-axis;
+        in case of "tablet/desctop" animation goes along the y-axis;
         */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId < canvasGlobalState.containerAboutSlideIndex &&

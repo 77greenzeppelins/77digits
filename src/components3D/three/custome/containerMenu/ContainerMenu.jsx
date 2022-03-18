@@ -18,16 +18,10 @@ HOOK
 */
 import useWindowSize from '../../../../hooks/useWindowSize';
 /*
-Basic Data
+Assets
 */
-const iconMobile = [
-  { line: "let's", position: [0, 0.09, 0] },
-  { line: 'talk', position: [0, -0.09, 0] },
-];
-const iconEmail = [
-  { line: "let's", position: [0, 0.09, 0] },
-  { line: 'write', position: [0, -0.09, 0] },
-];
+import phone from '../../../../assets/textures/containerMenu_phone_1.png';
+import email from '../../../../assets/textures/containerMenu_letter_3.png';
 
 /*
 ------------------------------------------------------------------------
@@ -43,18 +37,32 @@ const ContainerMenu = () => {
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
-  Component State
-  */
-  // const [mobile, setMobile] = useState(isMobileOnly);
-  /*
-  useWindowSize Section
-  */
-  // const windowSize = useWindowSize();
-  /*
   useThree Section
-  for <planeGeometry> props
   */
   const { viewport } = useThree();
+  /*
+  Basic Data
+  Configuration Objects for particular contactFrames
+  */
+  const contactFrames = [
+    {
+      iconType: 'iconMobile',
+      image: phone,
+      groupProps: {
+        name: 'GroupForLogoInFrame',
+        position: [0.2, -0.55, 0.1],
+        scale: [0.4, 0.4, 0.4],
+      },
+    },
+    {
+      iconType: 'iconEmail',
+      image: email,
+      groupProps: {
+        position: [-0.2, -0.55, 0.1],
+        scale: [0.4, 0.4, 0.4],
+      },
+    },
+  ];
   /*
   useEffect Section
   */
@@ -67,35 +75,21 @@ const ContainerMenu = () => {
   /*
  JSX
  */
-  return (
+  return isMobileOnly &&
+    canvasGlobalState.currentContainer === 'menuContainer' ? (
     <group
-      name="BasicGroupOfMenuContainer"
+      name="BasicGroupOfMenuContainerMobile"
       position={canvasGlobalState.menuContainerPosition}
     >
-      {isMobileOnly && (
+      {contactFrames.map(({ iconType, image, groupProps }) => (
         <Suspense fallback={null}>
           <ContactFrame
-            groupProps={{
-              name: 'GroupForLogoInFrame',
-              position: [-0.2, -0.55, 0.1],
-              scale: [0.4, 0.4, 0.4],
-              rotation: [0, 0, 0],
-            }}
-            iconText={iconEmail}
-            iconType="iconEmail"
-          />
-          <ContactFrame
-            groupProps={{
-              name: 'GroupForLogoInFrame',
-              position: [0.2, -0.55, 0.1],
-              scale: [0.4, 0.4, 0.4],
-              rotation: [0, 0, 0],
-            }}
-            iconText={iconMobile}
-            iconType="iconMobile"
+            groupProps={groupProps}
+            iconType={iconType}
+            image={image}
           />
         </Suspense>
-      )}
+      ))}
 
       <mesh position={[0, 0, 0]}>
         <planeGeometry
@@ -110,9 +104,14 @@ const ContainerMenu = () => {
           // args={[ viewport.width * widthFactor ,
           // viewport.height * highFactor, 128, 128]}
         />
-        <meshBasicMaterial color={0x000000} />
+        <meshBasicMaterial color={0xffffff} />
       </mesh>
     </group>
+  ) : (
+    <group
+      name="BasicGroupOfMenuContainerNoMobile"
+      position={canvasGlobalState.menuContainerPosition}
+    ></group>
   );
 };
 

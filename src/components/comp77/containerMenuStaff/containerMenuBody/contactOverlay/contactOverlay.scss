@@ -2,51 +2,49 @@
 
 .contact-overlay {
   &__wrapper {
-    display: none; //--------------------------
+    display: none;
     position: absolute;
     right: 0;
+    top: 0;
     height: 100%;
     width: 100%;
     justify-content: center;
-    align-items: center;
     background-color: transparent;
   }
   &__content {
     position: relative;
-    height: 80%;
-    width: 80%;
-    padding-left: 50px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    // align-items: center;
+    padding-top: 12vh;
   }
   &__contact {
     font-size: $fontMedium;
     font-weight: 500;
-    color: setColor(light);
+    color: setColor(dark);
     letter-spacing: 5px;
     line-height: 1.5;
   }
-  &__contact-separator {
-    height: 3vh;
+  &__contact-block {
+    height: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
+
   &__close-button {
-    position: absolute;
-    right: 0;
-    top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
-    // background-color: yellowgreen;
-    // color: red;
+    width: 40px;
+    height: 40px;
   }
-  &__bar {
-    height: 80%;
+  &__button-bar {
+    height: 100%;
     width: 2px;
-    background-color: setColor(light);
+    background-color: setColor(dark);
     &.left {
       transform: rotate(45deg);
     }
@@ -54,12 +52,12 @@
       transform: rotate(-45deg);
     }
   }
+  &__close-button-separator {
+    height: 2rem;
+  }
 
   &__marquee-container {
     position: absolute;
-    bottom: 2vh;
-    left: 0;
-    right: 0;
-    width: 100%;
+    top: 2vh;
   }
 }

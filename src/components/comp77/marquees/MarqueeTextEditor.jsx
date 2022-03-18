@@ -16,14 +16,14 @@ const MarqueeTextEditor = ({ text, indexOfChanges, style }) => {
   /*
   Geting date 
   */
-  const { today } = useDate();
+  const { dzisiaj } = useDate();
   /*
   useMemo
   */
   const finalString = useMemo(() => {
     const newArray = [...text];
     if (indexOfChanges.length !== 0) {
-      newArray.splice(indexOfChanges[0], 0, today);
+      newArray.splice(indexOfChanges[0], 0, dzisiaj);
       /*
       There is an issu; thera is a space / gap between day name and dot when final string in joined with " ' ' parameter"i.e "space" among array's items;
       How can we join day & dot (only this two items within whole array) befor final joinn(' ') would be applied?
@@ -34,16 +34,16 @@ const MarqueeTextEditor = ({ text, indexOfChanges, style }) => {
     }
     const finalString = newArray.join('');
     return finalString;
-  }, [today, text, indexOfChanges]);
+  }, [dzisiaj, text, indexOfChanges]);
 
   // useEffect(() => {
-  //   console.log('<MarqueeTextEditor> / today: ', today);
+  //   console.log('<MarqueeTextEditor> / dzisiaj: ', dzisiaj);
   //   console.log('<MarqueeTextEditor> / finalString: ', finalString);
   //   const newA = [...text];
   //   console.log('<MarqueeTextEditor> / newA: ', newA);
   //   console.log('<MarqueeTextEditor> / indexOfChanges: ', indexOfChanges);
   //   console.log('<MarqueeTextEditor> / finalString: ', finalString);
-  // }, [indexOfChanges, text, finalString, today]);
+  // }, [indexOfChanges, text, finalString, dzisiaj]);
 
   //_____JSX
   return (

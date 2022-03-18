@@ -42,25 +42,37 @@ const Header = () => {
   --------------------------------------------------------------------------
   */
   return (
-    <header
-      className="header"
-      style={{
-        display:
-          /*
-        This ternary operator disables <Header> in <Container
-        Menu>; i.e. no header in menu
-        */
-          canvasGlobalState.currentContainer === 'menuContainer'
-            ? 'none'
-            : 'block',
-      }}
-    >
-      {}
-      <div className="header__container">
-        <HeaderLogoContainer onClickHandler={onClickHandler} />
-        <HeaderButtonContainer onClickHandler={onClickHandler} />
-      </div>
-    </header>
+    /*
+    Why conditional rendering?
+    It's a metter of navigation among containers;
+    When user clicks on the following buttons: "77digits", "menu", "links in menu Container" camera goes to "noneContainer" so <header> is hidden;
+    */
+    canvasGlobalState.currentContainer !== 'none' && (
+      <header
+        className="header"
+        style={{
+          display:
+            /*
+            This ternary operator disables <Header> in <Container
+            Menu>; i.e. no header in menu
+            */
+            canvasGlobalState.currentContainer === 'menuContainer'
+              ? 'none'
+              : 'block',
+        }}
+      >
+        {}
+        <ul className="header__container">
+          <li>
+            <HeaderLogoContainer onClickHandler={onClickHandler} />
+          </li>
+
+          <li>
+            <HeaderButtonContainer onClickHandler={onClickHandler} />
+          </li>
+        </ul>
+      </header>
+    )
   );
 };
 

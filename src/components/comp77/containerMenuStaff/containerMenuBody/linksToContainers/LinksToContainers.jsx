@@ -16,17 +16,21 @@ import { animated, useSpring } from '@react-spring/web';
 Basic Data
 */
 const containersArray = [
-  { id: 1, label: 'Ty & odlot', destinationContainer: 'introContainer' },
+  { id: 1, label: 'Start', destinationContainer: 'introContainer' },
   { id: 2, label: 'Ty & Ja', destinationContainer: 'aboutContainer' },
-  { id: 3, label: 'You & Me', destinationContainer: 'aboutContainer' },
-  { id: 4, label: 'Ja & 3D', destinationContainer: 'answerYesContainer' },
-  // { id: 4, label: 'noOdlot', destinationContainer: 'answerNoContainer' },
 ];
+
+// [
+//   { id: 1, label: 'Ty & odlot', destinationContainer: 'introContainer' },
+//   { id: 2, label: 'Ty & Ja', destinationContainer: 'aboutContainer' },
+//   { id: 3, label: 'You & Me', destinationContainer: 'aboutContainer' },
+//   { id: 4, label: 'Ja & 3D', destinationContainer: 'answerYesContainer' },
+// ];
 
 /*
 ------------------------------------------------------------------------
 */
-const LinksToContainers = () => {
+const LinksToContainers = ({ isMobileOnly, specialColor }) => {
   /*
   Global State Section
   canvasState={isLinksToContainersActive: true}
@@ -58,13 +62,18 @@ const LinksToContainers = () => {
           : 'none',
       }}
     >
-      {containersArray.map(({ id, label, destinationContainer }) => (
-        <LinkToContainer
-          key={id}
-          label={label}
-          destinationContainer={destinationContainer}
-        />
-      ))}
+      <ul className="links-to-containers__links-list">
+        {containersArray.map(({ id, label, destinationContainer }) => (
+          <li key={id} className="links-to-containers__link">
+            <LinkToContainer
+              label={label}
+              destinationContainer={destinationContainer}
+              isMobileOnly={isMobileOnly}
+              specialColor={specialColor}
+            />
+          </li>
+        ))}
+      </ul>
     </animated.div>
   );
 };

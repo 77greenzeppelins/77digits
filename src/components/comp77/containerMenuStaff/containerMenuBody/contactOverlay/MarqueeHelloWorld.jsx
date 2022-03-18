@@ -9,32 +9,28 @@ Basic Data
 */
 import { marqueeHello } from './marqueeText';
 
-const MarqueeHelloWorld = () => {
+const MarqueeHelloWorld = ({ isMobileOnly, specialColor, specialBgColor }) => {
   return (
     <div>
       <MarqueeBasic
         topBottoBars={false}
         hoverEffect={false}
         pauseOnHover={false}
-        speed={80}
-        delay={0}
-        // gradientColor={[255, 255, 255]}
-        gradientColor={[0, 0, 0]}
-        gradientWidth={0}
+        speed={70}
+        delay={2}
+        gradientColor={isMobileOnly ? [(255, 255, 255)] : specialBgColor}
+        gradientWidth={10}
         style={{
           userSelect: 'none',
-          // height: '50px',
-          // display: 'flex',
-          // alignItems: 'center',
           beckgroundColor: 'transparent',
         }}
       >
         <MarqueeTextEditor
           text={marqueeHello}
-          indexOfChanges={[6]}
+          indexOfChanges={[4]}
           style={{
-            color: 'grey',
-            fontSize: '5rem',
+            color: isMobileOnly ? 'grey' : specialColor,
+            fontSize: '4.5rem',
             letterSpacing: 1,
             whiteSpace: 'pre',
           }}

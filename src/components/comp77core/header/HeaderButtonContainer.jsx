@@ -16,11 +16,11 @@ const HeaderButtonContainer = ({ onClickHandler }) => {
   Gesture Handler
   */
   const { scaleValue, buttonHover } = ButtonHover({
-    // opacityEnter: 1,
-    // opacityLeave: 0.2,
-    scaleEnter: 1.05,
+    // opacityEnter: 0.5,
+    // opacityLeave: 1,
+    scaleEnter: 0.5,
     scaleLeave: 1,
-    thisConfig: config.gentle,
+    thisConfig: config.molasses,
   });
 
   /*
@@ -30,7 +30,7 @@ const HeaderButtonContainer = ({ onClickHandler }) => {
     <animated.button
       className="header-button-container"
       {...buttonHover()}
-      style={{ scale: scaleValue }}
+      style={{ opacity: scaleValue }}
     >
       <p
         id="menuButton"

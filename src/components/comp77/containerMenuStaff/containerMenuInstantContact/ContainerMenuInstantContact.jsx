@@ -37,7 +37,7 @@ const ContainerMenuInstantContact = () => {
   /*
   Spring Staff
   Remarks:
-  ___1. "globalCanvasState.currentContainer" can't be omitted; according to documentation this hook requires two argument; the very firs is for "items"; second embraces lifecycles
+  ___1. "globalCanvasState.currentContainer" can't be omitted; according to documentation this hook requires two argument; the very first is for "items"; second embraces lifecycles
   */
   const transition = useTransition(
     globalCanvasState.currentContainer === 'menuContainer',

@@ -32,16 +32,17 @@ const PageMain = () => {
   /*
  Fog's colos setter
  */
-  const setCanvaColors = () => {
+  const setCanvasColors = () => {
     switch (canvasGlobalState.currentContainer) {
       case 'introContainer':
         return backgroundColors.containerIntro;
       case 'menuContainer':
-        return backgroundColors.containerAbout;
+        return backgroundColors.antiqueWhite;
+
       case 'aboutContainer':
         return backgroundColors.containerAbout;
       default:
-        return backgroundColors.defoult;
+        return backgroundColors.default;
     }
   };
   /*
@@ -80,8 +81,10 @@ const PageMain = () => {
             // camera={{ fov: 45, position: [0, 0, 3] }}
           >
             {/*-----Canvas "attributes"--------------------------------*/}
-            <color attach="background" args={[setCanvaColors()]} />
-            <fog attach="fog" args={[setCanvaColors(), 2, 3]} />
+            {/* <color attach="background" args={[setCanvaColors()]} />
+            <fog attach="fog" args={[setCanvaColors(), 2, 3]} /> */}
+            <color attach="background" args={[setCanvasColors()]} />
+            <fog attach="fog" args={[setCanvasColors(), 2, 3]} />
 
             <Scene />
           </Canvas>

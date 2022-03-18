@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 /*
 Global State Staff
 */
 import { canvasState } from '../../../../../states/canvasState';
 
-const LinkToContainer = ({ label, destinationContainer }) => {
+/*
+----------------------------------------------------------------------
+*/
+const LinkToContainer = ({
+  label,
+  destinationContainer,
+  isMobileOnly,
+  specialColor,
+}) => {
   /*
   User Experience Section
   */
-  const onClickHandlers = () => {
+  const onClickHandlers = useCallback(() => {
     canvasState.isTurboOverlayActive = 1;
     /*
     It's a kind of fake re-positioning; there are actually two stages; 
     The very first stage takes place in "fakeContainer" that has no elements and plays role of "neutral / clean" background for <ContainerMenu2DStaff>'s transitions; we just want to see those transitions;
-    why "1000ms" is required?
+    why "600ms" is required?
     it's determined by "transition" of <ContainerMenu2DStaff>; when we change "currentContainer" to "none" we go to fake position within canvas and a proces of <ContainerMenu2DStaff>'s "transitioning" begins; as config is "gentle" it consumes about 1 second; 
     */
     canvasState.currentContainer = 'none';
@@ -21,10 +29,18 @@ const LinkToContainer = ({ label, destinationContainer }) => {
       canvasState.currentContainer = destinationContainer;
       canvasState.isTurboOverlayActive = 0;
     }, 600);
-  };
+  }, [destinationContainer]);
+  /*
+  JSX
+  */
   return (
     <button className="link-to-container" onClick={onClickHandlers}>
-      <p className="link-to-container__label">{label}</p>
+      <p
+        className="link-to-container__label"
+        style={{ color: !isMobileOnly && specialColor }}
+      >
+        {label}
+      </p>
     </button>
   );
 };
