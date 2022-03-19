@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 /*
 Components
 */
@@ -27,14 +27,12 @@ const SpinningBoxSide = ({
   image,
   portrait,
   banner,
+  format,
+  //_____
   axisLimitation,
   animationDelay,
   isSideRotating,
 }) => {
-  /*
-  References
-  */
-  const universalCanvas = useRef();
   /*
   Props destructuring
   */
@@ -134,38 +132,44 @@ const SpinningBoxSide = ({
         groupProps={{ name: 'groupForFrameInSpiningBoxSide' }}
         portrait={portrait}
         banner={banner}
+        format={format}
       />
-      {
-        <UniversalCanvas
-          ref={universalCanvas}
-          meshProps={{
-            /*
+      {/* { */}
+      <UniversalCanvas
+        meshProps={{
+          /*
             if textRewers = false just rotate <UC> so that initially it's invisible;
             */
-            rotation: [
-              0,
-              /*
+          rotation: [
+            0,
+            /*
               important for "portrait"
               */
-              !labelProps.textRewers ? Math.PI : 0,
-              /*
+            !labelProps.textRewers ? Math.PI : 0,
+            /*
               importan for "banner" because image must be "upside down";
               */
-              axisLimitation === 'y' ? Math.PI : 0,
-            ],
-            /*
+            axisLimitation === 'y' ? Math.PI : 0,
+          ],
+          /*
             to avoid ... test
             */
-            // visible:
-            //   universalCanvas.current.rotation.y === Math.PI ? false : true,
-            // visible: labelProps.textRewers ? true : true,
-          }}
-          portrait={portrait}
-          banner={banner}
-          image={image}
-        />
-      }
-      <SideLabel labelProps={labelProps} portrait={portrait} banner={banner} />
+          // visible:
+          //   universalCanvas.current.rotation.y === Math.PI ? false : true,
+          // visible: labelProps.textRewers ? true : true,
+        }}
+        portrait={portrait}
+        banner={banner}
+        format={format}
+        image={image}
+      />
+      {/* } */}
+      <SideLabel
+        labelProps={labelProps}
+        portrait={portrait}
+        banner={banner}
+        format={format}
+      />
     </a.group>
   );
 };

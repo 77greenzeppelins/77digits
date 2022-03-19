@@ -85,9 +85,10 @@ const RaphaelPainting = ({ groupProps, matcapMaterial }) => {
       <UniversalFrame
         groupProps={{ name: 'groupForMediumFrame' }}
         portrait={true}
+        format="portrait"
       />
       <A11y role="image" description="Raphael. The School of Athens ">
-        <UniversalCanvas image={raphael} />
+        <UniversalCanvas image={raphael} portrait={true} format="portrait" />
       </A11y>
 
       {/*----------Funny Text to Plato & Aristotlees---------------*/}

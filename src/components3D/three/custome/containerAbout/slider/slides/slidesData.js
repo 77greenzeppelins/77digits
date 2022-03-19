@@ -117,8 +117,8 @@ const slide0Box2Data = [
 Slide0's Layout
 */
 const slide1Box1Layout = {
-  mobile: { scale: [0.27, 0.27, 0.27], position: [0, 0, 0] },
-  desktop: { scale: [0.35, 0.35, 0.35], position: [-0.05, 0, 0] },
+  mobile: { scale: [0.27, 0.27, 0.27], position: [0, -0.05, 0] },
+  desktop: { scale: [0.35, 0.35, 0.35], position: [-0.05, -0.05, 0] },
 };
 
 const slide1Box1Data = [
@@ -138,7 +138,7 @@ const slide1Box1Data = [
     sideProps: { position: [-0.365, 0, -0], rotation: [0, Math.PI * 0.5, 0] },
     labelProps: {
       imagesIndex: 1,
-      textAwers: 'Przyszłość branży medycznej',
+      textAwers: 'Programista',
       textRewers: false,
     },
     frameProps: { portrair: true },
@@ -152,7 +152,7 @@ const slide1Box1Data = [
       imagesIndex: 2,
       textAwers: false,
       // textRewers: 'Autorka podziwianych dzieł muzycznych',
-      textRewers: 'Autorka wspaniałych dzieł muzycznych',
+      textRewers: 'UX & UI',
     },
     frameProps: { portrair: true },
     canvasProps: { portrair: true },
@@ -164,7 +164,7 @@ const slide1Box1Data = [
     labelProps: {
       imagesIndex: 3,
       textAwers: false,
-      textRewers: 'Producent unikalnych rozwiązań technicznych',
+      textRewers: 'Technilogia i sztuka',
     },
     frameProps: { portrair: true },
     canvasProps: { portrair: true },

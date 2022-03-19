@@ -8,11 +8,6 @@ import { canvasState } from '../../../../states/canvasState';
 Spring Staff
 */
 import { animated, useTransition } from '@react-spring/web';
-/*
-BasicData
-*/
-const paragraph1Text =
-  'Kimkolwiek jesteś, to dobry moment, aby połączyć nasza potencjały';
 
 /*
 ------------------------------------------------------------------------
@@ -54,8 +49,9 @@ const SlideBody = ({ slideId, paragraphs }) => {
     ({ opacity }, transitionCondition) =>
       transitionCondition && (
         <div className="slide__body">
-          {paragraphs.map(p => (
+          {paragraphs.map((p, i) => (
             <animated.p
+              key={i}
               className="slide__paragraph"
               style={{
                 opacity: opacity.to({

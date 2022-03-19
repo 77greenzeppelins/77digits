@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from 'react';
-import { useFrame } from '@react-three/fiber';
+import React, { useRef } from 'react';
 /*
 Components
 */
@@ -33,6 +32,7 @@ const SpinningBox = ({
   images,
   portrait,
   banner,
+  format,
   // canvasProps,
   // frameProps,
   /*
@@ -59,7 +59,7 @@ const SpinningBox = ({
   /*
   Global State
   */
-  const canvasGlobalState = useSnapshot(canvasState);
+  // const canvasGlobalState = useSnapshot(canvasState);
   /*
   Call this gesture!!!
   returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
@@ -155,6 +155,7 @@ const SpinningBox = ({
             image={images[labelProps.imagesIndex]}
             portrait={portrait}
             banner={banner}
+            format={format}
             axisLimitation={axisLimitation}
             // frameProps={frameProps}
             // canvasProps={canvasProps}

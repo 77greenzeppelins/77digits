@@ -5,63 +5,95 @@ Drai Staff
 */
 import { useLoader } from '@react-three/fiber';
 /*
-Accesibility staff
-*/
-// import { A11y } from '@react-three/a11y';
-/*
 Basic Data
+neccesary for calculations of planeGeometry's args
 */
 import {
   bannerWidthSize,
   bannerHeightSize,
   portraitWidthSize,
   portraitHeightSize,
+  columnWidthSize,
+  columnHeightSize,
   sizeFactor,
 } from '../matcapFrames/UniversalFramesFormats';
 
 /*
 ----------------------------------------------------------------------------
 */
-const UniversalCanvas = React.forwardRef(
-  ({ meshProps, image, bgColor, banner, isDoubleSide }, ref) => {
-    /*
-  Image Loader
-  */
-    const [map] = useLoader(THREE.TextureLoader, [image]);
 
+const UniversalCanvas = React.memo(
+  ({
+    meshProps,
+    //___props for planeGeometry's args calculated in switch()
+    // banner,
+    // portrait,
+    // customeFormat,
+    format,
+    //___props for material
+    image,
+    bgColor,
+    // isDoubleSide,
+  }) => {
     /*
-  JSX
-  */
+    Image Loader
+    */
+    const [map] = useLoader(THREE.TextureLoader, [image]);
+    /*
+    Manipulation for planeGeometry's args
+    */
+    // let format = banner || portrait || customeFormat;
+    let planeWidth = null;
+    let planeHeight = null;
+
+    switch (format) {
+      case 'banner':
+        planeWidth = bannerWidthSize + sizeFactor;
+        planeHeight = bannerHeightSize + sizeFactor;
+        break;
+      case 'portrait':
+        planeWidth = portraitWidthSize + sizeFactor;
+        planeHeight = portraitHeightSize + sizeFactor;
+        break;
+      case 'column':
+        planeWidth = columnWidthSize + sizeFactor;
+        planeHeight = columnHeightSize + sizeFactor;
+        break;
+      default:
+        // console.log('UniversalCanvas / format = default');
+        planeWidth = 0;
+        planeHeight = 0;
+    }
+    /*
+    JSX
+    */
     return (
-      // <>
-      // <A11y role="image" description="77digits logo">
-      <mesh ref={ref} {...meshProps}>
-        <planeGeometry
-          args={[
-            banner
-              ? bannerWidthSize + sizeFactor
-              : portraitWidthSize + sizeFactor,
-            banner
-              ? bannerHeightSize + sizeFactor
-              : portraitHeightSize + sizeFactor,
-            1,
-            1,
-          ]}
-        />
+      <mesh {...meshProps}>
+        <planeGeometry args={[planeWidth, planeHeight, 1, 1]} />
         <meshBasicMaterial
           color={bgColor || 0xffffff}
           map={map}
-          opacity={true}
+          // opacity={true}
           /*
-        in case "canvas" should be visible from both side pass this boolean; used in: <SpinningBoxSide> because the side is pivotal
-        */
-          side={isDoubleSide ? THREE.DoubleSide : THREE.FrontSide}
+          if "THREE.DoubleSide if true" image is visible on both sides of "plane"; if (THREE.FrontSide is true) "backSide" is transparent and "plane" is transparent;
+          */
+          // side={isDoubleSide ? THREE.DoubleSide : THREE.FrontSide}
         />
       </mesh>
-      // </A11y>
-      // </>
     );
   }
 );
 
 export default UniversalCanvas;
+
+// useEffect(() => {
+//   if (banner) {
+//     console.log('UniversalCanvas / format = banner');
+//   }
+//   if (portrait) {
+//     console.log('UniversalCanvas / format = portrait');
+//   }
+//   if (customeFormat) {
+//     console.log('UniversalCanvas / format = customeFormat');
+//   }
+// }, [banner, portrait, customeFormat]);

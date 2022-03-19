@@ -98,9 +98,10 @@ const VenusInFrame = ({ groupProps, rotationX }) => {
       <UniversalFrame
         groupProps={{ name: 'groupForMediumFrame' }}
         portrait={true}
+        format="portrait"
       />
       {/* <A11y role="image" description="Raphael. The School of Athens "> */}
-      <UniversalCanvas image={venus} />
+      <UniversalCanvas image={venus} portrait={true} format="portrait" />
       {/* </A11y> */}
 
       {/*----------Funny Text to Plato & Aristotlees---------------*/}

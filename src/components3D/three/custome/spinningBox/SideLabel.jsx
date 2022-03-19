@@ -18,7 +18,7 @@ const [fontSmall, fontMedium, fontLarge] = [0.07, 0.08, 0.09];
 /*
 ----------------------------------------------------------------------------
 */
-const SideLabel = ({ labelProps, portrait, banner }) => {
+const SideLabel = ({ labelProps, portrait, banner, format }) => {
   /*
   useThree Section
   */
@@ -36,8 +36,8 @@ const SideLabel = ({ labelProps, portrait, banner }) => {
       rotation={[
         0,
         /*
-      if textAwers is false user can see the image
-      */
+        if textAwers is false user can see the image
+        */
         !labelProps.textAwers ? Math.PI : 0,
         0,
       ]}
@@ -60,7 +60,11 @@ const SideLabel = ({ labelProps, portrait, banner }) => {
         whiteSpace="normal" //'normal' "nowrap"
         maxWidth={viewport.width * 0.01}
       />
-      <UniversalCanvasWithoutMap portrait={portrait} banner={banner} />
+      <UniversalCanvasWithoutMap
+        portrait={portrait}
+        banner={banner}
+        format={format}
+      />
     </group>
   );
 };

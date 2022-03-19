@@ -18,31 +18,36 @@ const portraitCorners = [
   [0.305, -0.405, 0.0],
 ];
 
-/*
-Data for portrait frame
-Concept: define three basic formats; then use scale to get diversity;
-*/
-// const landscapeWidth = [
-//   { position: [0, 0.41, 0], rotation: [0, 0, Math.PI * 0.5] },
-//   { position: [0, -0.41, 0], rotation: [0, 0, Math.PI * 0.5] },
-// ];
-// const landscapeHeight = [
-//   { position: [0.31, 0, 0], rotation: [0, 0, 0] },
-//   { position: [-0.31, 0, 0], rotation: [0, 0, 0] },
-// ];
-// //___order: topLeft / topRight / bottomLeft / bottomRight
-// const landscapeCorners = [
-//   [-0.305, 0.405, 0.0],
-//   [0.305, 0.405, 0.0],
-//   [-0.305, -0.405, 0.0],
-//   [0.305, -0.405, 0.0],
-// ];
-
 //___used <...Canvas> to set plane's args={width, height}; ratio = 1.3444
 //___in Inkscape I can use: width: 600px / height: 806px;
 
 const portraitWidthSize = 0.58;
 const portraitHeightSize = 0.78;
+
+/*
+Data for column frame
+*/
+const columnWidth = [
+  { position: [0, 0.71, 0], rotation: [0, 0, Math.PI * 0.5] },
+  { position: [0, -0.71, 0], rotation: [0, 0, Math.PI * 0.5] },
+];
+const columnHeight = [
+  { position: [0.31, 0, 0], rotation: [0, 0, 0] },
+  { position: [-0.31, -0, 0], rotation: [0, 0, 0] },
+];
+//___order: topLeft / topRight / bottomLeft / bottomRight
+const columnCorners = [
+  [-0.305, 0.705, 0.0],
+  [0.305, 0.705, 0.0],
+  [-0.305, -0.705, 0.0],
+  [0.305, -0.705, 0.0],
+];
+
+//___used <...Canvas> to set plane's args={width, height}; ratio = 1.3444
+//___in Inkscape I can use: width: 600px / height: 806px;
+
+const columnWidthSize = 0.58;
+const columnHeightSize = 1.38;
 
 /*
 Data for portrait frame
@@ -67,28 +72,30 @@ const bannerCorners = [
 //___in Inkscape use: width: 774px / height: 300px;
 const bannerWidthSize = 0.98;
 const bannerHeightSize = 0.38;
-
 /*
-Data used  <...Canvas> 
+Data used in  <UniversalCanvas> 
 */
 const sizeFactor = 0.02;
 
-/*
-Data for canvases
-*/
-
 export {
-  //___used in <UniversalFrame>
+  //___for portret; used in <UniversalFrame> &<UniversalCanvas>
   portraitWidth,
   portraitHeight,
   portraitCorners,
   portraitWidthSize,
   portraitHeightSize,
+  //___for banner; used in <UniversalFrame> &<UniversalCanvas>
   bannerWidth,
   bannerHeight,
   bannerCorners,
-  //___used in <UniversalFrame> and <...Canvas>
   bannerWidthSize,
   bannerHeightSize,
+  //___for column; used in <UniversalFrame> &<UniversalCanvas>
+  columnWidth,
+  columnHeight,
+  columnCorners,
+  columnWidthSize,
+  columnHeightSize,
+  //___dditional size factor to correct canvas
   sizeFactor,
 };

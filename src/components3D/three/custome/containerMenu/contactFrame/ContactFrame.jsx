@@ -83,10 +83,12 @@ const ContactFrame = ({ groupProps, iconType, image }) => {
       <UniversalFrame
         groupProps={{ name: 'groupForMediumFrame' }}
         portrait={true}
+        format="portrait"
       />
       <UniversalCanvas
         // meshProps={{}}
         portrait={true}
+        format="portrait"
         image={image}
       />
     </a.group>

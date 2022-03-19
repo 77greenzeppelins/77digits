@@ -19,6 +19,11 @@ import {
   bannerCorners,
   bannerWidthSize,
   bannerHeightSize,
+  columnWidth,
+  columnHeight,
+  columnCorners,
+  columnWidthSize,
+  columnHeightSize,
 } from './UniversalFramesFormats';
 /*
 Basic Data
@@ -30,78 +35,123 @@ const [thisCorner, thisSideVertical, thisSideHorizontal] = [
   new THREE.Object3D(),
 ];
 
-const UniversalFrame = ({ groupProps, portrait, banner }) => {
-  /*
-    
-  */
-  // useEffect(() => {
-  //   console.log('sideHorizontalProps:', sideHorizontalProps);
-  //   console.log('sideVerticalProps:', sideVerticalProps);
-  // }, [sideHorizontalProps, sideVerticalProps]);
-  /*
-  References for instancedMeshes
-  Required by InstanceMesh's procedur...
-  */
-  const corners = useRef();
-  const sidesVertical = useRef();
-  const sidesHorizontal = useRef();
+const UniversalFrame = React.memo(
+  ({ groupProps, portrait, banner, format }) => {
+    /*
+    ...
+    */
+    // useEffect(() => {
+    //   console.log('sideHorizontalProps:', sideHorizontalProps);
+    //   console.log('sideVerticalProps:', sideVerticalProps);
+    // }, [sideHorizontalProps, sideVerticalProps]);
+    /*
+    References for instancedMeshes
+    Required by InstanceMesh's procedur...
+    */
+    const corners = useRef();
+    const sidesVertical = useRef();
+    const sidesHorizontal = useRef();
 
-  /*
-  Final value of these consts depend on props passed from component that includes instance of <UF>...
-  */
-  const cornersPositions = useMemo(() => {
-    return (portrait && portraitCorners) || (banner && bannerCorners);
-  }, [portrait, banner]);
+    /*
+    version_2; based on string props "format"
+    */
+    let cornersPositions = null;
+    let verticalBars = null;
+    let horizontalBars = null;
+    let cylinderHorizontalSize = null;
+    let cylinderVerticalSize = null;
 
-  const verticalBars = useMemo(() => {
-    return (portrait && portraitHeight) || (banner && bannerHeight);
-  }, [portrait, banner]);
+    switch (format) {
+      case 'banner':
+        cornersPositions = bannerCorners;
+        horizontalBars = bannerWidth;
+        verticalBars = bannerHeight;
+        cylinderHorizontalSize = bannerWidthSize;
+        cylinderVerticalSize = bannerHeightSize;
+        break;
+      case 'portrait':
+        cornersPositions = portraitCorners;
+        horizontalBars = portraitWidth;
+        verticalBars = portraitHeight;
+        cylinderHorizontalSize = portraitWidthSize;
+        cylinderVerticalSize = portraitHeightSize;
+        break;
+      case 'column':
+        cornersPositions = columnCorners;
+        horizontalBars = columnWidth;
+        verticalBars = columnHeight;
+        cylinderHorizontalSize = columnWidthSize;
+        cylinderVerticalSize = columnHeightSize;
 
-  const horizontalBars = useMemo(() => {
-    return (portrait && portraitWidth) || (banner && bannerWidth);
-  }, [portrait, banner]);
-  /*
+        break;
+      default:
+        // console.log('UniversalCanvas / format = default');
+        cornersPositions = null;
+        verticalBars = null;
+        horizontalBars = null;
+    }
+    /*
+    version_1: based on boolean props banner / postrait / column
+    */
+    /*
+    Final value of these consts depend on props passed from component that includes instance of <UF>...
+    */
+    // const cornersPositions = useMemo(() => {
+    //   return (portrait && portraitCorners) || (banner && bannerCorners);
+    // }, [portrait, banner]);
+
+    // const verticalBars = useMemo(() => {
+    //   return (portrait && portraitHeight) || (banner && bannerHeight);
+    // }, [portrait, banner]);
+
+    // const horizontalBars = useMemo(() => {
+    //   return (portrait && portraitWidth) || (banner && bannerWidth);
+    // }, [portrait, banner]);
+    /*
   Frame's layout creator;
   using "InstanceMesh's tremplate" we position "atom-parts" of frame;
   */
-  useLayoutEffect(() => {
-    /*
-    Set corners' position
-    */
-    cornersPositions.map((item, index) => {
-      thisCorner.position.set(...item);
-      thisCorner.updateMatrix();
-      corners.current.setMatrixAt(index, thisCorner.matrix);
-      return null;
-    });
-    corners.current.instanceMatrix.needsUpdate = true;
+    useLayoutEffect(() => {
+      /*
+     Set corners' position
+     */
+      cornersPositions &&
+        cornersPositions.map((item, index) => {
+          thisCorner.position.set(...item);
+          thisCorner.updateMatrix();
+          corners.current.setMatrixAt(index, thisCorner.matrix);
+          return null;
+        });
+      corners.current.instanceMatrix.needsUpdate = true;
+
+      /*
+      Set vertical bars' position
+      */
+      verticalBars &&
+        verticalBars.map((item, index) => {
+          thisSideVertical.position.set(...item.position);
+          thisSideVertical.rotation.set(...item.rotation);
+          thisSideVertical.updateMatrix();
+          sidesVertical.current.setMatrixAt(index, thisSideVertical.matrix);
+          return null;
+        });
+      sidesVertical.current.instanceMatrix.needsUpdate = true;
+
+      /*
+      Set horizontal bars' position
+      */
+      horizontalBars &&
+        horizontalBars.map((item, index) => {
+          thisSideHorizontal.position.set(...item.position);
+          thisSideHorizontal.rotation.set(...item.rotation);
+          thisSideHorizontal.updateMatrix();
+          sidesHorizontal.current.setMatrixAt(index, thisSideHorizontal.matrix);
+          return null;
+        });
+      sidesHorizontal.current.instanceMatrix.needsUpdate = true;
+    }, [cornersPositions, horizontalBars, verticalBars]);
 
     /*
-    Set vertical bars' position
-    */
-    verticalBars.map((item, index) => {
-      thisSideVertical.position.set(...item.position);
-      thisSideVertical.rotation.set(...item.rotation);
-      thisSideVertical.updateMatrix();
-      sidesVertical.current.setMatrixAt(index, thisSideVertical.matrix);
-      return null;
-    });
-    sidesVertical.current.instanceMatrix.needsUpdate = true;
-
-    /*
-    Set horizontal bars' position
-    */
-    horizontalBars.map((item, index) => {
-      thisSideHorizontal.position.set(...item.position);
-      thisSideHorizontal.rotation.set(...item.rotation);
-      thisSideHorizontal.updateMatrix();
-      sidesHorizontal.current.setMatrixAt(index, thisSideHorizontal.matrix);
-      return null;
-    });
-    sidesHorizontal.current.instanceMatrix.needsUpdate = true;
-  }, [cornersPositions, horizontalBars, verticalBars]);
-
-  /*
   MatcapMaterial Section
   Doesn't work...
   There is an issue in "JSX section" I don't understand... 
@@ -110,68 +160,71 @@ const UniversalFrame = ({ groupProps, portrait, banner }) => {
   that is why I need: "matcapTexture" & "matcapMaterial"
   */
 
-  const [matcapTexture] = useMatcapTexture(
-    '434240_D3D3CF_898784_A4A49F', //silver-like
-    // '2A2A2A_DBDBDB_6A6A6A_949494', //grey, high-gloss, !
-    1024
-  );
+    const [matcapTexture] = useMatcapTexture(
+      '434240_D3D3CF_898784_A4A49F', //silver-like
+      // '2A2A2A_DBDBDB_6A6A6A_949494', //grey, high-gloss, !
+      1024
+    );
 
-  const matcapMaterial = useMemo(() => {
-    const matcapMaterial = new THREE.MeshMatcapMaterial();
-    matcapMaterial.matcap = matcapTexture;
-    return matcapMaterial;
-  }, [matcapTexture]);
+    const matcapMaterial = useMemo(() => {
+      const matcapMaterial = new THREE.MeshMatcapMaterial();
+      matcapMaterial.matcap = matcapTexture;
+      return matcapMaterial;
+    }, [matcapTexture]);
 
-  /*
-  JSX
-  Create group with  three InstancedMesh !
-  */
-  return (
-    <group {...groupProps}>
-      <instancedMesh
-        name="corners"
-        ref={corners}
-        // args={[null, matcapMaterial, 4]}
-        args={[null, null, 4]}
-      >
-        <sphereGeometry args={[0.035, 16, 16]} />
-        <meshMatcapMaterial matcap={matcapTexture} />
-      </instancedMesh>
+    /*
+    JSX
+    Create group with  three InstancedMesh !
+    */
+    return (
+      <group {...groupProps}>
+        <instancedMesh
+          name="corners"
+          ref={corners}
+          // args={[null, matcapMaterial, 4]}
+          args={[null, null, 4]}
+        >
+          <sphereGeometry args={[0.035, 16, 16]} />
+          <meshMatcapMaterial matcap={matcapTexture} />
+        </instancedMesh>
 
-      <instancedMesh
-        name="sidesHorizontal"
-        ref={sidesHorizontal}
-        args={[null, matcapMaterial, 2]}
-      >
-        <cylinderGeometry
-          args={[
-            0.02,
-            0.02,
-            (portrait && portraitWidthSize) || (banner && bannerWidthSize),
-            10,
-          ]}
-        />
-        {/* <meshMatcapMaterial matcap={matcapTexture} /> */}
-      </instancedMesh>
+        <instancedMesh
+          name="sidesHorizontal"
+          ref={sidesHorizontal}
+          args={[null, matcapMaterial, 2]}
+        >
+          <cylinderGeometry
+            args={[
+              0.02,
+              0.02,
+              // (portrait && portraitWidthSize) || (banner && bannerWidthSize),
+              cylinderHorizontalSize,
+              10,
+            ]}
+          />
+          {/* <meshMatcapMaterial matcap={matcapTexture} /> */}
+        </instancedMesh>
 
-      <instancedMesh
-        name="sidesVertical"
-        ref={sidesVertical}
-        args={[null, matcapMaterial, 2]}
-      >
-        <cylinderGeometry
-          args={[
-            0.02,
-            0.02,
-            (portrait && portraitHeightSize) || (banner && bannerHeightSize),
-            10,
-          ]}
-        />
-        {/* <meshMatcapMaterial matcap={matcapTexture} /> */}
-      </instancedMesh>
-    </group>
-  );
-};
+        <instancedMesh
+          name="sidesVertical"
+          ref={sidesVertical}
+          args={[null, matcapMaterial, 2]}
+        >
+          <cylinderGeometry
+            args={[
+              0.02,
+              0.02,
+              // (portrait && portraitHeightSize) || (banner && bannerHeightSize),
+              cylinderVerticalSize,
+              10,
+            ]}
+          />
+          {/* <meshMatcapMaterial matcap={matcapTexture} /> */}
+        </instancedMesh>
+      </group>
+    );
+  }
+);
 
 export default UniversalFrame;
 

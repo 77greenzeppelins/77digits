@@ -12,6 +12,7 @@ const AnswerFrame = ({ groupProps, thisMatcapMaterial, coneMeshProps }) => {
     <group {...groupProps}>
       <UniversalFrame
         portrait={true}
+        format="portrait"
         groupProps={{ scale: [0.3, 0.3, 0.3], rotation: [0, 0, Math.PI * 0.5] }}
       />
       <mesh

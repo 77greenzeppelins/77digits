@@ -96,8 +96,13 @@ const ScrollBaner = ({ groupProps }) => {
       <UniversalFrame
         groupProps={{ name: 'groupForMediumFrame' }}
         banner={true}
+        format="banner"
       />
-      <UniversalCanvasWithoutMap banner={true} bgColor={[0x000000]} />
+      <UniversalCanvasWithoutMap
+        banner={true}
+        format="banner"
+        bgColor={[0x000000]}
+      />
 
       {/*-----Main Text: scroll or drag------------------------------*/}
       <group name="GroupForScrollOrDrag" position={[0, 0, 0.02]}>

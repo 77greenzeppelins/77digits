@@ -8,6 +8,8 @@ import {
   bannerHeightSize,
   portraitWidthSize,
   portraitHeightSize,
+  columnWidthSize,
+  columnHeightSize,
   sizeFactor,
 } from '../matcapFrames/UniversalFramesFormats';
 
@@ -15,36 +17,50 @@ import {
 ----------------------------------------------------------------------------
 */
 
-const UniversalCanvasWithoutMap = ({ bgColor, banner, isDoubleSide }) => {
+const UniversalCanvasWithoutMap = ({
+  bgColor,
+  banner,
+  portrait,
+  customeFormat,
+  format,
+  isDoubleSide,
+}) => {
+  /*
+    Manipulation for planeGeometry's args
+    */
+  // let format = banner || portrait || customeFormat;
+  let planeWidth = null;
+  let planeHeight = null;
+
+  switch (format) {
+    case 'banner':
+      planeWidth = bannerWidthSize + sizeFactor;
+      planeHeight = bannerHeightSize + sizeFactor;
+      break;
+    case 'portrait':
+      planeWidth = portraitWidthSize + sizeFactor;
+      planeHeight = portraitHeightSize + sizeFactor;
+      break;
+    case 'column':
+      planeWidth = columnWidthSize + sizeFactor;
+      planeHeight = columnHeightSize + sizeFactor;
+      break;
+    default:
+      // console.log('UniversalCanvas / format = default');
+      planeWidth = 0;
+      planeHeight = 0;
+  }
   /*
   JSX
   */
   return (
-    // <>
-    //   <A11y role="image" description="77digits logo">
     <mesh>
-      <planeGeometry
-        args={[
-          banner
-            ? bannerWidthSize + sizeFactor
-            : portraitWidthSize + sizeFactor,
-          banner
-            ? bannerHeightSize + sizeFactor
-            : portraitHeightSize + sizeFactor,
-          1,
-          1,
-        ]}
-      />
+      <planeGeometry args={[planeWidth, planeHeight, 1, 1]} />
       <meshBasicMaterial
         color={bgColor || 0x000000}
-        /*
-        in case "canvas" should be visible from both side pass this boolean; used in: <SpinningBoxSide> because the side is pivotal
-        */
-        side={isDoubleSide ? THREE.DoubleSide : THREE.FrontSide}
+        // side={isDoubleSide ? THREE.DoubleSide : THREE.FrontSide}
       />
     </mesh>
-    //   </A11y>
-    // </>
   );
 };
 

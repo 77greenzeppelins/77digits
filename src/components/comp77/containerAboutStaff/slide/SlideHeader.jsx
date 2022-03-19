@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 /*
 Global State Staff
 */
@@ -43,10 +43,10 @@ const SlideHeader = ({ slideId, header }) => {
   /*
   
   */
-  useEffect(() => {
-    console.log('slideId', slideId);
-    console.log('header', header);
-  }, [slideId, header]);
+  // useEffect(() => {
+  //   console.log('slideId', slideId);
+  //   console.log('header', header);
+  // }, [slideId, header]);
 
   /*
   JSX
