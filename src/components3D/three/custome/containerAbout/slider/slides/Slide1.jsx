@@ -22,6 +22,7 @@ import images for <SpinningBox> / <SpinningBoxSide> / <UniversalCanvas> / image
 */
 import containerAbout_Slide0_box1_image1 from '../../../../../../assets/textures/containerAbout_Slide0_box1_image1.png';
 import containerAbout_Slide0_box1_image2 from '../../../../../../assets/textures/containerAbout_Slide0_box1_image2.png';
+import containerAboutSlide1_image1 from '../../../../../../assets/textures/containerAbout_Slide1_image1.jpg';
 /*
  Basic Data
  */
@@ -49,10 +50,10 @@ const Slide1 = ({ slideId }) => {
   */
   const imagesPortrait = useMemo(
     () => [
-      containerAbout_Slide0_box1_image1,
-      containerAbout_Slide0_box1_image2,
-      containerAbout_Slide0_box1_image1,
-      containerAbout_Slide0_box1_image2,
+      containerAboutSlide1_image1,
+      containerAboutSlide1_image1,
+      containerAboutSlide1_image1,
+      containerAboutSlide1_image1,
     ],
     []
   );

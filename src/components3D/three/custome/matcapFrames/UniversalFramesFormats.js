@@ -18,7 +18,7 @@ const portraitCorners = [
   [0.305, -0.405, 0.0],
 ];
 
-//___used <...Canvas> to set plane's args={width, height}; ratio = 1.3444
+//___used <...Canvas> to set plane's args={width, height}; ratio = 0.743
 //___in Inkscape I can use: width: 600px / height: 806px;
 
 const portraitWidthSize = 0.58;
@@ -43,8 +43,8 @@ const columnCorners = [
   [0.305, -0.705, 0.0],
 ];
 
-//___used <...Canvas> to set plane's args={width, height}; ratio = 1.3444
-//___in Inkscape I can use: width: 600px / height: 806px;
+//___used <...Canvas> to set plane's args={width, height}; ratio = 0.42
+//___in Inkscape I can use: width: 420px / height: 1000px;
 
 const columnWidthSize = 0.58;
 const columnHeightSize = 1.38;

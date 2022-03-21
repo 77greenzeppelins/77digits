@@ -8,18 +8,12 @@ const canvasState = proxy({
   /*
   ------------------------------------------Universal Property
   ___currentContainer
-  ...is changed within onClick events that allowe user to jump from container to container;
-  ...other options are: answerYesSection, answerNoSection, aboutSection; 
-  ...is changed for the very first time in <Loader>, from "none" to "introSection1"
-  ___isMobileDevice
-  ...is set in <ContaineIntroContent>;
-  ...main idea: depending on device type various "gesture data" are applied; it allowes to avoid adding "drag gesture data" to desktop devices when target of gesture is "window"; without this solution user can't drag and rotate Raphael painting  without sudden 'scroll'; btw mixin wheel and drag was a bloody mess!!! 
+  ...is changed within onClick events that allowe user to jump among containers;
   ...options: introContainer, aboutContainer, menuContainer, answerYesContainer, answerNoContainer
   */
-  // currentContainer: 'none',
-  currentContainer: 'introContainer', // to switch off <InitialContainer>
+  currentContainer: 'none',
+  // currentContainer: 'introContainer', // to switch off <InitialContainer>
 
-  // isMobileDevice: true,
   /*
   ------------------------------------Constants for buttons onClick events...
   */
@@ -77,32 +71,25 @@ const canvasState = proxy({
   */
   /*
   decides if <InitialOverlay> mounted or not;
-  <InitialOverlay> are built on useTransition;
+  <InitialOverlay> is basedpodczas
+   on useTransition;
   By means of <Cookies>'s buttons value "false" is set i.e. this button dismounts <Cookies> & <InitialOverlay>
   By means of <CookiesPage>, button 
    */
-  // isInitialOverlayMounted: true,
-  isInitialOverlayMounted: false, // to switch off <InitialContainer>
+  isInitialOverlayMounted: true,
+  // isInitialOverlayMounted: false, // to switch off <InitialContainer>
   /*
   FakeLoader should by trigger only one time!
-  If not going from <CookiesPage> to <MainPage> triggers <FL> when <Cookies> are mounted i.e. both are visible...horrror
+  If not going from <CookiesPage> to <MainPage> triggers <FL> when <Cookies> are mounted i.e. both are visible and overlap...horrror
   Is changed to "1" in <FakeLoader> / useSpring / onRest;
   */
   fakeLoaderCounter: 0,
-  /*
-  Multi-string-values property;
-  first (defoult) option: "loaderVisible", 
-  second option: "loaderInvisible"; is changed in <Loader> when setInterval expires; it makes <Loader> invisible and <Cookies> visible
-  thirt option: "cookiesAreEatten"; is Changed in <Cookies> when user takes decision about cookies;
-  */
-  // loaderCookisLink: 'loaderVisible',
-  loaderCookisLink: 'cookiesAreEatten',
   /*
   -----------------------------------------------<Cookies 2D staff>
   */
   /*
   decides if <Cookies> is mounted or not
-  <Cookies> are built on useTransition;
+  <Cookies> are based on useTransition;
   */
   // isCookiesPopUpMounted: false,
   isCookiesPopUpMounted: false, // to switch off <InitialContainer>

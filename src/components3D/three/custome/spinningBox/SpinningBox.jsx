@@ -6,8 +6,8 @@ import SpinningBoxSide from './SpinningBoxSide';
 /*
 Global State Staf
 */
-import { useSnapshot } from 'valtio';
-import { canvasState } from '../../../../states/canvasState';
+// import { useSnapshot } from 'valtio';
+// import { canvasState } from '../../../../states/canvasState';
 /*
 Gesture Section
 */

@@ -57,7 +57,7 @@ const PageMain = () => {
      isInitialOverlayMounted: false,
      isCookiesPopUpMounted: false,
      */}
-      {/* <InitialOverlay /> */}
+      <InitialOverlay />
 
       <div className="page-main__container">
         <div className="page-main__canvas">

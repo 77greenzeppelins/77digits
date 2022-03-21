@@ -1,3 +1,5 @@
+import containerAboutSlide1_image1 from '../../../../../../assets/textures/containerAbout_Slide1_image1.jpg';
+
 /*
 Slide0's Layout
 */
@@ -127,6 +129,7 @@ const slide1Box1Data = [
     sideProps: { position: [0, 0, 0.365], rotation: [0, 0, 0] },
     labelProps: {
       imagesIndex: 0,
+      texture: containerAboutSlide1_image1,
       textAwers: 'Web developer',
       textRewers: false,
     },

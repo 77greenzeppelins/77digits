@@ -3,7 +3,7 @@ import React from 'react';
 Components
 */
 import Cookies from '../cookies/Cookies';
-import FakeLoader from '../../comp77/loader/FakeLoader';
+import FakeLoader from '../../comp77/loaders/FakeLoader';
 import Clock from '../../comp77/clock/Clock';
 import DateDisplayer from '../../comp77/date/DateDisplayer';
 /*
@@ -28,12 +28,13 @@ const InitialOverlay = () => {
   const canvasGlobalState = useSnapshot(canvasState);
   /*
   useLocation Section
-  why? it allowes restrict appearing of <InitialOverlay> only to <MainPage> => page that has the following URL: "/"; without this condition when <CookiesPage> is refreshed <IO> covers the screen and make it 100% black...
+  Why useLocation is employed? 
+  it allowes restrict appearing of <InitialOverlay> only to <MainPage> => page that has the following URL: "/"; without this condition when <CookiesPage> is refreshed <IO> covers the screen and make it 100% black...
   */
   const location = useLocation();
 
   /*
-  Spring stuff for ".initial-overlay__container"
+  Spring stuff for ".initial-overlay"
   */
   const parentTransition = useTransition(
     canvasGlobalState.isInitialOverlayMounted && location.pathname === '/',
@@ -45,6 +46,9 @@ const InitialOverlay = () => {
     }
   );
 
+  /*
+  Spring stuff for ".initial-overlay__container"
+  */
   const childTransition = useTransition(
     canvasGlobalState.isInitialOverlayMounted && location.pathname === '/',
     {
