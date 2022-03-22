@@ -1,14 +1,27 @@
-import React, { useRef } from 'react';
-// import { useFrame } from '@react-three/fiber';
+import React, { useRef, Suspense } from 'react';
+import { useFrame } from '@react-three/fiber';
 /*
 Global State staff
 */
-// import { useSnapshot } from 'valtio';
-// import { canvasState } from '../../../../states/canvasState';
+import { useSnapshot } from 'valtio';
+import { canvasState } from '../../../../states/canvasState';
 /*
 Components
 */
-import ContainerIntroContent from './ContainerIntroContent';
+// import ContainerIntroContent from './ContainerIntroContent';
+import FramedObjects from './framedObjects/FramedObjects';
+import TextSection from './textSection/TextSection';
+import AnimatedUnivers from '../animatedUnivers/AnimatedUniverse';
+import InstantContact from './contactSection/InstantContact';
+/*
+Gesture Section
+*/
+import IntroDragGesture from '../../../../gestureHandlers/useGesture/IntroDragGesture';
+import IntroWheelGesture from '../../../../gestureHandlers/useGesture/IntroWheelGesture';
+/*
+Spring Section
+*/
+import { a } from '@react-spring/three';
 
 /*
 ------------------------------------------------------------------------
@@ -18,146 +31,84 @@ const ContainerIntro = ({ onClickCameraSetter }) => {
   References
   */
   const introContainer = useRef();
-  // const scrollStimulus = useRef();
   /*
-Global State Section
-canvasState = {isIntroSection1Playing: false, ...}
-*/
-  // const canvasGlobalState = useSnapshot(canvasState);
-
+  Global State Section
+  canvasState = {introContainerEventType: "none", isOdlotBackgroundVisible: "false", ...}
+  */
+  const canvasGlobalState = useSnapshot(canvasState);
+  /*
+  UseGesture Section
+  */
+  const [draggedPositionZ] = IntroDragGesture();
+  const { wheeledPositionZ } = IntroWheelGesture();
   /*
   useFrame Section
   */
-  // useFrame(() => {
-  //   /*
-  //   Refers to : <IntroSectionContainer> and <ScrollStimulus?
-  //   Description: "if condition" specifies same "point of toggling"; when  <introSectionContainer> has position.z < 1  <ScrollStimulus> is visible, otherwise is invisible
-  //   */
-  //   if (
-  //     introContainer.current.position.x === 0 &&
-  //     introContainer.current.position.y === 0 &&
-  //     introContainer.current.position.z < positionZFactor
-  //   ) {
-  //     scrollStimulus.current.visible = true;
-  //   } else {
-  //     scrollStimulus.current.visible = false;
-  //   }
-  // });
+  useFrame(() => {
+    /*
+    What this if statemen does? What is the concept?
+    It works as a kind of switcher that should turn on / turn off visibility of "odlot background"; it's necessary as background's plane with shader is visible as only "containerInitial" is visible/mounted/ahed of camera/;
+    */
+    if (
+      introContainer.current.position.z > 11.5 &&
+      introContainer.current.position.z < 13.7
+    ) {
+      canvasState.isOdlotBackgroundVisible = true;
+    } else {
+      canvasState.isOdlotBackgroundVisible = false;
+    }
+  });
 
   /*
   JSX
   */
   return (
-    <group name="GroupForContainerIntro">
+    <a.group
+      ref={introContainer}
+      name="GroupForContainerIntro"
+      position-z={
+        canvasGlobalState.introContainerEventType === 'dragging'
+          ? draggedPositionZ.to(draggedPositionZ => draggedPositionZ)
+          : wheeledPositionZ.to(wheeledPositionZ => wheeledPositionZ)
+      }
+    >
+      {/*-----77-----------------------------------------------*/}
+      <Suspense fallback={null}>
+        <FramedObjects
+          groupProps={{
+            position: [0, 0, 0],
+            rotation: [0, 0, 0],
+            name: 'groupForFramedObjects',
+          }}
+        />
+      </Suspense>
+
+      {/*-----77-----------------------------------------------*/}
+      <TextSection />
+
+      {/*-----Instant Contact--------------------------------------------*/}
+      <Suspense fallback={null}>
+        <InstantContact />
+      </Suspense>
+
+      {/* {canvasGlobalState.currentContainer === 'introContainer' && (
+        <AnimatedUnivers
+          groupProps={{
+            position: [0, -0.15, -10],
+            name: 'GroupForAnimatedUniverse',
+          }}
+        />
+      )} */}
+
+      {/*-------------------------------------------------------
       <ContainerIntroContent
         ref={introContainer}
         groupProps={{
           name: 'GroupForIntroContainerConntent',
         }}
-      />
-      {/* <BackgroundForOdlot
-        meshProps={{
-          position: [0, 0, -0.6],
-        }}
       /> */}
-      {/* <ContainerIntroNavBar
-        groupProps={{
-          name: 'GroupForContainerIntroNavBar',
-          position: [0, -0.6, 0],
-        }}
-      /> */}
-      {/* <ScrollStimulus
-        ref={scrollStimulus}
-        groupProps={{
-          name: 'scrollStimulus',
-        }}
-      /> */}
-    </group>
+    </a.group>
   );
 };
 
 export default ContainerIntro;
-
-/*
-version with buttons
-*/
-/*
-useFrame Section
-*/
-
-/*
-for play button
-*/
-// useFrame(() => {
-//   if (
-//     canvasGlobalState.isIntroSection1Playing === true &&
-//     introSection1.current.position.z <= 5 &&
-//     introSection1.current.position.z >= 0
-//   ) {
-//     if (canvasGlobalState.glidingDirection === 'forward') {
-//       introSection1.current.position.z += 0.005;
-//     } else {
-//       introSection1.current.position.z -= 0.005;
-//     }
-//     // }
-//   }
-// });
-
-/*
-for play button
-*/
-// useEffect(() => {
-//   const interval = setInterval(() => {
-//     if (
-//       canvasGlobalState.isIntroSection1Playing === true &&
-//       introSection1.current.position.z <= 5 &&
-//       introSection1.current.position.z >= 0
-//     ) {
-//       if (canvasGlobalState.glidingDirection === 'forward') {
-//         introSection1.current.position.z += 0.005;
-//         console.log(
-//           'introSection1.current.position.z',
-//           introSection1.current.position.z
-//         );
-//       } else {
-//         introSection1.current.position.z -= 0.005;
-//       }
-//     }
-//   }, 0.001);
-//   return () => clearInterval(interval);
-// }, [
-//   canvasGlobalState.isIntroSection1Playing,
-//   canvasGlobalState.glidingDirection,
-// ]);
-
-/*
-  for reset button
-  */
-// useEffect(() => {
-//   if (canvasGlobalState.makeIntroSection1Reseted === true) {
-//     introSection1.current.position.z = 0;
-//   }
-// }, [canvasGlobalState.makeIntroSection1Reseted]);
-
-/*
--------------------------------------------------------------------------
-old version
-*/
-// if (
-//   canvasGlobalState.wheelRange === canvasGlobalState.wheelBounds.bottom ||
-//   canvasGlobalState.dragRange === canvasGlobalState.dragBounds.top
-// ) {
-//   console.log('<IntroSection> / useEffect / time to disable header!!!!');
-// }
-// console.log(
-//   '<IntroSection> / introSectionContainer.current......................',
-//   introSectionContainer.current.children[3]
-// );
-// if (introSectionContainer.current.position.z > 12) {
-//   canvasGlobalState.isRaphaelMoving = 0;
-//   // console.log('<introSectionContainer> / group.current.position.z:', group.current.position.z);
-// }
-// console.log(
-//   '<IntroSection> / introSectionContainer.current.position.z',
-//   introSectionContainer.current.position.z
-// );

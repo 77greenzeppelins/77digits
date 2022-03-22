@@ -109,13 +109,13 @@ const ContainerIntroContent = React.forwardRef(({ groupProps }, ref) => {
       />
 
       {/*-----odlot----------------------------------------*/}
-      <TextVersed4
+      {/* <TextVersed4
         groupProps={{
           position: [0, -0.15, -12.0],
           rotation: [Math.PI * 0.1, 0, 0],
           name: 'TextVersedGroup_4',
         }}
-      />
+      /> */}
       {canvasGlobalState.currentContainer === 'introContainer' && (
         <AnimatedUnivers
           groupProps={{
@@ -126,13 +126,13 @@ const ContainerIntroContent = React.forwardRef(({ groupProps }, ref) => {
       )}
 
       {/*-----w internetach----------------------------------------*/}
-      <TextVersed5
+      {/* <TextVersed5
         groupProps={{
           position: [0, -0.15, -14.8],
           rotation: [Math.PI * 0.1, 0, 0],
           name: 'TextVersedGroup_5',
         }}
-      />
+      /> */}
 
       <Suspense fallback={null}>
         <YesNoSection

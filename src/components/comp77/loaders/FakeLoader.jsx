@@ -23,6 +23,7 @@ const FakeLoader = () => {
   Components State 
   */
   const [val, setVal] = useState(true);
+
   /*
   Global State Section
   appState = {isInitialOverlay: true, loaderCookisLink: "loaderVisible"}
@@ -80,6 +81,8 @@ const FakeLoader = () => {
     },
   });
 
+  // console.log('FakeLoader / counter', counter);
+
   return (
     /*
     What this condition "canvasGlobalState.fakeLoaderCounter === 0" does??
@@ -93,14 +96,14 @@ const FakeLoader = () => {
       >
         <div className="fake-loader__images-container">
           {/* Let's use springs to creat components */}
-          {springs.map((spring, index) => (
+          {springs.map((springConfig, index) => (
             <animated.img
               key={images[index].id}
               src={images[index].image}
               alt={images[index].label}
               className="fake-loader__image"
               style={{
-                ...spring,
+                ...springConfig,
               }}
             />
           ))}

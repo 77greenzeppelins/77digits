@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 // import { useThree } from '@react-three/fiber';
 import { useSpring, config } from '@react-spring/three';
 import { useGesture } from '@use-gesture/react';
@@ -11,7 +11,7 @@ import { canvasState } from '../../states/canvasState';
 Basic Data
 */
 const factorPositionY = 0.005;
-let counter = 0;
+
 /*
 -------------------------------------------------------------------------------
 */
@@ -113,11 +113,9 @@ const IntroWheelGesture = () => {
       target: window,
       enabled:
         /*
-      why two conditions? 
-      Bacause we want to keep scrolling in "disable state" untill cookies are eatten i.e no scroll befor decirion about cookies
-      */
-        // canvasGlobalState.userAteCookies === true &&
-        // canvasGlobalState.isIntroContainerScrollable === true &&
+        why two conditions? 
+        Bacause we want to keep scrolling in "disable state" untill cookies are eatten i.e no scroll befor decirion about cookies
+        */
         canvasGlobalState.currentContainer === 'introContainer',
       wheel: {
         axis: 'y',

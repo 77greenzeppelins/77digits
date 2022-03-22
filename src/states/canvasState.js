@@ -13,6 +13,10 @@ const canvasState = proxy({
   */
   currentContainer: 'none',
   // currentContainer: 'introContainer', // to switch off <InitialContainer>
+  /*
+  ...
+  */
+  languageVersion: 'pl',
 
   /*
   ------------------------------------Constants for buttons onClick events...
@@ -41,7 +45,7 @@ const canvasState = proxy({
   constants for <IntroContainerWheelAndDrag>
   dragBounds: { top: -3550, bottom: 0 } would by an option if you want to switch direction of dragging i.e. "dragging up / passing thumb up" means go deep in z-axis
   */
-  introContainerWheelDragBounds: { top: 0, bottom: 3600 },
+  introContainerWheelDragBounds: { top: 0, bottom: 5700 },
   /*
   this value is required in <ContainerIntroContent>
   it is set in <IntroWheelGesture> & <IntroDragGesture>
@@ -54,17 +58,11 @@ const canvasState = proxy({
   */
   introContainerEventCounter: 0,
   /*
-  is set to "true" / "false" in <ContainerIntroWheelAndDrag> depending on "y" value
-  have output in <AnswerYes> & <AnswerNo>; thera are actually buttons from "a11y" point of view, and this change makes makes them "clickable"
+  idea: when user scrolls/drags to the end, it changer to "true" and:
+  (1) scrolls/drags gestures are disabled
+  (2) <InstantContact> comes into the scene. i.e. goes on z-axis from fog  
   */
-  isYesNoButtonClickable: false,
-
-  /*
-  ...idea behind: it allowes to switch on / off shader background for "odlot"
-  is set to true / false in <ContainerIntroContent> / useFrame;
-   */
-  // isOdlotBackgroundVisible: false,
-  // isOdlotBackgroundVisible: true,
+  endOfContainerIntro: false,
 
   /*
   -----------------------------------------------<Initial Overlay 2D staff>

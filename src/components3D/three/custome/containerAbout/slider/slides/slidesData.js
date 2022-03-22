@@ -133,8 +133,6 @@ const slide1Box1Data = [
       textAwers: 'Web developer',
       textRewers: false,
     },
-    frameProps: { portrair: true },
-    canvasProps: { portrair: true },
   },
   /* Panel Left  */
   {
@@ -144,8 +142,6 @@ const slide1Box1Data = [
       textAwers: 'Programista',
       textRewers: false,
     },
-    frameProps: { portrair: true },
-    canvasProps: { portrair: true },
   },
 
   /* Panel Back */
@@ -157,8 +153,6 @@ const slide1Box1Data = [
       // textRewers: 'Autorka podziwianych dzieł muzycznych',
       textRewers: 'UX & UI',
     },
-    frameProps: { portrair: true },
-    canvasProps: { portrair: true },
   },
 
   /* Panel Right */
@@ -169,8 +163,6 @@ const slide1Box1Data = [
       textAwers: false,
       textRewers: 'Technilogia i sztuka',
     },
-    frameProps: { portrair: true },
-    canvasProps: { portrair: true },
   },
 ];
 

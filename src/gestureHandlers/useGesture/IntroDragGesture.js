@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 // import { useThree } from '@react-three/fiber';
 import { useSpring, config } from '@react-spring/three';
 import { useGesture } from '@use-gesture/react';
@@ -11,7 +11,6 @@ import { canvasState } from '../../states/canvasState';
 Basic Data
 */
 const factorPositionY = 0.005;
-let counter = 0;
 /*
 -----------------------------------------------------------------------
 */
@@ -61,32 +60,31 @@ const IntroDragGesture = () => {
   /*
   Additional Handler Section for onDragEnd
   */
-  const doThisAtTheEndHandler = useCallback(
-    ({ offset: [, y] }) => {
-      if (y === canvasGlobalState.introContainerWheelDragBounds.bottom) {
-        canvasState.isYesNoButtonClickable = true;
-      } else {
-        canvasState.isYesNoButtonClickable = false;
-      }
-    },
-    [canvasGlobalState.introContainerWheelDragBounds.bottom]
-  );
+  // const doThisAtTheEndHandler = useCallback(
+  //   ({ offset: [, y] }) => {
+  //     if (y === canvasGlobalState.introContainerWheelDragBounds.bottom) {
+  //       canvasState.isYesNoButtonClickable = true;
+  //     } else {
+  //       canvasState.isYesNoButtonClickable = false;
+  //     }
+  //   },
+  //   [canvasGlobalState.introContainerWheelDragBounds.bottom]
+  // );
   /*
   Gesture Section
   */
   const containerIntroDrag = useGesture(
     {
       onDrag: mainDragHandler,
-      onDragEnd: doThisAtTheEndHandler,
+      // onDragEnd: doThisAtTheEndHandler,
     },
     {
       target: window,
       enabled:
         /*
-      why two conditions? 
-      Bacause we want to keep scrolling in "disable state" untill cookies are eatten i.e no scroll befor decirion about cookies
-      */
-        // canvasGlobalState.userAteCookies === true &&
+        why two conditions? 
+        Bacause we want to keep scrolling in "disable state" untill cookies are eatten i.e no scroll befor decirion about cookies
+        */
         canvasGlobalState.currentContainer === 'introContainer',
       drag: {
         axis: 'y',

@@ -3,7 +3,7 @@ import React from 'react';
 Components
 */
 import VenusInFrame from './venus/VenusInFrame';
-import ScrollBaner from './scrollBaner/ScrollBaner';
+import ScrollBanner from './scrollBanner/ScrollBanner';
 /*
 Gesture Staff
 */
@@ -30,7 +30,6 @@ const FramedObjects = ({ groupProps }) => {
   const [rotateWithMouseMove] = BasicMove({
     target: window,
     tileFactor: tillFactor,
-    // initialRotation: [groupProps.rotation],
   });
 
   return (
@@ -40,25 +39,15 @@ const FramedObjects = ({ groupProps }) => {
           name: 'GroupForLogoInFrame',
           position: [0, 0.03, 0.4],
           scale: [0.8, 0.8, 0.8],
-          // position: [0, 0, 0],
-          // scale: [1, 1, 1],
         }}
-        //___What "rotationX" does? Why is separated from other groupProps?
-        //___This props is designe to work in some useGesture animation;
-        // rotationX={Math.PI * 0.1}
-        // rotationX={0}
       />
 
-      <ScrollBaner
+      <ScrollBanner
         groupProps={{
           name: 'GroupForLogoInFrame2',
           position: [0, -0.69, -0.3],
           scale: [0.6, 0.6, 0.6],
-          // position: [0, 0, 0],
-          // scale: [1, 1, 1],
         }}
-        // rotationX={Math.PI * 0.05}
-        // rotationX={0}
       />
     </a.group>
   );
