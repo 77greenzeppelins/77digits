@@ -1,0 +1,60 @@
+@import '../../../sass/index.scss';
+
+.container-intro {
+  &__wrapper {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+  }
+  &__buttons-container {
+    display: relative;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__phone-button {
+    position: absolute;
+    top: 8vh;
+    background-color: #fff;
+    opacity: 0.3;
+  }
+  &__reset-button {
+    position: absolute;
+    top: 45vh;
+    // background-color: #fff;
+    // opacity: 0.3;
+  }
+  &__email-button {
+    position: absolute;
+    bottom: 8vh;
+    // background-color: #fff;
+    // opacity: 0.3;
+  }
+  &__auxiliary-button-top {
+    position: absolute;
+    top: 20vh;
+    /*
+    why "transform: translateX(230%)" ?
+    it allowes position this button on x-axis regarding the center of x-axis
+    it allowes to keep this button in constant distance to "phone-instant-contact-button"; so despite resizing it keep that distance;
+    this "230%" refers to button size I guess...
+    */
+    transform: translateX(230%);
+    background-color: #fff;
+    opacity: 0.3;
+  }
+  &__auxiliary-button-bottom {
+    position: absolute;
+    bottom: 20vh;
+    /*
+    why "transform: translateX(230%)" ?
+    it allowes position this button on x-axis regarding the center of x-axis
+    it allowes to keep this button in constant distance to "phone-instant-contact-button"; so despite resizing it keep that distance;
+    this "230%" refers to button size I guess...
+    */
+    transform: translateX(-230%);
+    background-color: #fff;
+    opacity: 0.3;
+  }
+}

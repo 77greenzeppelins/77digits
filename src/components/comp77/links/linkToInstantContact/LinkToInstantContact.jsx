@@ -18,7 +18,7 @@ const LinkToInstantContact = ({ contact, children, style }) => {
         to="#"
         onClick={e => onClick(e, contact)}
         className="link-to-instant-contact__container"
-        // style={style}
+        style={style}
       >
         {children}
       </Link>

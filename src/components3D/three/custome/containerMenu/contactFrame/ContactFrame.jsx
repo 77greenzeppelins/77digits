@@ -33,7 +33,7 @@ const ContactFrame = ({ groupProps, iconType, image }) => {
 
   /*
   I've faced some issues...after the very first click it behavied differently then after clicking from various contaoiner;
-  solution: in <ContainerMenu> I used sonditional rendering based on two condition i.e not solely on "isMobileOnly" as I did initially;
+  solution: in <ContainerMenu> I used conditional rendering based on two condition i.e not solely on "isMobileOnly" as I did initially;
   */
   const spring = useSpring({
     from: { animatedPosition: [position[0], -2, position[2]] },

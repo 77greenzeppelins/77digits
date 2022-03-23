@@ -54,29 +54,38 @@ const IntroDragGesture = () => {
       }
       api.start({ draggedPositionZ: offsetY * factorPositionY });
     },
-    // [api, canvasGlobalState.introContainerEventCounter]
     [api, canvasGlobalState.introContainerEventCounter]
   );
   /*
   Additional Handler Section for onDragEnd
   */
-  // const doThisAtTheEndHandler = useCallback(
-  //   ({ offset: [, y] }) => {
-  //     if (y === canvasGlobalState.introContainerWheelDragBounds.bottom) {
-  //       canvasState.isYesNoButtonClickable = true;
-  //     } else {
-  //       canvasState.isYesNoButtonClickable = false;
-  //     }
-  //   },
-  //   [canvasGlobalState.introContainerWheelDragBounds.bottom]
-  // );
+  const doThisAtTheEndHandler = useCallback(
+    ({ offset: [, y] }) => {
+      /*
+      What should happen if user wheels to the end?
+      */
+      if (y === canvasGlobalState.introContainerWheelDragBounds.bottom) {
+        canvasState.endOfContainerIntro = true;
+        console.log(
+          'canvasGlobalState.endOfContainerIntro:',
+          canvasGlobalState.endOfContainerIntro,
+          y
+        );
+        console.log('.....onWheel & onDrag are blocked');
+      }
+    },
+    [
+      canvasGlobalState.introContainerWheelDragBounds.bottom,
+      canvasGlobalState.endOfContainerIntro,
+    ]
+  );
   /*
   Gesture Section
   */
   const containerIntroDrag = useGesture(
     {
       onDrag: mainDragHandler,
-      // onDragEnd: doThisAtTheEndHandler,
+      onDragEnd: doThisAtTheEndHandler,
     },
     {
       target: window,
@@ -85,7 +94,8 @@ const IntroDragGesture = () => {
         why two conditions? 
         Bacause we want to keep scrolling in "disable state" untill cookies are eatten i.e no scroll befor decirion about cookies
         */
-        canvasGlobalState.currentContainer === 'introContainer',
+        canvasGlobalState.currentContainer === 'introContainer' &&
+        !canvasGlobalState.endOfContainerIntro,
       drag: {
         axis: 'y',
         bounds: { ...canvasGlobalState.introContainerWheelDragBounds },

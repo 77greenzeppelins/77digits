@@ -11,7 +11,6 @@ import { canvasState } from '../../states/canvasState';
 Basic Data
 */
 const factorPositionY = 0.005;
-
 /*
 -------------------------------------------------------------------------------
 */
@@ -69,36 +68,25 @@ const IntroWheelGesture = () => {
   Additional Handler for last wheel 
   */
   const doThisAtTheEndHandler = useCallback(
-    ({ offset: [, y], last, first }) => {
+    ({ offset: [, y] }) => {
       /*
-       */
-      // console.log('last:', last);
-      // console.log('first:', first);
-
-      /*
-      What should happen if user wheels to the end;
+      What should happen if user wheels to the end?
       */
-      if (y > canvasGlobalState.introContainerWheelDragBounds.bottom * 0.95) {
-        canvasState.isYesNoButtonClickable = true;
-      } else {
-        canvasState.isYesNoButtonClickable = false;
+      if (y === canvasGlobalState.introContainerWheelDragBounds.bottom) {
+        canvasState.endOfContainerIntro = true;
+        console.log(
+          'canvasGlobalState.endOfContainerIntro:',
+          canvasGlobalState.endOfContainerIntro,
+          y
+        );
+        console.log('.....onWheel & onDrag are blocked');
       }
     },
-    [canvasGlobalState.introContainerWheelDragBounds.bottom]
+    [
+      canvasGlobalState.introContainerWheelDragBounds.bottom,
+      canvasGlobalState.endOfContainerIntro,
+    ]
   );
-  /*
-  Additional Handler for the very firs wheel 
-  */
-  // const doThisAtTheBeginingHandler = useCallback(({ offset: [, y] }) => {
-  //   /*
-  //     What should happen if user wheels to the end
-  //     */
-  //   if (y === 0) {
-  //     canvasState.isYesNoButtonClickable = true;
-  //   } else {
-  //     canvasState.isYesNoButtonClickable = false;
-  //   }
-  // }, []);
 
   /*
   Gesture Section
@@ -107,16 +95,17 @@ const IntroWheelGesture = () => {
     {
       onWheel: mainWheelHandler,
       onWheelEnd: doThisAtTheEndHandler,
-      // onWheelStart: doThisAtTheBeginningHandler,
     },
     {
       target: window,
       enabled:
         /*
         why two conditions? 
-        Bacause we want to keep scrolling in "disable state" untill cookies are eatten i.e no scroll befor decirion about cookies
+        (1) about ".currentContainer" - bacause we want to keep scrolling in "disable state" untill cookies are eatten i.e no scroll when user is in LInitialOverlay>;
+        (2) about ".endOfContainerIntro" - it is initially false and changes to true when user scrolls to the end
         */
-        canvasGlobalState.currentContainer === 'introContainer',
+        canvasGlobalState.currentContainer === 'introContainer' &&
+        !canvasGlobalState.endOfContainerIntro,
       wheel: {
         axis: 'y',
         bounds: { ...canvasGlobalState.introContainerWheelDragBounds },

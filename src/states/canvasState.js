@@ -42,10 +42,9 @@ const canvasState = proxy({
   ----------------------------------------<IntroContainer> 3D Staff
   */
   /*
-  constants for <IntroContainerWheelAndDrag>
-  dragBounds: { top: -3550, bottom: 0 } would by an option if you want to switch direction of dragging i.e. "dragging up / passing thumb up" means go deep in z-axis
+  constants for onGesture events; last 4530
   */
-  introContainerWheelDragBounds: { top: 0, bottom: 5700 },
+  introContainerWheelDragBounds: { top: 0, bottom: 3920 },
   /*
   this value is required in <ContainerIntroContent>
   it is set in <IntroWheelGesture> & <IntroDragGesture>
@@ -63,6 +62,11 @@ const canvasState = proxy({
   (2) <InstantContact> comes into the scene. i.e. goes on z-axis from fog  
   */
   endOfContainerIntro: false,
+  /*
+  it is changed to true/false in <EndButton> / useSpring / onRest(); it actually works as switcher;
+  when is true <AuxiliaryButtons> come into the scene
+  */
+  startOfContainerIntroShow: false,
 
   /*
   -----------------------------------------------<Initial Overlay 2D staff>

@@ -63,7 +63,7 @@ const ContainerMenuInstantContact = () => {
         >
           <div className="container-menu-instant-contact__buttons">
             {/*-----Container for button EMAIL--------------------------*/}
-            <div
+            <button
               className="container-menu-instant-contact__button mobile"
               style={{
                 width:
@@ -74,7 +74,7 @@ const ContainerMenuInstantContact = () => {
                 contact={businessMail}
                 style={{ width: '100%', height: '100%' }}
               />
-            </div>
+            </button>
             {/*-----separator--------------------------------*/}
             <div
               className="container-menu-instant-contact__separator"
@@ -83,7 +83,7 @@ const ContainerMenuInstantContact = () => {
               }}
             />
             {/*-----Button-------------------------------------------*/}
-            <div
+            <button
               className="container-menu-instant-contact__button email"
               style={{
                 width:
@@ -94,7 +94,7 @@ const ContainerMenuInstantContact = () => {
                 contact={businessPhone}
                 style={{ width: '100%', height: '100%' }}
               />
-            </div>
+            </button>
           </div>
         </animated.div>
       )

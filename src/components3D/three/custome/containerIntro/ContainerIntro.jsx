@@ -12,7 +12,7 @@ Components
 import FramedObjects from './framedObjects/FramedObjects';
 import TextSection from './textSection/TextSection';
 import AnimatedUnivers from '../animatedUnivers/AnimatedUniverse';
-import InstantContact from './contactSection/InstantContact';
+import EndButtons from './endButtonsSection/EndButtons';
 /*
 Gesture Section
 */
@@ -88,7 +88,7 @@ const ContainerIntro = ({ onClickCameraSetter }) => {
 
       {/*-----Instant Contact--------------------------------------------*/}
       <Suspense fallback={null}>
-        <InstantContact />
+        <EndButtons />
       </Suspense>
 
       {/* {canvasGlobalState.currentContainer === 'introContainer' && (

@@ -82,7 +82,7 @@ const ContainerMenu = () => {
       position={canvasGlobalState.menuContainerPosition}
     >
       {contactFrames.map(({ iconType, image, groupProps }) => (
-        <Suspense fallback={null}>
+        <Suspense fallback={null} key={image}>
           <ContactFrame
             groupProps={groupProps}
             iconType={iconType}
@@ -107,12 +107,11 @@ const ContainerMenu = () => {
         <meshBasicMaterial color={0xffffff} />
       </mesh>
     </group>
-  ) : (
-    <group
-      name="BasicGroupOfMenuContainerNoMobile"
-      position={canvasGlobalState.menuContainerPosition}
-    ></group>
-  );
+  ) : // <group
+  //   name="BasicGroupOfMenuContainerNoMobile"
+  //   position={canvasGlobalState.menuContainerPosition}
+  // ></group>
+  null;
 };
 
 export default ContainerMenu;

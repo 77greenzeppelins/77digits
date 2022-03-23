@@ -8,10 +8,6 @@
   align-items: center;
   position: relative;
   cursor: auto;
-  /*
-  property below solve problem of sparkling button 
-  */
-  -webkit-tap-highlight-color: transparent;
   &__label {
     // background-color: transparent;
     color: setColor(light);

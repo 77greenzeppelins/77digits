@@ -45,7 +45,7 @@ const ContainerAbout2DStaff = () => {
     canvasGlobalState.containerAboutSlideIndex
   );
   /*
-  Hooks
+  Hook Section
   */
   const windowSize = useWindowSize();
   /*
