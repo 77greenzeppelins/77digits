@@ -2,20 +2,46 @@ import React from 'react';
 /*
 Components
 */
-import FrontText from './texts/FrontText';
-import LeftText from './texts/LeftText';
-import RightText from './texts/RightText';
-
+import TextSlideFromArray from '../../../../textSlides/textSlideFromArray/TextSlideFromArray';
+import TextSlide from '../../../../textSlides/textSlide/TextSlide';
+/*
+BasicData
+*/
+import {
+  bannerFrontText,
+  bannerLeftText,
+  bannerRightText,
+} from '../../framedObjectsData';
 /*
 -------------------------------------------------------------------------
 */
 const TextSection = () => {
   return (
-    <group>
-      <FrontText />
-      <LeftText />
-      <RightText />
-    </group>
+    <>
+      {/*-----Front Text-------------------------------------------*/}
+      <TextSlideFromArray
+        textProps={bannerFrontText.textProps}
+        fontSize={bannerFrontText.fontSize}
+        textLinesPl={bannerFrontText.textLinesPl}
+        textLinesEn={bannerFrontText.textLinesEn}
+        textWidthFactor={bannerFrontText.textWidthFactor}
+      />
+      {/*-----Left Text-------------------------------------------*/}
+      <TextSlide
+        groupProps={bannerLeftText.groupProps}
+        fontSize={bannerLeftText.fontSize}
+        textLinePl={bannerLeftText.textLinePl}
+        textLineEn={bannerLeftText.textLineEn}
+        textWidthFactor={bannerLeftText.textWidthFactor}
+      />
+      <TextSlide
+        groupProps={bannerRightText.groupProps}
+        fontSize={bannerRightText.fontSize}
+        textLinePl={bannerRightText.textLinePl}
+        textLineEn={bannerRightText.textLineEn}
+        textWidthFactor={bannerRightText.textWidthFactor}
+      />
+    </>
   );
 };
 

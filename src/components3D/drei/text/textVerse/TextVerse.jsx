@@ -41,7 +41,7 @@ const TextVerse = React.forwardRef(
         {...textProps}
         font={(font === 'garamont' && garamont) || jost}
         fontSize={fontResponsiveness}
-        whiteSpace={whiteSpace}
+        whiteSpace={whiteSpace || 'normal'}
         letterSpacing={letterSpacing || 0.12}
         textAlign={textAlign}
         maxWidth={maxWidth}

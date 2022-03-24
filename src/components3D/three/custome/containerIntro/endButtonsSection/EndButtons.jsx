@@ -14,11 +14,12 @@ import { canvasState } from '../../../../../states/canvasState';
 /*
 Spring data
 */
-import { a, useSpring, config } from '@react-spring/three';
+import { a, useSpring } from '@react-spring/three';
 /*
 Basic Data
 */
 import {
+  springConfig,
   phoneButton,
   emailButton,
   resetButtonFrame,
@@ -42,32 +43,25 @@ const EndButtons = () => {
   Spring Animation Section
   */
   const { springPositionZ } = useSpring({
-    springPositionZ: canvasGlobalState.endOfContainerIntro
-      ? [0, 0, -18.64]
-      : [0, 0, -20.64],
-    // config: config.molasses,
-    config: { mass: 10, tension: 70, friction: 30 },
-    delay: 200,
     /*
-    onRest() works correctly as switcher; 
+    this animation happens when user scrolls to the end of container
     */
-    // onRest: () =>
-    //   (canvasState.startOfContainerIntroShow =
-    //     !canvasGlobalState.startOfContainerIntroShow),
+    springPositionZ: canvasGlobalState.endOfContainerIntro
+      ? springConfig.positionZEnd
+      : springConfig.positionZStart,
+    config: springConfig.configBasic,
+    delay: springConfig.delay,
   });
   const { springPositionY } = useSpring({
-    springPositionY: canvasGlobalState.startOfContainerIntroShow
-      ? [0, 2, 0]
-      : [0, 0, 0],
-    // config: config.molasses,
-    config: { mass: 10, tension: 70, friction: 30 },
-    delay: 200,
     /*
-    onRest() works correctly as switcher; 
+    this animation happens when clicks any of auxiliary button: it's actually the very firs part of larger animation where the cesond part referce to "Platon&Aristotles";
     */
-    // onRest: () =>
-    //   (canvasState.startOfContainerIntroShow =
-    //     !canvasGlobalState.startOfContainerIntroShow),
+    springPositionY: canvasGlobalState.startOfContainerIntroShow
+      ? springConfig.positionYEnd
+      : springConfig.positionYStart,
+    // config: config.molasses,
+    config: springConfig.configBasic,
+    delay: springConfig.delay,
   });
 
   useEffect(() => {
@@ -94,6 +88,7 @@ const EndButtons = () => {
           <TextSlide
             groupProps={resetButtonTextSlide.groupProps}
             textProps={resetButtonTextSlide.textProps}
+            font={resetButtonTextSlide.font}
             fontSize={resetButtonTextSlide.fontSize}
             textLinePl={resetButtonTextSlide.textLinePl}
             textLineEn={resetButtonTextSlide.textLineEn}
@@ -115,6 +110,7 @@ const EndButtons = () => {
           <TextSlide
             groupProps={auxiliaryTopButtonTextSlide.groupProps}
             textProps={auxiliaryTopButtonTextSlide.textProps}
+            font={auxiliaryTopButtonTextSlide.font}
             fontSize={auxiliaryTopButtonTextSlide.fontSize}
             textLinePl={auxiliaryTopButtonTextSlide.textLinePl}
             textLineEn={auxiliaryTopButtonTextSlide.textLineEn}
@@ -127,6 +123,7 @@ const EndButtons = () => {
           <TextSlide
             groupProps={auxiliaryBottomButtonTextSlide.groupProps}
             textProps={auxiliaryBottomButtonTextSlide.textProps}
+            font={auxiliaryBottomButtonTextSlide.font}
             fontSize={auxiliaryBottomButtonTextSlide.fontSize}
             textLinePl={auxiliaryBottomButtonTextSlide.textLinePl}
             textLineEn={auxiliaryBottomButtonTextSlide.textLineEn}

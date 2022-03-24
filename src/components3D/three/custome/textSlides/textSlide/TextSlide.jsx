@@ -20,21 +20,18 @@ import { A11y } from '@react-three/a11y';
 const TextSlide = ({
   groupProps,
   textProps,
+  font, //options: "garamont", "jost"; default "jost"
   fontSize,
   textLinePl,
   textLineEn,
   thisLetterSpacing,
-  whiteSpace,
+  thisWhiteSpace,
+  /*
+  both props important for counting "maxWidth"
+  */
+  textOrientation,
+  textWidthFactor,
 }) => {
-  //   const {
-  //     groupProps,
-  //     textProps,
-  //     fontSize,
-  //     textLinePl,
-  //     textLineEn,
-  //     thisLetterSpacing,
-  //     whiteSpace,
-  //   } = data.data;
   /*
   Global State Section
   canvasState={languageVersion: 'pl',...}
@@ -52,10 +49,9 @@ const TextSlide = ({
     <A11y role="content" description={textLinePl}>
       <group {...groupProps}>
         <TextVerse
-          key={textLinePl}
           textProps={{ ...textProps }}
           text={textLinePl}
-          font="garamont"
+          font={font}
           fontResponsiveness={
             viewport.width < 3.0
               ? fontSize.fontSmall
@@ -64,8 +60,12 @@ const TextSlide = ({
               : fontSize.fontLarge
           }
           letterSpacing={thisLetterSpacing || 0.15}
-          whiteSpace="nowrap" //'normal' "nowrap"
-          maxWidth={viewport.width / 9}
+          whiteSpace={thisWhiteSpace} //'normal' "nowrap"
+          maxWidth={
+            textOrientation === 'vertical'
+              ? viewport.height / textWidthFactor
+              : viewport.width / textWidthFactor
+          }
         />
       </group>
     </A11y>
@@ -75,7 +75,7 @@ const TextSlide = ({
         <TextVerse
           textProps={{ ...textProps }}
           text={textLineEn}
-          font="garamont"
+          font={font}
           fontResponsiveness={
             viewport.width < 3.0
               ? fontSize.fontSmall
@@ -84,8 +84,12 @@ const TextSlide = ({
               : fontSize.fontLarge
           }
           letterSpacing={thisLetterSpacing || 0.15}
-          whiteSpace={whiteSpace || 'normal'} //'normal' "nowrap"
-          maxWidth={viewport.width / 9}
+          whiteSpace={thisWhiteSpace} //'normal' "nowrap"
+          maxWidth={
+            textOrientation === 'vertical'
+              ? viewport.height / textWidthFactor
+              : viewport.width / textWidthFactor
+          }
         />
       </group>
     </A11y>

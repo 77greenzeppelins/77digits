@@ -6,10 +6,11 @@ const slides = [
       name: 'TextVersedGroup_1',
     },
     fontSize: { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
-    linePositions: [
-      [0, 0.34, 0],
-      [0, -0.02, -0.4],
-      [0, -0.38, -0.8],
+    font: 'garamont',
+    textProps: [
+      { position: [0, 0.34, 0] },
+      { position: [0, -0.02, -0.4] },
+      { position: [0, -0.38, -0.8] },
     ],
     textLinesPl: ['Dziękuję,', 'że mnie', 'odwiedzasz!'],
     textLinesEn: ['Thank', 'you', 'for visiting!'],
@@ -21,11 +22,12 @@ const slides = [
       name: 'TextVersedGroup_2',
     },
     fontSize: { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
-    linePositions: [
-      [0, 0.34, 0],
-      [0, -0.02, -0.4],
-      [0, -0.38, -0.8],
-      [0, -0.68, -1],
+    font: 'garamont',
+    textProps: [
+      { position: [0, 0.34, 0] },
+      { position: [0, -0.02, -0.4] },
+      { position: [0, -0.38, -0.8] },
+      { position: [0, -0.68, -0.8] },
     ],
     textLinesPl: ['Jestem', 'programistą', '(web  ', 'developerem)'],
     textLinesEn: ["I'am", 'developer'],
@@ -37,10 +39,11 @@ const slides = [
       name: 'TextVersedGroup_3',
     },
     fontSize: { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
-    linePositions: [
-      [0, 0.34, 0],
-      [0, -0.02, -0.4],
-      [0, -0.38, -0.8],
+    font: 'garamont',
+    textProps: [
+      { position: [0, 0.34, 0] },
+      { position: [0, -0.02, -0.4] },
+      { position: [0, -0.38, -0.8] },
     ],
     textLinesPl: ['Jeśli masz', 'ochotę na', 'dogłębny,'],
     textLinesEn: ['If you are', 'in a mood', 'to profound'],
@@ -75,10 +78,11 @@ const slides = [
       name: 'TextVersedGroup_5',
     },
     fontSize: { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
-    linePositions: [
-      [0, 0.34, 0],
-      [0, 0, -0.4],
-      [0, -0.38, -0.8],
+    font: 'garamont',
+    textProps: [
+      { position: [0, 0.34, 0] },
+      { position: [0, -0.02, -0.4] },
+      { position: [0, -0.38, -0.8] },
     ],
     textLinesPl: ['cyfrowy', 'odlot', '"w internetach"'],
     textLinesEn: ['digital', 'take-off', 'on the internet'],
@@ -91,10 +95,11 @@ const slides = [
       name: 'TextVersedGroup_7',
     },
     fontSize: { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
-    linePositions: [
-      [0, 0.34, 0],
-      [0, -0.02, -0.4],
-      [0, -0.38, -0.8],
+    font: 'garamont',
+    textProps: [
+      { position: [0, 0.34, 0] },
+      { position: [0, -0.02, -0.4] },
+      { position: [0, -0.38, -0.8] },
     ],
     textLinesPl: ['Zadzwoń', 'lub', 'napisz!'],
     textLinesEn: ['Just', 'let me', 'know!'],
@@ -102,5 +107,3 @@ const slides = [
 ];
 
 export default slides;
-
-// groupProps, textLines, textProps, fonts;

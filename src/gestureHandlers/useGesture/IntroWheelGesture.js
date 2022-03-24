@@ -44,15 +44,15 @@ const IntroWheelGesture = () => {
 
       if (wheeling && canvasGlobalState.introContainerEventCounter === 0) {
         canvasState.introContainerEventType = 'wheeling';
-        console.log(
-          'canvasState.introContainerEventType:',
-          canvasState.introContainerEventType
-        );
-        canvasState.introContainerEventCounter = 1;
-        console.log(
-          'canvasState.introContainerEventCounter:',
-          canvasState.introContainerEventCounter
-        );
+        // console.log(
+        //   'canvasState.introContainerEventType:',
+        //   canvasState.introContainerEventType
+        // );
+        // canvasState.introContainerEventCounter = 1;
+        // console.log(
+        //   'canvasState.introContainerEventCounter:',
+        //   canvasState.introContainerEventCounter
+        // );
       }
       /*
       this is spring part;
@@ -79,7 +79,7 @@ const IntroWheelGesture = () => {
           canvasGlobalState.endOfContainerIntro,
           y
         );
-        console.log('.....onWheel & onDrag are blocked');
+        // console.log('.....onWheel & onDrag are blocked');
       }
     },
     [

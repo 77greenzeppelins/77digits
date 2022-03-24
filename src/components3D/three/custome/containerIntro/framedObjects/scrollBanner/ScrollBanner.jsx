@@ -23,7 +23,8 @@ import { a } from '@react-spring/three';
 /*
 Basic variables
 */
-import { GestureConfiguration } from './scrollBannerConfiguration';
+
+import { bannerGestureConfiguration } from '../framedObjectsData';
 
 /*
 --------------------------------------------------------------------------
@@ -45,13 +46,13 @@ const ScrollBaner = ({ groupProps }) => {
     /*
     set behaviour along x-axis i.e. should frame lean to top or to bottom or mix top & bottom;
     */
-    rightDragLimitX: GestureConfiguration.rightDragLimitX,
-    leftDragLimitX: GestureConfiguration.leftDragLimitX,
+    rightDragLimitX: bannerGestureConfiguration.rightDragLimitX,
+    leftDragLimitX: bannerGestureConfiguration.leftDragLimitX,
     /*
     set behaviour along y-axis i.e. should frame lean to left or to right or mix left & right;
     */
-    rightDragLimitY: GestureConfiguration.rightDragLimitY,
-    leftDragLimitY: GestureConfiguration.leftDragLimitY,
+    rightDragLimitY: bannerGestureConfiguration.rightDragLimitY,
+    leftDragLimitY: bannerGestureConfiguration.leftDragLimitY,
   });
   /*
   JSX

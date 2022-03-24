@@ -2,7 +2,7 @@ import React from 'react';
 /*
 Components
 */
-import TextSlide from './textSlide/TextSlide';
+import TextSlideFromArray from '../../textSlides/textSlideFromArray/TextSlideFromArray';
 /*
 Basic Data
 */
@@ -15,7 +15,18 @@ const TextSection = () => {
   return (
     <>
       {slides.map(slide => {
-        return <TextSlide key={slide.groupProps.name} data={slide} />;
+        return (
+          <TextSlideFromArray
+            key={slide.groupProps.name}
+            groupProps={slide.groupProps}
+            textProps={slide.textProps}
+            font={slide.font}
+            fontSize={slide.fontSize}
+            textLinesPl={slide.textLinesPl}
+            textLinesEn={slide.textLinesEn}
+            textWidthFactor={slide.textWidthFactor}
+          />
+        );
       })}
     </>
   );

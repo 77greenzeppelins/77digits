@@ -1,16 +1,17 @@
 import React from 'react';
-
+import { useThree } from '@react-three/fiber';
 /*
 Components
 */
-// import MediumFrame from '../../matcapFrames/MediumFrame';
 import UniversalFrame from '../../../matcapFrames/UniversalFrame';
 import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
+import TextSlide from '../../../textSlides/textSlide/TextSlide';
 /*
 Drai Staff
 */
-import { useThree } from '@react-three/fiber';
+
 import TextVerse from '../../../../../drei/text/textVerse/TextVerse';
+
 /*
 Assets
 */
@@ -28,35 +29,14 @@ import { a } from '@react-spring/three';
 /*
 Accesibility staff
 */
-import { A11y } from '@react-three/a11y';
+// import { A11y } from '@react-three/a11y';
 /*
 Basic Data
 */
-const [
-  textLines,
-  fontColor,
-  rightDragLimitX,
-  leftDragLimitX,
-  rightDragLimitY,
-  leftDragLimitY,
-] = [
-  /*
-  for the sake of <TextVerse>
-  */
-  [
-    { text: '"The  Birth  of  77digits"', position: [0, 0, 0] },
-    { text: 'Thanks Sandro for inspiration...', position: [0.055, -0.05, 0] },
-  ],
-  // 0.1,
-  [42, 102, 111], // darkslategray
-  /*
-  DragRotateReturn props
-  */
-  0.25,
-  0.25,
-  1,
-  -1,
-];
+import {
+  venusSideLeftText,
+  venusGestureConfiguration,
+} from '../framedObjectsData';
 
 /*
 --------------------------------------------------------------------------
@@ -75,19 +55,16 @@ const VenusInFrame = ({ groupProps, rotationX }) => {
     */
     {
       /*
-      set initial value of "rotation.z";
-      */
-      // rotationX: rotationX,
-      /*
       set behaviour along x-axis i.e. should frame lean to top or to bottom or mix top & bottom;
       */
-      rightDragLimitX: rightDragLimitX,
-      leftDragLimitX: leftDragLimitX,
+      rightDragLimitX: venusGestureConfiguration.rightDragLimitX,
+      leftDragLimitX: venusGestureConfiguration.leftDragLimitX,
+
       /*
       set behaviour along y-axis i.e. should frame lean to left or to right or mix left & right;
       */
-      rightDragLimitY: rightDragLimitY,
-      leftDragLimitY: leftDragLimitY,
+      rightDragLimitY: venusGestureConfiguration.rightDragLimitY,
+      leftDragLimitY: venusGestureConfiguration.leftDragLimitY,
     }
   );
   /*
@@ -101,39 +78,22 @@ const VenusInFrame = ({ groupProps, rotationX }) => {
         format="portrait"
       />
       {/* <A11y role="image" description="Raphael. The School of Athens "> */}
+
       <UniversalCanvas image={venus} portrait={true} format="portrait" />
+
       {/* </A11y> */}
 
-      {/*----------Funny Text to Plato & Aristotlees---------------*/}
-      <A11y role="content" description="The Birth of 77digits">
-        <group
-          name="groupForTheBirthOf77digits"
-          rotation={[0, -Math.PI * 0.45, -Math.PI * 0.5]}
-          position={[-0.32, 0.1, -0.05]}
-        >
-          {textLines.map(({ text, position }, index) => (
-            <TextVerse
-              key={index}
-              textProps={{
-                position: position,
-                name: 'TheBirthOf77digits',
-              }}
-              text={text}
-              // font="garamont"
-              fontResponsiveness={
-                viewport.width < 3.0
-                  ? 0.28
-                  : viewport.width < 5.5
-                  ? 0.03
-                  : 0.035
-              }
-              whiteSpace="normal" //'normal' "nowrap
-              letterSpacing={0.19}
-              fontColor={fontColor}
-            />
-          ))}
-        </group>
-      </A11y>
+      {/*----------Funny Text Thanks for Sandro---------------*/}
+      <TextSlide
+        groupProps={venusSideLeftText.groupProps}
+        fontSize={venusSideLeftText.fontSize}
+        textLinePl={venusSideLeftText.textLinePl}
+        textLineEn={venusSideLeftText.textLineEn}
+        textOrientation={venusSideLeftText.textOrientation}
+        textWidthFactor={venusSideLeftText.textWidthFactor}
+        // thisLetterSpacing={venusSideLeftText}
+        // thisWhiteSpace={venusSideLeftText}
+      />
     </a.group>
   );
 };

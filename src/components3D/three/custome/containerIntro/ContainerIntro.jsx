@@ -8,7 +8,6 @@ import { canvasState } from '../../../../states/canvasState';
 /*
 Components
 */
-// import ContainerIntroContent from './ContainerIntroContent';
 import FramedObjects from './framedObjects/FramedObjects';
 import TextSection from './textSection/TextSection';
 import AnimatedUnivers from '../animatedUnivers/AnimatedUniverse';
@@ -76,21 +75,16 @@ const ContainerIntro = ({ onClickCameraSetter }) => {
       <Suspense fallback={null}>
         <FramedObjects
           groupProps={{
-            position: [0, 0, 0],
-            rotation: [0, 0, 0],
             name: 'groupForFramedObjects',
           }}
         />
       </Suspense>
-
-      {/*-----77-----------------------------------------------*/}
+      {/*-----Text Slides---------------------------------------*/}
       <TextSection />
-
-      {/*-----Instant Contact--------------------------------------------*/}
-      <Suspense fallback={null}>
+      {/*-----Instant Contact-----------------------------------*/}
+      {/* <Suspense fallback={null}>
         <EndButtons />
-      </Suspense>
-
+      </Suspense> */}
       {/* {canvasGlobalState.currentContainer === 'introContainer' && (
         <AnimatedUnivers
           groupProps={{
@@ -99,14 +93,7 @@ const ContainerIntro = ({ onClickCameraSetter }) => {
           }}
         />
       )} */}
-
-      {/*-------------------------------------------------------
-      <ContainerIntroContent
-        ref={introContainer}
-        groupProps={{
-          name: 'GroupForIntroContainerConntent',
-        }}
-      /> */}
+      z
     </a.group>
   );
 };

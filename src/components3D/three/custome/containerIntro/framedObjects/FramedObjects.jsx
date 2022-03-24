@@ -5,18 +5,28 @@ Components
 import VenusInFrame from './venus/VenusInFrame';
 import ScrollBanner from './scrollBanner/ScrollBanner';
 /*
+Global State Section
+*/
+import { useSnapshot } from 'valtio';
+import { canvasState } from '../../../../../states/canvasState';
+/*
 Gesture Staff
 */
 import BasicMove from '../../../../../gestureHandlers/useMove/basicMove';
 /*
 Spring Staff
 */
-import { a } from '@react-spring/three';
+import { a, useSpring } from '@react-spring/three';
 /*
 Basic Data
 "tillFactor" for sake of "BasicMove"
 */
-const tillFactor = 0.02;
+import {
+  springConfig,
+  venusInFrameData,
+  scrollBannerData,
+} from './framedObjectsData';
+const tillFactor = 0.03;
 /*
 
 /*
@@ -24,31 +34,39 @@ const tillFactor = 0.02;
 */
 const FramedObjects = ({ groupProps }) => {
   /*
+  Global State Section
+  canvasState = {endOfContainerIntro: false, startOfContainerIntroShow: false, ...}
+  */
+  const canvasGlobalState = useSnapshot(canvasState);
+  /*
   Gesture Section
-  this animation effects group for <AnsverYes> & <AnswerNo> to imitate some mouse move
+  this animation response to mouse move and slightly rotates components
   */
   const [rotateWithMouseMove] = BasicMove({
     target: window,
     tileFactor: tillFactor,
   });
+  /*
+  Spring Animation Section
+  */
+  const { springPositionZ } = useSpring({
+    springPositionZ:
+      canvasGlobalState.currentContainer === 'introContainer'
+        ? springConfig.positionEnd
+        : springConfig.positionStart,
+    config: springConfig.configBasic,
+    delay: 400,
+  });
 
+  /*
+  JSX
+  */
   return (
-    <a.group {...groupProps} rotation={rotateWithMouseMove}>
-      <VenusInFrame
-        groupProps={{
-          name: 'GroupForLogoInFrame',
-          position: [0, 0.03, 0.4],
-          scale: [0.8, 0.8, 0.8],
-        }}
-      />
-
-      <ScrollBanner
-        groupProps={{
-          name: 'GroupForLogoInFrame2',
-          position: [0, -0.69, -0.3],
-          scale: [0.6, 0.6, 0.6],
-        }}
-      />
+    <a.group {...groupProps} position={springPositionZ}>
+      <a.group rotation={rotateWithMouseMove}>
+        <VenusInFrame groupProps={venusInFrameData.groupProps} />
+        <ScrollBanner groupProps={scrollBannerData.groupProps} />
+      </a.group>
     </a.group>
   );
 };
