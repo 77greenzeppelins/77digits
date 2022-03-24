@@ -92,7 +92,7 @@ const PageMain = () => {
         </div>
 
         {/*-----Non-3D Components -------------------------------------*/}
-        <ContainerIntro2DStaff />
+        {/* <ContainerIntro2DStaff /> */}
         <ContainerAbout2DStaff />
         <ContainerMenu2DStaff />
       </div>

@@ -1,17 +1,10 @@
 import React from 'react';
-import { useThree } from '@react-three/fiber';
 /*
 Components
 */
 import UniversalFrame from '../../../matcapFrames/UniversalFrame';
 import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
 import TextSlide from '../../../textSlides/textSlide/TextSlide';
-/*
-Drai Staff
-*/
-
-import TextVerse from '../../../../../drei/text/textVerse/TextVerse';
-
 /*
 Assets
 */
@@ -21,7 +14,6 @@ Gesture Staff
 "DragRotateReturn" works as pseudoOrbitController; it just rotate obiect along with defined axis;
 */
 import DragRotateReturn from '../../../../../../gestureHandlers/useDrag/DragRotateReturn';
-
 /*
 Spring Staff
 */
@@ -42,10 +34,6 @@ import {
 --------------------------------------------------------------------------
 */
 const VenusInFrame = ({ groupProps, rotationX }) => {
-  /*
-  extracting data from useThree()
-  */
-  const { viewport } = useThree();
   /*
   Gesture Section
   */

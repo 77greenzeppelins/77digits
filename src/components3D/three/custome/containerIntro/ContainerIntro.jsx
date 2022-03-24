@@ -12,6 +12,7 @@ import FramedObjects from './framedObjects/FramedObjects';
 import TextSection from './textSection/TextSection';
 import AnimatedUnivers from '../animatedUnivers/AnimatedUniverse';
 import EndButtons from './endButtonsSection/EndButtons';
+import RaphaelSection from './raphaelSection/RaphaelSection';
 /*
 Gesture Section
 */
@@ -82,9 +83,10 @@ const ContainerIntro = ({ onClickCameraSetter }) => {
       {/*-----Text Slides---------------------------------------*/}
       <TextSection />
       {/*-----Instant Contact-----------------------------------*/}
-      {/* <Suspense fallback={null}>
-        <EndButtons />
-      </Suspense> */}
+      <Suspense fallback={null}>
+        {/* <EndButtons /> */}
+        <RaphaelSection />
+      </Suspense>
       {/* {canvasGlobalState.currentContainer === 'introContainer' && (
         <AnimatedUnivers
           groupProps={{

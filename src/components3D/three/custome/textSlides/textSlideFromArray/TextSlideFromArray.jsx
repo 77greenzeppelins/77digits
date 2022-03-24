@@ -26,6 +26,7 @@ const TextSlideFromArray = ({
   textLinesEn,
   thisLetterSpacing,
   thisWhiteSpace,
+  textAlign,
   /*
   both props are important for counting "maxWidth" if text is vertical
   */
@@ -60,6 +61,7 @@ const TextSlideFromArray = ({
             }
             letterSpacing={thisLetterSpacing || 0.15}
             whiteSpace={thisWhiteSpace} //'normal' "nowrap"
+            textAlign={textAlign}
             maxWidth={
               textOrientation === 'vertical'
                 ? viewport.height / textWidthFactor
