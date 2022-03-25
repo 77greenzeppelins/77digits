@@ -21,12 +21,7 @@ import { a, useSpring } from '@react-spring/three';
 Basic Data
 "tillFactor" for sake of "BasicMove"
 */
-import {
-  springConfig,
-  venusInFrameData,
-  scrollBannerData,
-} from './framedObjectsData';
-const tillFactor = 0.03;
+import { springConfig, BasicMoveConfig } from './framedObjectsData';
 /*
 
 /*
@@ -43,8 +38,8 @@ const FramedObjects = ({ groupProps }) => {
   this animation response to mouse move and slightly rotates components
   */
   const [rotateWithMouseMove] = BasicMove({
-    target: window,
-    tileFactor: tillFactor,
+    target: BasicMoveConfig.target,
+    tileFactor: BasicMoveConfig.tillFactor,
   });
   /*
   Spring Animation Section
@@ -55,7 +50,7 @@ const FramedObjects = ({ groupProps }) => {
         ? springConfig.positionEnd
         : springConfig.positionStart,
     config: springConfig.configBasic,
-    delay: 400,
+    delay: springConfig.delay,
   });
 
   /*
@@ -64,8 +59,8 @@ const FramedObjects = ({ groupProps }) => {
   return (
     <a.group {...groupProps} position={springPositionZ}>
       <a.group rotation={rotateWithMouseMove}>
-        <VenusInFrame groupProps={venusInFrameData.groupProps} />
-        <ScrollBanner groupProps={scrollBannerData.groupProps} />
+        <VenusInFrame />
+        <ScrollBanner />
       </a.group>
     </a.group>
   );

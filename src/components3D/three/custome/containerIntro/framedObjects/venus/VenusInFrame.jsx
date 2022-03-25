@@ -6,10 +6,6 @@ import UniversalFrame from '../../../matcapFrames/UniversalFrame';
 import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
 import TextSlide from '../../../textSlides/textSlide/TextSlide';
 /*
-Assets
-*/
-import venus from '../../../../../../assets/textures/venus_2.png';
-/*
 Gesture Staff
 "DragRotateReturn" works as pseudoOrbitController; it just rotate obiect along with defined axis;
 */
@@ -26,6 +22,7 @@ Accesibility staff
 Basic Data
 */
 import {
+  venusInFrameData,
   venusSideLeftText,
   venusGestureConfiguration,
 } from '../framedObjectsData';
@@ -59,18 +56,15 @@ const VenusInFrame = ({ groupProps, rotationX }) => {
   JSX
   */
   return (
-    <a.group {...groupProps} {...dragRotateReturn()} rotation={orbitImitation}>
-      <UniversalFrame
-        groupProps={{ name: 'groupForMediumFrame' }}
-        portrait={true}
-        format="portrait"
-      />
+    <a.group
+      {...venusInFrameData.groupProps}
+      {...dragRotateReturn()}
+      rotation={orbitImitation}
+    >
+      <UniversalFrame {...venusInFrameData.frameProps} />
       {/* <A11y role="image" description="Raphael. The School of Athens "> */}
-
-      <UniversalCanvas image={venus} portrait={true} format="portrait" />
-
+      <UniversalCanvas {...venusInFrameData.canvasProps} />
       {/* </A11y> */}
-
       {/*----------Funny Text Thanks for Sandro---------------*/}
       <TextSlide
         groupProps={venusSideLeftText.groupProps}

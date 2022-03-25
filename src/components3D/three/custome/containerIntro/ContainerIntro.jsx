@@ -84,7 +84,7 @@ const ContainerIntro = ({ onClickCameraSetter }) => {
       <TextSection />
       {/*-----Instant Contact-----------------------------------*/}
       <Suspense fallback={null}>
-        {/* <EndButtons /> */}
+        <EndButtons />
         <RaphaelSection />
       </Suspense>
       {/* {canvasGlobalState.currentContainer === 'introContainer' && (

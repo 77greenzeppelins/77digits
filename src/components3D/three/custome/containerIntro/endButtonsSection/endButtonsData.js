@@ -29,7 +29,6 @@ const emailButton = {
 const resetButtonFrame = {
   groupProps: { scale: [0.25, 0.25, 0.25], position: [0, 0, -0.5] },
   frameProps: { format: 'banner' },
-  canvasProps: { image: emailImage, format: 'banner' },
 };
 const resetButtonTextSlide = {
   groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },

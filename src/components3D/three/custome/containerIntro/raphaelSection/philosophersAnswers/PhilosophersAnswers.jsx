@@ -5,6 +5,7 @@ Components
 import UniversalFrame from '../../../matcapFrames/UniversalFrame';
 // import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
 import TextSlide from '../../../textSlides/textSlide/TextSlide';
+import BasicUseMatcapTexture from '../../../matcapMaterials/BasicUseMatcapTexture';
 /*
 GestureStaff
 */
@@ -19,10 +20,14 @@ Basic Data
 import {
   philosophersAnswers,
   philosophersAnswersGesture,
-  PlatoAnswer,
+  PlatonAnswerGroup,
+  PlatoAnswerFrame,
   PlatoAnswerText,
+  PlatoCone,
+  AristotlesAnswerGroup,
   AristotlesAnswer,
-  AristotlesAnswerText,
+  // AristotlesAnswerText,
+  AristotlesCone,
 } from '../raphaelSectionData';
 
 const PhilosophersAnswers = () => {
@@ -34,31 +39,42 @@ const PhilosophersAnswers = () => {
     target: window,
     tileFactor: philosophersAnswersGesture.tillFactor,
   });
-
   /*
   JSX
   */
   return (
     <a.group {...philosophersAnswers.groupProps} rotation={rotateWithMouseMove}>
       {/*-----Plato Answer-------------------------------------------*/}
-      <UniversalFrame
-        format={PlatoAnswer.format}
-        groupProps={PlatoAnswer.groupProps}
-      />
-      <TextSlide
-        groupProps={PlatoAnswerText.groupProps}
-        fontSize={PlatoAnswerText.fontSize}
-        textAlign={PlatoAnswerText.textAlign}
-        textLinePl={PlatoAnswerText.textLinePl}
-        textLineEn={PlatoAnswerText.textLineEn}
-        textWidthFactor={PlatoAnswerText.textWidthFactor}
-      />
+      <group {...PlatonAnswerGroup.groupProps}>
+        <UniversalFrame
+          format={PlatoAnswerFrame.format}
+          groupProps={PlatoAnswerFrame.groupProps}
+        />
+        <TextSlide
+          groupProps={PlatoAnswerText.groupProps}
+          fontSize={PlatoAnswerText.fontSize}
+          textAlign={PlatoAnswerText.textAlign}
+          textLinePl={PlatoAnswerText.textLinePl}
+          textLineEn={PlatoAnswerText.textLineEn}
+          textWidthFactor={PlatoAnswerText.textWidthFactor}
+        />
+        <mesh {...PlatoCone.meshProps}>
+          <coneGeometry args={PlatoCone.args} />
+          <BasicUseMatcapTexture />
+        </mesh>
+      </group>
 
       {/*-----Aristotles Answer-------------------------------------*/}
-      <UniversalFrame
-        format={AristotlesAnswer.format}
-        groupProps={AristotlesAnswer.groupProps}
-      />
+      <group {...AristotlesAnswerGroup.groupProps}>
+        <UniversalFrame
+          format={AristotlesAnswer.format}
+          groupProps={AristotlesAnswer.groupProps}
+        />
+        <mesh {...AristotlesCone.meshProps}>
+          <coneGeometry args={AristotlesCone.args} />
+          <BasicUseMatcapTexture />
+        </mesh>
+      </group>
     </a.group>
   );
 };

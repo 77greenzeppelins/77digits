@@ -24,7 +24,10 @@ import { a } from '@react-spring/three';
 Basic variables
 */
 
-import { bannerGestureConfiguration } from '../framedObjectsData';
+import {
+  scrollBannerData,
+  bannerGestureConfiguration,
+} from '../framedObjectsData';
 
 /*
 --------------------------------------------------------------------------
@@ -58,13 +61,13 @@ const ScrollBaner = ({ groupProps }) => {
   JSX
   */
   return (
-    <a.group {...groupProps} {...dragRotateReturn()} rotation={orbitImitation}>
-      <UniversalFrame
-        groupProps={{ name: 'groupForUniversalFrame' }}
-        banner={true}
-        format="banner"
-      />
-      <UniversalCanvasWithoutMap banner={true} format="banner" />
+    <a.group
+      {...scrollBannerData.groupProps}
+      {...dragRotateReturn()}
+      rotation={orbitImitation}
+    >
+      <UniversalFrame {...scrollBannerData.frameProps} />
+      <UniversalCanvasWithoutMap {...scrollBannerData.canvasProps} />
       <TextSection />
     </a.group>
   );

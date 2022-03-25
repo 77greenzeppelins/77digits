@@ -1,14 +1,16 @@
 import raphaelPainting from '../../../../../assets/textures/PlatoAndAristoteles.jpg';
-
+import { springConfigs } from '../../../../../data/reactSpring';
 /*
 ------------------------------------------------------------------
 */
 const raphaelSectionSpringConfig = {
   /*
-    just to move on z-axis when user clicks "auxiliaryButtons"
-    */
-  positionZStart: [0, 0, -20.64],
-  positionZEnd: [0, 0, -18.64],
+  Data for basic z-axis animation
+  */
+  configBasic: springConfigs.configBasic,
+  positionStart: [0, 0, -21],
+  positionEnd: [0, 0, -19.64],
+  delay: 400,
 };
 
 const raphaelSectionGesturesConfig = {
@@ -68,30 +70,33 @@ const philosophersAnswersGesture = {
   tillFactor: 0.29,
 };
 
-const PlatoAnswer = {
-  format: 'portrait',
+/*
+Platon Answer
+*/
+
+const PlatonAnswerGroup = {
   groupProps: {
-    position: [-0.199, 0.2, 0.15],
-    scale: [0.4, 0.4, 0.4],
-    rotation: [Math.PI * 0.15, 0, Math.PI * 0.5],
+    position: [-0.199, 0.3, 0.14],
   },
 };
-const AristotlesAnswer = {
+
+const PlatoAnswerFrame = {
   format: 'portrait',
   groupProps: {
-    position: [0.199, 0.2, 0.15],
     scale: [0.4, 0.4, 0.4],
-    rotation: [Math.PI * 0.15, 0, Math.PI * 0.5],
+    rotation: [Math.PI * 0.2, 0, Math.PI * 0.5],
+    position: [0, -0.01, 0.05],
   },
 };
+
 const PlatoAnswerText = {
   /*
   configuration for <TextSlide>
   */
   groupProps: {
     name: 'groupForAristotlesAnswerText',
-    position: [-0.199, 0.2, 0.15],
-    rotation: [Math.PI * 0.15, 0, 0],
+    rotation: [Math.PI * 0.2, 0, 0],
+    position: [0, -0.01, 0.05],
   },
   /*
   "textProps" => no need to specify it as "textWidthFactor" creates as many lines as words in "textLinesPl" / "textLinesEn"
@@ -105,13 +110,40 @@ const PlatoAnswerText = {
   */
   textWidthFactor: 50,
 };
+
+const PlatoCone = {
+  args: [0.009, 0.19, 16],
+  meshProps: {
+    rotation: [1.1 * Math.PI, 0, 0],
+    position: [0.1, -0.198, -0.075],
+  },
+};
+
+/*
+Aristotles Answer
+*/
+
+const AristotlesAnswerGroup = {
+  groupProps: {
+    position: [0.199, 0.3, 0.14],
+  },
+};
+
+const AristotlesAnswer = {
+  format: 'portrait',
+  groupProps: {
+    position: [0, -0.01, 0.05],
+    scale: [0.4, 0.4, 0.4],
+    rotation: [Math.PI * 0.15, 0, Math.PI * 0.5],
+  },
+};
 const AristotlesAnswerText = {
   /*
   configuration for <TextSlide>
   */
   groupProps: {
     name: 'groupForAristotlesAnswerText',
-    position: [0.199, 0.2, 0.15],
+    position: [0, -0.01, 0.05],
     rotation: [Math.PI * 0.15, 0, Math.PI * 0.5],
   },
   /*
@@ -126,6 +158,34 @@ const AristotlesAnswerText = {
   */
   textWidthFactor: 50,
 };
+const AristotlesCone = {
+  args: [0.009, 0.19, 16],
+  meshProps: {
+    rotation: [1.1 * Math.PI, 0, 0],
+    position: [-0.1, -0.198, -0.075],
+  },
+};
+
+/*
+Close Button
+*/
+const closeButtonFrame = {
+  groupProps: {
+    scale: [0.25, 0.25, 0.25],
+    position: [0, -0.72, 0],
+    rotation: [Math.PI * 0.13, 0, 0],
+  },
+  frameProps: { format: 'banner' },
+};
+const closeButtonTextSlide = {
+  groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
+  textProps: { position: [0, 0, 0] },
+  font: 'garamont',
+  fontSize: { fontSmall: 0.09, fontMiddle: 0.1, fontLarge: 0.15 },
+  // whiteSpace: "nowrap",
+  textLinePl: 'powrót',
+  textLineEn: 'back',
+};
 
 export {
   raphaelSectionSpringConfig,
@@ -135,8 +195,17 @@ export {
   raphaelPaintingLeftText,
   philosophersAnswers,
   philosophersAnswersGesture,
-  PlatoAnswer,
+  //_____for Plato
+  PlatonAnswerGroup,
+  PlatoAnswerFrame,
   PlatoAnswerText,
+  PlatoCone,
+  //_____for Aristotles
+  AristotlesAnswerGroup,
   AristotlesAnswer,
   AristotlesAnswerText,
+  AristotlesCone,
+  //___Reset Button
+  closeButtonFrame,
+  closeButtonTextSlide,
 };

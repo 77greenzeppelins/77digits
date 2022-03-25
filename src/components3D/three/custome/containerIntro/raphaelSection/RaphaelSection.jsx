@@ -2,8 +2,15 @@ import React from 'react';
 /*
 Components
 */
+import UniversalFrame from '../../matcapFrames/UniversalFrame';
+import TextSlide from '../../textSlides/textSlide/TextSlide';
 import RaphaelPainting from './raphaelPainting/RaphaelPainting';
 import PhilosophersAnswers from './philosophersAnswers/PhilosophersAnswers';
+/*
+Global State Section
+*/
+import { useSnapshot } from 'valtio';
+import { canvasState } from '../../../../../states/canvasState';
 /*
 Gesture Staff
 */
@@ -12,16 +19,37 @@ import DragRotateReturn from '../../../../../gestureHandlers/useDrag/DragRotateR
 /*
 Spring Staff
 */
-import { a } from '@react-spring/three';
+import { a, useSpring } from '@react-spring/three';
+
 /*
 Basic Data
 */
 import {
   raphaelSectionSpringConfig,
   raphaelSectionGesturesConfig,
+  closeButtonFrame,
+  closeButtonTextSlide,
 } from './raphaelSectionData';
 
 const RaphaelSection = () => {
+  /*
+  Global State Section
+  canvasState = {currentContainer: none, startOfContainerIntroShow: false, ...}
+  */
+  const canvasGlobalState = useSnapshot(canvasState);
+  /*
+  Spring Animation Section
+  */
+  const { springPositionZ } = useSpring({
+    springPositionZ:
+      canvasGlobalState.currentContainer === 'introContainer' &&
+      canvasGlobalState.startOfContainerIntroShow
+        ? raphaelSectionSpringConfig.positionEnd
+        : raphaelSectionSpringConfig.positionStart,
+    config: raphaelSectionSpringConfig.configBasic,
+    delay: raphaelSectionSpringConfig.delay,
+  });
+
   /*
   Gesture Section;
   standard draging to imitate "object limited-spinning"
@@ -44,13 +72,26 @@ const RaphaelSection = () => {
   });
   return (
     <a.group
-      position={[0, 0, -19.6]}
+      position={springPositionZ}
       {...dragRotateReturn()}
       rotation={orbitImitation}
     >
-      <RaphaelPainting />
-
       <PhilosophersAnswers />
+      <RaphaelPainting />
+      {/*-----Close Button-----------------------------------*/}
+      <group {...closeButtonFrame.groupProps}>
+        <UniversalFrame {...closeButtonFrame.frameProps} />
+        <TextSlide
+          groupProps={closeButtonTextSlide.groupProps}
+          textProps={closeButtonTextSlide.textProps}
+          font={closeButtonTextSlide.font}
+          fontSize={closeButtonTextSlide.fontSize}
+          textLinePl={closeButtonTextSlide.textLinePl}
+          textLineEn={closeButtonTextSlide.textLineEn}
+          // thisLetterSpacing ={resetButtonTextSlide.groupProps}
+          // whiteSpace,
+        />
+      </group>
     </a.group>
   );
 };

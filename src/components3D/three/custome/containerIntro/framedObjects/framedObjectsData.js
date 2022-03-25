@@ -1,12 +1,22 @@
 import { springConfigs } from '../../../../../data/reactSpring';
+import venus from '../../../../../assets/textures/venus_2.png';
 
 /*
 ------------------------------------------------------------------------
 */
+const BasicMoveConfig = {
+  target: window,
+  tillFactor: 0.03,
+};
+
 const springConfig = {
+  /*
+  Data for basic z-axis animation
+  */
   configBasic: springConfigs.configBasic,
   positionStart: [0, 0, -2],
   positionEnd: [0, 0, 0],
+  delay: 400,
 };
 
 const venusGestureConfiguration = {
@@ -28,6 +38,11 @@ const venusInFrameData = {
     position: [0, 0.03, 0.4],
     scale: [0.8, 0.8, 0.8],
   },
+  canvasProps: { image: venus, format: 'portrait' },
+  frameProps: {
+    groupProps: { name: 'groupForFrameOfVenusInFrame' },
+    format: 'portrait',
+  },
 };
 
 const scrollBannerData = {
@@ -35,6 +50,12 @@ const scrollBannerData = {
     name: 'GroupForScrollOrDragFrame',
     position: [0, -0.69, -0.3],
     scale: [0.6, 0.6, 0.6],
+  },
+  frameProps: {
+    format: 'banner',
+  },
+  canvasProps: {
+    format: 'banner',
   },
 };
 
@@ -61,7 +82,12 @@ const bannerFrontText = {
   "textProps" => each line requires its own configObject;
   */
   textProps: [{ position: [0, 0.06, 0.02] }, { position: [0, -0.04, 0.02] }],
-  fontSize: { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
+  font: ['jost', 'jost'],
+  // font: 'garamont',
+  fontSize: [
+    { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
+    { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
+  ],
   textLinesPl: ['przesuń lub skroluj', 'góra / dół'],
   textLinesEn: ['scroll or drag', 'to explore'],
   /*
@@ -86,7 +112,7 @@ const bannerLeftText = {
   textLinePl: 'przesuwaj na urządzeniu dotykowym',
   textLineEn: 'drag on touch devices',
   /*
-  low factor means narrow width
+  low factor means narrow width, only for one word...
   */
   textWidthFactor: 50,
 };
@@ -107,12 +133,13 @@ const bannerRightText = {
   textLinePl: 'skroluj myszką',
   textLineEn: 'scroll on desktop',
   /*
-  low factor means narrow width
+  low factor means narrow width, only for one word...
   */
   textWidthFactor: 50,
 };
 
 export {
+  BasicMoveConfig,
   springConfig,
   venusGestureConfiguration,
   bannerGestureConfiguration,

@@ -21,6 +21,8 @@ const TextSection = () => {
       {/*-----Front Text-------------------------------------------*/}
       <TextSlideFromArray
         textProps={bannerFrontText.textProps}
+        text={bannerFrontText.fontSize}
+        font={bannerFrontText.font}
         fontSize={bannerFrontText.fontSize}
         textLinesPl={bannerFrontText.textLinesPl}
         textLinesEn={bannerFrontText.textLinesEn}

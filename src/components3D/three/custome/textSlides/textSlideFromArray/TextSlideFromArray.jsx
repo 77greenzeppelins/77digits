@@ -48,20 +48,27 @@ const TextSlideFromArray = ({
       <group {...groupProps}>
         {textLinesPl.map((line, index) => (
           <TextVerse
-            key={line}
-            textProps={{ ...textProps[index] }}
+            key={`${line}-${index}`}
+            textProps={textProps[index]}
             text={line}
-            font={font}
+            font={font && font[index]}
+            // font={font}
             fontResponsiveness={
               viewport.width < 3.0
-                ? fontSize.fontSmall
+                ? fontSize[index].fontSmall
                 : viewport.width < 5.5
-                ? fontSize.fontMiddle
-                : fontSize.fontLarge
+                ? fontSize[index].fontMiddle
+                : fontSize[index].fontLarge
             }
-            letterSpacing={thisLetterSpacing || 0.15}
+            /*
+            why "first check if thisLetterSpacing is true"?
+            because if we dont specify "letterSpacing" JS is looking for "thisLetterSpacing[index]" and throws an error if doesn't find
+            */
+            letterSpacing={
+              (thisLetterSpacing && thisLetterSpacing[index]) || 0.15
+            }
             whiteSpace={thisWhiteSpace} //'normal' "nowrap"
-            textAlign={textAlign}
+            textAlign={textAlign && textAlign[index]}
             maxWidth={
               textOrientation === 'vertical'
                 ? viewport.height / textWidthFactor
@@ -78,7 +85,7 @@ const TextSlideFromArray = ({
           <TextVerse
             textProps={{ ...textProps[index] }}
             text={line}
-            font={font}
+            font={font[index]}
             fontResponsiveness={
               viewport.width < 3.0
                 ? fontSize.fontSmall
