@@ -1,5 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+/*
+
+*/
+import CookiesBanner from './cookiesBanner/CookiesBanner';
 /*
 Global State Staff
 */
@@ -9,6 +12,17 @@ import { canvasState } from '../../../states/canvasState';
 Spring Staff
 */
 import { animated, useTransition } from '@react-spring/web';
+/*
+Basic Data
+*/
+import {
+  mainTextPl,
+  buttonPl,
+  linkPl,
+  mainTextEn,
+  buttonEn,
+  linkEn,
+} from './cookiesData';
 
 /*
 --------------------------------------------------------------------------------
@@ -19,13 +33,6 @@ const Cookies = () => {
   canvasState = {userAteCookies: false, isCookiesPopUpMounted: false}
   */
   const globalCanvasState = useSnapshot(canvasState);
-
-  const cookieToggler = () => {
-    canvasState.isCookiesPopUpMounted = false;
-    canvasState.isInitialOverlayMounted = false;
-    canvasState.currentContainer = 'introContainer';
-  };
-
   /*
   Spring Staff
   How it works?
@@ -47,40 +54,21 @@ const Cookies = () => {
   return transition(
     ({ opacity }, value) =>
       value && (
-        <animated.aside
-          className="cookies"
-          style={{
-            // display:
-            //   globalCanvasState.currentContainer === 'initalContainer'
-            //     ? 'box'
-            //     : 'none',
-            opacity: opacity,
-          }}
-        >
+        <animated.aside className="cookies" style={{ opacity: opacity }}>
           <div className="cookies__container">
-            <p
-              className="cookies__text"
-              style={{ letterSpacing: window.innerWidth > 800 && 2 }}
-            >
-              Używamy plików cookies. Wybierz opcję:{' '}
-            </p>
-            <button
-              onClick={cookieToggler}
-              className="cookies__button"
-              style={{ letterSpacing: window.innerWidth > 800 && 2 }}
-            >
-              Akceptuję /
-            </button>
-            <button onClick={cookieToggler} className="cookies__button">
-              Odrzucam /
-            </button>
-            <Link
-              to="/cookies"
-              className="cookies__link"
-              style={{ letterSpacing: window.innerWidth > 800 && 2.5 }}
-            >
-              Więcej informacji
-            </Link>
+            <CookiesBanner
+              mainText={mainTextPl}
+              button={buttonPl}
+              link={linkPl}
+              language="pl"
+            />
+            <div style={{ height: '15px' }} />
+            <CookiesBanner
+              mainText={mainTextEn}
+              button={buttonEn}
+              link={linkEn}
+              language="en"
+            />
           </div>
         </animated.aside>
       )

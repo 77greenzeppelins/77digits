@@ -5,7 +5,7 @@ const slides = [
   {
     id: 1,
     groupProps: {
-      position: [0, -0.15, -2.7],
+      position: [0, -0.11, -2.7],
       rotation: [Math.PI * 0.1, 0, 0],
       name: 'TextVersedGroup_1',
     },
@@ -27,16 +27,27 @@ const slides = [
   {
     id: 2,
     groupProps: {
-      position: [0, -0.15, -6.05],
+      position: [0, 0, -6.05],
       rotation: [Math.PI * 0.1, 0, 0],
       name: 'TextVersedGroup_2',
     },
     textProps: [
       { position: [0, 0.34, 0] },
       { position: [0, -0.02, -0.4] },
-      { position: [-0.45, -0.2, 0], rotation: [0, 0, -0.5 * Math.PI] },
-      { position: [0.15, -0.6, -0.75] },
+      { position: [], rotation: [0, 0, -0.5 * Math.PI] },
+      { position: [] },
     ],
+    /*
+    additional data for position; it's a metter of responsivenes
+    */
+    mobileVersion: {
+      webPosition: [-0.25, -0.2, -0.15],
+      developerPosition: [0.03, -0.64, -0.65],
+    },
+    desktopVersion: {
+      webPosition: [-0.45, -0.22, 0],
+      developerPosition: [0.1, -0.64, -0.65],
+    },
     font: ['garamont', 'garamont', 'jost', 'jost'],
     fontSize: [
       { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
@@ -46,10 +57,6 @@ const slides = [
     ],
     textLinesPl: ['Jestem', 'programistą', 'web  ', 'developerem'],
     textLinesEn: ["I'am", 'developer', '', ''],
-    mobileVersion: {
-      webPosition: [-0.25, -0.2, -0.15],
-      developerPosition: [0.03, -0.64, -0.65],
-    },
   },
   {
     id: 3,
@@ -59,18 +66,36 @@ const slides = [
       name: 'TextVersedGroup_3',
     },
     textProps: [
-      { position: [0, 0.34, 0] },
-      { position: [0, -0.02, -0.4] },
-      { position: [0, -0.38, -0.8] },
+      { position: [0, 0.65, 0] },
+      { position: [0.02, 0.45, 0] },
+      { position: [0.1, 0.15, -0.4] },
+      { position: [0, -0.38, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
     ],
-    font: ['garamont', 'garamont', 'garamont'],
+    /*
+    additional data for position; it's a metter of responsivenes
+    */
+    mobileVersion: {
+      wyrafiPosition: [0.03, 0.15, -0.4],
+      nowanyPosition: [0.32, -0.07, -0.4],
+    },
+    desktopVersion: {
+      wyrafiPosition: [0.1, 0.11, -0.4],
+      nowanyPosition: [0.58, -0.25, -0.4],
+    },
+    font: ['garamont', 'garamont', 'garamont', 'garamont'],
     fontSize: [
-      { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
+      { fontSmall: 0.09, fontMiddle: 0.09, fontLarge: 0.17 },
+      { fontSmall: 0.09, fontMiddle: 0.09, fontLarge: 0.17 },
       { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
       { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
     ],
-
-    textLinesPl: ['Jeśli masz', 'ochotę na', 'dogłębny,'],
+    letterSpacing: [-0.02, -0.02, -0.01, -0.01],
+    textLinesPl: [
+      'J e ś l i    m a s z',
+      'o c h o t ę    n a',
+      'w y r a f i n o',
+      ' w a n y',
+    ],
     textLinesEn: ['If you are', 'in a mood', 'to profound'],
   },
   //-------------------------------------

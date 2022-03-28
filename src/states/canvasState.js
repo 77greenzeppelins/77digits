@@ -4,7 +4,7 @@ const canvasState = proxy({
   /*
   Tests
   */
-  spinningBox1: false,
+  // spinningBox1: false,
   /*
   ------------------------------------------Universal Property
   ___currentContainer
@@ -38,6 +38,24 @@ const canvasState = proxy({
 
   menuContainerPosition: [5, 0, 0],
   menuContainerCameraPosition: [5, 0, 2],
+
+  /*
+  -----------------------------------------------<Initial Overlay 2D staff>
+  */
+  /*
+  decides if <InitialOverlay> is mounted or not;
+  <InitialOverlay> is based on useTransition;
+  By means of <Cookies>'s buttons value "false" is set i.e. this button dismounts <Cookies> & <InitialOverlay>
+   */
+  isInitialOverlayMounted: true,
+  // isInitialOverlayMounted: false, // to switch off <InitialContainer>
+  /*
+  FakeLoader should by trigger only one time!
+  If not going from <CookiesPage> to <MainPage> triggers <FL> when <Cookies> are mounted i.e. both are visible and overlap...horrror
+  Is changed to "1" in <FakeLoader> / useSpring / onRest;
+  */
+  fakeLoaderCounter: 0,
+
   /*
   ----------------------------------------<IntroContainer> 3D Staff
   */
@@ -68,24 +86,6 @@ const canvasState = proxy({
   */
   startOfContainerIntroShow: false,
 
-  /*
-  -----------------------------------------------<Initial Overlay 2D staff>
-  */
-  /*
-  decides if <InitialOverlay> mounted or not;
-  <InitialOverlay> is basedpodczas
-   on useTransition;
-  By means of <Cookies>'s buttons value "false" is set i.e. this button dismounts <Cookies> & <InitialOverlay>
-  By means of <CookiesPage>, button 
-   */
-  isInitialOverlayMounted: true,
-  // isInitialOverlayMounted: false, // to switch off <InitialContainer>
-  /*
-  FakeLoader should by trigger only one time!
-  If not going from <CookiesPage> to <MainPage> triggers <FL> when <Cookies> are mounted i.e. both are visible and overlap...horrror
-  Is changed to "1" in <FakeLoader> / useSpring / onRest;
-  */
-  fakeLoaderCounter: 0,
   /*
   -----------------------------------------------<Cookies 2D staff>
   */

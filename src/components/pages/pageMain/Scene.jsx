@@ -13,7 +13,6 @@ import CanvasStateObserver from '../../../components3D/fiber/canvasStateObserver
 import ContainerMenu from '../../../components3D/three/custome/containerMenu/ContainerMenu';
 import ContainerAbout from '../../../components3D/three/custome/containerAbout/ContainerAbout';
 import ContainerIntro from '../../../components3D/three/custome/containerIntro/ContainerIntro';
-import ContainerAnswerYes from '../../../components3D/three/custome/containerAnswerYes/ContainerAnswerYes';
 import CanvasGlobalState from './CanvasGlobalState';
 
 /*
@@ -21,7 +20,6 @@ import CanvasGlobalState from './CanvasGlobalState';
 */
 
 const Scene = ({ groupProps }) => {
-
   /*
   JSX
   */
@@ -37,8 +35,8 @@ const Scene = ({ groupProps }) => {
       <ContainerAbout />
 
       {/*-----Menu Container-----------------------------------------*/}
-      <ContainerMenu/>
-      
+      <ContainerMenu />
+
       {/*-----AnswerYes Container------------------------------------*/}
       {/* <ContainerAnswerYes
         meshProps={{ position: [0, 0, 0], rotation: [0, 0, 0] }}
@@ -47,7 +45,6 @@ const Scene = ({ groupProps }) => {
       {/*-----AnswerNo Container-------------------------------------*/}
       {/* <AnswerNoContainer /> */}
       {/* </group> */}
-
 
       {/*-----Helpers------------------------------------------------*/}
       <CanvasStateObserver />

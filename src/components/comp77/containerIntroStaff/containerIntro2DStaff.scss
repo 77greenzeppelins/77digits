@@ -16,8 +16,8 @@
   &__phone-button {
     position: absolute;
     top: 8vh;
-    background-color: #fff;
-    opacity: 0.3;
+    // background-color: #fff;
+    // opacity: 0.3;
   }
   &__reset-button {
     position: absolute;
@@ -41,8 +41,8 @@
     this "230%" refers to button size I guess...
     */
     transform: translateX(230%);
-    background-color: #fff;
-    opacity: 0.3;
+    // background-color: #fff;
+    // opacity: 0.3;
   }
   &__auxiliary-button-bottom {
     position: absolute;
@@ -54,8 +54,8 @@
     this "230%" refers to button size I guess...
     */
     transform: translateX(-230%);
-    background-color: #fff;
-    opacity: 0.3;
+    // background-color: #fff;
+    // opacity: 0.3;
   }
 }
 
@@ -69,7 +69,7 @@
   }
   &__button-wrapper {
     position: absolute;
-    background-color: #fff;
-    opacity: 0.4;
+    // background-color: #fff;
+    // opacity: 0.4;
   }
 }

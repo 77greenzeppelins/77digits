@@ -77,6 +77,7 @@ const FakeLoader = () => {
     */
     onRest: () => {
       canvasState.isCookiesPopUpMounted = true;
+      canvasState.currentContainer = 'introContainer';
       canvasState.fakeLoaderCounter = 1;
     },
   });

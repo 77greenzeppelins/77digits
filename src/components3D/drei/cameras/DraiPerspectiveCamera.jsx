@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { PerspectiveCamera } from '@react-three/drei';
+
 /*
 Global State Staff
 */
@@ -99,7 +100,7 @@ const DraiPerspectiveCamera = () => {
       position={[0, 0, 2]}
       far={100}
       fov={45}
-    ></PerspectiveCamera>
+    />
   );
 };
 

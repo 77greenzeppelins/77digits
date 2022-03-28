@@ -5,12 +5,8 @@
   flex-direction: column;
   align-items: flex-end;
   &__line {
-    color: darken(setColor(light), 70%);
+    color: darken(setColor(light), 50%);
     font-size: $fontSmall;
-
-    // font-size: $fontLarge;
-    // font-size: $fontMiddle;
-
     user-select: none;
     font-weight: 400;
     font-family: $sanSerif;

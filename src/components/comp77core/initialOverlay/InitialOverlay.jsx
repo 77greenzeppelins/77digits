@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 /*
 Spring Staff
 */
-import { useTransition, animated as a } from '@react-spring/web';
+import { useTransition, useSpring, animated as a } from '@react-spring/web';
 /*
 Global State Staff
 */
@@ -39,44 +39,60 @@ const InitialOverlay = () => {
   const parentTransition = useTransition(
     canvasGlobalState.isInitialOverlayMounted && location.pathname === '/',
     {
-      from: { opacity: 1 },
-      enter: { opacity: 1 },
-      leave: { opacity: 0 },
-      config: { duration: 200 },
+      // from: { opacity: 1 },
+      // enter: { opacity: 1 },
+      // leave: { opacity: 0 },
+      // config: { duration: 200 },
+
+      from: { display: 'block' },
+      enter: { display: 'block' },
+      leave: { display: 'none' },
+      // delay: 400,
     }
   );
-
   /*
   Spring stuff for ".initial-overlay__container"
   */
   const childTransition = useTransition(
-    canvasGlobalState.isInitialOverlayMounted && location.pathname === '/',
+    canvasGlobalState.isInitialOverlayMounted,
     {
       from: { opacity: 0 },
       enter: { opacity: 1 },
       leave: { opacity: 0 },
-      config: { duration: 200 },
+      config: { duration: 400 },
     }
   );
+  const { springValue } = useSpring({
+    springValue: canvasGlobalState.isCookiesPopUpMounted === true ? 0.5 : 1,
+    duration: 600,
+  });
   /*
   JSX
   */
   return parentTransition(
-    (styles, item) =>
+    ({ display }, item) =>
       item && (
-        <a.div className="initial-overlay" style={styles}>
+        <a.div
+          className="initial-overlay"
+          style={{
+            display: display,
+          }}
+        >
           {childTransition(
             (styles, item) =>
               item && (
                 <a.div className="initial-overlay__container" style={styles}>
-                  <div className="initial-overlay__top">
-                    <FakeLoader />
-                    <Cookies />
-                  </div>
-                  <div
-                    style={{ paddingBottom: '40px' }}
-                    className="initial-overlay__bottom"
-                  >
+                  <a.div className="initial-overlay__top">
+                    <div className="initial-overlay__top-foreground">
+                      <FakeLoader />
+                      <Cookies />
+                    </div>
+                    <a.div
+                      className="initial-overlay__top-background"
+                      style={{ opacity: springValue }}
+                    />
+                  </a.div>
+                  <div className="initial-overlay__bottom">
                     <div className="initial-overlay__clocks">
                       <Clock
                         city={'Dzierżoniów'}

@@ -5,7 +5,7 @@
   border-radius: 5px;
 
   &__city {
-    color: darken(setColor(light), 70%);
+    color: darken(setColor(light), 50%);
     font-size: $fontSmall;
     user-select: none;
     font-weight: 400;
@@ -14,7 +14,7 @@
     white-space: nowrap;
   }
   &__digit {
-    color: darken(setColor(light), 70%);
+    color: darken(setColor(light), 50%);
     font-size: $fontSmall;
     user-select: none;
     font-weight: 400;

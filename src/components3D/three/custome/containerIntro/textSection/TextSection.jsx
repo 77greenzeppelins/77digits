@@ -28,18 +28,34 @@ const TextSection = () => {
   return (
     <>
       {slides.map((slide, index) => {
-        // if (slide.id === 1) {
-        //   slide.font = 'jost';
-        // }
+        /*
+        additional styling for second slide
+        */
         if (windowSize.width < 600 && slide.id === 2) {
           // console.log('size.width < 500', size.width);
           slide.textProps[2].position = slide.mobileVersion.webPosition;
           slide.textProps[3].position = slide.mobileVersion.developerPosition;
         }
         if (windowSize.width > 600 && slide.id === 2) {
-          slide.textProps[2].position = [-0.5, -0.2, 0];
-          slide.textProps[3].position = [0.15, -0.64, -0.65];
+          slide.textProps[2].position = slide.desktopVersion.webPosition;
+          slide.textProps[3].position = slide.desktopVersion.developerPosition;
         }
+        /*
+        additional styling for thirt slide
+        */
+        if (windowSize.width < 600 && slide.id === 3) {
+          // console.log('size.width < 500', size.width);
+          slide.textProps[2].position = slide.mobileVersion.wyrafiPosition;
+          slide.textProps[3].position = slide.mobileVersion.nowanyPosition;
+        }
+        if (windowSize.width > 600 && slide.id === 3) {
+          slide.textProps[2].position = slide.desktopVersion.wyrafiPosition;
+          slide.textProps[3].position = slide.desktopVersion.nowanyPosition;
+        }
+
+        /*
+        JSX
+        */
         return (
           <TextSlideFromArray
             key={slide.groupProps.name}
@@ -47,6 +63,8 @@ const TextSection = () => {
             textProps={slide.textProps}
             font={slide.font}
             fontSize={slide.fontSize}
+            letterSpacing={slide.letterSpacing}
+            textAlign={slide.textAlign}
             textLinesPl={slide.textLinesPl}
             textLinesEn={slide.textLinesEn}
             textWidthFactor={slide.textWidthFactor}

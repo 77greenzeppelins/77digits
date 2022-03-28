@@ -10,6 +10,10 @@ Global state
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../../states/canvasState';
 /*
+Hook
+*/
+import useWindowSize from '../../../../../hooks/useWindowSize';
+/*
 Accesibility staff
 */
 import { A11y } from '@react-three/a11y';
@@ -25,6 +29,7 @@ const TextSlideFromArray = ({
   textLinesPl,
   textLinesEn,
   thisLetterSpacing,
+  letterSpacing,
   thisWhiteSpace,
   textAlign,
   /*
@@ -42,7 +47,14 @@ const TextSlideFromArray = ({
   useThree() Staff
   */
   const { viewport } = useThree();
+  /*
+  Hook size
+  */
+  const windowSize = useWindowSize();
 
+  /*
+  JSX
+  */
   return canvasGlobalState.languageVersion === 'pl' ? (
     <A11y role="content" description={textLinesPl.join(' ')}>
       <group {...groupProps}>
@@ -52,11 +64,17 @@ const TextSlideFromArray = ({
             textProps={textProps[index]}
             text={line}
             font={font && font[index]}
-            // font={font}
+            // fontResponsiveness={
+            //   viewport.width < 3.0
+            //     ? fontSize[index].fontSmall
+            //     : viewport.width < 5.5
+            //     ? fontSize[index].fontMiddle
+            //     : fontSize[index].fontLarge
+            // }
             fontResponsiveness={
-              viewport.width < 3.0
+              windowSize.width < 300
                 ? fontSize[index].fontSmall
-                : viewport.width < 5.5
+                : windowSize.width < 600
                 ? fontSize[index].fontMiddle
                 : fontSize[index].fontLarge
             }
@@ -64,9 +82,7 @@ const TextSlideFromArray = ({
             why "first check if thisLetterSpacing is true"?
             because if we dont specify "letterSpacing" JS is looking for "thisLetterSpacing[index]" and throws an error if doesn't find
             */
-            letterSpacing={
-              (thisLetterSpacing && thisLetterSpacing[index]) || 0.15
-            }
+            letterSpacing={(letterSpacing && letterSpacing[index]) || 0.15}
             whiteSpace={thisWhiteSpace} //'normal' "nowrap"
             textAlign={textAlign && textAlign[index]}
             maxWidth={
@@ -86,12 +102,19 @@ const TextSlideFromArray = ({
             textProps={{ ...textProps[index] }}
             text={line}
             font={font[index]}
+            // fontResponsiveness={
+            //   viewport.width < 3.0
+            //     ? fontSize.fontSmall
+            //     : viewport.width < 5.5
+            //     ? fontSize.fontMiddle
+            //     : fontSize.fontLarge
+            // }
             fontResponsiveness={
-              viewport.width < 3.0
-                ? fontSize.fontSmall
-                : viewport.width < 5.5
-                ? fontSize.fontMiddle
-                : fontSize.fontLarge
+              windowSize.width < 300
+                ? fontSize[index].fontSmall
+                : windowSize.width < 600
+                ? fontSize[index].fontMiddle
+                : fontSize[index].fontLarge
             }
             letterSpacing={thisLetterSpacing || 0.15}
             whiteSpace={thisWhiteSpace} //'normal' "nowrap"
