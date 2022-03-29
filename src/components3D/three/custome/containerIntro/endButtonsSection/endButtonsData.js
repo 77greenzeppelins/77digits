@@ -1,5 +1,5 @@
-import phoneImage from '../../../../../assets/textures/containerMenu_phone_1.png';
-import emailImage from '../../../../../assets/textures/containerMenu_letter_3.png';
+import phoneImage from '../../../../../assets/textures/instantContact_phone.webp';
+import emailImage from '../../../../../assets/textures/instantContact_email.webp';
 import { springConfigs } from '../../../../../data/reactSpring';
 
 /*

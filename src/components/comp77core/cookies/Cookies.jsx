@@ -11,7 +11,7 @@ import { canvasState } from '../../../states/canvasState';
 /*
 Spring Staff
 */
-import { animated, useTransition } from '@react-spring/web';
+import { animated, useTransition, config } from '@react-spring/web';
 /*
 Basic Data
 */
@@ -43,8 +43,8 @@ const Cookies = () => {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    // delay: 200,
-    // config: config.molasses,
+    delay: 200,
+    config: config.molasses,
   });
   /*
   ------------------------------------------------------------------

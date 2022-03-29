@@ -31,23 +31,19 @@ const slides = [
       rotation: [Math.PI * 0.1, 0, 0],
       name: 'TextVersedGroup_2',
     },
-    textProps: [
+    mobilePosition: [
       { position: [0, 0.34, 0] },
       { position: [0, -0.02, -0.4] },
-      { position: [], rotation: [0, 0, -0.5 * Math.PI] },
-      { position: [] },
+      { position: [-0.25, -0.2, -0.15], rotation: [0, 0, -0.5 * Math.PI] },
+      { position: [0.03, -0.64, -0.65] },
     ],
-    /*
-    additional data for position; it's a metter of responsivenes
-    */
-    mobileVersion: {
-      webPosition: [-0.25, -0.2, -0.15],
-      developerPosition: [0.03, -0.64, -0.65],
-    },
-    desktopVersion: {
-      webPosition: [-0.45, -0.22, 0],
-      developerPosition: [0.1, -0.64, -0.65],
-    },
+
+    desktopPosition: [
+      { position: [0, 0.34, 0] },
+      { position: [0, -0.02, -0.4] },
+      { position: [-0.45, -0.22, 0], rotation: [0, 0, -0.5 * Math.PI] },
+      { position: [0.1, -0.64, -0.65] },
+    ],
     font: ['garamont', 'garamont', 'jost', 'jost'],
     fontSize: [
       { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
@@ -65,23 +61,38 @@ const slides = [
       rotation: [Math.PI * 0.1, 0, 0],
       name: 'TextVersedGroup_3',
     },
-    textProps: [
-      { position: [0, 0.65, 0] },
-      { position: [0.02, 0.45, 0] },
-      { position: [0.1, 0.15, -0.4] },
-      { position: [0, -0.38, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
+
+    mobilePosition: [
+      { position: [0, 0.67, 0] },
+      { position: [0.02, 0.57, 0] },
+      { position: [0.03, 0.39, -0.4] },
+      { position: [0.32, 0.17, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
     ],
+
+    desktopPosition: [
+      { position: [0, 0.65, 0] },
+      { position: [0.02, 0.47, 0] },
+      { position: [0.1, 0.16, -0.4] },
+      { position: [0.58, -0.2, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
+    ],
+
     /*
     additional data for position; it's a metter of responsivenes
     */
     mobileVersion: {
-      wyrafiPosition: [0.03, 0.15, -0.4],
-      nowanyPosition: [0.32, -0.07, -0.4],
+      vers1Position: [0, 0.67, 0],
+      vers2Position: [0.02, 0.57, 0],
+      wyrafiPosition: [0.03, 0.39, -0.4],
+      nowanyPosition: [0.32, 0.17, -0.4],
     },
     desktopVersion: {
-      wyrafiPosition: [0.1, 0.11, -0.4],
-      nowanyPosition: [0.58, -0.25, -0.4],
+      vers1Position: [0, 0.65, 0],
+      vers2Position: [0.02, 0.47, 0],
+      wyrafiPosition: [0.1, 0.16, -0.4],
+      nowanyPosition: [0.58, -0.2, -0.4],
     },
+
+    //_________________
     font: ['garamont', 'garamont', 'garamont', 'garamont'],
     fontSize: [
       { fontSmall: 0.09, fontMiddle: 0.09, fontLarge: 0.17 },
@@ -126,7 +137,7 @@ const slides = [
   {
     id: 4,
     groupProps: {
-      position: [0, -0.15, -12.4],
+      position: [0, -0.15, -12.8],
       rotation: [Math.PI * 0.1, 0, 0],
       name: 'TextVersedGroup_4',
     },
@@ -155,7 +166,6 @@ const slides = [
       odlot start
       */
       { position: [0, 0.45, 0.3] },
-
       { position: [0, 0.1, -0.1] },
       { position: [0, -0.2, -0.3] },
       { position: [0, -0.5, -0.5] },
@@ -172,7 +182,7 @@ const slides = [
   {
     id: 5,
     groupProps: {
-      position: [0, -0.15, -15.5],
+      position: [0, -0.15, -15.9],
       rotation: [Math.PI * 0.1, 0, 0],
       name: 'TextVersedGroup_5',
     },

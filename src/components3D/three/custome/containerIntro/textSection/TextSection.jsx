@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { useThree } from '@react-three/fiber';
 /*
 Components
@@ -29,38 +29,25 @@ const TextSection = () => {
     <>
       {slides.map((slide, index) => {
         /*
-        additional styling for second slide
-        */
-        if (windowSize.width < 600 && slide.id === 2) {
-          // console.log('size.width < 500', size.width);
-          slide.textProps[2].position = slide.mobileVersion.webPosition;
-          slide.textProps[3].position = slide.mobileVersion.developerPosition;
-        }
-        if (windowSize.width > 600 && slide.id === 2) {
-          slide.textProps[2].position = slide.desktopVersion.webPosition;
-          slide.textProps[3].position = slide.desktopVersion.developerPosition;
-        }
-        /*
-        additional styling for thirt slide
-        */
-        if (windowSize.width < 600 && slide.id === 3) {
-          // console.log('size.width < 500', size.width);
-          slide.textProps[2].position = slide.mobileVersion.wyrafiPosition;
-          slide.textProps[3].position = slide.mobileVersion.nowanyPosition;
-        }
-        if (windowSize.width > 600 && slide.id === 3) {
-          slide.textProps[2].position = slide.desktopVersion.wyrafiPosition;
-          slide.textProps[3].position = slide.desktopVersion.nowanyPosition;
-        }
-
-        /*
         JSX
         */
         return (
           <TextSlideFromArray
             key={slide.groupProps.name}
             groupProps={slide.groupProps}
-            textProps={slide.textProps}
+            /*
+            How logic of "textProps" works?
+            First check if "file with data" has "textProps"; if not distinguished between two options, depending on mobile width...
+            */
+            textProps={
+              slide.textProps
+                ? slide.textProps
+                : windowSize.width < 600
+                ? slide.mobilePosition
+                : slide.desktopPosition
+            }
+            //_____
+            // textProps={slide.textProps}
             font={slide.font}
             fontSize={slide.fontSize}
             letterSpacing={slide.letterSpacing}

@@ -4,11 +4,6 @@ Components
 */
 import SpinningBoxSide from './SpinningBoxSide';
 /*
-Global State Staf
-*/
-// import { useSnapshot } from 'valtio';
-// import { canvasState } from '../../../../states/canvasState';
-/*
 Gesture Section
 */
 import DragRotateStepByStep from '../../../../gestureHandlers/useDrag/DragRotateStepByStep';
@@ -22,109 +17,36 @@ import { a } from '@react-spring/three';
 */
 const SpinningBox = ({
   /*
-  props for main <group> of this component
+  props for <SpinningBox>'s main <group>; scale & position;
   */
   groupProps,
   /*
-  props for <SpinningBoxSide>
+  props for <SpinningBox>'s gesture
   */
-  spinningBoxConfig,
-  images,
-  portrait,
-  banner,
-  format,
-  // canvasProps,
-  // frameProps,
-  /*
-  props for "DragRotateStepByStep"'s args;
-  */
-  setDragRotationX,
-  setDragRotationY,
-  axisLimitation,
-  /*
-  props for spring
-  */
-  animationDelay,
   isSideRotating,
   /*
-  props for useFrame animations
+  props for <SpinningBoxSide> layout and ...
   */
-  setRotationYSpeed,
-  setRotationXSpeed,
+  spinningBoxConfig,
+  /*
+  props for <SpinningBoxSide>'s spring
+  */
+  springConfig,
 }) => {
   /*
   References
   */
   const autorotatingGroup = useRef();
   /*
-  Global State
-  */
-  // const canvasGlobalState = useSnapshot(canvasState);
-  /*
   Call this gesture!!!
   returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
   */
-  const [rotateStepByStep, dragRotateStepByStep] = DragRotateStepByStep(
+  const [rotateStepByStep, dragRotateStepByStep] = DragRotateStepByStep({
     /*
-    it's a section of "custome args"; just send some settings to drag hook;
+    set axis that is active
     */
-    {
-      /*
-      set initial values for rotation 
-      */
-      rotationX: setDragRotationX || 0,
-      rotationY: setDragRotationY || 0,
-      /*
-      set axis that is active
-      */
-      axisLimitation: axisLimitation,
-    }
-  );
-
-  /*
-  useEffect Section
-  */
-  // useEffect(() => {
-  // console.log('SpinningBox / isSideRotating:', isSideRotating);
-  // autorotatingGroup.current.children.forEach(item => {
-  //   console.log('item.rotation', item.rotation.z);
-  //   if (portrait) {
-  //     item.rotation.y += Math.PI * 0.5;
-  //   }
-  // });
-  // if (portrait) {
-  //   autorotatingGroup.current.children[0].rotation.y = Math.PI * 0.5;
-  // }
-  // }, [isSideRotating]);
-
-  /*
-  useFrame Section
-  */
-  // useFrame(({ clock }) => {
-  //   const time = clock.getElapsedTime();
-  //   /*
-  //   Autorotation of portrait; i.e rotate along y-axis;
-  //   */
-  //   if (
-  //     canvasGlobalState.currentContainer === 'aboutContainer' &&
-  //     setRotationYSpeed
-  //   ) {
-  //     autorotatingGroup.current.rotation.y = time * setRotationYSpeed || 0;
-  //     //   // autorotatingGroup.current.rotation.y += 0.002;
-  //     //   // autorotatingGroup.current.rotation.x = Math.sin(time * 0.1);
-  //     //   // autorotatingGroup.current.rotation.y = Math.cos(time * 0.4) * 0.4;
-  //     //   // autorotatingGroup.current.rotation.z = Math.sin(time * 0.4) * 0.5;
-  //   }
-  //   /*
-  //   Autorotation of banner
-  //   */
-  //   // if (
-  //   //   canvasGlobalState.currentContainer === 'aboutContainer' &&
-  //   //   setRotationXSpeed
-  //   // ) {
-  //   //   autorotatingGroup.current.rotation.x = time * setRotationXSpeed || 0;
-  //   // }
-  // });
+    axisLimitation: springConfig.axisLimitation,
+  });
 
   /*
   JSX
@@ -137,32 +59,23 @@ const SpinningBox = ({
       rotation={rotateStepByStep}
     >
       <a.group ref={autorotatingGroup}>
-        {spinningBoxConfig.map(({ sideProps, labelProps }, index) => (
-          <SpinningBoxSide
-            key={index}
-            index={index}
-            databaseIndex={labelProps.imagesIndex}
-            groupSideProps={sideProps}
-            labelProps={labelProps}
-            /*
-            We want to pass an image to some box's sides; to do this first check if congigObject of this particular "box side" has "textAwers"; if it hasn't i.e. the value is "false", choose some image instead text;
-            "labelProps.textAwers" controls the flow of "conditional rendering"  in <SpinningBoxSide> / <UniversalCanvac> or <UniversalCanvasWithouImage>
-            */
-            // image={
-            //   (!labelProps.textAwers || !labelProps.textRewers) &&
-            //   images[labelProps.imagesIndex]
-            // }
-            image={images[labelProps.imagesIndex]}
-            portrait={portrait}
-            banner={banner}
-            format={format}
-            axisLimitation={axisLimitation}
-            // frameProps={frameProps}
-            // canvasProps={canvasProps}
-            animationDelay={animationDelay}
-            isSideRotating={isSideRotating}
-          />
-        ))}
+        {spinningBoxConfig.map(
+          ({ sideProps, labelProps, canvasProps, frameProps }, index) => (
+            <SpinningBoxSide
+              key={index}
+              databaseIndex={labelProps.imagesIndex}
+              labelProps={labelProps}
+              sideProps={sideProps}
+              canvasProps={canvasProps}
+              frameProps={frameProps}
+              /*
+              props for Spring
+              */
+              springConfig={springConfig}
+              isSideRotating={isSideRotating}
+            />
+          )
+        )}
       </a.group>
     </a.group>
   );

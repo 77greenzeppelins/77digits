@@ -10,7 +10,7 @@ Components
 */
 import FramedObjects from './framedObjects/FramedObjects';
 import TextSection from './textSection/TextSection';
-import AnimatedUnivers from '../animatedUnivers/AnimatedUniverse';
+import StillLifeSection from './stillLifeSection/StillLifeSection';
 import EndButtons from './endButtonsSection/EndButtons';
 import RaphaelSection from './raphaelSection/RaphaelSection';
 /*
@@ -82,6 +82,10 @@ const ContainerIntro = ({ onClickCameraSetter }) => {
       </Suspense>
       {/*-----Text Slides---------------------------------------*/}
       <TextSection />
+      {/*-----Still Life---------------------------------------*/}
+      <Suspense fallback={null}>
+        <StillLifeSection />
+      </Suspense>
       {/*-----Instant Contact-----------------------------------*/}
       <Suspense fallback={null}>
         <EndButtons />

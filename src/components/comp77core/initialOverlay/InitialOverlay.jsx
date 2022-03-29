@@ -23,7 +23,7 @@ import { canvasState } from '../../../states/canvasState';
 const InitialOverlay = () => {
   /*
   Global State Section
-  appState = {isInitialOverlayMounted: true,}; is set to false in <Loader>...
+  appState = {isInitialOverlayMounted: true,}; is set to false in <Loader>...,isCookiesPopUpMounted : false}
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
@@ -39,15 +39,11 @@ const InitialOverlay = () => {
   const parentTransition = useTransition(
     canvasGlobalState.isInitialOverlayMounted && location.pathname === '/',
     {
-      // from: { opacity: 1 },
-      // enter: { opacity: 1 },
-      // leave: { opacity: 0 },
-      // config: { duration: 200 },
-
-      from: { display: 'block' },
-      enter: { display: 'block' },
-      leave: { display: 'none' },
-      // delay: 400,
+      from: { opacity: 1 },
+      enter: { opacity: 1 },
+      leave: { opacity: 0 },
+      config: { duration: canvasGlobalState.isCookiesPopUpMounted ? 600 : 600 },
+      delay: canvasGlobalState.isCookiesPopUpMounted ? 100 : 0,
     }
   );
   /*
@@ -59,10 +55,14 @@ const InitialOverlay = () => {
       from: { opacity: 0 },
       enter: { opacity: 1 },
       leave: { opacity: 0 },
-      config: { duration: 400 },
+      config: { duration: canvasGlobalState.isCookiesPopUpMounted ? 600 : 400 },
+      delay: canvasGlobalState.isCookiesPopUpMounted ? 100 : 100,
     }
   );
   const { springValue } = useSpring({
+    /*
+    when <FakeCounter>; onRest() changes isCookiesPopUpMounted to "true" 
+    */
     springValue: canvasGlobalState.isCookiesPopUpMounted === true ? 0.5 : 1,
     duration: 600,
   });
@@ -70,12 +70,12 @@ const InitialOverlay = () => {
   JSX
   */
   return parentTransition(
-    ({ display }, item) =>
+    ({ opacity }, item) =>
       item && (
         <a.div
           className="initial-overlay"
           style={{
-            display: display,
+            opacity: opacity,
           }}
         >
           {childTransition(
@@ -93,26 +93,32 @@ const InitialOverlay = () => {
                     />
                   </a.div>
                   <div className="initial-overlay__bottom">
-                    <div className="initial-overlay__clocks">
-                      <Clock
-                        city={'Dzierżoniów'}
-                        timeZone={'Europe/Warsaw'}
-                        style={{ paddingBottom: '20px' }}
-                      />
-                      <Clock
-                        city={'Washington DC'}
-                        timeZone={'America/New_York'}
-                        style={{ paddingBottom: '20px' }}
-                      />
-                      <Clock
-                        city={'Beijing'}
-                        timeZone={'Asia/Shanghai'}
-                        style={{ paddingBottom: '20px' }}
-                      />
+                    <div className="initial-overlay__bottom-foreground">
+                      <div className="initial-overlay__clocks">
+                        <Clock
+                          city={'Dzierżoniów'}
+                          timeZone={'Europe/Warsaw'}
+                          // style={{ paddingBottom: '20px' }}
+                        />
+                        <Clock
+                          city={'Washington DC'}
+                          timeZone={'America/New_York'}
+                          // style={{ paddingBottom: '20px' }}
+                        />
+                        <Clock
+                          city={'Beijing'}
+                          timeZone={'Asia/Shanghai'}
+                          // style={{ paddingBottom: '20px' }}
+                        />
+                      </div>
+                      <div className="initial-overlay__date">
+                        <DateDisplayer />
+                      </div>
                     </div>
-                    <div className="initial-overlay__date">
-                      <DateDisplayer />
-                    </div>
+                    <a.div
+                      className="initial-overlay__bottom-background"
+                      style={{ opacity: springValue }}
+                    />
                   </div>
                 </a.div>
               )

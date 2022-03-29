@@ -13,54 +13,27 @@ Global State Staf
 /*
 Spring Section
 */
-import { a, useSpring, config } from '@react-spring/three';
+import { a, useSpring } from '@react-spring/three';
 
 /*
 ----------------------------------------------------------------------
 */
 const SpinningBoxSide = ({
   databaseIndex,
-  groupSideProps,
-  labelProps,
-  // canvasProps,
-  // frameProps,
-  image,
-  portrait,
-  banner,
-  format,
   //_____
-  axisLimitation,
-  animationDelay,
+  sideProps,
+  canvasProps,
+  frameProps,
+  labelProps,
+  //___
+  springConfig,
   isSideRotating,
 }) => {
   /*
   Props destructuring
   */
-  const { position, rotation } = groupSideProps;
-  /*
-  Global State
-  */
-  // const canvasGlobalState = useSnapshot(canvasState);
-  /*
-  Component State
-  */
-  // const [val, setVal] = useState(null);
-
-  /*
-  useEffect Section
-  */
-  // useEffect(() => {
-  // console.log('SpinningBox / isSideRotating:', isSideRotating);
-  // autorotatingGroup.current.children.forEach(item => {
-  //   console.log('item.rotation', item.rotation.z);
-  //   if (portrait) {
-  //     item.rotation.y += Math.PI * 0.5;
-  //   }
-  // });
-  // if (portrait) {
-  //   autorotatingGroup.current.children[0].rotation.y = Math.PI * 0.5;
-  // }
-  // }, [isSideRotating]);
+  const { position, rotation } = sideProps;
+  const { axisLimitation, animationDelay, config } = springConfig;
 
   /*
   SpringSection
@@ -94,7 +67,7 @@ const SpinningBoxSide = ({
       ],
     },
     // config: { mass: 20, tension: 70, friction: 30 },
-    config: config.molasses,
+    config: config,
     delay: animationDelay,
     /*
     There is an issue when user click and go to another slide...
@@ -120,21 +93,13 @@ const SpinningBoxSide = ({
   return (
     <a.group
       name="GroupForSpinningBoxSides"
-      /*
-      this props are stored in slidesData.js; they set position and rotation parameters of each individual boxe's side; 
-      */
-      // {...groupSideProps}
       position={position}
       rotation={springValue}
-      // rotation={rotation}
     >
       <UniversalFrame
         groupProps={{ name: 'groupForFrameInSpiningBoxSide' }}
-        portrait={portrait}
-        banner={banner}
-        format={format}
+        {...frameProps}
       />
-      {/* { */}
       <UniversalCanvas
         meshProps={{
           /*
@@ -151,25 +116,11 @@ const SpinningBoxSide = ({
               */
             axisLimitation === 'y' ? Math.PI : 0,
           ],
-          /*
-            to avoid ... test
-            */
-          // visible:
-          //   universalCanvas.current.rotation.y === Math.PI ? false : true,
-          // visible: labelProps.textRewers ? true : true,
         }}
-        portrait={portrait}
-        banner={banner}
-        format={format}
-        image={image}
+        {...canvasProps}
       />
       {/* } */}
-      <SideLabel
-        labelProps={labelProps}
-        portrait={portrait}
-        banner={banner}
-        format={format}
-      />
+      <SideLabel labelProps={labelProps} format={labelProps.format} />
     </a.group>
   );
 };

@@ -30,7 +30,7 @@ import {
 /*
 --------------------------------------------------------------------------
 */
-const VenusInFrame = ({ groupProps, rotationX }) => {
+const VenusInFrame = () => {
   /*
   Gesture Section
   */
