@@ -5,20 +5,15 @@ Components
 */
 import TextVerse from '../../../drei/text/textVerse/TextVerse';
 import UniversalCanvasWithoutMap from '../matcapFrames/UniversalCanvasWithoutMap';
-/*
-Basic Data
-*/
-const [fontSmall, fontMedium, fontLarge] = [0.07, 0.08, 0.09];
 
 /*
 ----------------------------------------------------------------------------
 */
-const SideLabel = ({ labelProps, format }) => {
+const SideLabel = ({ labelProps }) => {
   /*
   useThree Section
   */
   const { viewport } = useThree();
-
   /*
   JSX
   */
@@ -35,7 +30,7 @@ const SideLabel = ({ labelProps, format }) => {
     >
       <TextVerse
         // textProps={{ position: [0, 0, 0.015] }}
-        textProps={{ position: labelProps.TextPosition }}
+        textProps={{ position: labelProps.textPosition }}
         text={
           labelProps.textAwers ? labelProps.textAwers : labelProps.textRewers
         }
@@ -51,7 +46,7 @@ const SideLabel = ({ labelProps, format }) => {
         whiteSpace={labelProps.whiteSpace}
         maxWidth={viewport.width * labelProps.MaxWidthFactor}
       />
-      <UniversalCanvasWithoutMap format={format} />
+      <UniversalCanvasWithoutMap format={labelProps.format} />
     </group>
   );
 };

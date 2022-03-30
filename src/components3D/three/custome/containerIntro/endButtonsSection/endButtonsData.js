@@ -1,7 +1,4 @@
-import phoneImage from '../../../../../assets/textures/instantContact_phone.webp';
-import emailImage from '../../../../../assets/textures/instantContact_email.webp';
 import { springConfigs } from '../../../../../data/reactSpring';
-
 /*
 ------------------------------------------------------------------------
 */
@@ -13,17 +10,15 @@ const springConfig = {
   positionYEnd: [0, 2, 0],
   delay: 200,
 };
-
-const phoneButton = {
+const InstantContactButtonPhone = {
   groupProps: { scale: [0.335, 0.335, 0.335], position: [0, 0.2, 0] },
   frameProps: { format: 'portrait' },
-  canvasProps: { image: phoneImage, format: 'portrait' },
+  canvasProps: { buttonType: 'phone', format: 'portrait' },
 };
-
-const emailButton = {
+const InstantContactButtonEmail = {
   groupProps: { scale: [0.335, 0.335, 0.335], position: [0, -0.2, 0] },
   frameProps: { format: 'portrait' },
-  canvasProps: { image: emailImage, format: 'portrait' },
+  canvasProps: { buttonType: 'email', format: 'portrait' },
 };
 
 const resetButtonFrame = {
@@ -40,42 +35,40 @@ const resetButtonTextSlide = {
   textLineEn: 'reset',
 };
 
-const auxiliaryTopButtonFrame = {
+const auxiliaryTopButton = {
   groupProps: { scale: [0.17, 0.17, 0.17], position: [0.25, 0.31, -0.6] },
   frameProps: { format: 'portrait' },
-  canvasProps: { image: emailImage, format: 'portrait' },
-};
-const auxiliaryTopButtonTextSlide = {
-  groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
-  textProps: { position: [0, 0, 0] },
-  fontSize: { fontSmall: 0.55, fontMiddle: 0.5, fontLarge: 0.55 },
-  font: 'garamont',
-  textLinePl: '?',
-  textLineEn: '?',
+  canvasProps: { format: 'portrait' },
+  textSlideProps: {
+    groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
+    textProps: { position: [0, 0, 0] },
+    fontSize: { fontSmall: 0.55, fontMiddle: 0.5, fontLarge: 0.55 },
+    font: 'garamont',
+    textLinePl: '?',
+    textLineEn: '?',
+  },
 };
 
-const auxiliaryBottomButtonFrame = {
+const auxiliaryBottomButton = {
   groupProps: { scale: [0.17, 0.17, 0.17], position: [-0.25, -0.31, -0.6] },
   frameProps: { format: 'portrait' },
-  canvasProps: { image: emailImage, format: 'portrait' },
-};
-const auxiliaryBottomButtonTextSlide = {
-  groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
-  textProps: { position: [0, 0, 0] },
-  fontSize: { fontSmall: 0.55, fontMiddle: 0.5, fontLarge: 0.55 },
-  font: 'garamont',
-  textLinePl: '?',
-  textLineEn: '?',
+  canvasProps: { format: 'portrait' },
+  textSlideProps: {
+    groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
+    textProps: { position: [0, 0, 0] },
+    fontSize: { fontSmall: 0.55, fontMiddle: 0.5, fontLarge: 0.55 },
+    font: 'garamont',
+    textLinePl: '?',
+    textLineEn: '?',
+  },
 };
 
 export {
   springConfig,
-  phoneButton,
-  emailButton,
+  InstantContactButtonPhone,
+  InstantContactButtonEmail,
   resetButtonFrame,
   resetButtonTextSlide,
-  auxiliaryTopButtonFrame,
-  auxiliaryTopButtonTextSlide,
-  auxiliaryBottomButtonFrame,
-  auxiliaryBottomButtonTextSlide,
+  auxiliaryTopButton,
+  auxiliaryBottomButton,
 };

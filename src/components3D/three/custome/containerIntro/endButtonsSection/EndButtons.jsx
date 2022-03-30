@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 /*
 Components
 */
+import InstantContactsSection from './instantContactsSection/InstantContactsSection';
+import AuxiliaryButtonSection from './auxiliaryButtonSection/AuxiliaryButtonSection';
 import UniversalFrame from '../../matcapFrames/UniversalFrame';
-import UniversalCanvas from '../../matcapFrames/UniversalCanvas';
 import TextSlide from '../../textSlides/textSlide/TextSlide';
+
 /*
 Global State Section
 */
@@ -20,14 +22,9 @@ Basic Data
 */
 import {
   springConfig,
-  phoneButton,
-  emailButton,
+  //_____
   resetButtonFrame,
   resetButtonTextSlide,
-  auxiliaryTopButtonFrame,
-  auxiliaryTopButtonTextSlide,
-  auxiliaryBottomButtonFrame,
-  auxiliaryBottomButtonTextSlide,
 } from './endButtonsData';
 
 /*
@@ -76,12 +73,8 @@ const EndButtons = () => {
   return (
     <a.group position={springPositionY}>
       <a.group position={springPositionZ}>
-        {/*-----Phone Button------------------------------------------*/}
-        <group {...phoneButton.groupProps}>
-          <UniversalFrame {...phoneButton.frameProps} />
-          <UniversalCanvas {...phoneButton.canvasProps} />
-        </group>
-
+        {/*-----Instant Contact Buttons-------------------------------*/}
+        <InstantContactsSection />
         {/*-----Reset Button------------------------------------------*/}
         <group {...resetButtonFrame.groupProps}>
           <UniversalFrame {...resetButtonFrame.frameProps} />
@@ -92,45 +85,10 @@ const EndButtons = () => {
             fontSize={resetButtonTextSlide.fontSize}
             textLinePl={resetButtonTextSlide.textLinePl}
             textLineEn={resetButtonTextSlide.textLineEn}
-            // thisLetterSpacing ={resetButtonTextSlide.groupProps}
-            // whiteSpace,
           />
         </group>
-
-        {/*-----Email Button------------------------------------------*/}
-        <group {...emailButton.groupProps}>
-          <UniversalFrame {...emailButton.frameProps} />
-          <UniversalCanvas {...emailButton.canvasProps} />
-        </group>
-
-        {/*-----Auxiliary Top Button---------------------------------*/}
-
-        <group {...auxiliaryTopButtonFrame.groupProps}>
-          <UniversalFrame {...auxiliaryTopButtonFrame.frameProps} />
-          <TextSlide
-            groupProps={auxiliaryTopButtonTextSlide.groupProps}
-            textProps={auxiliaryTopButtonTextSlide.textProps}
-            font={auxiliaryTopButtonTextSlide.font}
-            fontSize={auxiliaryTopButtonTextSlide.fontSize}
-            textLinePl={auxiliaryTopButtonTextSlide.textLinePl}
-            textLineEn={auxiliaryTopButtonTextSlide.textLineEn}
-            // thisLetterSpacing ={resetButtonTextSlide.groupProps}
-            // whiteSpace,
-          />
-        </group>
-        <group {...auxiliaryBottomButtonFrame.groupProps}>
-          <UniversalFrame {...auxiliaryBottomButtonFrame.frameProps} />
-          <TextSlide
-            groupProps={auxiliaryBottomButtonTextSlide.groupProps}
-            textProps={auxiliaryBottomButtonTextSlide.textProps}
-            font={auxiliaryBottomButtonTextSlide.font}
-            fontSize={auxiliaryBottomButtonTextSlide.fontSize}
-            textLinePl={auxiliaryBottomButtonTextSlide.textLinePl}
-            textLineEn={auxiliaryBottomButtonTextSlide.textLineEn}
-            // thisLetterSpacing ={resetButtonTextSlide.groupProps}
-            // whiteSpace,
-          />
-        </group>
+        {/*-----Auxiliary Buttons-----------------------------------*/}
+        <AuxiliaryButtonSection />
       </a.group>
     </a.group>
   );

@@ -39,11 +39,6 @@ const ContainerAbout2DStaff = () => {
     canvasState.containerAboutSlideIndex = 0;
     canvasState.containerAboutSlidingDirection = 'none';
   }
-
-  console.log(
-    'canvasGlobalState.containerAboutSlideIndex',
-    canvasGlobalState.containerAboutSlideIndex
-  );
   /*
   Hook Section
   */

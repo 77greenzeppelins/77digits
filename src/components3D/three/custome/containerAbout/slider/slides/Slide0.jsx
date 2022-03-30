@@ -20,6 +20,7 @@ import useWindowSize from '../../../../../../hooks/useWindowSize';
  Basic Data
  */
 import {
+  slideSpring,
   slide0Box1Layout,
   slide0Box1Data,
   slide0Box2Layout,
@@ -48,7 +49,7 @@ const Slide0 = ({ slideId }) => {
   Spring for animation of "going from behind the scene"i.e on z-axis...
   */
   const springSlideContent = useSpring({
-    from: { position: [0, 0, -2] },
+    from: { position: [0, 0, slideSpring.hiddenPositionZ] },
     to: {
       position: [
         0,
@@ -58,13 +59,13 @@ const Slide0 = ({ slideId }) => {
         */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId === canvasGlobalState.containerAboutSlideIndex
-          ? 0
+          ? slideSpring.visiblePosition
           : slideId < canvasGlobalState.containerAboutSlideIndex
-          ? 0
-          : -2,
+          ? slideSpring.visiblePosition
+          : slideSpring.hiddenPositionZ,
       ],
     },
-    config: { mass: 10, tension: 70, friction: 30 },
+    config: { ...slideSpring.config },
   });
 
   /*
@@ -80,20 +81,20 @@ const Slide0 = ({ slideId }) => {
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId < canvasGlobalState.containerAboutSlideIndex &&
         windowSize.width < minForTablet
-          ? -1
-          : 0,
+          ? slideSpring.hiddenPositionX
+          : slideSpring.visiblePosition,
         /*
         in case of "tablet/desctop" animation goes along the y-axis;
         */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId < canvasGlobalState.containerAboutSlideIndex &&
         windowSize.width > minForTablet
-          ? 1
-          : 0,
+          ? slideSpring.hiddenPositionY
+          : slideSpring.visiblePosition,
         0,
       ],
     },
-    config: { mass: 10, tension: 70, friction: 30 },
+    config: { ...slideSpring.config },
   });
   /*
   JSX
@@ -125,10 +126,9 @@ const Slide0 = ({ slideId }) => {
                 windowSize.width < minForTablet
                   ? slide0Box1Layout.mobile.position
                   : slide0Box1Layout.desktop.position,
-              // ...slide0Box1Layout.mobile,
             }}
             /*
-            array of props; using map() we get 4 <SpinningBoxSide>
+            "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
             */
             spinningBoxConfig={slide0Box1Data}
             springConfig={slide0Box1DataForSpring}
@@ -151,10 +151,9 @@ const Slide0 = ({ slideId }) => {
                 windowSize.width < minForTablet
                   ? slide0Box2Layout.mobile.position
                   : slide0Box2Layout.desktop.position,
-              // ...slide0Box1Layout.mobile,
             }}
             /*
-            array of props; using map() we get 4 <SpinningBoxSide>
+            "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
             */
             spinningBoxConfig={slide0Box2Data}
             springConfig={slide0Box2DataForSpring}

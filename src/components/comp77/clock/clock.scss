@@ -2,7 +2,6 @@
 
 .clock {
   width: 100px;
-  border-radius: 5px;
 
   &__city {
     color: darken(setColor(light), 50%);
@@ -10,7 +9,7 @@
     user-select: none;
     font-weight: 400;
     font-family: $sanSerif;
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     white-space: nowrap;
   }
   &__digit {
@@ -19,6 +18,6 @@
     user-select: none;
     font-weight: 400;
     font-family: $sanSerif;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
   }
 }

@@ -20,6 +20,7 @@ import useWindowSize from '../../../../../../hooks/useWindowSize';
  Basic Data
  */
 import {
+  slideSpring,
   slide1Box1Layout,
   slide1Box1DataForSides,
   slide1DataForSpring,
@@ -44,10 +45,10 @@ const Slide1 = ({ slideId }) => {
   const canvasGlobalState = useSnapshot(canvasState);
 
   /*
-  Spring for animation entitled: "going from behind the scene"; it animates slide's content move on z-axis...
+  Spring for animation of "going from behind the scene"i.e on z-axis...
   */
   const springSlideContent = useSpring({
-    from: { position: [0, 0, -2] },
+    from: { position: [0, 0, slideSpring.hiddenPositionZ] },
     to: {
       position: [
         0,
@@ -57,42 +58,42 @@ const Slide1 = ({ slideId }) => {
         */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId === canvasGlobalState.containerAboutSlideIndex
-          ? 0
+          ? slideSpring.visiblePosition
           : slideId < canvasGlobalState.containerAboutSlideIndex
-          ? 0
-          : -2,
+          ? slideSpring.visiblePosition
+          : slideSpring.hiddenPositionZ,
       ],
     },
-    config: { mass: 10, tension: 70, friction: 30 },
+    config: { ...slideSpring.config },
   });
 
   /*
-  Spring for animation entiled: "go away from here to heven"it animates slide move on y-axis...
+  Spring for animation entiled: "go away from here to top or left"it animates slide move on y-axis...
   */
   const springGroup = useSpring({
     from: { position: [0, 0, 0] },
     to: {
       position: [
         /*
-        in case of mobile animation goes along the x-axis;
+        in case of "mobile" animation goes along the y-axis;
         */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId < canvasGlobalState.containerAboutSlideIndex &&
         windowSize.width < minForTablet
-          ? -1
-          : 0,
+          ? slideSpring.hiddenPositionX
+          : slideSpring.visiblePosition,
         /*
-        in case of tablet/desktop animation goes along the y-axis;
+        in case of "tablet/desctop" animation goes along the y-axis;
         */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId < canvasGlobalState.containerAboutSlideIndex &&
         windowSize.width > minForTablet
-          ? 1
-          : 0,
+          ? slideSpring.hiddenPositionY
+          : slideSpring.visiblePosition,
         0,
       ],
     },
-    config: { mass: 10, tension: 70, friction: 30 },
+    config: { ...slideSpring.config },
   });
 
   /*

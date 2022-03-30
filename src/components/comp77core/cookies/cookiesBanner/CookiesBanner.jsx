@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 /*
 Global State Staff
 */
-import { useSnapshot } from 'valtio';
+// import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../states/canvasState';
 
 /*
@@ -14,7 +14,7 @@ const CookiesBanner = ({ mainText, button, link, language }) => {
   Global State Section
   canvasState = {userAteCookies: false, isCookiesPopUpMounted: false}
   */
-  const globalCanvasState = useSnapshot(canvasState);
+  // const globalCanvasState = useSnapshot(canvasState);
 
   const cookieToggler = () => {
     canvasState.isCookiesPopUpMounted = false;
@@ -27,28 +27,15 @@ const CookiesBanner = ({ mainText, button, link, language }) => {
   JSX
   */
   return (
-    <div className="cookies-banner__container" onClick={cookieToggler}>
-      <p
-        className="cookies-banner__text"
-        // style={{ letterSpacing: window.innerWidth > 800 && 2 }}
-      >
-        {mainText}
-      </p>
+    <div className="cookies-banner__container">
+      <p className="cookies-banner__main-text">{mainText}</p>
       <div className="cookies-banner__buttons">
-        <button
-          // onClick={cookieToggler}
-          className="cookies-banner__button"
-          // style={{ letterSpacing: window.innerWidth > 800 && 2 }}
-        >
-          {button}
+        <button onClick={cookieToggler} className="cookies-banner__button">
+          <p className="cookies-banner__button-text"> {button}</p>
         </button>
         <div style={{ width: '20px' }} />
-        <Link
-          to="/cookies"
-          className="cookies-banner__link"
-          // style={{ letterSpacing: window.innerWidth > 800 && 2.5 }}
-        >
-          {link}
+        <Link to="/cookies" className="cookies-banner__link">
+          <p className="cookies-banner__button-text">{link}</p>
         </Link>
       </div>
     </div>

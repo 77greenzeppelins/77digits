@@ -56,19 +56,23 @@ const Cookies = () => {
       value && (
         <animated.aside className="cookies" style={{ opacity: opacity }}>
           <div className="cookies__container">
-            <CookiesBanner
-              mainText={mainTextPl}
-              button={buttonPl}
-              link={linkPl}
-              language="pl"
-            />
-            <div style={{ height: '15px' }} />
-            <CookiesBanner
-              mainText={mainTextEn}
-              button={buttonEn}
-              link={linkEn}
-              language="en"
-            />
+            <div className="cookies__cookie-banner-wrapper">
+              <CookiesBanner
+                mainText={mainTextPl}
+                button={buttonPl}
+                link={linkPl}
+                language="pl"
+              />
+            </div>
+            <div className="cookies__separator" />
+            <div className="cookies__cookie-banner-wrapper">
+              <CookiesBanner
+                mainText={mainTextEn}
+                button={buttonEn}
+                link={linkEn}
+                language="en"
+              />
+            </div>
           </div>
         </animated.aside>
       )

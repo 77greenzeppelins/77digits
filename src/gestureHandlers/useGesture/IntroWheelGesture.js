@@ -41,18 +41,12 @@ const IntroWheelGesture = () => {
       this operation sets two global state properties that are crucial in <ContainerIntroContent> as they determines what was the very first users's gesture; the same operation is in <IntroDragGesture>
       I've been testing various "state" mechanism: <i> bare "let" before function; <2> useRef, <3> useState; only global state solve my problem...
        */
-
       if (wheeling && canvasGlobalState.introContainerEventCounter === 0) {
         canvasState.introContainerEventType = 'wheeling';
-        // console.log(
-        //   'canvasState.introContainerEventType:',
-        //   canvasState.introContainerEventType
-        // );
-        // canvasState.introContainerEventCounter = 1;
-        // console.log(
-        //   'canvasState.introContainerEventCounter:',
-        //   canvasState.introContainerEventCounter
-        // );
+        /*
+        if you delate "canvasState.introContainerEventCounter = 1" other experience would be accessible; i.e. user scrolls, and suddenly drags! what happens? user goes to the beginning of container and only draging is available;
+        */
+        canvasState.introContainerEventCounter = 1;
       }
       /*
       this is spring part;
@@ -74,18 +68,9 @@ const IntroWheelGesture = () => {
       */
       if (y === canvasGlobalState.introContainerWheelDragBounds.bottom) {
         canvasState.endOfContainerIntro = true;
-        console.log(
-          'canvasGlobalState.endOfContainerIntro:',
-          canvasGlobalState.endOfContainerIntro,
-          y
-        );
-        // console.log('.....onWheel & onDrag are blocked');
       }
     },
-    [
-      canvasGlobalState.introContainerWheelDragBounds.bottom,
-      canvasGlobalState.endOfContainerIntro,
-    ]
+    [canvasGlobalState.introContainerWheelDragBounds.bottom]
   );
 
   /*

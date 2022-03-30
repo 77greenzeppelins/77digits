@@ -94,7 +94,7 @@ const InitialOverlay = () => {
                   </a.div>
                   <div className="initial-overlay__bottom">
                     <div className="initial-overlay__bottom-foreground">
-                      <div className="initial-overlay__clocks">
+                      <div className="initial-overlay__bottom-part clocks">
                         <Clock
                           city={'Dzierżoniów'}
                           timeZone={'Europe/Warsaw'}
@@ -111,7 +111,7 @@ const InitialOverlay = () => {
                           // style={{ paddingBottom: '20px' }}
                         />
                       </div>
-                      <div className="initial-overlay__date">
+                      <div className="initial-overlay__bottom-part date">
                         <DateDisplayer />
                       </div>
                     </div>

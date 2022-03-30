@@ -10,16 +10,28 @@ import family from '../../../../../../assets/textures/containerAbout_Slide1_imag
 import { springConfigs } from '../../../../../../data/reactSpring';
 
 /*
-Slide0's Layout
+BasicData
+*/
+const fontSizes = { fontSmall: 0.06, fontMedium: 0.07, fontLarge: 0.08 };
+/*
+Slide0 General Settings
+*/
+const slideSpring = {
+  visiblePosition: 0,
+  hiddenPositionX: -1,
+  hiddenPositionY: 1,
+  hiddenPositionZ: -2,
+  config: springConfigs.configBasic,
+};
+
+/*
+Slide0 / Box1 => portreit
 */
 const slide0Box1Layout = {
   mobile: { scale: [0.27, 0.27, 0.27], position: [0, 0, 0] },
   desktop: { scale: [0.35, 0.35, 0.35], position: [-0.1, 0.1, 0] },
 };
-const slide0Box2Layout = {
-  mobile: { scale: [0.25, 0.25, 0.25], position: [0, -0.3, -0.3] },
-  desktop: { scale: [0.3, 0.3, 0.3], position: [-0.15, -0.25, -0.3] },
-};
+
 const slide0Box1DataForSpring = {
   /* necessary for <SpinningBox>'s gestures animation */
   axisLimitation: 'x',
@@ -49,9 +61,9 @@ const slide0Box1Data = [
       format: 'portrait',
       textAwers: 'Laureat prestiżowej nagrody (Nobla?)',
       textRewers: false,
-      textPosition: [0, 0, 0.015],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      textPosition: [0, 0, 0.01],
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -74,8 +86,8 @@ const slide0Box1Data = [
       textAwers: 'Przyszłość branży medycznej',
       textRewers: false,
       textPosition: [0, 0, 0.015],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -97,10 +109,10 @@ const slide0Box1Data = [
       imagesIndex: 2,
       format: 'portrait',
       textAwers: false,
-      textRewers: 'Autorka wspaniałych dzieł muzycznych',
+      textRewers: 'Twórczyni wybitnych dzieł artystycznych',
       textPosition: [0, 0, 0.015],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -124,8 +136,8 @@ const slide0Box1Data = [
       textAwers: false,
       textRewers: 'Producent unikalnych rozwiązań technicznych',
       textPosition: [0, 0, 0.015],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -141,6 +153,14 @@ const slide0Box1Data = [
   },
 ];
 
+/*
+Slide0 / Box2 =>banner
+*/
+const slide0Box2Layout = {
+  mobile: { scale: [0.25, 0.25, 0.25], position: [0, -0.3, -0.3] },
+  desktop: { scale: [0.3, 0.3, 0.3], position: [-0.15, -0.25, -0.3] },
+};
+
 const slide0Box2Data = [
   /* Panel Front */
   {
@@ -151,8 +171,8 @@ const slide0Box2Data = [
       textAwers: 'Szefowa wszystkich szefów',
       textRewers: false,
       textPosition: [0, 0, 0.015],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -175,11 +195,11 @@ const slide0Box2Data = [
     labelProps: {
       imagesIndex: 1,
       format: 'banner',
-      textAwers: 'Twórczyni wybitnego bloga',
+      textAwers: 'Autorka poczytnego bloga',
       textRewers: false,
       textPosition: [0, 0, 0.015],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -202,8 +222,8 @@ const slide0Box2Data = [
       textAwers: 'Bizneswoman dekady!',
       textRewers: false,
       textPosition: [0, 0, 0.015],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -226,8 +246,8 @@ const slide0Box2Data = [
       textAwers: 'Najlepszy strzelec ligi',
       textRewers: false,
       textPosition: [0, 0, 0.015],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -266,8 +286,8 @@ const slide1Box1DataForSides = [
       textAwers: 'Web developer',
       textRewers: false,
       textPosition: [0, 0, 0.015],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -290,8 +310,8 @@ const slide1Box1DataForSides = [
       textAwers: 'Programista',
       textRewers: false,
       textPosition: [0, 0, 0.015],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -314,10 +334,10 @@ const slide1Box1DataForSides = [
       format: 'column',
       textAwers: false,
       // textRewers: 'Autorka podziwianych dzieł muzycznych',
-      textRewers: 'UX & UI',
+      textRewers: 'poszukuję idealnego UI',
       textPosition: [0, 0, 0.017],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -339,10 +359,11 @@ const slide1Box1DataForSides = [
       imagesIndex: 3,
       format: 'column',
       textAwers: false,
-      textRewers: 'Technilogia i sztuka',
+      textRewers:
+        'komponuję cyfrowe rozwiązania poprzez syntezę technologii i estetyki ',
       textPosition: [0, 0, 0.015],
-      font: 'garamont',
-      fontSizes: { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 },
+      // font: 'garamont',
+      fontSizes: { ...fontSizes },
       textAlign: 'center',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
@@ -360,10 +381,11 @@ const slide1Box1DataForSides = [
 const slide1DataForSpring = {
   axisLimitation: 'x',
   animationDelay: 12000,
-  configBasic: springConfigs.configBasic,
+  config: springConfigs.molasses,
 };
 
 export {
+  slideSpring,
   slide0Box1Layout,
   slide0Box1Data,
   slide0Box2Layout,

@@ -18,16 +18,12 @@ import {
 
 const UniversalCanvasWithoutMap = ({
   bgColor,
-  banner,
-  portrait,
-  customeFormat,
   format,
-  isDoubleSide,
+  // isDoubleSide,
 }) => {
   /*
-    Manipulation for planeGeometry's args
-    */
-  // let format = banner || portrait || customeFormat;
+  Manipulation for planeGeometry's args
+  */
   let planeWidth = null;
   let planeHeight = null;
 

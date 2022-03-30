@@ -25,12 +25,7 @@ import {
 const UniversalCanvas = React.memo(
   ({
     meshProps,
-    //___props for planeGeometry's args calculated in switch()
-    // banner,
-    // portrait,
-    // customeFormat,
     format,
-    //___props for material
     image,
     bgColor,
     // isDoubleSide,

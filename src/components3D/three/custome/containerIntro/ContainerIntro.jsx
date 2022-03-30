@@ -1,5 +1,4 @@
 import React, { useRef, Suspense } from 'react';
-import { useFrame } from '@react-three/fiber';
 /*
 Global State staff
 */
@@ -41,23 +40,6 @@ const ContainerIntro = ({ onClickCameraSetter }) => {
   */
   const [draggedPositionZ] = IntroDragGesture();
   const { wheeledPositionZ } = IntroWheelGesture();
-  /*
-  useFrame Section
-  */
-  useFrame(() => {
-    /*
-    What this if statemen does? What is the concept?
-    It works as a kind of switcher that should turn on / turn off visibility of "odlot background"; it's necessary as background's plane with shader is visible as only "containerInitial" is visible/mounted/ahed of camera/;
-    */
-    if (
-      introContainer.current.position.z > 11.5 &&
-      introContainer.current.position.z < 13.7
-    ) {
-      canvasState.isOdlotBackgroundVisible = true;
-    } else {
-      canvasState.isOdlotBackgroundVisible = false;
-    }
-  });
 
   /*
   JSX
@@ -72,34 +54,18 @@ const ContainerIntro = ({ onClickCameraSetter }) => {
           : wheeledPositionZ.to(wheeledPositionZ => wheeledPositionZ)
       }
     >
-      {/*-----77-----------------------------------------------*/}
-      <Suspense fallback={null}>
-        <FramedObjects
-          groupProps={{
-            name: 'groupForFramedObjects',
-          }}
-        />
-      </Suspense>
-      {/*-----Text Slides---------------------------------------*/}
+      {/*-----Text Slides------------------------------------------*/}
       <TextSection />
-      {/*-----Still Life---------------------------------------*/}
       <Suspense fallback={null}>
+        {/*-----77-------------------------------------------------*/}
+        <FramedObjects />
+        {/*-----StillLifeSection------------------------------------*/}
         <StillLifeSection />
-      </Suspense>
-      {/*-----Instant Contact-----------------------------------*/}
-      <Suspense fallback={null}>
+        {/*-----EndButtons------------------------------------------*/}
         <EndButtons />
+        {/*-----RaphaelSection--------------------------------------*/}
         <RaphaelSection />
       </Suspense>
-      {/* {canvasGlobalState.currentContainer === 'introContainer' && (
-        <AnimatedUnivers
-          groupProps={{
-            position: [0, -0.15, -10],
-            name: 'GroupForAnimatedUniverse',
-          }}
-        />
-      )} */}
-      z
     </a.group>
   );
 };

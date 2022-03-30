@@ -48,8 +48,6 @@
     align-items: center;
     width: 100%;
     height: 30%;
-    // padding: 0 20px 0 20px;
-    // background-color: setColor(dark);
     &-foreground {
       position: absolute;
       display: flex;
@@ -57,7 +55,7 @@
       align-items: center;
       padding: 0 20px 0 20px;
       width: 90%;
-      max-width: 400px;
+      max-width: 800px;
       height: 80%;
       z-index: 950;
       background-color: setColor(dark);
@@ -72,22 +70,19 @@
       background-color: setColor(dark);
     }
   }
-  &__clocks {
+  &__bottom-part {
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 2vh 0;
-  }
-  &__date {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding-bottom: 65px;
+    &.clocks {
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 2vh 0;
+    }
+    &.date {
+      justify-content: center;
+      align-items: flex-end;
+    }
   }
 }

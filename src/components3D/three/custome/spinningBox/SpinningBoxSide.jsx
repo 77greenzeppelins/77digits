@@ -120,7 +120,7 @@ const SpinningBoxSide = ({
         {...canvasProps}
       />
       {/* } */}
-      <SideLabel labelProps={labelProps} format={labelProps.format} />
+      <SideLabel labelProps={labelProps} />
     </a.group>
   );
 };

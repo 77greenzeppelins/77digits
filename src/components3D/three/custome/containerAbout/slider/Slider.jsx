@@ -4,7 +4,6 @@ Components
 */
 import Slide0 from './slides/Slide0';
 import Slide1 from './slides/Slide1';
-// import Slide2 from './slides/Slide2';
 
 /*
 -----------------------------------------------------------------

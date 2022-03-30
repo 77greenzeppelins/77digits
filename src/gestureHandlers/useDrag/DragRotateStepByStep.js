@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef } from 'react';
 // import { useThree } from '@react-three/fiber';
 /*
 Gesture Staff

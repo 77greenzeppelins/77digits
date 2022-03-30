@@ -41,16 +41,7 @@ const IntroDragGesture = () => {
        */
       if (dragging && canvasGlobalState.introContainerEventCounter === 0) {
         canvasState.introContainerEventType = 'dragging';
-        console.log(
-          'canvasState.introContainerEventType:',
-          canvasState.introContainerEventType
-        );
-        // setCounter(counter => counter + 1);
         canvasState.introContainerEventCounter = 1;
-        console.log(
-          'canvasState.introContainerEventCounter:',
-          canvasState.introContainerEventCounter
-        );
       }
       api.start({ draggedPositionZ: offsetY * factorPositionY });
     },
@@ -66,18 +57,9 @@ const IntroDragGesture = () => {
       */
       if (y === canvasGlobalState.introContainerWheelDragBounds.bottom) {
         canvasState.endOfContainerIntro = true;
-        console.log(
-          'canvasGlobalState.endOfContainerIntro:',
-          canvasGlobalState.endOfContainerIntro,
-          y
-        );
-        console.log('.....onWheel & onDrag are blocked');
       }
     },
-    [
-      canvasGlobalState.introContainerWheelDragBounds.bottom,
-      canvasGlobalState.endOfContainerIntro,
-    ]
+    [canvasGlobalState.introContainerWheelDragBounds.bottom]
   );
   /*
   Gesture Section
