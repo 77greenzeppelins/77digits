@@ -5,20 +5,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // transform: rotate();
   }
-  &__button-container {
-    width: 50px;
+  &__button {
+    width: 20%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  &__progress-indicator {
-    height: 100%;
-    color: setColor(light);
-    opacity: 0.5;
-    display: flex;
-    align-items: flex-end;
+    &.spinner {
+      background-color: #fff;
+      opacity: 0.2;
+      border-radius: 10px;
+    }
   }
 }

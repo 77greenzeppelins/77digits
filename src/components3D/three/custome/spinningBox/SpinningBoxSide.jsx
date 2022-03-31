@@ -19,7 +19,6 @@ import { a, useSpring } from '@react-spring/three';
 ----------------------------------------------------------------------
 */
 const SpinningBoxSide = ({
-  databaseIndex,
   //_____
   sideProps,
   canvasProps,
@@ -27,6 +26,7 @@ const SpinningBoxSide = ({
   labelProps,
   //___
   springConfig,
+  isSlideVisible,
   isSideRotating,
 }) => {
   /*
@@ -39,52 +39,34 @@ const SpinningBoxSide = ({
   SpringSection
   */
   const { springValue } = useSpring({
-    loop: { reverse: isSideRotating },
+    // loop: { reverse: isSlideVisible },
     from: { springValue: rotation },
     to: {
       springValue: [
         /* important for "banner"'s sides that rotate along x-axis */
-        axisLimitation === 'y'
-          ? databaseIndex % 2
-            ? Math.PI * 0.5 + Math.PI
+        axisLimitation === 'y' && isSlideVisible && isSideRotating
+          ? labelProps.imagesIndex % 2
+            ? rotation[0] + Math.PI
             : Math.PI
-          : 0,
+          : rotation[0],
         /*
-        important for "portrait"'s sides that rotate along -axis
-        side front & back have even index so result is 0
-        why "0.5 + Math.PI" ?
-        it's a initial value (hardcoded in sliderData.js) that play role of a sort of offset;
+        important for "portrait"'s sides that rotate along y-axis;
+        side front & back have even index so result is 0;
         */
-        axisLimitation === 'x'
-          ? databaseIndex % 2
-            ? Math.PI * 0.5 + Math.PI
+        axisLimitation === 'x' && isSlideVisible && isSideRotating
+          ? labelProps.imagesIndex % 2
+            ? rotation[1] + Math.PI
             : Math.PI
-          : 0,
+          : rotation[1],
         /*
         z-axis value
         */
         rotation[2],
       ],
     },
-    // config: { mass: 20, tension: 70, friction: 30 },
     config: config,
     delay: animationDelay,
-    /*
-    There is an issue when user click and go to another slide...
-    I've tried to solve it using souse and cancel
-    Seems that cancel works in contrast to pouse; 
-    */
-    // pause:
-    //   canvasGlobalState.currentContainer === 'aboutContainer' && isSideRotating
-    //     ? false
-    //     : true,
-    cancel: isSideRotating ? false : true,
-    /*
-    this doesn't work / doesn't solve the issu of "clicking":
-     // loop: true,
-     // reverse: true,
-     // loop: { reverse: true, delay: animationDelay },
-    */
+    cancel: isSlideVisible ? false : true,
   });
 
   /*

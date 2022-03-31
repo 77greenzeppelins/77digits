@@ -13,6 +13,8 @@ import { springConfigs } from '../../../../../../data/reactSpring';
 BasicData
 */
 const fontSizes = { fontSmall: 0.06, fontMedium: 0.07, fontLarge: 0.08 };
+const fontSizesSmall = { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.07 };
+
 /*
 Slide0 General Settings
 */
@@ -20,7 +22,7 @@ const slideSpring = {
   visiblePosition: 0,
   hiddenPositionX: -1,
   hiddenPositionY: 1,
-  hiddenPositionZ: -2,
+  hiddenPositionZ: -2.2,
   config: springConfigs.configBasic,
 };
 
@@ -37,7 +39,7 @@ const slide0Box1DataForSpring = {
   axisLimitation: 'x',
   /* necessary for <SpinningBoxside>'s autorotation spring animation */
   config: springConfigs.molasses,
-  animationDelay: 9000,
+  animationDelay: 600,
 };
 
 const slide0Box2DataForSpring = {
@@ -45,7 +47,7 @@ const slide0Box2DataForSpring = {
   axisLimitation: 'y',
   /* necessary for <SpinningBoxside>'s autorotation spring animation */
   config: springConfigs.molasses,
-  animationDelay: 12000,
+  animationDelay: 1400,
 };
 
 /*
@@ -264,6 +266,7 @@ const slide0Box2Data = [
 ];
 
 /*
+---------------------------------------------------------------------------
 Slide1's Layout
 it actually define <SlideBox>'s scale & position depending on device size;
 */
@@ -283,12 +286,12 @@ const slide1Box1DataForSides = [
     labelProps: {
       imagesIndex: 0,
       format: 'column',
-      textAwers: 'Web developer',
+      textAwers: 'Tworzę strony internetowe dla wymagających Klientów',
       textRewers: false,
-      textPosition: [0, 0, 0.015],
+      textPosition: [0, 0, 0.01],
       // font: 'garamont',
-      fontSizes: { ...fontSizes },
-      textAlign: 'center',
+      fontSizes: { ...fontSizesSmall },
+      textAlign: 'left',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
     },
@@ -334,11 +337,11 @@ const slide1Box1DataForSides = [
       format: 'column',
       textAwers: false,
       // textRewers: 'Autorka podziwianych dzieł muzycznych',
-      textRewers: 'poszukuję idealnego UI',
+      textRewers: 'Niestrudzenie poszukuję idealnego UI...',
       textPosition: [0, 0, 0.017],
       // font: 'garamont',
       fontSizes: { ...fontSizes },
-      textAlign: 'center',
+      textAlign: 'left',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
     },
@@ -359,12 +362,11 @@ const slide1Box1DataForSides = [
       imagesIndex: 3,
       format: 'column',
       textAwers: false,
-      textRewers:
-        'komponuję cyfrowe rozwiązania poprzez syntezę technologii i estetyki ',
+      textRewers: 'Buduję połączenia pomiędzy domeną technologii i estetyki ',
       textPosition: [0, 0, 0.015],
       // font: 'garamont',
-      fontSizes: { ...fontSizes },
-      textAlign: 'center',
+      fontSizes: { ...fontSizesSmall },
+      textAlign: 'left',
       whiteSpace: 'normal',
       MaxWidthFactor: 0.01,
     },
@@ -380,7 +382,7 @@ const slide1Box1DataForSides = [
 ];
 const slide1DataForSpring = {
   axisLimitation: 'x',
-  animationDelay: 12000,
+  animationDelay: 600,
   config: springConfigs.molasses,
 };
 

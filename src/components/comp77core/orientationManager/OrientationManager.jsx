@@ -19,7 +19,7 @@ const OrientationManager = () => {
   //   });
   const [orientationManager, setOrientationManager] = useState(false);
   const [mobileContent, setMobileContent] = useState(false);
-  const [noMobileContent, setNoMobileContent] = useState(false);
+  // const [noMobileContent, setNoMobileContent] = useState(false);
 
   /*
   useWindowSize Section
@@ -33,8 +33,8 @@ const OrientationManager = () => {
     condition for mounting <OrientationManager> & displaying mobile content
     */
     if (isMobileOnly && windowSize.width > windowSize.height) {
-      console.log('OrientationManager / isMobileOnly: ', isMobileOnly);
-      console.log('OrientationManager / Is mobile + is horizontal');
+      // console.log('OrientationManager / isMobileOnly: ', isMobileOnly);
+      // console.log('OrientationManager / Is mobile + is horizontal');
       setOrientationManager(true);
       setMobileContent(true);
       /*
@@ -63,10 +63,10 @@ const OrientationManager = () => {
     */
     if (windowSize.width < 250 || windowSize.height < 450) {
       setOrientationManager(true);
-      setNoMobileContent(true);
+      // setNoMobileContent(true);
     } else {
       setOrientationManager(false);
-      setNoMobileContent(true);
+      // setNoMobileContent(true);
     }
   }, [windowSize]);
 

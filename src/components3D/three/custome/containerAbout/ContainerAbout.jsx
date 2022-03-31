@@ -3,6 +3,7 @@ import React from 'react';
 Components
 */
 import Slider from './slider/Slider';
+import NavigationPanel from './navigationPanel/NavigationPanel';
 /*
 Global State Staff
 */
@@ -27,6 +28,7 @@ const ContainerAbout = () => {
       >
         {/*-----Slider Section-----------------------------------*/}
         <Slider />
+        <NavigationPanel />
       </group>
     )
   );

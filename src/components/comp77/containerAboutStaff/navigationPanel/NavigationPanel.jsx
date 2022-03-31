@@ -1,86 +1,79 @@
-import React from 'react';
-/*
-Components
-*/
-import CrescentArrow from '../../arrows/crescentArrow/CrescentArrow';
-import SliderProgressIndicator from '../../progressIndicators/sliderProgressIndicator/SliderProgressIndicator';
+import React, { useEffect } from 'react';
+import { debounce } from 'lodash';
 /*
 Global State Staff
 */
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../states/canvasState';
+const slidesArrayNumber = 5;
 
 /*
 ------------------------------------------------------------------------------
 */
-const NavigationPanel = ({ slidesArrayNumber, orientation }) => {
+const NavigationPanel = () => {
   /*
   Global State Section
   canvasState = {containerAboutSlideIndex:0, containerAboutSlidingDirection: ,"none", ...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
+  /*
+    userExperience Section / onClick Handlers
+    */
+  const goForward = debounce(() => {
+    if (canvasGlobalState.containerAboutSlideIndex < slidesArrayNumber - 1) {
+      canvasState.containerAboutSlideIndex += 1;
+      canvasState.containerAboutSlidingDirection = 'forward';
+    }
+  }, 200);
+
+  const goBackward = debounce(() => {
+    if (
+      /*
+        this condition means: "do nothing if index === 0, work only if index > 0"
+        */
+      canvasGlobalState.containerAboutSlideIndex > 0
+    ) {
+      canvasState.containerAboutSlideIndex -= 1;
+      canvasState.containerAboutSlidingDirection = 'backward';
+    }
+  }, 200);
+
+  const rotateBox = debounce(() => {
+    switch (canvasGlobalState.containerAboutSlideIndex) {
+      case 0:
+        canvasState.slide0Rotation = !canvasGlobalState.slide0Rotation;
+        break;
+      case 1:
+        canvasState.slide1Rotation = !canvasGlobalState.slide1Rotation;
+        break;
+      default:
+        canvasGlobalState.slide0Rotation = false;
+        canvasGlobalState.slide1Rotation = false;
+        break;
+    }
+  }, 600);
+
+  //____
+
+  useEffect(() => {
+    console.log(
+      'canvasGlobalState.slide0Rotation',
+      canvasGlobalState.slide0Rotation
+    );
+    console.log(
+      'canvasGlobalState.slide1Rotation',
+      canvasGlobalState.slide1Rotation
+    );
+  }, [canvasGlobalState.slide1Rotation, canvasGlobalState.slide0Rotation]);
 
   /*
   JSX
   */
   return (
-    <div
-      className="navigation-panel__container"
-      style={{
-        flexDirection: orientation && 'column-reverse',
-      }}
-    >
-      <div
-        className="navigation-panel__button-container left"
-        style={{ transform: orientation && 'rotate(180deg)' }}
-      >
-        {/*-----Arrow down / backward--------------------------------*/}
-        <CrescentArrow
-          slidesArrayNumber={slidesArrayNumber}
-          arrowDirection="arrow-down"
-          /*
-          initially and if user clicks to first slide, arrow shoud be "opaque"
-          */
-          arrowOpacity={
-            canvasGlobalState.containerAboutSlideIndex === 0 ? 0.1 : 1
-          }
-          rotated="rotated"
-          // frameSide="right"
-          arrowSide={orientation && 'left'}
-          // arrowSide="right"
-        />
-      </div>
-      {/*-----progress indicator--------------------------------*/}
-      <div
-        className="navigation-panel__progress-indicator"
-        style={{
-          alignItems: orientation && 'center',
-          transform: orientation && 'rotate(90deg)',
-        }}
-      >
-        <SliderProgressIndicator slidesArrayNumber={slidesArrayNumber} />
-      </div>
-
-      <div
-        className="navigation-panel__button-container right"
-        style={{ transform: orientation && 'rotate(0deg)' }}
-      >
-        {/*-----Arrow up / forward----------------------------------*/}
-        <CrescentArrow
-          slidesArrayNumber={slidesArrayNumber}
-          arrowDirection="arrow-up"
-          /*
-          if user clicks to final slide, arrow shoud be "opaque"
-          */
-          arrowOpacity={
-            canvasGlobalState.containerAboutSlideIndex === slidesArrayNumber - 1
-              ? 0.1
-              : 1
-          }
-          // frameSide="left"
-          arrowSide="right"
-        />
-      </div>
+    <div className="navigation-panel__container">
+      <div onClick={goBackward} className="navigation-panel__button" />
+      <div onClick={rotateBox} className="navigation-panel__button spinner" />
+      <div onClick={goForward} className="navigation-panel__button" />
     </div>
   );
 };

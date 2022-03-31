@@ -2,7 +2,7 @@ import React from 'react';
 /*
 Global State Staff
 */
-import { useSnapshot } from 'valtio';
+// import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../states/canvasState';
 
 /*
@@ -11,20 +11,20 @@ import { canvasState } from '../../../../states/canvasState';
 const AuxiliaryButton = ({ id }) => {
   /*
   Global State Section
-  canvasState = {endOfContainerIntro: false, startOfContainerIntroShow: false, ...}
+  canvasState = {startOfContainerIntroShow: false, ...}
   */
-  const canvasGlobalState = useSnapshot(canvasState);
+  // const canvasGlobalState = useSnapshot(canvasState);
 
   /*
   UserExperience Section
   */
   const onClickHandler = () => {
     if (id === 'auxiliary-button-top') {
-      console.log('auxiliary-button-top in acxtion....');
+      // console.log('auxiliary-button-top in acxtion....');
       canvasState.startOfContainerIntroShow = true;
     }
     if (id === 'auxiliary-button-bottom') {
-      console.log('auxiliary-button-bottom in acxtion....');
+      // console.log('auxiliary-button-bottom in acxtion....');
       canvasState.startOfContainerIntroShow = true;
     }
   };

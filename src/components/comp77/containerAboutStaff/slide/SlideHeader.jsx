@@ -39,15 +39,6 @@ const SlideHeader = ({ slideId, header }) => {
       ? 0
       : 0,
   });
-
-  /*
-  
-  */
-  // useEffect(() => {
-  //   console.log('slideId', slideId);
-  //   console.log('header', header);
-  // }, [slideId, header]);
-
   /*
   JSX
   */
@@ -63,7 +54,6 @@ const SlideHeader = ({ slideId, header }) => {
             }),
           }}
         >
-          {/* <span>Ty </span> <span> &amp; Ja</span> */}
           {header && header.map((item, i) => <span key={i}>{item}</span>)}
         </animated.h1>
       )

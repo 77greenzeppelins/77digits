@@ -85,3 +85,18 @@
   important: "top: -windowSize.height * 0.3" it allowes to overflow "navigation-tablet" parent class that have "height: 0px"; 
   */
 }
+
+.container-about {
+  &__bottom-wrapper {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    height: 0px;
+  }
+  &__navigation-wrapper {
+    position: absolute;
+    // background-color: #fff;
+    // opacity: 0.2;
+  }
+}

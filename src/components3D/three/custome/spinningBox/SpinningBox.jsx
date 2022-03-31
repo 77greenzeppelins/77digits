@@ -21,10 +21,6 @@ const SpinningBox = ({
   */
   groupProps,
   /*
-  props for <SpinningBox>'s gesture
-  */
-  isSideRotating,
-  /*
   props for <SpinningBoxSide> layout and ...
   */
   spinningBoxConfig,
@@ -32,6 +28,8 @@ const SpinningBox = ({
   props for <SpinningBoxSide>'s spring
   */
   springConfig,
+  isSlideVisible,
+  isSideRotating,
 }) => {
   /*
   References
@@ -72,6 +70,7 @@ const SpinningBox = ({
               props for Spring
               */
               springConfig={springConfig}
+              isSlideVisible={isSlideVisible}
               isSideRotating={isSideRotating}
             />
           )

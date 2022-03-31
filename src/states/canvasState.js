@@ -129,24 +129,17 @@ const canvasState = proxy({
   /*
   --------------------------------------------<Container About 2D Staff>
   */
-  /* 
-  is set to "true" in <ContainerAboutIntroduction>'s onClick event; 
-  when user clicks any of "you&MeButton" a sequence of animations takes place:
-  (1) <CAI>'s display is set to "none" i.e it's not visible
-  (2) 
-  what actually triggers the very next "chapter" of <ContainerAbout>
-  is set to "false" ...?
-  */
-  // isContainerAboutIntroductionClosed: false,
-  /*
-  refers to <ContainerAbout> introduction section; there is a sytuation where user have to choose language wersion
-  */
-  // userLanguagePreference: 'none',
   /*
   is changed in <CarouselPanelButtons> 2D component;
   */
   containerAboutSlideIndex: 0,
   containerAboutSlidingDirection: 'none',
+  /*
+  is changed in <NavigatoionPane> 2D component; it works as toggler; when value is 0 rotation has "initial rotation" if value is 1 rotation has "rotated rotation"
+  */
+  slide0Rotation: false,
+  slide1Rotation: false,
+
   /*
   -------------------------------------------<Container Manu 2D staff> 
   */

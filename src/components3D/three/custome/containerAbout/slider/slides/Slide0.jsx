@@ -132,9 +132,10 @@ const Slide0 = ({ slideId }) => {
             */
             spinningBoxConfig={slide0Box1Data}
             springConfig={slide0Box1DataForSpring}
-            isSideRotating={
+            isSlideVisible={
               slideId === canvasGlobalState.containerAboutSlideIndex
             }
+            isSideRotating={canvasGlobalState.slide0Rotation}
           />
 
           <SpinningBox
@@ -157,9 +158,10 @@ const Slide0 = ({ slideId }) => {
             */
             spinningBoxConfig={slide0Box2Data}
             springConfig={slide0Box2DataForSpring}
-            isSideRotating={
+            isSlideVisible={
               slideId === canvasGlobalState.containerAboutSlideIndex
             }
+            isSideRotating={canvasGlobalState.slide0Rotation}
           />
         </a.group>
       </Suspense>

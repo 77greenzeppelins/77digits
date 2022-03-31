@@ -134,9 +134,10 @@ const Slide1 = ({ slideId }) => {
             /*
             props for "DragRotateStepByStep" just to prevent rotatinhg when slide is invisible or within position transition;
             */
-            isSideRotating={
+            isSlideVisible={
               slideId === canvasGlobalState.containerAboutSlideIndex
             }
+            isSideRotating={canvasGlobalState.slide1Rotation}
           />
         </a.group>
       </Suspense>

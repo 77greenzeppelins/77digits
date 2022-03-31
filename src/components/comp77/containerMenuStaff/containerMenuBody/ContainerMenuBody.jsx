@@ -55,8 +55,6 @@ const ContainerMenuBody = () => {
       value && (
         <animated.div
           className="container-menu-top-content"
-          /*
-           */
           style={{
             opacity: animatedValue,
           }}
