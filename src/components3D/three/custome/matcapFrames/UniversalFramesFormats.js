@@ -32,8 +32,11 @@ const columnWidth = [
   { position: [0, -0.71, 0], rotation: [0, 0, Math.PI * 0.5] },
 ];
 const columnHeight = [
+  /*
+  setting value "x" vertical bar is moc
+  */
   { position: [0.31, 0, 0], rotation: [0, 0, 0] },
-  { position: [-0.31, -0, 0], rotation: [0, 0, 0] },
+  { position: [-0.31, 0, 0], rotation: [0, 0, 0] },
 ];
 //___order: topLeft / topRight / bottomLeft / bottomRight
 const columnCorners = [
@@ -48,6 +51,35 @@ const columnCorners = [
 
 const columnWidthSize = 0.58;
 const columnHeightSize = 1.38;
+
+/*
+Data for verticalFormat frame
+*/
+
+const verticalFormatWidth = [
+  { position: [0, 0.71, 0], rotation: [0, 0, Math.PI * 0.5] },
+  { position: [0, -0.71, 0], rotation: [0, 0, Math.PI * 0.5] },
+];
+const verticalFormatHeight = [
+  /*
+  setting value "x" vertical bar is moc
+  */
+  { position: [0.41, 0, 0], rotation: [0, 0, 0] },
+  { position: [-0.41, 0, 0], rotation: [0, 0, 0] },
+];
+//___order: topLeft / topRight / bottomLeft / bottomRight
+const verticalFormatCorners = [
+  [-0.405, 0.705, 0.0],
+  [0.405, 0.705, 0.0],
+  [-0.405, -0.705, 0.0],
+  [0.405, -0.705, 0.0],
+];
+
+//___used <...Canvas> to set plane's args={width, height}; ratio = 0.42
+//___in Inkscape I can use: width: 420px / height: 1000px;
+
+const verticalFormatWidthSize = 0.77;
+const verticalFormatHeightSize = 1.38;
 
 /*
 Data for portrait frame
@@ -96,6 +128,12 @@ export {
   columnCorners,
   columnWidthSize,
   columnHeightSize,
+  //___for verticalFormat; used in <UniversalFrame> &<UniversalCanvas>
+  verticalFormatWidth,
+  verticalFormatHeight,
+  verticalFormatCorners,
+  verticalFormatWidthSize,
+  verticalFormatHeightSize,
   //___dditional size factor to correct canvas
   sizeFactor,
 };

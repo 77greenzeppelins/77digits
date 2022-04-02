@@ -77,23 +77,32 @@ const venusSideLeftText = {
 
 const bannerFrontText = {
   /*
-  configuration for <TextSlideFromArray>
-  "groupProps" => no need to specify it... 
-  "textProps" => each line requires its own configObject;
+Pl
   */
-  textProps: [{ position: [0, 0.06, 0.02] }, { position: [0, -0.04, 0.02] }],
-  font: ['jost', 'jost'],
+  textLinesPl: ['przesuń lub skroluj', 'góra / dół'],
+  textPropsPl: [{ position: [0, 0.06, 0.02] }, { position: [0, -0.04, 0.02] }],
+  fontPl: ['jost', 'jost'],
   // font: 'garamont',
-  fontSize: [
+  fontSizePl: [
     { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
     { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
   ],
-  textLinesPl: ['przesuń lub skroluj', 'góra / dół'],
+  textWidthFactorPl: 5,
+  /*
+En
+  */
   textLinesEn: ['scroll or drag', 'to explore'],
+  textPropsEn: [{ position: [0, 0.06, 0.02] }, { position: [0, -0.04, 0.02] }],
+  fontEn: ['jost', 'jost'],
+  // font: 'garamont',
+  fontSizeEn: [
+    { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
+    { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
+  ],
   /*
   low factor means wide width
   */
-  textWidthFactor: 5,
+  textWidthFactorEn: 5,
 };
 
 const bannerLeftText = {

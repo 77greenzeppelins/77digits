@@ -14,7 +14,7 @@ Hook
 */
 import useWindowSize from '../../../../../hooks/useWindowSize';
 /*
-Accesibility staff
+Accessibility staff
 */
 import { A11y } from '@react-three/a11y';
 
@@ -23,20 +23,32 @@ import { A11y } from '@react-three/a11y';
 */
 const TextSlideFromArray = ({
   groupProps,
-  textProps,
-  font, //options: "garamont", "jost"; default "jost"
-  fontSize,
-  textLinesPl,
-  textLinesEn,
-  thisLetterSpacing,
-  letterSpacing,
-  thisWhiteSpace,
-  textAlign,
   /*
-  both props are important for counting "maxWidth" if text is vertical
+  PL
   */
+  textLinesPl,
+  textPropsPl,
+  fontPl, //"garamont", "jost"
+  fontSizePl,
+  letterSpacingPl,
+  textWidthFactorPl,
+  whiteSpacePl,
+  textAlignPl,
+  /*
+  EN
+  */
+  textLinesEn,
+  textPropsEn,
+  fontEn, //"garamont", "jost"
+  fontSizeEn,
+  letterSpacingEn,
+  textWidthFactorEn,
+  whiteSpaceEn,
+  textAlignEn,
+
+  //___
+  textAlign,
   textOrientation,
-  textWidthFactor,
 }) => {
   /*
   Global State Section
@@ -51,7 +63,6 @@ const TextSlideFromArray = ({
   Hook size
   */
   const windowSize = useWindowSize();
-
   /*
   JSX
   */
@@ -61,34 +72,27 @@ const TextSlideFromArray = ({
         {textLinesPl.map((line, index) => (
           <TextVerse
             key={`${line}-${index}`}
-            textProps={textProps[index]}
+            textProps={textPropsPl[index]}
             text={line}
-            font={font && font[index]}
-            // fontResponsiveness={
-            //   viewport.width < 3.0
-            //     ? fontSize[index].fontSmall
-            //     : viewport.width < 5.5
-            //     ? fontSize[index].fontMiddle
-            //     : fontSize[index].fontLarge
-            // }
+            font={fontPl[index]}
             fontResponsiveness={
               windowSize.width < 300
-                ? fontSize[index].fontSmall
+                ? fontSizePl[index].fontSmall
                 : windowSize.width < 600
-                ? fontSize[index].fontMiddle
-                : fontSize[index].fontLarge
+                ? fontSizePl[index].fontMiddle
+                : fontSizePl[index].fontLarge
             }
             /*
-            why "first check if thisLetterSpacing is true"?
-            because if we dont specify "letterSpacing" JS is looking for "thisLetterSpacing[index]" and throws an error if doesn't find
-            */
-            letterSpacing={(letterSpacing && letterSpacing[index]) || 0.15}
-            whiteSpace={thisWhiteSpace} //'normal' "nowrap"
-            textAlign={textAlign && textAlign[index]}
+              Why additional logic "&&" ?
+              it's occasional props so first check if was sent; if wasn't sent and without logic app crushes becouse "react" looks for index' value; 
+              */
+            letterSpacing={(letterSpacingPl && letterSpacingPl[index]) || 0.15}
+            whiteSpace={whiteSpacePl && whiteSpacePl[index]} //'normal' "nowrap"
+            textAlign={textAlignPl && textAlignPl[index]}
             maxWidth={
               textOrientation === 'vertical'
-                ? viewport.height / textWidthFactor
-                : viewport.width / textWidthFactor
+                ? viewport.height / textWidthFactorPl
+                : viewport.width / textWidthFactorPl
             }
           />
         ))}
@@ -99,29 +103,23 @@ const TextSlideFromArray = ({
       <group {...groupProps}>
         {textLinesEn.map((line, index) => (
           <TextVerse
-            textProps={{ ...textProps[index] }}
+            textProps={textPropsEn[index]}
             text={line}
-            font={font[index]}
-            // fontResponsiveness={
-            //   viewport.width < 3.0
-            //     ? fontSize.fontSmall
-            //     : viewport.width < 5.5
-            //     ? fontSize.fontMiddle
-            //     : fontSize.fontLarge
-            // }
+            font={fontEn[index]}
             fontResponsiveness={
               windowSize.width < 300
-                ? fontSize[index].fontSmall
+                ? fontSizeEn[index].fontSmall
                 : windowSize.width < 600
-                ? fontSize[index].fontMiddle
-                : fontSize[index].fontLarge
+                ? fontSizeEn[index].fontMiddle
+                : fontSizeEn[index].fontLarge
             }
-            letterSpacing={thisLetterSpacing || 0.15}
-            whiteSpace={thisWhiteSpace} //'normal' "nowrap"
+            letterSpacing={(letterSpacingEn && letterSpacingEn[index]) || 0.15}
+            whiteSpace={whiteSpaceEn && whiteSpaceEn[index]} //'normal' "nowrap"
+            textAlign={textAlignEn && textAlignEn[index]}
             maxWidth={
               textOrientation === 'vertical'
-                ? viewport.height / textWidthFactor
-                : viewport.width / textWidthFactor
+                ? viewport.height / textWidthFactorEn
+                : viewport.width / textWidthFactorEn
             }
           />
         ))}

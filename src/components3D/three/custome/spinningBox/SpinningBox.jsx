@@ -21,7 +21,7 @@ const SpinningBox = ({
   */
   groupProps,
   /*
-  props for <SpinningBoxSide> layout and ...
+  props for <SpinningBoxSide> layout and its children
   */
   spinningBoxConfig,
   /*
@@ -61,13 +61,12 @@ const SpinningBox = ({
           ({ sideProps, labelProps, canvasProps, frameProps }, index) => (
             <SpinningBoxSide
               key={index}
-              databaseIndex={labelProps.imagesIndex}
               labelProps={labelProps}
               sideProps={sideProps}
               canvasProps={canvasProps}
               frameProps={frameProps}
               /*
-              props for Spring
+              props for <SpinningBoxSide>'s springAnimation;
               */
               springConfig={springConfig}
               isSlideVisible={isSlideVisible}

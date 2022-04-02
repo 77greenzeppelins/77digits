@@ -2,8 +2,8 @@ import React from 'react';
 /*
 Components
 */
-import Slide0 from './slides/Slide0';
-import Slide1 from './slides/Slide1';
+import Slide0 from './slide0/Slide0';
+import Slide1 from './slide1/Slide1';
 
 /*
 -----------------------------------------------------------------

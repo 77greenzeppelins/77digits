@@ -1,39 +1,76 @@
 import React from 'react';
-import { useThree } from '@react-three/fiber';
 /*
 Components
 */
-import TextVerse from '../../../drei/text/textVerse/TextVerse';
+// import TextVerse from '../../../drei/text/textVerse/TextVerse';
 import UniversalCanvasWithoutMap from '../matcapFrames/UniversalCanvasWithoutMap';
+import TextSlideFromArray from '../textSlides/textSlideFromArray/TextSlideFromArray';
+/*
+Hook Staff
+*/
+import useWindowSize from '../../../../hooks/useWindowSize';
 
 /*
 ----------------------------------------------------------------------------
 */
 const SideLabel = ({ labelProps }) => {
   /*
-  useThree Section
+  Hook size
   */
-  const { viewport } = useThree();
+  const windowSize = useWindowSize();
   /*
   JSX
   */
   return (
-    <group
-      rotation={[
-        0,
+    <group rotation={[0, 0, 0]}>
+      <TextSlideFromArray
+        // key={labelProps.groupProps.name}
+        // groupProps={labelProps.groupProps}
         /*
-        if textAwers is false user can see the image
+        Section Pl
         */
-        !labelProps.textAwers ? Math.PI : 0,
-        0,
-      ]}
-    >
-      <TextVerse
+        textLinesPl={labelProps.textLinesPl}
+        textPropsPl={
+          /*
+              How logic of "textProps" works?
+              First check if "file with data" has "textProps"; if not distinguished between two options, depending on mobile width...
+              */
+          labelProps.textPropsPl
+            ? labelProps.textPropsPl
+            : windowSize.width < 600
+            ? labelProps.mobilePositionPl
+            : labelProps.desktopPositionPl
+        }
+        fontPl={labelProps.fontPl}
+        fontSizePl={labelProps.fontSizePl}
+        letterSpacingPl={labelProps.letterSpacingPl}
+        textAlignPl={labelProps.textAlignPl}
+        textWidthFactorPl={labelProps.textWidthFactorPl}
+        /*
+        Section En
+        */
+        textLinesEn={labelProps.textLinesEn}
+        textPropsEn={
+          /*
+          How logic of "textProps" works?
+          First check if "file with data" has "textProps"; if not distinguished between two options, depending on mobile width...
+          */
+          labelProps.textPropsEn
+            ? labelProps.textPropsEn
+            : windowSize.width < 600
+            ? labelProps.mobilePositionEn
+            : labelProps.desktopPositionEn
+        }
+        fontEn={labelProps.fontEn}
+        fontSizeEn={labelProps.fontSizeEn}
+        letterSpacingEn={labelProps.letterSpacingEn}
+        textAlignEn={labelProps.textAlignEn}
+        textWidthFactorEn={labelProps.textWidthFactorEn}
+      />
+      {/* <TextVerse
         // textProps={{ position: [0, 0, 0.015] }}
         textProps={{ position: labelProps.textPosition }}
-        text={
-          labelProps.textAwers ? labelProps.textAwers : labelProps.textRewers
-        }
+        text={labelProps.text}
         font={labelProps.font}
         fontResponsiveness={
           viewport.width < 3.0
@@ -45,7 +82,7 @@ const SideLabel = ({ labelProps }) => {
         textAlign={labelProps.textAlign}
         whiteSpace={labelProps.whiteSpace}
         maxWidth={viewport.width * labelProps.MaxWidthFactor}
-      />
+      /> */}
       <UniversalCanvasWithoutMap format={labelProps.format} />
     </group>
   );

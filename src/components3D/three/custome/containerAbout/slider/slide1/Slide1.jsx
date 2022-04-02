@@ -21,20 +21,18 @@ import useWindowSize from '../../../../../../hooks/useWindowSize';
  */
 import {
   slideSpring,
-  slide0Box1Layout,
-  slide0Box1Data,
-  slide0Box2Layout,
-  slide0Box2Data,
-  slide0Box1DataForSpring,
-  slide0Box2DataForSpring,
-} from './slidesData';
+  slide1Box1Layout,
+  slide1Box1DataForSides,
+  slide1DataForSpring,
+} from './slide1Data';
 
 const minForTablet = 850;
 
 /*
 ----------------------------------------------------------------------
 */
-const Slide0 = ({ slideId }) => {
+
+const Slide1 = ({ slideId }) => {
   /*
   Hook Section
   Why this hook?
@@ -45,6 +43,7 @@ const Slide0 = ({ slideId }) => {
     {containerAboutSlideIndex: 0,...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
+
   /*
   Spring for animation of "going from behind the scene"i.e on z-axis...
   */
@@ -96,72 +95,52 @@ const Slide0 = ({ slideId }) => {
     },
     config: { ...slideSpring.config },
   });
+
   /*
   JSX
-  What is "GroupForAnimationLevelSlide"?
-  What is "GroupForAnimationLevelSlideContent"
   */
   return (
     <a.group
       name="GroupForAnimationLevelSlideOfSlide_0"
-      position={springGroup.position}
+      position={springSlideContent.position}
     >
       {/*-----Body Section------------------------------------------*/}
       <Suspense fallback={null}>
         <a.group
           name="GroupForAnimationLevelSlideContentOfSlide_0"
-          position={springSlideContent.position}
+          position={springGroup.position}
         >
           <SpinningBox
             groupProps={{
               name: 'groupForSpinningBox_slide_0_Box_1_Data',
               /*
-              a bit of responsiveness; 
+              a bit of responsiveness based on data from "slide1Box1Layout"; 
               */
               scale:
                 windowSize.width < minForTablet
-                  ? slide0Box1Layout.mobile.scale
-                  : slide0Box1Layout.desktop.scale,
+                  ? slide1Box1Layout.mobile.scale
+                  : slide1Box1Layout.desktop.scale,
               position:
                 windowSize.width < minForTablet
-                  ? slide0Box1Layout.mobile.position
-                  : slide0Box1Layout.desktop.position,
+                  ? slide1Box1Layout.mobile.position
+                  : slide1Box1Layout.desktop.position,
+              // ...slide0Box1Layout.mobile,
             }}
             /*
-            "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
+            array of props; using map() we get 4 <SpinningBoxSide>
             */
-            spinningBoxConfig={slide0Box1Data}
-            springConfig={slide0Box1DataForSpring}
+            spinningBoxConfig={slide1Box1DataForSides}
+            springConfig={slide1DataForSpring}
+            /*
+            props for <SpinningBoxSide>'s spring;
+            */
             isSlideVisible={
               slideId === canvasGlobalState.containerAboutSlideIndex
             }
-            isSideRotating={canvasGlobalState.slide0Rotation}
-          />
-
-          <SpinningBox
-            groupProps={{
-              name: 'groupForSpinningBox_slide_0_Box_2_Data',
-              /*
-              a bit of responsiveness; 
-              */
-              scale:
-                windowSize.width < minForTablet
-                  ? slide0Box2Layout.mobile.scale
-                  : slide0Box2Layout.desktop.scale,
-              position:
-                windowSize.width < minForTablet
-                  ? slide0Box2Layout.mobile.position
-                  : slide0Box2Layout.desktop.position,
-            }}
             /*
-            "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
+            props for <SpinningBoxSide>'s spring; one of conditions that decide if side rotates; it chaneges within 2D <NavigationPanel> button;
             */
-            spinningBoxConfig={slide0Box2Data}
-            springConfig={slide0Box2DataForSpring}
-            isSlideVisible={
-              slideId === canvasGlobalState.containerAboutSlideIndex
-            }
-            isSideRotating={canvasGlobalState.slide0Rotation}
+            isSideRotating={canvasGlobalState.slide1Rotation}
           />
         </a.group>
       </Suspense>
@@ -169,24 +148,4 @@ const Slide0 = ({ slideId }) => {
   );
 };
 
-export default Slide0;
-
-/*
-  useEffect Test
-  */
-// useEffect(() => {
-//   console.log('slideId:', slideId);
-//   console.log(
-//     'canvasGlobalState.containerAboutSlideIndex:',
-//     canvasGlobalState.containerAboutSlideIndex
-//   );
-//   console.log(
-//     'canvasGlobalState.currentContainer:',
-//     canvasGlobalState.currentContainer
-//   );
-// }, [
-//   slideId,
-//   canvasGlobalState.containerAboutSlideIndex,
-//   canvasGlobalState.currentContainer,
-// ]);
-// console.log('textHeader.position:', textHeader.position);
+export default Slide1;

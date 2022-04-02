@@ -20,13 +20,16 @@ const TextSection = () => {
     <>
       {/*-----Front Text-------------------------------------------*/}
       <TextSlideFromArray
-        textProps={bannerFrontText.textProps}
-        text={bannerFrontText.fontSize}
-        font={bannerFrontText.font}
-        fontSize={bannerFrontText.fontSize}
         textLinesPl={bannerFrontText.textLinesPl}
+        textPropsPl={bannerFrontText.textPropsPl}
+        fontPl={bannerFrontText.fontPl}
+        fontSizePl={bannerFrontText.fontSizePl}
+        textWidthFactorPl={bannerFrontText.textWidthFactorPl}
         textLinesEn={bannerFrontText.textLinesEn}
-        textWidthFactor={bannerFrontText.textWidthFactor}
+        textPropsEn={bannerFrontText.textPropsEn}
+        fontEn={bannerFrontText.fontEn}
+        fontSizeEn={bannerFrontText.fontSizeEn}
+        textWidthFactorEn={bannerFrontText.textWidthFactorEn}
       />
       {/*-----Left Text-------------------------------------------*/}
       <TextSlide

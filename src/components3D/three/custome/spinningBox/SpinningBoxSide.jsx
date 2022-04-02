@@ -18,45 +18,49 @@ import { a, useSpring } from '@react-spring/three';
 /*
 ----------------------------------------------------------------------
 */
-const SpinningBoxSide = ({
-  //_____
-  sideProps,
-  canvasProps,
-  frameProps,
-  labelProps,
-  //___
-  springConfig,
-  isSlideVisible,
-  isSideRotating,
-}) => {
+const SpinningBoxSide = (
+  /*
+   "spinningBoxConfig" is destructured here!
+  */
+  {
+    /*
+  Props used by <SpinningBoxSide>
+  */
+    sideProps,
+    springConfig,
+    isSlideVisible,
+    isSideRotating,
+    /*
+  Props for children components
+  */
+    canvasProps,
+    frameProps,
+    labelProps,
+  }
+) => {
   /*
   Props destructuring
   */
   const { position, rotation } = sideProps;
   const { axisLimitation, animationDelay, config } = springConfig;
-
   /*
   SpringSection
   */
   const { springValue } = useSpring({
-    // loop: { reverse: isSlideVisible },
     from: { springValue: rotation },
     to: {
       springValue: [
-        /* important for "banner"'s sides that rotate along x-axis */
+        /*
+        important for "banner"'s sides that rotate along x-axis
+        */
         axisLimitation === 'y' && isSlideVisible && isSideRotating
-          ? labelProps.imagesIndex % 2
-            ? rotation[0] + Math.PI
-            : Math.PI
+          ? rotation[0] + Math.PI
           : rotation[0],
         /*
         important for "portrait"'s sides that rotate along y-axis;
-        side front & back have even index so result is 0;
         */
         axisLimitation === 'x' && isSlideVisible && isSideRotating
-          ? labelProps.imagesIndex % 2
-            ? rotation[1] + Math.PI
-            : Math.PI
+          ? rotation[1] + Math.PI
           : rotation[1],
         /*
         z-axis value
@@ -66,7 +70,7 @@ const SpinningBoxSide = ({
     },
     config: config,
     delay: animationDelay,
-    cancel: isSlideVisible ? false : true,
+    cancel: isSlideVisible ? false : true, //????
   });
 
   /*
@@ -84,24 +88,20 @@ const SpinningBoxSide = ({
       />
       <UniversalCanvas
         meshProps={{
-          /*
-            if textRewers = false just rotate <UC> so that initially it's invisible;
-            */
           rotation: [
             0,
             /*
-              important for "portrait"
-              */
-            !labelProps.textRewers ? Math.PI : 0,
+            important for "portrait"
+            */
+            Math.PI,
             /*
-              importan for "banner" because image must be "upside down";
-              */
+            importan for "banner" because image must be "upside down";
+            */
             axisLimitation === 'y' ? Math.PI : 0,
           ],
         }}
         {...canvasProps}
       />
-      {/* } */}
       <SideLabel labelProps={labelProps} />
     </a.group>
   );

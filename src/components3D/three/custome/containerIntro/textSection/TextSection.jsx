@@ -36,25 +36,47 @@ const TextSection = () => {
             key={slide.groupProps.name}
             groupProps={slide.groupProps}
             /*
-            How logic of "textProps" works?
-            First check if "file with data" has "textProps"; if not distinguished between two options, depending on mobile width...
+            Section Pl
             */
-            textProps={
-              slide.textProps
-                ? slide.textProps
+            textLinesPl={slide.textLinesPl}
+            textPropsPl={
+              /*
+              How logic of "textProps" works?
+              First check if "file with data" has "textProps"; if not distinguished between two options, depending on mobile width...
+              */
+              slide.textPropsPl
+                ? slide.textPropsPl
                 : windowSize.width < 600
-                ? slide.mobilePosition
-                : slide.desktopPosition
+                ? slide.mobilePositionPl
+                : slide.desktopPositionPl
+            }
+            fontPl={slide.fontPl}
+            fontSizePl={slide.fontSizePl}
+            letterSpacingPl={slide.letterSpacingPl}
+            // textAlignPl={slide.textAlignPl}
+            // textWidthFactorPl={slide.textWidthFactorPl}
+            /*
+            Section En
+            */
+            textLinesEn={slide.textLinesEn}
+            textPropsEn={
+              /*
+              How logic of "textProps" works?
+              First check if "file with data" has "textProps"; if not distinguished between two options, depending on mobile width...
+              */
+              slide.textPropsEn
+                ? slide.textPropsEn
+                : windowSize.width < 600
+                ? slide.mobilePositionEn
+                : slide.desktopPositionEn
             }
             //_____
             // textProps={slide.textProps}
-            font={slide.font}
-            fontSize={slide.fontSize}
-            letterSpacing={slide.letterSpacing}
-            textAlign={slide.textAlign}
-            textLinesPl={slide.textLinesPl}
-            textLinesEn={slide.textLinesEn}
-            textWidthFactor={slide.textWidthFactor}
+            fontEn={slide.fontEn}
+            fontSizeEn={slide.fontSizeEn}
+            letterSpacingEn={slide.letterSpacingEn}
+            // textAlignEn={slide.textAlignEn}
+            // textWidthFactorEn={slide.textWidthFactorEn}
           />
         );
       })}

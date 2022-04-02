@@ -130,12 +130,12 @@ const canvasState = proxy({
   --------------------------------------------<Container About 2D Staff>
   */
   /*
-  is changed in <CarouselPanelButtons> 2D component;
+  is changed in <NavigatoionPanel> 2D component;
   */
   containerAboutSlideIndex: 0,
   containerAboutSlidingDirection: 'none',
   /*
-  is changed in <NavigatoionPane> 2D component; it works as toggler; when value is 0 rotation has "initial rotation" if value is 1 rotation has "rotated rotation"
+  these values are changed in <NavigatoionPanel> 2D component' s button; this buton works as toggler; "the heart of logic" is in <SpinningBoxSide>'s spring; anyway... when value is 0, <SBS> has "initial rotation value"; when value is 1 <SBS> rotates to "rotated rotation value";
   */
   slide0Rotation: false,
   slide1Rotation: false,

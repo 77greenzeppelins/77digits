@@ -21,18 +21,17 @@ import useWindowSize from '../../../../../../hooks/useWindowSize';
  */
 import {
   slideSpring,
-  slide1Box1Layout,
-  slide1Box1DataForSides,
-  slide1DataForSpring,
-} from './slidesData';
+  slide0Box1Layout,
+  slide0Box1Data,
+  slide0Box1DataForSpring,
+} from './slide0Data';
 
 const minForTablet = 850;
 
 /*
 ----------------------------------------------------------------------
 */
-
-const Slide1 = ({ slideId }) => {
+const Slide0 = ({ slideId }) => {
   /*
   Hook Section
   Why this hook?
@@ -43,7 +42,6 @@ const Slide1 = ({ slideId }) => {
     {containerAboutSlideIndex: 0,...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
-
   /*
   Spring for animation of "going from behind the scene"i.e on z-axis...
   */
@@ -95,9 +93,10 @@ const Slide1 = ({ slideId }) => {
     },
     config: { ...slideSpring.config },
   });
-
   /*
   JSX
+  What is "GroupForAnimationLevelSlide"?
+  What is "GroupForAnimationLevelSlideContent"
   */
   return (
     <a.group
@@ -114,30 +113,26 @@ const Slide1 = ({ slideId }) => {
             groupProps={{
               name: 'groupForSpinningBox_slide_0_Box_1_Data',
               /*
-              a bit of responsiveness based on data from "slide1Box1Layout"; 
+              a bit of responsiveness; 
               */
               scale:
                 windowSize.width < minForTablet
-                  ? slide1Box1Layout.mobile.scale
-                  : slide1Box1Layout.desktop.scale,
+                  ? slide0Box1Layout.mobile.scale
+                  : slide0Box1Layout.desktop.scale,
               position:
                 windowSize.width < minForTablet
-                  ? slide1Box1Layout.mobile.position
-                  : slide1Box1Layout.desktop.position,
-              // ...slide0Box1Layout.mobile,
+                  ? slide0Box1Layout.mobile.position
+                  : slide0Box1Layout.desktop.position,
             }}
             /*
-            array of props; using map() we get 4 <SpinningBoxSide>
+            "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
             */
-            spinningBoxConfig={slide1Box1DataForSides}
-            springConfig={slide1DataForSpring}
-            /*
-            props for "DragRotateStepByStep" just to prevent rotatinhg when slide is invisible or within position transition;
-            */
+            spinningBoxConfig={slide0Box1Data}
+            springConfig={slide0Box1DataForSpring}
             isSlideVisible={
               slideId === canvasGlobalState.containerAboutSlideIndex
             }
-            isSideRotating={canvasGlobalState.slide1Rotation}
+            isSideRotating={canvasGlobalState.slide0Rotation}
           />
         </a.group>
       </Suspense>
@@ -145,4 +140,4 @@ const Slide1 = ({ slideId }) => {
   );
 };
 
-export default Slide1;
+export default Slide0;

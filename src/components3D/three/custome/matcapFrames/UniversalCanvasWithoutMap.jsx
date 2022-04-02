@@ -9,6 +9,8 @@ import {
   portraitHeightSize,
   columnWidthSize,
   columnHeightSize,
+  verticalFormatWidthSize,
+  verticalFormatHeightSize,
   sizeFactor,
 } from '../matcapFrames/UniversalFramesFormats';
 
@@ -39,6 +41,10 @@ const UniversalCanvasWithoutMap = ({
     case 'column':
       planeWidth = columnWidthSize + sizeFactor;
       planeHeight = columnHeightSize + sizeFactor;
+      break;
+    case 'verticalFormat':
+      planeWidth = verticalFormatWidthSize + sizeFactor;
+      planeHeight = verticalFormatHeightSize + sizeFactor;
       break;
     default:
       // console.log('UniversalCanvas / format = default');
