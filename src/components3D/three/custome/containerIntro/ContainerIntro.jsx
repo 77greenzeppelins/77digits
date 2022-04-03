@@ -58,7 +58,7 @@ const ContainerIntro = ({ onClickCameraSetter }) => {
       <TextSection />
       <Suspense fallback={null}>
         {/*-----77-------------------------------------------------*/}
-        <FramedObjects />
+        {/* <FramedObjects /> */}
         {/*-----StillLifeSection------------------------------------*/}
         <StillLifeSection />
         {/*-----EndButtons------------------------------------------*/}

@@ -68,7 +68,7 @@ const venusSideLeftText = {
     rotation: [0, -Math.PI * 0.45, -Math.PI * 0.5],
     position: [-0.34, 0, -0.07],
   },
-  fontSize: { fontSmall: 0.02, fontMiddle: 0.03, fontLarge: 0.03 },
+  fontSize: { fontSmall: 0.02, fontMedium: 0.03, fontLarge: 0.03 },
   textOrientation: 'vertical',
   textWidthFactor: 10,
   textLinePl: '"Narodziny  77digits"...  Dziękuję Sandro za inspirację...',
@@ -84,10 +84,10 @@ Pl
   fontPl: ['jost', 'jost'],
   // font: 'garamont',
   fontSizePl: [
-    { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
-    { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
+    { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
+    { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
   ],
-  textWidthFactorPl: 5,
+  maxWidthFactorPl: [5, 5],
   /*
 En
   */
@@ -96,13 +96,13 @@ En
   fontEn: ['jost', 'jost'],
   // font: 'garamont',
   fontSizeEn: [
-    { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
-    { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
+    { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
+    { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
   ],
   /*
   low factor means wide width
   */
-  textWidthFactorEn: 5,
+  maxWidthFactorEn: [5, 5],
 };
 
 const bannerLeftText = {
@@ -117,7 +117,7 @@ const bannerLeftText = {
   /*
   "textProps" => no need to specify it as "textWidthFactor" creates as many lines as words in "textLinesPl" / "textLinesEn"
   */
-  fontSize: { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
+  fontSize: { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
   textLinePl: 'przesuwaj na urządzeniu dotykowym',
   textLineEn: 'drag on touch devices',
   /*
@@ -138,7 +138,7 @@ const bannerRightText = {
   /*
   "textProps" => no need to specify it as "textWidthFactor" creates as many lines as words in "textLinesPl" / "textLinesEn"
   */
-  fontSize: { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
+  fontSize: { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
   textLinePl: 'skroluj myszką',
   textLineEn: 'scroll on desktop',
   /*

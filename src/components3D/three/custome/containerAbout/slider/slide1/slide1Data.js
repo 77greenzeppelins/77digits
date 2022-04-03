@@ -1,11 +1,12 @@
 //
 import family from '../../../../../../assets/textures/containerAbout_Slide1_image1.jpg';
+import manOnTheMoon from '../../../../../../assets/textures/containerAbout_Slide0_the_dzow_times_445_800.webp';
 //
 import { springConfigs } from '../../../../../../data/reactSpring';
 /*
 Basic Data
 */
-const fontSizes = { fontSmall: 0.06, fontMedium: 0.07, fontLarge: 0.08 };
+// const fontSizes = { fontSmall: 0.06, fontMedium: 0.07, fontLarge: 0.08 };
 const fontSizesSmall = { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.07 };
 
 /*
@@ -92,6 +93,7 @@ const slide1Box1DataForSides = [
       for <UniversalFrameWithoutMap>
       */
       format: 'verticalFormat',
+      image: manOnTheMoon,
     },
     /*
     for <UniversalCanvas>
@@ -138,6 +140,7 @@ const slide1Box1DataForSides = [
       for <UniversalFrameWithoutMap>
       */
       format: 'verticalFormat',
+      image: manOnTheMoon,
     },
     canvasProps: {
       image: family,
@@ -179,6 +182,7 @@ const slide1Box1DataForSides = [
       for <UniversalFrameWithoutMap>
       */
       format: 'verticalFormat',
+      image: manOnTheMoon,
     },
     canvasProps: {
       image: family,
@@ -222,6 +226,7 @@ const slide1Box1DataForSides = [
       for <UniversalFrameWithoutMap>
       */
       format: 'verticalFormat',
+      image: manOnTheMoon,
     },
     canvasProps: {
       image: family,

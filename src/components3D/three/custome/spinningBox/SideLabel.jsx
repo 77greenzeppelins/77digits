@@ -4,6 +4,7 @@ Components
 */
 // import TextVerse from '../../../drei/text/textVerse/TextVerse';
 import UniversalCanvasWithoutMap from '../matcapFrames/UniversalCanvasWithoutMap';
+import UniversalCanvas from '../matcapFrames/UniversalCanvas';
 import TextSlideFromArray from '../textSlides/textSlideFromArray/TextSlideFromArray';
 /*
 Hook Staff
@@ -33,7 +34,8 @@ const SideLabel = ({ labelProps }) => {
         textPropsPl={
           /*
               How logic of "textProps" works?
-              First check if "file with data" has "textProps"; if not distinguished between two options, depending on mobile width...
+              First check if "fileWithData.js" has "textProps"; if not distinguished between two options: mobile vs desktop; 
+              we actually decide which "array" pass to <TextSideFromArray>
               */
           labelProps.textPropsPl
             ? labelProps.textPropsPl
@@ -43,9 +45,17 @@ const SideLabel = ({ labelProps }) => {
         }
         fontPl={labelProps.fontPl}
         fontSizePl={labelProps.fontSizePl}
+        strokeWidthPl={labelProps.strokeWidthPl}
         letterSpacingPl={labelProps.letterSpacingPl}
         textAlignPl={labelProps.textAlignPl}
-        textWidthFactorPl={labelProps.textWidthFactorPl}
+        /*
+        "maxWidthFactorPl" depends on device width so a piece of logic is needed here; sililar to "textPropsPl";
+        */
+        maxWidthFactorPl={
+          windowSize.width < 600
+            ? labelProps.maxWidthFactorMobilePl
+            : labelProps.maxWidthFactorDesktopPl
+        }
         /*
         Section En
         */
@@ -65,25 +75,21 @@ const SideLabel = ({ labelProps }) => {
         fontSizeEn={labelProps.fontSizeEn}
         letterSpacingEn={labelProps.letterSpacingEn}
         textAlignEn={labelProps.textAlignEn}
-        textWidthFactorEn={labelProps.textWidthFactorEn}
-      />
-      {/* <TextVerse
-        // textProps={{ position: [0, 0, 0.015] }}
-        textProps={{ position: labelProps.textPosition }}
-        text={labelProps.text}
-        font={labelProps.font}
-        fontResponsiveness={
-          viewport.width < 3.0
-            ? labelProps.fontSizes.fontSmall
-            : viewport.width < 5.5
-            ? labelProps.fontSizes.fontMedium
-            : labelProps.fontSizes.fontLarge
+        maxWidthFactorEn={
+          windowSize.width < 600
+            ? labelProps.maxWidthFactorMobileEn
+            : labelProps.maxWidthFactorDesktopEn
         }
-        textAlign={labelProps.textAlign}
-        whiteSpace={labelProps.whiteSpace}
-        maxWidth={viewport.width * labelProps.MaxWidthFactor}
-      /> */}
-      <UniversalCanvasWithoutMap format={labelProps.format} />
+        strokeWidthEn={labelProps.strokeWidthEn}
+      />
+      {/*
+    ..............
+    */}
+      {labelProps.image ? (
+        <UniversalCanvas format={labelProps.format} image={labelProps.image} />
+      ) : (
+        <UniversalCanvasWithoutMap format={labelProps.format} />
+      )}
     </group>
   );
 };

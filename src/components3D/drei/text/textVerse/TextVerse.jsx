@@ -20,6 +20,8 @@ const TextVerse = React.forwardRef(
       whiteSpace,
       textAlign,
       letterSpacing,
+      lineHeight,
+      strokeWidth,
       //
       maxWidth,
       anchorX,
@@ -46,6 +48,13 @@ const TextVerse = React.forwardRef(
         textAlign={textAlign}
         maxWidth={maxWidth}
         anchorX={anchorX}
+        lineHeight={lineHeight || 1.2}
+        /*
+        To experiment with font "micro-sizes"
+        value of "strokeWidth" might be "0.0005" and font is more "fit" 
+        */
+        strokeWidth={strokeWidth || 0}
+        strokeColor={0x000000}
       >
         <meshBasicMaterial color={fontColor || 0xffffff} />
         {text}

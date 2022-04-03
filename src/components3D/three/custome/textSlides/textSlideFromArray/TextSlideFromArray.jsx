@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
 /*
 Components
@@ -31,9 +31,10 @@ const TextSlideFromArray = ({
   fontPl, //"garamont", "jost"
   fontSizePl,
   letterSpacingPl,
-  textWidthFactorPl,
+  maxWidthFactorPl,
   whiteSpacePl,
   textAlignPl,
+  strokeWidthPl,
   /*
   EN
   */
@@ -42,13 +43,14 @@ const TextSlideFromArray = ({
   fontEn, //"garamont", "jost"
   fontSizeEn,
   letterSpacingEn,
-  textWidthFactorEn,
+  maxWidthFactorEn,
   whiteSpaceEn,
   textAlignEn,
+  strokeWidthEn,
 
   //___
-  textAlign,
   textOrientation,
+  //___
 }) => {
   /*
   Global State Section
@@ -63,6 +65,14 @@ const TextSlideFromArray = ({
   Hook size
   */
   const windowSize = useWindowSize();
+
+  //___________
+  useEffect(() => {
+    console.log('TextSlideFromArray / maxWidthFactorPl:', maxWidthFactorPl);
+    console.log('TextSlideFromArray / fontPl:', fontPl);
+  }, [maxWidthFactorPl, fontPl]);
+
+  //___________
   /*
   JSX
   */
@@ -79,7 +89,7 @@ const TextSlideFromArray = ({
               windowSize.width < 300
                 ? fontSizePl[index].fontSmall
                 : windowSize.width < 600
-                ? fontSizePl[index].fontMiddle
+                ? fontSizePl[index].fontMedium
                 : fontSizePl[index].fontLarge
             }
             /*
@@ -90,10 +100,14 @@ const TextSlideFromArray = ({
             whiteSpace={whiteSpacePl && whiteSpacePl[index]} //'normal' "nowrap"
             textAlign={textAlignPl && textAlignPl[index]}
             maxWidth={
-              textOrientation === 'vertical'
-                ? viewport.height / textWidthFactorPl
-                : viewport.width / textWidthFactorPl
+              maxWidthFactorPl
+                ? textOrientation === 'vertical'
+                  ? viewport.height / maxWidthFactorPl[index]
+                  : viewport.width / maxWidthFactorPl[index]
+                : null
             }
+            //___
+            strokeWidth={strokeWidthPl && strokeWidthPl[index]}
           />
         ))}
       </group>
@@ -118,9 +132,10 @@ const TextSlideFromArray = ({
             textAlign={textAlignEn && textAlignEn[index]}
             maxWidth={
               textOrientation === 'vertical'
-                ? viewport.height / textWidthFactorEn
-                : viewport.width / textWidthFactorEn
+                ? viewport.height / maxWidthFactorEn
+                : viewport.width / maxWidthFactorEn
             }
+            strokeWidth={strokeWidthEn}
           />
         ))}
       </group>
