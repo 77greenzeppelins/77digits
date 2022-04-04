@@ -6,6 +6,7 @@ Components
 import UniversalCanvasWithoutMap from '../matcapFrames/UniversalCanvasWithoutMap';
 import UniversalCanvas from '../matcapFrames/UniversalCanvas';
 import TextSlideFromArray from '../textSlides/textSlideFromArray/TextSlideFromArray';
+import UniqueObject from '../containerAbout/uniqueObjects/UniqueObject';
 /*
 Hook Staff
 */
@@ -25,10 +26,8 @@ const SideLabel = ({ labelProps }) => {
   return (
     <group rotation={[0, 0, 0]}>
       <TextSlideFromArray
-        // key={labelProps.groupProps.name}
-        // groupProps={labelProps.groupProps}
         /*
-        Section Pl
+        Props for Pl-version
         */
         textLinesPl={labelProps.textLinesPl}
         textPropsPl={
@@ -57,7 +56,7 @@ const SideLabel = ({ labelProps }) => {
             : labelProps.maxWidthFactorDesktopPl
         }
         /*
-        Section En
+        Props for En-version
         */
         textLinesEn={labelProps.textLinesEn}
         textPropsEn={
@@ -90,6 +89,14 @@ const SideLabel = ({ labelProps }) => {
       ) : (
         <UniversalCanvasWithoutMap format={labelProps.format} />
       )}
+
+      {labelProps.uniqueObjectName && (
+        <UniqueObject uniqueObject={labelProps.uniqueObjectName} />
+      )}
+      {/* <mesh>
+        <sphereGeometry args={[0.05, 32, 16]} />
+        <meshBasicMaterial wireframe />
+      </mesh> */}
     </group>
   );
 };

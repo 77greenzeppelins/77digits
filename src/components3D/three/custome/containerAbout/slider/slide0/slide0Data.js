@@ -2,8 +2,8 @@
 import dama from '../../../../../../assets/textures/containerAbout_Slide0_dama.png';
 import david from '../../../../../../assets/textures/containerAbout_Slide0_david.webp';
 // import manOnTheMoon from '../../../../../../assets/textures/containerAbout_Slide0_the_dzow_times_445_800.webp';
-import manOnTheMoon from '../../../../../../assets/textures/containerAbout_Slide0_moon_4_445_800.webp';
-import tech from '../../../../../../assets/textures/containerAbout_Slide0_tech_2_445_800.webp';
+import manOnTheMoon from '../../../../../../assets/textures/containerAbout_Slide0_moon_5_445_800.webp';
+import tech from '../../../../../../assets/textures/containerAbout_Slide0_tech_3_445_800.webp';
 
 import music from '../../../../../../assets/textures/containerAbout_Slide0_music_4_445_800.webp';
 
@@ -21,7 +21,7 @@ const fontSizesMedium = {
   fontLarge: 0.105,
 };
 
-const fontSizesLarge = { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 };
+// const fontSizesLarge = { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 };
 const fontSizesVeryLarge = {
   fontSmall: 0.16,
   fontMedium: 0.18,
@@ -72,28 +72,10 @@ const slide0Box1Data = [
       /*
       Pl for <TextSlideFromArray>
       */
-      textLinesPl: [
-        'Jesteś',
-        'Ty',
-        // 'Laureat prestiżowej nagrody (Nobla?)',
-        // 'Twórczyni wybitnych dzieł artystycznych',
-      ],
-      textPropsPl: [
-        { position: [0, 0.4, 0.01] },
-        { position: [0, 0.2, 0.01] },
-        // { position: [0, 0, 0.01] },
-        // { position: [0, -0.5, 0.01] },
-      ],
+      textLinesPl: ['Jesteś', 'Ty'],
+      textPropsPl: [{ position: [0, 0.4, 0.01] }, { position: [0, 0.2, 0.01] }],
       fontPl: ['garamont', 'garamont'],
-      fontSizePl: [
-        { ...fontSizesVeryLarge },
-        { ...fontSizesVeryLarge },
-        // { ...fontSizesSmall },
-        // { ...fontSizesSmall },
-      ],
-      // textAlignPl: ['left', 'left', 'left', 'left'],
-      // whiteSpacePl: ['normal', 'normal'],
-      // maxWidthFactorPl: [0.01, 0.01, 0.01, 0.01],
+      fontSizePl: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
       /*
       En for <TextSlideFromArray>
       */
@@ -105,15 +87,21 @@ const slide0Box1Data = [
       whiteSpaceEn: ['normal'],
       maxWidthFactorEn: [0.01],
       /*
-      for <UniversalFrameWithoutMap>
+      for label's <UniversalFrame> or <UniversalFrameWithoutMap>
       */
       format: 'verticalFormat',
       image: manOnTheMoon,
     },
+    /*
+    for <SpinningBoxSide>'s <UniversalCanvas>
+    */
     canvasProps: {
       image: dama,
       format: 'verticalFormat',
     },
+    /*
+    for <SpinningBoxSide>'s <UniversalFrame>
+    */
     frameProps: {
       groupProps: { name: 'groupForPanelFront' },
       format: 'verticalFormat',
@@ -268,6 +256,7 @@ const slide0Box1Data = [
       */
       format: 'verticalFormat',
       image: tech,
+      uniqueObjectName: 'techSphere',
     },
 
     canvasProps: {
