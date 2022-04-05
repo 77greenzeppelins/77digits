@@ -24,12 +24,14 @@ const TextSection = () => {
         textPropsPl={bannerFrontText.textPropsPl}
         fontPl={bannerFrontText.fontPl}
         fontSizePl={bannerFrontText.fontSizePl}
-        textWidthFactorPl={bannerFrontText.textWidthFactorPl}
+        maxWidthFactorPl={bannerFrontText.maxWidthFactorPl}
+        strokeWidthPl={bannerFrontText.strokeWidthPl}
         textLinesEn={bannerFrontText.textLinesEn}
         textPropsEn={bannerFrontText.textPropsEn}
         fontEn={bannerFrontText.fontEn}
         fontSizeEn={bannerFrontText.fontSizeEn}
-        textWidthFactorEn={bannerFrontText.textWidthFactorEn}
+        maxWidthFactorEn={bannerFrontText.maxWidthFactorEn}
+        strokeWidthEn={bannerFrontText.strokeWidthEn}
       />
       {/*-----Left Text-------------------------------------------*/}
       <TextSlide
@@ -38,6 +40,7 @@ const TextSection = () => {
         textLinePl={bannerLeftText.textLinePl}
         textLineEn={bannerLeftText.textLineEn}
         textWidthFactor={bannerLeftText.textWidthFactor}
+        strokeWidth={bannerLeftText.strokeWidth}
       />
       <TextSlide
         groupProps={bannerRightText.groupProps}
@@ -45,6 +48,7 @@ const TextSection = () => {
         textLinePl={bannerRightText.textLinePl}
         textLineEn={bannerRightText.textLineEn}
         textWidthFactor={bannerRightText.textWidthFactor}
+        strokeWidth={bannerRightText.strokeWidth}
       />
     </>
   );

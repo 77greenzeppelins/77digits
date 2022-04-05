@@ -32,6 +32,7 @@ const TextSlide = ({
   */
   textOrientation,
   textWidthFactor,
+  strokeWidth,
 }) => {
   /*
   Global State Section
@@ -57,7 +58,7 @@ const TextSlide = ({
             viewport.width < 3.0
               ? fontSize.fontSmall
               : viewport.width < 5.5
-              ? fontSize.fontMiddle
+              ? fontSize.fontMedium
               : fontSize.fontLarge
           }
           letterSpacing={thisLetterSpacing || 0.15}
@@ -68,6 +69,7 @@ const TextSlide = ({
               ? viewport.height / textWidthFactor
               : viewport.width / textWidthFactor
           }
+          strokeWidth={strokeWidth}
         />
       </group>
     </A11y>
@@ -92,6 +94,7 @@ const TextSlide = ({
               ? viewport.height / textWidthFactor
               : viewport.width / textWidthFactor
           }
+          strokeWidth={strokeWidth}
         />
       </group>
     </A11y>

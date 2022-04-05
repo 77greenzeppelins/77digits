@@ -54,7 +54,12 @@ const TextSection = () => {
             fontSizePl={slide.fontSizePl}
             letterSpacingPl={slide.letterSpacingPl}
             // textAlignPl={slide.textAlignPl}
-            // textWidthFactorPl={slide.textWidthFactorPl}
+            maxWidthFactorPl={
+              windowSize.width < 600
+                ? slide.maxWidthFactorMobilePl
+                : slide.maxWidthFactorDesktopPl
+            }
+            whiteSpacePl={slide.whiteSpacePl}
             /*
             Section En
             */

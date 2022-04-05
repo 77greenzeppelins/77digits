@@ -4,8 +4,8 @@ import david from '../../../../../../assets/textures/containerAbout_Slide0_david
 // import manOnTheMoon from '../../../../../../assets/textures/containerAbout_Slide0_the_dzow_times_445_800.webp';
 import manOnTheMoon from '../../../../../../assets/textures/containerAbout_Slide0_moon_5_445_800.webp';
 import tech from '../../../../../../assets/textures/containerAbout_Slide0_tech_3_445_800.webp';
-
 import music from '../../../../../../assets/textures/containerAbout_Slide0_music_4_445_800.webp';
+import medicine from '../../../../../../assets/textures/containerAbout_Slide0_medicine_2_445_800.webp';
 
 //
 import { springConfigs } from '../../../../../../data/reactSpring';
@@ -36,8 +36,8 @@ const slideSpring = {
   hiddenPositionX: -1,
   hiddenPositionY: 1,
   hiddenPositionZ: -2.2,
-  // config: springConfigs.configBasic,
-  config: springConfigs.molasses,
+  config: springConfigs.configBasic,
+  // config: springConfigs.molasses,
 };
 
 /*
@@ -116,6 +116,57 @@ const slide0Box1Data = [
       /*
       Pl for <TextSlideFromArray>
       */
+      textLinesPl: ['Może jesteś', 'wielką nadzieja branży medycznej'],
+      textPropsPl: [
+        { position: [0, 0.4, 0.01] },
+        { position: [-0.09, 0.1, 0.01] },
+      ],
+
+      textAlignPl: ['left', 'left'],
+      // whiteSpacePl: ['normal', 'normal', 'normal', 'normal', 'normal'],
+      maxWidthFactorMobilePl: [0.01, 20],
+      maxWidthFactorDesktopPl: [0.01, 40],
+      /*
+      font-relevant props
+      */
+      fontPl: ['garamont', 'jost'],
+      fontSizePl: [{ ...fontSizesMedium }, { ...fontSizesSmall }],
+      strokeWidthPl: [0, 0.0005],
+      /*
+      En for <TextSlideFromArray>
+      */
+      textLinesEn: ['I create web page for demanding Clients'],
+      textPropsEn: [{ position: [0, 0, 0.01] }],
+      fontEn: ['jost'],
+      fontSizeEn: [{ ...fontSizesSmall }],
+      textAlignEn: ['left'],
+      whiteSpaceEn: ['normal'],
+      maxWidthFactorEn: [0.01],
+      /*
+      for <UniversalFrameWithoutMap>
+      */
+      format: 'verticalFormat',
+      image: medicine,
+    },
+    canvasProps: {
+      image: dama,
+      format: 'verticalFormat',
+    },
+    frameProps: {
+      groupProps: { name: 'groupForPanelFront' },
+      format: 'verticalFormat',
+      cylinderFi: 0.015,
+      sphereRadious: 0.03,
+    },
+  },
+
+  /* Panel Back */
+  {
+    sideProps: { position: [0, 0, -0.455], rotation: [0, Math.PI, 0] },
+    labelProps: {
+      /*
+      Pl for <TextSlideFromArray>
+      */
       textLinesPl: ['Może jesteś', 'twórczynią wybitnych dzieł muzycznych'],
       textPropsPl: [
         { position: [0, 0.4, 0.01] },
@@ -148,57 +199,9 @@ const slide0Box1Data = [
       */
       format: 'verticalFormat',
       image: music,
+      uniqueObjectName: 'musicNote',
     },
-    canvasProps: {
-      image: dama,
-      format: 'verticalFormat',
-    },
-    frameProps: {
-      groupProps: { name: 'groupForPanelFront' },
-      format: 'verticalFormat',
-      cylinderFi: 0.015,
-      sphereRadious: 0.03,
-    },
-  },
 
-  /* Panel Back */
-  {
-    sideProps: { position: [0, 0, -0.455], rotation: [0, Math.PI, 0] },
-    labelProps: {
-      /*
-      Pl for <TextSlideFromArray>
-      */
-      textLinesPl: ['Może jesteś', 'wielką nadzieja branży medycznej'],
-      textPropsPl: [
-        { position: [0, 0.4, 0.01] },
-        { position: [-0.09, 0.1, 0.01] },
-      ],
-
-      textAlignPl: ['left', 'left'],
-      // whiteSpacePl: ['normal', 'normal', 'normal', 'normal', 'normal'],
-      maxWidthFactorMobilePl: [0.01, 20],
-      maxWidthFactorDesktopPl: [0.01, 40],
-      /*
-      font-relevant props
-      */
-      fontPl: ['garamont', 'jost'],
-      fontSizePl: [{ ...fontSizesMedium }, { ...fontSizesSmall }],
-      strokeWidthPl: [0, 0.0005],
-      /*
-      En for <TextSlideFromArray>
-      */
-      textLinesEn: ['I create web page for demanding Clients'],
-      textPropsEn: [{ position: [0, 0, 0.01] }],
-      fontEn: ['jost'],
-      fontSizeEn: [{ ...fontSizesSmall }],
-      textAlignEn: ['left'],
-      whiteSpaceEn: ['normal'],
-      maxWidthFactorEn: [0.01],
-      /*
-      for <UniversalFrameWithoutMap>
-      */
-      format: 'verticalFormat',
-    },
     canvasProps: {
       image: david,
       format: 'verticalFormat',

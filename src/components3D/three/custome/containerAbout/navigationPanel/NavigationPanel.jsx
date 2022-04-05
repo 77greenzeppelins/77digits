@@ -3,10 +3,11 @@ import React, { useRef } from 'react';
 Components
 */
 import UniversalFrame from '../../matcapFrames/UniversalFrame';
+import TextSlide from '../../textSlides/textSlide/TextSlide';
 /*
   Basic Data
   */
-import { leftButton, rightButton } from './navigationPanelData';
+import { leftButton, rightButton, rotateButton } from './navigationPanelData';
 
 const NavigationPanel = () => {
   /*
@@ -20,13 +21,19 @@ const NavigationPanel = () => {
   */
   return (
     <>
-      {/*-----Auxiliary Top Button---------------------------------*/}
+      {/*-----Auxiliary Left Button---------------------------------*/}
       <group ref={leftButtonRef} {...leftButton.groupProps}>
         <UniversalFrame {...leftButton.frameProps} />
         {/* <TextSlide {...leftButton.textSlideProps} /> */}
       </group>
 
-      {/*-----Auxiliary Bottom Button------------------------------*/}
+      {/*-----Rotate Button---------------------------------*/}
+      <group {...rotateButton.groupProps}>
+        <UniversalFrame {...rotateButton.frameProps} />
+        <TextSlide {...rotateButton.textSlideProps} />
+      </group>
+
+      {/*-----Auxiliary Right Button------------------------------*/}
       <group ref={rightButtonRef} {...rightButton.groupProps}>
         <UniversalFrame {...rightButton.frameProps} />
         {/* <TextSlide {...auxiliaryBottomButton.textSlideProps} /> */}

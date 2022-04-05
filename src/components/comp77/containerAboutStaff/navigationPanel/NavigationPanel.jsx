@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { debounce } from 'lodash';
 /*
+Components
+*/
+import SliderProgressIndicator from '../../progressIndicators/sliderProgressIndicator/SliderProgressIndicator';
+/*
 Global State Staff
 */
 import { useSnapshot } from 'valtio';
@@ -71,9 +75,14 @@ const NavigationPanel = () => {
   */
   return (
     <div className="navigation-panel__container">
-      <div onClick={goBackward} className="navigation-panel__button" />
-      <div onClick={rotateBox} className="navigation-panel__button spinner" />
-      <div onClick={goForward} className="navigation-panel__button" />
+      <button onClick={goBackward} className="navigation-panel__button" />
+      <div onClick={rotateBox} className="navigation-panel__special_wrapper">
+        <button className="navigation-panel__rotate-button"></button>
+        <div className="navigation-panel__progress-indicator">
+          <SliderProgressIndicator slidesArrayNumber={slidesArrayNumber} />
+        </div>
+      </div>
+      <button onClick={goForward} className="navigation-panel__button" />
     </div>
   );
 };

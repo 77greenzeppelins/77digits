@@ -15,7 +15,7 @@ const Slider = () => {
   return (
     <group>
       <Slide0 slideId={0} />
-      {/* <Slide1 slideId={1} /> */}
+      <Slide1 slideId={1} />
     </group>
   );
 };

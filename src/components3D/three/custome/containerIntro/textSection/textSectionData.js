@@ -24,6 +24,7 @@ const slides = [
       { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
       { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
     ],
+    whiteSpacePl: ['normal', 'nowrap', 'normal'],
     /*
     EN
     */
@@ -108,19 +109,19 @@ const slides = [
     textLinesPl: [
       'J e ś l i    m a s z',
       'o c h o t ę    n a',
-      'w y r a f i n o',
-      ' w a n y',
+      // 'w y r a f i n o',
+      // ' w a n y',
     ],
     mobilePositionPl: [
       { position: [0, 0.67, 0] },
-      { position: [0.02, 0.57, 0] },
-      { position: [0.03, 0.39, -0.4] },
+      { position: [0.02, 0.57, -0.1] },
+      { position: [0.03, 0.39, -0.4], rotation: [0, -0.49 * Math.PI, 0] },
       { position: [0.32, 0.17, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
     ],
     desktopPositionPl: [
-      { position: [0, 0.65, 0] },
-      { position: [0.02, 0.47, 0] },
-      { position: [0.1, 0.16, -0.4] },
+      { position: [0, 0.63, -0.1] },
+      { position: [0.02, 0.4, -0.4] },
+      { position: [0.1, 0.16, -0.2], rotation: [0, 0.22 * Math.PI, 0] },
       { position: [0.6, -0.25, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
     ],
     fontPl: ['garamont', 'garamont', 'garamont', 'garamont'],
@@ -131,6 +132,8 @@ const slides = [
       { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
     ],
     letterSpacingPl: [-0.02, -0.02, -0.01, -0.01],
+    whiteSpacePl: ['nowrap', 'nowrap', 'nowrap', 'nowrap'],
+
     /*
     En
     */
@@ -195,6 +198,15 @@ const slides = [
       { position: [0, -0.8, -0.7] },
       //___
       { position: [0, -1, -0.8] },
+    ],
+    whiteSpacePl: [
+      'nowrap',
+      'nowrap',
+      'nowrap',
+      'nowrap',
+      'nowrap',
+      'nowrap',
+      'nowrap',
     ],
 
     textLinesEn: ['digital', 'take-off', 'on the internet'],

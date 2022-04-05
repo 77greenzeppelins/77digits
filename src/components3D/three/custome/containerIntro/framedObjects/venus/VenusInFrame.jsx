@@ -5,6 +5,7 @@ Components
 import UniversalFrame from '../../../matcapFrames/UniversalFrame';
 import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
 import TextSlide from '../../../textSlides/textSlide/TextSlide';
+import MusicNote from '../../../containerAbout/uniqueObjects/musicNote/MusicNote';
 /*
 Gesture Staff
 "DragRotateReturn" works as pseudoOrbitController; it just rotate obiect along with defined axis;
@@ -65,6 +66,7 @@ const VenusInFrame = () => {
       {/* <A11y role="image" description="Raphael. The School of Athens "> */}
       <UniversalCanvas {...venusInFrameData.canvasProps} />
       {/* </A11y> */}
+      <MusicNote />
       {/*----------Funny Text Thanks for Sandro---------------*/}
       <TextSlide
         groupProps={venusSideLeftText.groupProps}

@@ -77,7 +77,7 @@ const venusSideLeftText = {
 
 const bannerFrontText = {
   /*
-Pl
+  Pl
   */
   textLinesPl: ['przesuń lub skroluj', 'góra / dół'],
   textPropsPl: [{ position: [0, 0.06, 0.02] }, { position: [0, -0.04, 0.02] }],
@@ -87,21 +87,19 @@ Pl
     { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
     { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
   ],
-  maxWidthFactorPl: [5, 5],
+  strokeWidthPl: [0.0005, 0.0005],
+  maxWidthFactorPl: [0.01, 0.01],
   /*
 En
   */
   textLinesEn: ['scroll or drag', 'to explore'],
   textPropsEn: [{ position: [0, 0.06, 0.02] }, { position: [0, -0.04, 0.02] }],
   fontEn: ['jost', 'jost'],
-  // font: 'garamont',
   fontSizeEn: [
     { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
     { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
   ],
-  /*
-  low factor means wide width
-  */
+  strokeWidthEn: [0.0005, 0.0005],
   maxWidthFactorEn: [5, 5],
 };
 
@@ -120,10 +118,8 @@ const bannerLeftText = {
   fontSize: { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
   textLinePl: 'przesuwaj na urządzeniu dotykowym',
   textLineEn: 'drag on touch devices',
-  /*
-  low factor means narrow width, only for one word...
-  */
   textWidthFactor: 50,
+  strokeWidth: 0.0005,
 };
 
 const bannerRightText = {
@@ -141,10 +137,8 @@ const bannerRightText = {
   fontSize: { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.065 },
   textLinePl: 'skroluj myszką',
   textLineEn: 'scroll on desktop',
-  /*
-  low factor means narrow width, only for one word...
-  */
   textWidthFactor: 50,
+  strokeWidth: 0.0005,
 };
 
 export {

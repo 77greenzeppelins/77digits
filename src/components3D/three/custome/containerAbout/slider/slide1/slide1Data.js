@@ -1,5 +1,5 @@
 //
-import family from '../../../../../../assets/textures/containerAbout_Slide1_image1.jpg';
+import family from '../../../../../../assets/textures/containerAbout_Slide1_family_3.webp';
 import manOnTheMoon from '../../../../../../assets/textures/containerAbout_Slide0_the_dzow_times_445_800.webp';
 //
 import { springConfigs } from '../../../../../../data/reactSpring';
@@ -8,7 +8,11 @@ Basic Data
 */
 // const fontSizes = { fontSmall: 0.06, fontMedium: 0.07, fontLarge: 0.08 };
 const fontSizesSmall = { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.07 };
-
+const fontSizesVeryLarge = {
+  fontSmall: 0.16,
+  fontMedium: 0.18,
+  fontLarge: 0.19,
+};
 /*
 Settings used by <Slide0> & <Slide1>
 */
@@ -17,8 +21,8 @@ const slideSpring = {
   hiddenPositionX: -1,
   hiddenPositionY: 1,
   hiddenPositionZ: -2.2,
-  //   config: springConfigs.configBasic,
-  config: springConfigs.molasses,
+  config: springConfigs.configBasic,
+  // config: springConfigs.molasses,
 };
 
 /*
@@ -57,43 +61,29 @@ const slide1Box1DataForSides = [
       /*
       Pl for <TextSlideFromArray>
       */
-      textLinesPl: [
-        'Tworzę',
-        'strony internetowe',
-        'dla',
-        'wymagających Klientów',
-      ],
+      textLinesPl: ['Jestem', 'Ja'],
       textPropsPl: [
-        { position: [0, 0.5, 0.01] },
-        { position: [0, 0.3, 0.01] },
-        { position: [0, 0, 0.01] },
-        { position: [0, -0.5, 0.01] },
+        { position: [0, 0.4, 0.01] },
+        { position: [-0.22, 0.2, 0.01] },
       ],
-      fontPl: ['jost', 'jost', 'jost', 'garamont'],
-      fontSizePl: [
-        { ...fontSizesSmall },
-        { ...fontSizesSmall },
-        { ...fontSizesSmall },
-        { ...fontSizesSmall },
-      ],
-      // textAlignPl: ['left', 'left', 'left', 'left'],
-      whiteSpacePl: ['normal', 'normal', 'normal', 'normal', 'normal'],
-      MaxWidthFactorPl: [0.01, 0.01, 0.01, 0.01],
+      fontPl: ['garamont', 'garamont'],
+      fontSizePl: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
       /*
       En for <TextSlideFromArray>
       */
-      textLinesEn: ['I create web page for demanding Clients'],
-      textPropsEn: [{ position: [0, 0, 0.01] }],
-      fontEn: ['jost'],
-      fontSizeEn: [{ ...fontSizesSmall }],
-      textAlignEn: ['left'],
-      whiteSpaceEn: ['normal'],
-      MaxWidthFactorEn: [0.01],
+      // textLinesEn: ['I create web page for demanding Clients'],
+      textLinesEn: ['Here', "I'm"],
+      textPropsEn: [
+        { position: [0, 0.4, 0.01] },
+        { position: [-0.22, 0.2, 0.01] },
+      ],
+      fontEn: ['garamont', 'garamont'],
+      fontSizeEn: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
       /*
       for <UniversalFrameWithoutMap>
       */
       format: 'verticalFormat',
-      image: manOnTheMoon,
+      image: family,
     },
     /*
     for <UniversalCanvas>

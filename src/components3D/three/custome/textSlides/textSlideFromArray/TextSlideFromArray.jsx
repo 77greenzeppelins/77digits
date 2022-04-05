@@ -67,10 +67,10 @@ const TextSlideFromArray = ({
   const windowSize = useWindowSize();
 
   //___________
-  useEffect(() => {
-    console.log('TextSlideFromArray / maxWidthFactorPl:', maxWidthFactorPl);
-    console.log('TextSlideFromArray / fontPl:', fontPl);
-  }, [maxWidthFactorPl, fontPl]);
+  // useEffect(() => {
+  //   console.log('TextSlideFromArray / maxWidthFactorPl:', maxWidthFactorPl);
+  //   console.log('TextSlideFromArray / fontPl:', fontPl);
+  // }, [maxWidthFactorPl, fontPl]);
 
   //___________
   /*
