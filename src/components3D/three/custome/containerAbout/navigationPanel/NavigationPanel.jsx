@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 /*
 Components
 */
 import UniversalFrame from '../../matcapFrames/UniversalFrame';
+import UniversalCanvas from '../../matcapFrames/UniversalCanvas';
 import TextSlide from '../../textSlides/textSlide/TextSlide';
 /*
   Basic Data
@@ -20,10 +21,11 @@ const NavigationPanel = () => {
   JSX
   */
   return (
-    <>
+    <Suspense fallback={null}>
       {/*-----Auxiliary Left Button---------------------------------*/}
       <group ref={leftButtonRef} {...leftButton.groupProps}>
         <UniversalFrame {...leftButton.frameProps} />
+        <UniversalCanvas {...leftButton.canvasProps} />
         {/* <TextSlide {...leftButton.textSlideProps} /> */}
       </group>
 
@@ -36,9 +38,9 @@ const NavigationPanel = () => {
       {/*-----Auxiliary Right Button------------------------------*/}
       <group ref={rightButtonRef} {...rightButton.groupProps}>
         <UniversalFrame {...rightButton.frameProps} />
-        {/* <TextSlide {...auxiliaryBottomButton.textSlideProps} /> */}
+        <UniversalCanvas {...rightButton.canvasProps} />
       </group>
-    </>
+    </Suspense>
   );
 };
 

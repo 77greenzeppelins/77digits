@@ -16,7 +16,7 @@ const ExtrudedSeven = React.forwardRef(
     hardcodedSevenCoordinates.push(new THREE.Vector2(0.4, 0));
     hardcodedSevenCoordinates.push(new THREE.Vector2(0.25, 0));
     hardcodedSevenCoordinates.push(new THREE.Vector2(0.6, 0.86));
-    hardcodedSevenCoordinates.push(new THREE.Vector2(0.2, 0.86));
+    hardcodedSevenCoordinates.push(new THREE.Vector2(0.1, 0.86));
 
     const hardcodedSeven = new THREE.Shape(hardcodedSevenCoordinates);
 
@@ -24,7 +24,7 @@ const ExtrudedSeven = React.forwardRef(
     Config object for ExtrudeGeometry
     */
     const extrudeSettings = {
-      depth: 0.1,
+      depth: 0.0,
       bevelEnabled: false,
       // bevelEnabled: true,
       // bevelSegments: 0.1,
@@ -38,15 +38,14 @@ const ExtrudedSeven = React.forwardRef(
     return (
       <mesh {...meshProps} ref={ref}>
         <extrudeGeometry args={[hardcodedSeven, extrudeSettings]} />
-        {/* <meshBasicMaterial {...materialProps} /> */}
-        { thisShaderMaterial }
+        <meshBasicMaterial {...materialProps} />
+        {/* { thisShaderMaterial } */}
       </mesh>
     );
   }
 );
 
 export default ExtrudedSeven;
-
 
 /*
 /_____Shaders Section

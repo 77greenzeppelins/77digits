@@ -5,7 +5,7 @@ Components
 import UniversalFrame from '../../../matcapFrames/UniversalFrame';
 import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
 import TextSlide from '../../../textSlides/textSlide/TextSlide';
-import MusicNote from '../../../containerAbout/uniqueObjects/musicNote/MusicNote';
+import Logo from '../../../extrudedObjects/logo/Logo';
 /*
 Gesture Staff
 "DragRotateReturn" works as pseudoOrbitController; it just rotate obiect along with defined axis;
@@ -62,11 +62,15 @@ const VenusInFrame = () => {
       {...dragRotateReturn()}
       rotation={orbitImitation}
     >
+      {/*-----Boticelli Painting------------------------------*/}
       <UniversalFrame {...venusInFrameData.frameProps} />
-      {/* <A11y role="image" description="Raphael. The School of Athens "> */}
       <UniversalCanvas {...venusInFrameData.canvasProps} />
-      {/* </A11y> */}
-      <MusicNote />
+      {/*-----77 Logo-----------------------------------------*/}
+      <Logo
+        meshProps={{ position: [-0.2, -0.28, -0.01], scale: [0.5, 0.5, 0.5] }}
+        materialProps={{ color: [1, 0, 0] }}
+      />
+
       {/*----------Funny Text Thanks for Sandro---------------*/}
       <TextSlide
         groupProps={venusSideLeftText.groupProps}

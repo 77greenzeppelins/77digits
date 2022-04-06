@@ -91,6 +91,7 @@ const slide0Box1Data = [
       */
       format: 'verticalFormat',
       image: manOnTheMoon,
+      uniqueObjectName: 'unique3DText',
     },
     /*
     for <SpinningBoxSide>'s <UniversalCanvas>
@@ -259,7 +260,7 @@ const slide0Box1Data = [
       */
       format: 'verticalFormat',
       image: tech,
-      uniqueObjectName: 'techSphere',
+      uniqueObjectName: 'tesselateObj',
     },
 
     canvasProps: {

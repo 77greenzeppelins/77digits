@@ -2,12 +2,11 @@ import React, { Suspense, useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { extend, useFrame } from '@react-three/fiber';
 import { TessellateModifier } from 'three/examples/jsm/modifiers/TessellateModifier.js';
-import { BufferGeometry } from 'three';
 //_____
 import { TesselateModifierShaderMaterial } from './TesselateModifierShaderMaterial';
 extend({ TesselateModifierShaderMaterial });
 
-const TesselateModifierCreator = ({ meshProps, geometry }) => {
+const TesselateModifierCreator = ({ meshProps, geometry, customeMaterial }) => {
   //_____References
   const material = useRef();
   //_____
@@ -71,19 +70,19 @@ const TesselateModifierCreator = ({ meshProps, geometry }) => {
     material.current.uniforms.uTime.value = clock.getElapsedTime();
   });
 
-  useEffect(() => {
-    console.log(
-      'TesselateModifierCreator / tesselatedGeometry:',
-      tesselatedGeometry
-    );
-    console.log(
-      'TesselateModifierCreator / TesselateModifierShaderMaterial:',
-      TesselateModifierShaderMaterial
-    );
-    // console.log('TesselateModifierCreator / numFaces:', numFaces);
-    console.log('TesselateModifierCreator / colors:', colors);
-    console.log('TesselateModifierCreator / displacement:', displacement);
-  }, [tesselatedGeometry, position, numFaces]);
+  // useEffect(() => {
+  //   console.log(
+  //     'TesselateModifierCreator / tesselatedGeometry:',
+  //     tesselatedGeometry
+  //   );
+  //   console.log(
+  //     'TesselateModifierCreator / TesselateModifierShaderMaterial:',
+  //     TesselateModifierShaderMaterial
+  //   );
+  //   // console.log('TesselateModifierCreator / numFaces:', numFaces);
+  //   console.log('TesselateModifierCreator / colors:', colors);
+  //   console.log('TesselateModifierCreator / displacement:', displacement);
+  // }, [tesselatedGeometry, position, numFaces]);
 
   //_____
   //   return null;
@@ -114,13 +113,13 @@ const TesselateModifierCreator = ({ meshProps, geometry }) => {
         />
       </bufferGeometry>
 
-      {/* <meshBasicMaterial color={[1, 1, 1]} /> */}
+      {/* {customeMaterial || <meshBasicMaterial color={[1, 1, 1]} />} */}
       <tesselateModifierShaderMaterial
         ref={material}
         // blending={THREE.AdditiveBlending}
         blending={THREE.NormalBlending}
         side={THREE.DoubleSide}
-        uAmplitude={2.0}
+        uAmplitude={4.0}
       />
     </mesh>
     //   </Suspense>

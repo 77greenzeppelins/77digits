@@ -1,0 +1,3 @@
+const logoCoordinate = {};
+
+const logoExtrudeSettings = {};

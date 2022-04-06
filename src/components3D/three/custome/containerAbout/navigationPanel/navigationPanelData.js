@@ -1,3 +1,6 @@
+import godsFingerLeft from '../../../../../assets/textures/GodsFinger_onWhite_left.webp';
+import godsFingerRight from '../../../../../assets/textures/GodsFinger_onWhite_right.webp';
+
 const leftButton = {
   groupProps: {
     scale: [0.17, 0.17, 0.17],
@@ -5,7 +8,7 @@ const leftButton = {
     rotation: [0, 0, Math.PI * 0.5],
   },
   frameProps: { format: 'portrait' },
-  canvasProps: { format: 'portrait' },
+  canvasProps: { format: 'portrait', image: godsFingerLeft },
   textSlideProps: {
     groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
     textProps: { position: [0, 0, 0] },
@@ -20,10 +23,10 @@ const rightButton = {
   groupProps: {
     scale: [0.17, 0.17, 0.17],
     position: [0.21, -0.575, -0.6],
-    rotation: [0, 0, Math.PI * 0.5],
+    rotation: [0, 0, -0.5 * Math.PI],
   },
   frameProps: { format: 'portrait' },
-  canvasProps: { format: 'portrait' },
+  canvasProps: { format: 'portrait', image: godsFingerRight },
   textSlideProps: {
     groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
     textProps: { position: [0, 0, 0] },
