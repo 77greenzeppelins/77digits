@@ -5,17 +5,11 @@ Components
 import TechSphere from './techSphere/TechSphere';
 import MusicNote from './musicNote/MusicNote';
 import TesselatedObject from './tesselatedObject/TesselatedObject';
-import UniqueText3D from './uniqueText3D/UniqueText3D';
+import InstancedQuestionMark from './instancedQuestionMark/InstancedQuestionMark';
 
 const UniqueObject = ({ uniqueObject }) => {
   /*
-  ...  
-  */
-  //   useEffect(() => {
-  //     console.log('UniqueObject / uniqueObject', uniqueObject);
-  //   }, [uniqueObject]);
-  /*
-    
+  Turbo SwitchSelector
   */
   const objectsSelector = () => {
     switch (uniqueObject) {
@@ -30,14 +24,13 @@ const UniqueObject = ({ uniqueObject }) => {
         return <TesselatedObject />;
       case 'unique3DText':
         console.log('render tesselateObj');
-        return <UniqueText3D />;
+        return <InstancedQuestionMark />;
       default:
         console.log('render default shit');
         return null;
     }
   };
   return objectsSelector();
-  // return null;
 };
 
 export default UniqueObject;
