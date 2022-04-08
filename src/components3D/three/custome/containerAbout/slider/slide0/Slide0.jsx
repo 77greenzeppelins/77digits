@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useRef } from 'react';
 /*
 Components
 */
@@ -33,8 +33,11 @@ const minForTablet = 850;
 */
 const Slide0 = ({ slideId }) => {
   /*
+  References
+  */
+  const spinBox = useRef();
+  /*
   Hook Section
-  Why this hook?
   */
   const windowSize = useWindowSize();
   /*
@@ -43,98 +46,96 @@ const Slide0 = ({ slideId }) => {
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
-  Spring for animation of "going from behind the scene"i.e on z-axis...
+  "sliderEngine"
   */
-  const springSlideContent = useSpring({
-    from: { position: [0, 0, slideSpring.hiddenPositionZ] },
+  const sliderEngine = useSpring({
+    from: [slideSpring.centralPosition, 0, 0],
     to: {
       position: [
         0,
-        0,
-        /*
-        in case of Slider1 this second condition is mandatory; otherwise slide is animated befor user enters "containerAbout"; i.e. user doesn't see how "frames" go from behind the scene;;
-        */
         canvasGlobalState.currentContainer === 'aboutContainer' &&
-        slideId === canvasGlobalState.containerAboutSlideIndex
-          ? slideSpring.visiblePosition
-          : slideId < canvasGlobalState.containerAboutSlideIndex
-          ? slideSpring.visiblePosition
-          : slideSpring.hiddenPositionZ,
+        slideId < canvasGlobalState.containerAboutSlideIndex
+          ? slideSpring.topPosition
+          : slideSpring.centralPosition,
+
+        0,
       ],
     },
-    config: { ...slideSpring.config },
+    config: slideSpring.config,
   });
 
   /*
-  Spring for animation entiled: "go away from here to top or left"it animates slide move on y-axis...
+  useEffectSection
   */
-  const springGroup = useSpring({
-    from: { position: [0, 0, 0] },
-    to: {
-      position: [
-        /*
-        in case of "mobile" animation goes along the y-axis;
-        */
-        canvasGlobalState.currentContainer === 'aboutContainer' &&
-        slideId < canvasGlobalState.containerAboutSlideIndex &&
-        windowSize.width < minForTablet
-          ? slideSpring.hiddenPositionX
-          : slideSpring.visiblePosition,
-        /*
-        in case of "tablet/desctop" animation goes along the y-axis;
-        */
-        canvasGlobalState.currentContainer === 'aboutContainer' &&
-        slideId < canvasGlobalState.containerAboutSlideIndex &&
-        windowSize.width > minForTablet
-          ? slideSpring.hiddenPositionY
-          : slideSpring.visiblePosition,
-        0,
-      ],
-    },
-    config: { ...slideSpring.config },
-  });
+  // useEffect(() => {
+  //   if (canvasGlobalState.currentContainer === 'aboutContainer') {
+  //     console.log('you are in aboutContainer /  Slide0');
+  //     console.log(
+  //       'you are in aboutContainer /  spinBox.current',
+  //       spinBox.current.rotation
+  //     );
+  //     console.log(
+  //       '<Slide0> /  canvasGlobalState.slide0Rotation',
+  //       canvasGlobalState.slide0Rotation
+  //     );
+  //   } else {
+  //     console.log('you are outside aboutContainer /  Slide0');
+  //     canvasState.slide0Rotation = false;
+  //   }
+  // }, [canvasGlobalState.currentContainer, canvasGlobalState.slide0Rotation]);
+  // useEffect(() => {
+  //   if (
+  //     canvasGlobalState.currentContainer === 'aboutContainer' &&
+  //     spinBox.current
+  //   ) {
+  //     console.log('spinBox.current', spinBox.current.children[0]);
+  //   }
+  // }, [canvasGlobalState.currentContainer]);
+  /*
+  "Reseter"
+  Allowes to reset position of <SpinningBoxSide> to "client label"
+  */
+  if (canvasGlobalState.currentContainer !== 'aboutContainer') {
+    canvasState.slide0Rotation = false;
+  }
+
+  //___
   /*
   JSX
-  What is "GroupForAnimationLevelSlide"?
-  What is "GroupForAnimationLevelSlideContent"
   */
   return (
     <a.group
-      name="GroupForAnimationLevelSlideOfSlide_0"
-      position={springGroup.position}
+      name="GroupForSliderEngineAnimationOfSlide_0"
+      position={sliderEngine.position}
     >
       {/*-----Body Section------------------------------------------*/}
       <Suspense fallback={null}>
-        <a.group
-          name="GroupForAnimationLevelSlideContentOfSlide_0"
-          position={springSlideContent.position}
-        >
-          <SpinningBox
-            groupProps={{
-              name: 'groupForSpinningBox_slide_0_Box_1_Data',
-              /*
+        <SpinningBox
+          ref={spinBox}
+          groupProps={{
+            name: 'groupForSpinningBox_slide_0',
+            /*
               a bit of responsiveness; 
               */
-              scale:
-                windowSize.width < minForTablet
-                  ? slide0Box1Layout.mobile.scale
-                  : slide0Box1Layout.desktop.scale,
-              position:
-                windowSize.width < minForTablet
-                  ? slide0Box1Layout.mobile.position
-                  : slide0Box1Layout.desktop.position,
-            }}
-            /*
+            scale:
+              windowSize.width < minForTablet
+                ? slide0Box1Layout.mobile.scale
+                : slide0Box1Layout.desktop.scale,
+            position:
+              windowSize.width < minForTablet
+                ? slide0Box1Layout.mobile.position
+                : slide0Box1Layout.desktop.position,
+          }}
+          /*
             "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
             */
-            spinningBoxConfig={slide0Box1Data}
-            springConfig={slide0Box1DataForSpring}
-            isSlideVisible={
-              slideId === canvasGlobalState.containerAboutSlideIndex
-            }
-            isSideRotating={canvasGlobalState.slide0Rotation}
-          />
-        </a.group>
+          spinningBoxConfig={slide0Box1Data}
+          springConfig={slide0Box1DataForSpring}
+          isSlideVisible={
+            slideId === canvasGlobalState.containerAboutSlideIndex
+          }
+          isSideRotating={canvasGlobalState.slide0Rotation}
+        />
       </Suspense>
     </a.group>
   );

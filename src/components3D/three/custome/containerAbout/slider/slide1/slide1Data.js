@@ -17,10 +17,9 @@ const fontSizesVeryLarge = {
 Settings used by <Slide0> & <Slide1>
 */
 const slideSpring = {
-  visiblePosition: 0,
-  hiddenPositionX: -1,
-  hiddenPositionY: 1,
-  hiddenPositionZ: -2.2,
+  centralPositionX: 0,
+  topPosition: 1,
+  bottomPosition: -1,
   config: springConfigs.configBasic,
   // config: springConfigs.molasses,
 };
@@ -30,7 +29,7 @@ Slide1's Layout
 it actually define <SlideBox>'s scale & position depending on device size;
 */
 const slide1Box1Layout = {
-  mobile: { scale: [0.33, 0.33, 0.33], position: [0, 0.03, 0] },
+  mobile: { scale: [0.32, 0.32, 0.32], position: [0, 0.03, 0] },
   desktop: { scale: [0.35, 0.35, 0.35], position: [0, 0.02, 0] },
 };
 

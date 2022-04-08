@@ -21,17 +21,18 @@ const ContainerAbout = () => {
   const canvasGlobalState = useSnapshot(canvasState);
 
   return (
-    canvasGlobalState.currentContainer === 'aboutContainer' && (
-      <group
-        name="GroupForContainerAbout"
-        position={canvasGlobalState.aboutContainerPosition}
-      >
-        {/*-----Slider Section-----------------------------------*/}
-        <Slider />
-        <NavigationPanel />
-      </group>
-    )
+    // canvasGlobalState.currentContainer === 'aboutContainer' && (
+    <group
+      scale={[1, 1, 1]}
+      name="GroupForContainerAbout"
+      position={canvasGlobalState.aboutContainerPosition}
+    >
+      {/*-----Slider Section-----------------------------------*/}
+      <Slider />
+      <NavigationPanel />
+    </group>
   );
+  // );
 };
 
 export default ContainerAbout;

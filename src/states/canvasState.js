@@ -21,8 +21,8 @@ const canvasState = proxy({
   /*
   ------------------------------------Constants for buttons onClick events...
   */
-  defaultContainerPosition: [0, 3, 0],
-  defaultContainerCameraPosition: [0, 3, 2],
+  defaultContainerPosition: [0, -5, 0],
+  defaultContainerCameraPosition: [0, -5, 2],
 
   introContainerPosition: [0, 0, 0],
   introContainerCameraPosition: [0, 0, 2],
@@ -30,11 +30,11 @@ const canvasState = proxy({
   aboutContainerPosition: [-5, 0, 0],
   aboutContainerCameraPosition: [-5, 0, 1],
 
-  answerYesContainerPosition: [0, -6, 0],
-  answerYesContainerCameraPosition: [0, -6, 2],
+  // answerYesContainerPosition: [0, -6, 0],
+  // answerYesContainerCameraPosition: [0, -6, 2],
 
-  answerNoContainerPosition: [0, -9, 0],
-  answerNoContainerCameraPosition: [0, -9, 2],
+  // answerNoContainerPosition: [0, -9, 0],
+  // answerNoContainerCameraPosition: [0, -9, 2],
 
   menuContainerPosition: [5, 0, 0],
   menuContainerCameraPosition: [5, 0, 2],

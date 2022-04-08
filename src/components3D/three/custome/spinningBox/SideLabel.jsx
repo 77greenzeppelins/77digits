@@ -84,19 +84,15 @@ const SideLabel = ({ labelProps }) => {
       {/*
     ..............
     */}
-      {labelProps.image ? (
-        <UniversalCanvas format={labelProps.format} image={labelProps.image} />
+      {labelProps.canvasProps.image ? (
+        <UniversalCanvas {...labelProps.canvasProps} />
       ) : (
-        <UniversalCanvasWithoutMap format={labelProps.format} />
+        <UniversalCanvasWithoutMap format={labelProps.canvasProps.format} />
       )}
 
       {labelProps.uniqueObjectName && (
         <UniqueObject uniqueObject={labelProps.uniqueObjectName} />
       )}
-      {/* <mesh>
-        <sphereGeometry args={[0.05, 32, 16]} />
-        <meshBasicMaterial wireframe />
-      </mesh> */}
     </group>
   );
 };

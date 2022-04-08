@@ -70,24 +70,25 @@ const AnimatedInstancedMesh = ({
       */
       temp3DObject.position.set(...item.position);
       temp3DObject.scale.set(...item.scale);
+      item.rotation && temp3DObject.rotation.set(...item.rotation);
       /*
       build layout using justjustLerp()
       */
-      temp3DObject.rotation.x = justLerp(
-        item.rotationStart[0],
-        item.rotationEnd[0],
-        timeInterpolant
-      );
-      temp3DObject.rotation.y = justLerp(
-        item.rotationStart[1],
-        item.rotationEnd[1],
-        timeInterpolant
-      );
-      temp3DObject.rotation.z = justLerp(
-        item.rotationStart[2],
-        item.rotationEnd[2],
-        timeInterpolant
-      );
+      //   temp3DObject.rotation.x = justLerp(
+      //     item.rotationStart[0],
+      //     item.rotationEnd[0],
+      //     timeInterpolant
+      //   );
+      //   temp3DObject.rotation.y = justLerp(
+      //     item.rotationStart[1],
+      //     item.rotationEnd[1],
+      //     timeInterpolant
+      //   );
+      //   temp3DObject.rotation.z = justLerp(
+      //     item.rotationStart[2],
+      //     item.rotationEnd[2],
+      //     timeInterpolant
+      //   );
 
       temp3DObject.updateMatrix();
       ref.current.setMatrixAt(index, temp3DObject.matrix);

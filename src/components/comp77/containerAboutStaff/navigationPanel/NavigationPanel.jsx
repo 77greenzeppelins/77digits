@@ -55,20 +55,20 @@ const NavigationPanel = () => {
         canvasGlobalState.slide1Rotation = false;
         break;
     }
-  }, 600);
+  }, 400);
 
   //____
 
-  useEffect(() => {
-    console.log(
-      'canvasGlobalState.slide0Rotation',
-      canvasGlobalState.slide0Rotation
-    );
-    console.log(
-      'canvasGlobalState.slide1Rotation',
-      canvasGlobalState.slide1Rotation
-    );
-  }, [canvasGlobalState.slide1Rotation, canvasGlobalState.slide0Rotation]);
+  // useEffect(() => {
+  //   console.log(
+  //     'canvasGlobalState.slide0Rotation',
+  //     canvasGlobalState.slide0Rotation
+  //   );
+  //   console.log(
+  //     'canvasGlobalState.slide1Rotation',
+  //     canvasGlobalState.slide1Rotation
+  //   );
+  // }, [canvasGlobalState.slide1Rotation, canvasGlobalState.slide0Rotation]);
 
   /*
   JSX

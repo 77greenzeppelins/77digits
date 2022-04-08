@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 /*
 Components
 */
 import TechSphere from './techSphere/TechSphere';
 import MusicNote from './musicNote/MusicNote';
-import TesselatedObject from './tesselatedObject/TesselatedObject';
 import InstancedQuestionMark from './instancedQuestionMark/InstancedQuestionMark';
 
 const UniqueObject = ({ uniqueObject }) => {
@@ -14,19 +13,16 @@ const UniqueObject = ({ uniqueObject }) => {
   const objectsSelector = () => {
     switch (uniqueObject) {
       case 'musicNote':
-        console.log('render TechSphere');
+        // console.log('render TechSphere');
         return <MusicNote />;
       case 'techSphere':
-        console.log('render TechSphere');
+        // console.log('render TechSphere');
         return <TechSphere />;
-      case 'tesselateObj':
-        console.log('render tesselateObj');
-        return <TesselatedObject />;
       case 'unique3DText':
-        console.log('render tesselateObj');
+        // console.log('render unique3DText');
         return <InstancedQuestionMark />;
       default:
-        console.log('render default shit');
+        // console.log('render default shit');
         return null;
     }
   };

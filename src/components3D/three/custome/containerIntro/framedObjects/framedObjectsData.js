@@ -1,5 +1,5 @@
 import { springConfigs } from '../../../../../data/reactSpring';
-import venus from '../../../../../assets/textures/venus_2.png';
+import venus from '../../../../../assets/textures/venus_1.webp';
 
 /*
 ------------------------------------------------------------------------

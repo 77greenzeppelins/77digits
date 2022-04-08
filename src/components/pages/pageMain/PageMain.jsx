@@ -46,6 +46,10 @@ const PageMain = () => {
         return backgroundColors.default;
     }
   };
+
+  // if (canvasGlobalState.currentContainer !== 'aboutContainer') {
+  //   return <fog attach="fog" args={[setCanvasColors(), 2, 3]} />;
+  // }
   /*
   JSX
   */
@@ -85,6 +89,9 @@ const PageMain = () => {
             {/* <color attach="background" args={[setCanvaColors()]} />
             <fog attach="fog" args={[setCanvaColors(), 2, 3]} /> */}
             <color attach="background" args={[setCanvasColors()]} />
+            {/* {canvasGlobalState.currentContainer !== 'aboutContainer' && (
+              <fog attach="fog" args={[setCanvasColors(), 2, 3]} />
+            )} */}
             <fog attach="fog" args={[setCanvasColors(), 2, 3]} />
 
             <Scene />

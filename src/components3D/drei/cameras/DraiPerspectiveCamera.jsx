@@ -98,10 +98,15 @@ const DraiPerspectiveCamera = () => {
       name="customePerspectiveCamera"
       ref={cameraRef}
       position={[0, 0, 2]}
-      far={100}
+      far={5} //_____comments belowe
       fov={45}
     />
   );
 };
 
 export default DraiPerspectiveCamera;
+
+/*
+Why "far={10}"??
+I've tested "visibility" of <ContainerIntro" from <ContainerAbout> point of view (such test requires no fog of ourse); takeoff: no point in setting numbers like "100"...
+*/

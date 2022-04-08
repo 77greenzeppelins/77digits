@@ -3,9 +3,13 @@ import godsFingerRight from '../../../../../assets/textures/GodsFinger_onWhite_r
 
 const leftButton = {
   groupProps: {
-    scale: [0.17, 0.17, 0.17],
-    position: [-0.21, -0.575, -0.6],
-    rotation: [0, 0, Math.PI * 0.5],
+    // scale: [0.17, 0.17, 0.17],
+    // position: [-0.21, -0.575, -0.6],
+    // rotation: [0, 0, Math.PI * 0.5],
+
+    scale: [0.09, 0.09, 0.09],
+    position: [-0.1, -0.245, 0.3],
+    rotation: [0, 0, Math.PI],
   },
   frameProps: { format: 'portrait' },
   canvasProps: { format: 'portrait', image: godsFingerLeft },
@@ -21,9 +25,11 @@ const leftButton = {
 
 const rightButton = {
   groupProps: {
-    scale: [0.17, 0.17, 0.17],
-    position: [0.21, -0.575, -0.6],
-    rotation: [0, 0, -0.5 * Math.PI],
+    // scale: [0.17, 0.17, 0.17],
+    // position: [0.21, -0.575, -0.6],
+    scale: [0.09, 0.09, 0.09],
+    position: [0.1, -0.245, 0.3],
+    rotation: [0, 0, 0],
   },
   frameProps: { format: 'portrait' },
   canvasProps: { format: 'portrait', image: godsFingerRight },
@@ -39,8 +45,10 @@ const rightButton = {
 
 const rotateButton = {
   groupProps: {
-    scale: [0.19, 0.19, 0.19],
-    position: [0, -0.567, -0.6],
+    // scale: [0.19, 0.19, 0.19],
+    // position: [0, -0.567, -0.6],
+    scale: [0.09, 0.09, 0.09],
+    position: [0, -0.245, 0.3],
     rotation: [0, 0, 0],
   },
   frameProps: { format: 'banner' },

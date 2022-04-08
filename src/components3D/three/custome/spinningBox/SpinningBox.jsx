@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 /*
 Components
 */
@@ -15,68 +15,92 @@ import { a } from '@react-spring/three';
 /*
 ----------------------------------------------------------------------
 */
-const SpinningBox = ({
-  /*
+const SpinningBox = React.forwardRef(
+  (
+    {
+      /*
   props for <SpinningBox>'s main <group>; scale & position;
   */
-  groupProps,
-  /*
+      groupProps,
+      /*
   props for <SpinningBoxSide> layout and its children
   */
-  spinningBoxConfig,
-  /*
+      spinningBoxConfig,
+      /*
   props for <SpinningBoxSide>'s spring
   */
-  springConfig,
-  isSlideVisible,
-  isSideRotating,
-}) => {
-  /*
+      springConfig,
+      isSlideVisible,
+      isSideRotating,
+    },
+    ref
+  ) => {
+    /*
   References
   */
-  const autorotatingGroup = useRef();
-  /*
+    const autorotatingGroup = useRef();
+    /*
   Call this gesture!!!
   returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
   */
-  const [rotateStepByStep, dragRotateStepByStep] = DragRotateStepByStep({
-    /*
+    const [rotateStepByStep, dragRotateStepByStep] = DragRotateStepByStep({
+      /*
     set axis that is active
     */
-    axisLimitation: springConfig.axisLimitation,
-  });
+      axisLimitation: springConfig.axisLimitation,
+    });
 
-  /*
+    // useEffect(() => {
+    //   if (
+    //     ref.current.name === 'groupForSpinningBox_slide_0' &&
+    //     ref.current.rotation.z === 0
+    //   ) {
+    //     console.log('SpinningBox / ref.current:', ref.current.rotation);
+    //   } else console.log('SpinningBox WTF');
+    // }, [ref]);
+
+    /*
   JSX
   */
-  return (
-    <a.group
-      {...groupProps}
-      name="GroupForGestureAnimation"
-      {...dragRotateStepByStep()}
-      rotation={rotateStepByStep}
-    >
-      <a.group ref={autorotatingGroup}>
-        {spinningBoxConfig.map(
-          ({ sideProps, labelProps, canvasProps, frameProps }, index) => (
-            <SpinningBoxSide
-              key={index}
-              labelProps={labelProps}
-              sideProps={sideProps}
-              canvasProps={canvasProps}
-              frameProps={frameProps}
-              /*
+    return (
+      <a.group
+        ref={ref}
+        {...groupProps}
+        {...dragRotateStepByStep()}
+        rotation={rotateStepByStep}
+      >
+        <a.group ref={autorotatingGroup}>
+          {spinningBoxConfig.map(
+            (
+              {
+                sideProps,
+                labelProps,
+                labelPropsReverse,
+                canvasProps,
+                frameProps,
+              },
+              index
+            ) => (
+              <SpinningBoxSide
+                key={index}
+                labelProps={labelProps}
+                labelPropsReverse={labelPropsReverse}
+                sideProps={sideProps}
+                canvasProps={canvasProps}
+                frameProps={frameProps}
+                /*
               props for <SpinningBoxSide>'s springAnimation;
               */
-              springConfig={springConfig}
-              isSlideVisible={isSlideVisible}
-              isSideRotating={isSideRotating}
-            />
-          )
-        )}
+                springConfig={springConfig}
+                isSlideVisible={isSlideVisible}
+                isSideRotating={isSideRotating}
+              />
+            )
+          )}
+        </a.group>
       </a.group>
-    </a.group>
-  );
-};
+    );
+  }
+);
 
 export default SpinningBox;

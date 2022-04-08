@@ -62,9 +62,13 @@ const ContainerIntro = ({ onClickCameraSetter }) => {
         {/*-----StillLifeSection------------------------------------*/}
         <StillLifeSection />
         {/*-----EndButtons------------------------------------------*/}
-        <EndButtons />
+        {canvasGlobalState.currentContainer === 'introContainer' && (
+          <EndButtons />
+        )}
         {/*-----RaphaelSection--------------------------------------*/}
-        <RaphaelSection />
+        {canvasGlobalState.currentContainer === 'introContainer' && (
+          <RaphaelSection />
+        )}
       </Suspense>
     </a.group>
   );

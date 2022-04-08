@@ -3,13 +3,7 @@ import React from 'react';
 Components
 */
 import UniversalFrame from '../matcapFrames/UniversalFrame';
-import UniversalCanvas from '../matcapFrames/UniversalCanvas';
 import SideLabel from './SideLabel';
-/*
-Global State Staf
-*/
-// import { useSnapshot } from 'valtio';
-// import { canvasState } from '../../../../states/canvasState';
 /*
 Spring Section
 */
@@ -36,6 +30,7 @@ const SpinningBoxSide = (
     canvasProps,
     frameProps,
     labelProps,
+    labelPropsReverse,
   }
 ) => {
   /*
@@ -43,6 +38,7 @@ const SpinningBoxSide = (
   */
   const { position, rotation } = sideProps;
   const { axisLimitation, animationDelay, config } = springConfig;
+
   /*
   SpringSection
   */
@@ -72,7 +68,6 @@ const SpinningBoxSide = (
     delay: animationDelay,
     cancel: isSlideVisible ? false : true, //????
   });
-
   /*
   JSX
   */
@@ -86,23 +81,12 @@ const SpinningBoxSide = (
         groupProps={{ name: 'groupForFrameInSpiningBoxSide' }}
         {...frameProps}
       />
-      <UniversalCanvas
-        meshProps={{
-          rotation: [
-            0,
-            /*
-            important for "portrait"
-            */
-            Math.PI,
-            /*
-            importan for "banner" because image must be "upside down";
-            */
-            axisLimitation === 'y' ? Math.PI : 0,
-          ],
-        }}
-        {...canvasProps}
-      />
+      {/* <UniversalCanvas {...canvasProps} /> */}
+      <SideLabel labelProps={labelPropsReverse} />
       <SideLabel labelProps={labelProps} />
+      {/* <group position={[0.3, 0, 0]}>
+        <SideLabel labelProps={labelProps} />
+      </group> */}
     </a.group>
   );
 };
