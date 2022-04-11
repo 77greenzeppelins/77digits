@@ -25,7 +25,7 @@ import { a } from '@react-spring/three';
 /*
 ------------------------------------------------------------------------
  */
-const ContainerIntro = ({ onClickCameraSetter }) => {
+const ContainerIntro = () => {
   /*
   References
   */

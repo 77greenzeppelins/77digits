@@ -14,7 +14,7 @@ const fontSizesVeryLarge = {
   fontLarge: 0.19,
 };
 /*
-Settings used by <Slide0> & <Slide1>
+Settings used by <Slide0>; it defines slider's engine behaviour
 */
 const slideSpring = {
   centralPositionX: 0,
@@ -22,6 +22,11 @@ const slideSpring = {
   bottomPosition: -1,
   config: springConfigs.configBasic,
   // config: springConfigs.molasses,
+};
+
+const gestureSettings = {
+  axisLimitation: 'x',
+  currentContainer: 'aboutContainer',
 };
 
 /*
@@ -232,6 +237,7 @@ const slide1Box1DataForSides = [
 
 export {
   slideSpring,
+  gestureSettings,
   slide1Box1Layout,
   slide1Box1DataForSides,
   slide1DataForSpring,

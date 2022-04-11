@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 /*
 Components
 */
@@ -61,12 +61,12 @@ const EndButtons = () => {
     delay: springConfig.delay,
   });
 
-  useEffect(() => {
-    console.log(
-      'EndButtons / canvasGlobalState.startOfContainerIntroShow:',
-      canvasGlobalState.startOfContainerIntroShow
-    );
-  }, [canvasGlobalState.startOfContainerIntroShow]);
+  // useEffect(() => {
+  //   console.log(
+  //     'EndButtons / canvasGlobalState.startOfContainerIntroShow:',
+  //     canvasGlobalState.startOfContainerIntroShow
+  //   );
+  // }, [canvasGlobalState.startOfContainerIntroShow]);
   /*
   JSX
   */

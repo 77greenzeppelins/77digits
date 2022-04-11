@@ -36,37 +36,36 @@ const IntroWheelGesture = () => {
   Main Handler Section
   */
   const mainWheelHandler = useCallback(
-    ({ offset: [, offsetY], wheeling, active }) => {
+    ({ offset: [, offsetY], wheeling }) => {
       /*
       this operation sets two global state properties that are crucial in <ContainerIntroContent> as they determines what was the very first users's gesture; the same operation is in <IntroDragGesture>
       I've been testing various "state" mechanism: <i> bare "let" before function; <2> useRef, <3> useState; only global state solve my problem...
        */
-      if (wheeling && canvasGlobalState.introContainerEventCounter === 0) {
+      if (wheeling && canvasGlobalState.introContainerEventType === 'none') {
         canvasState.introContainerEventType = 'wheeling';
-        /*
-        if you delate "canvasState.introContainerEventCounter = 1" other experience would be accessible; i.e. user scrolls, and suddenly drags! what happens? user goes to the beginning of container and only draging is available;
-        */
-        canvasState.introContainerEventCounter = 1;
       }
       /*
-      this is spring part;
-       */
+      Spring Section;
+      */
       api.start({
         someValue: offsetY,
         wheeledPositionZ: offsetY * factorPositionY,
       });
     },
-    [api, canvasGlobalState.introContainerEventCounter]
+    [api, canvasGlobalState.introContainerEventType]
   );
   /*
   Additional Handler for last wheel 
   */
   const doThisAtTheEndHandler = useCallback(
-    ({ offset: [, y] }) => {
+    ({ offset: [, y], down }) => {
       /*
       What should happen if user wheels to the end?
       */
-      if (y === canvasGlobalState.introContainerWheelDragBounds.bottom) {
+      if (
+        y === canvasGlobalState.introContainerWheelDragBounds.bottom &&
+        !down
+      ) {
         canvasState.endOfContainerIntro = true;
       }
     },
@@ -76,7 +75,7 @@ const IntroWheelGesture = () => {
   /*
   Gesture Section
   */
-  const containerIntroDrag = useGesture(
+  const containerIntroWheel = useGesture(
     {
       onWheel: mainWheelHandler,
       onWheelEnd: doThisAtTheEndHandler,
@@ -99,9 +98,9 @@ const IntroWheelGesture = () => {
     }
   );
   /*
-  ContainerIntroDrag's return
+  ContainerIntroWheel's return
   */
-  return { someValue, wheeledPositionZ, containerIntroDrag };
+  return { someValue, wheeledPositionZ, containerIntroWheel };
 };
 
 export default IntroWheelGesture;

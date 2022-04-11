@@ -54,7 +54,7 @@ const Slide0 = ({ slideId }) => {
       position: [
         0,
         canvasGlobalState.currentContainer === 'aboutContainer' &&
-        slideId < canvasGlobalState.containerAboutSlideIndex
+        slideId < canvasGlobalState.containerAboutVisibleSlideIndex
           ? slideSpring.topPosition
           : slideSpring.centralPosition,
 
@@ -63,6 +63,14 @@ const Slide0 = ({ slideId }) => {
     },
     config: slideSpring.config,
   });
+  //______________
+  useEffect(() => {
+    console.log(
+      'canvasGlobalState.containerAboutVisibleSlideIndex:',
+      canvasGlobalState.containerAboutVisibleSlideIndex
+    );
+  }, [canvasGlobalState.containerAboutVisibleSlideIndex]);
+  //______________
 
   /*
   useEffectSection

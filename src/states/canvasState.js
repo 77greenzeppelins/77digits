@@ -71,10 +71,6 @@ const canvasState = proxy({
   */
   introContainerEventType: 'none',
   /*
-  this value is used in <IntroWheelGesture> & <IntroDragGesture> and is "second part" of condition!!!
-  */
-  introContainerEventCounter: 0,
-  /*
   idea: when user scrolls/drags to the end, it changer to "true" and:
   (1) scrolls/drags gestures are disabled
   (2) <InstantContact> comes into the scene. i.e. goes on z-axis from fog  
@@ -122,16 +118,25 @@ const canvasState = proxy({
   // userAteCookies: false,
 
   /*
-  ---------------------------------------------<ContainerIntro 3D Staff>
+  ---------------------------------------------<ContainerAbout>
   */
-  // isOdlotBackgroundVisible: false,
+  containerAboutGestureType: 'none',
+  containerAboutVisibleSlideIndex: 0,
+  /*
+  this props is ment to freez "LimitedPseudoScrolling"
+  it anables / disables "LPS"
+  is change to "false" in "LPS" handlers
+  is changed to true in springs of every slide; i.e. onRest() should does it!
+  */
+  slideIsCompletted: true,
 
   /*
-  --------------------------------------------<Container About 2D Staff>
+  --------------------------------------------<ContainerAbout2DStaff>
   */
   /*
   is changed in <NavigatoionPanel> 2D component;
   */
+  containerAboutEventCounter: 0,
   containerAboutSlideIndex: 0,
   containerAboutSlidingDirection: 'none',
   /*

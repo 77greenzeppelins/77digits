@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 /*
 Components
 */
@@ -21,6 +21,7 @@ import useWindowSize from '../../../../../../hooks/useWindowSize';
  */
 import {
   slideSpring,
+  gestureSettings,
   slide1Box1Layout,
   slide1Box1DataForSides,
   slide1DataForSpring,
@@ -112,8 +113,8 @@ const Slide1 = ({ slideId }) => {
           groupProps={{
             name: 'groupForSpinningBox_slide_0_Box_1_Data',
             /*
-              a bit of responsiveness based on data from "slide1Box1Layout"; 
-              */
+            a bit of responsiveness based on data from "slide1Box1Layout"; 
+            */
             scale:
               windowSize.width < minForTablet
                 ? slide1Box1Layout.mobile.scale
@@ -125,19 +126,23 @@ const Slide1 = ({ slideId }) => {
             // ...slide0Box1Layout.mobile,
           }}
           /*
-            array of props; using map() we get 4 <SpinningBoxSide>
-            */
+          array of props; using map() we get 4 <SpinningBoxSide>
+          */
           spinningBoxConfig={slide1Box1DataForSides}
           springConfig={slide1DataForSpring}
           /*
-            props for <SpinningBoxSide>'s spring;
-            */
+          props for <SpinningBoxSide>'s gesture; 
+          */
+          gestureSettings={gestureSettings}
+          /*
+          props for <SpinningBoxSide>'s spring;
+          */
           isSlideVisible={
             slideId === canvasGlobalState.containerAboutSlideIndex
           }
           /*
-            props for <SpinningBoxSide>'s spring; one of conditions that decide if side rotates; it chaneges within 2D <NavigationPanel> button;
-            */
+          props for <SpinningBoxSide>'s spring; one of conditions that decide if side rotates; it chaneges within 2D <NavigationPanel> button;
+          */
           isSideRotating={canvasGlobalState.slide1Rotation}
         />
         {/* </a.group> */}

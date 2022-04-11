@@ -39,13 +39,13 @@ const IntroDragGesture = () => {
       /*
       this operation sets global state property that is crucial in <ContainerIntroContent> as it determines what was the very first users's gesture; the same operation is in <IntroWheelGesture>
        */
-      if (dragging && canvasGlobalState.introContainerEventCounter === 0) {
+
+      if (dragging && canvasGlobalState.introContainerEventType === 'none') {
         canvasState.introContainerEventType = 'dragging';
-        canvasState.introContainerEventCounter = 1;
       }
       api.start({ draggedPositionZ: offsetY * factorPositionY });
     },
-    [api, canvasGlobalState.introContainerEventCounter]
+    [api, canvasGlobalState.introContainerEventType]
   );
   /*
   Additional Handler Section for onDragEnd

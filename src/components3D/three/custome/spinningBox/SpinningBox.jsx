@@ -19,45 +19,57 @@ const SpinningBox = React.forwardRef(
   (
     {
       /*
-  props for <SpinningBox>'s main <group>; scale & position;
-  */
+      props for <SpinningBox>'s main <group>; scale & position;
+      */
       groupProps,
       /*
-  props for <SpinningBoxSide> layout and its children
-  */
+      props for <SpinningBoxSide> layout and its children
+      */
       spinningBoxConfig,
       /*
-  props for <SpinningBoxSide>'s spring
-  */
+      props for <SpinningBoxSide>'s spring
+      */
       springConfig,
       isSlideVisible,
       isSideRotating,
+      /*
+      props for <SpinningBoxSide>'s gesture
+      */
+      gestureSettings,
     },
     ref
   ) => {
     /*
-  References
-  */
+    References
+    */
     const autorotatingGroup = useRef();
     /*
-  Call this gesture!!!
-  returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
-  */
+    Call this gesture!!!
+    returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
+    */
     const [rotateStepByStep, dragRotateStepByStep] = DragRotateStepByStep({
       /*
-    set axis that is active
-    */
+      set axis that is active
+      */
       axisLimitation: springConfig.axisLimitation,
     });
 
     // useEffect(() => {
-    //   if (
-    //     ref.current.name === 'groupForSpinningBox_slide_0' &&
-    //     ref.current.rotation.z === 0
-    //   ) {
-    //     console.log('SpinningBox / ref.current:', ref.current.rotation);
-    //   } else console.log('SpinningBox WTF');
-    // }, [ref]);
+    //   // if (
+    //   //   ref.current.name === 'groupForSpinningBox_slide_0' &&
+    //   //   ref.current.rotation.z === 0
+    //   // ) {
+    //   //   console.log('SpinningBox / ref.current:', ref.current.rotation);
+    //   // } else console.log('SpinningBox WTF');
+    //   console.log(
+    //     'SpinningBox / springConfig.axisLimitation:',
+    //     springConfig.axisLimitation
+    //   );
+    //   console.log(
+    //     'SpinningBox / gestureSettings.axisLimitation:',
+    //     gestureSettings.axisLimitation
+    //   );
+    // }, [springConfig.axisLimitation, gestureSettings.axisLimitation]);
 
     /*
   JSX
@@ -89,8 +101,8 @@ const SpinningBox = React.forwardRef(
                 canvasProps={canvasProps}
                 frameProps={frameProps}
                 /*
-              props for <SpinningBoxSide>'s springAnimation;
-              */
+                props for <SpinningBoxSide>'s springAnimation;
+                */
                 springConfig={springConfig}
                 isSlideVisible={isSlideVisible}
                 isSideRotating={isSideRotating}

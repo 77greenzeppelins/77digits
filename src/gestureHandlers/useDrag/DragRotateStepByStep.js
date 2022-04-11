@@ -9,10 +9,6 @@ Spring Staff
 */
 import { useSpring, config } from '@react-spring/three';
 /*
-Global State Staff
-*/
-// import { canvasState } from '../../states/canvasState';
-/*
 Basic Data
 */
 const [defaultX, defaultY, defaultZ] = [0, 0, 0];
@@ -37,12 +33,10 @@ const DragRotateStepByStep = ({
   axisLimitation,
 }) => {
   /*
-  state / values test
+  References
   */
-  // let [stateX, setStateX] = useState(0);
   let refX = useRef(0);
   let refY = useRef(0);
-
   /*
   Spring Section
   */
@@ -64,14 +58,7 @@ const DragRotateStepByStep = ({
     What "down" does ?
     documentation: "true when a mouse button or touch is down"
     */
-    ({
-      down,
-      movement: [movementX, movementY],
-      // memo = [
-      //   rotateStepByStep.animation.to,
-      // ],
-      memo = 0,
-    }) => {
+    ({ down, movement: [movementX, movementY], memo = 0 }) => {
       /*
       Why such "if statement condition" ?
       documentation: "down is true when a mouse button or touch is down"
@@ -81,10 +68,14 @@ const DragRotateStepByStep = ({
       */
       if (movementX > 50 && !down) {
         refX.current += 1;
+        // console.log('movementX / +:', movementX);
+        // console.log('refX.current / -:', refX.current);
       }
 
       if (movementX < 50 && !down) {
         refX.current -= 1;
+        // console.log('Box movementX / -:', movementX);
+        // console.log('refX.current / +:', refX.current);
       }
 
       if (movementY > 50 && !down) {
@@ -92,27 +83,11 @@ const DragRotateStepByStep = ({
         // console.log('movementY / +:', movementY);
         // console.log('refY.current / -:', refY.current);
       }
-
       if (movementY < 50 && !down) {
         refY.current -= 1;
-        // console.log('movementY / -:', movementY);
+        // console.log('Box movementY / -:', movementY);
         // console.log('refY.current / +:', refY.current);
       }
-      /*
-      refactoring of Test 2
-      */
-      // !down
-      //   ? movementX > 0
-      //     ? (someBool = true)
-      //     : (someBool = false)
-      //   : (someBool = null);
-
-      // !down
-      //   ? movementX > 0
-      //     ? (horizontalDragValue += 1)
-      //     : (horizontalDragValue -= 1)
-      //   : (someBool = null);
-
       /*
       Spring API
       */
@@ -167,9 +142,9 @@ const DragRotateStepByStep = ({
 };
 
 export default DragRotateStepByStep;
+
 /*
 Props
-
 const [
   rightDragLimitX, 
   leftDragLimitX, 

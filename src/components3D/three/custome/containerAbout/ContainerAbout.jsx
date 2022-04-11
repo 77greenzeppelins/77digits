@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 /*
 Components
 */
@@ -9,16 +9,40 @@ Global State Staff
 */
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../states/canvasState';
-
+/*
+Gesture Staff
+*/
+import LimitedPseudoScrolling from '../../../../gestureHandlers/useGesture/LimitedPseudoScrolling';
 /*
 ------------------------------------------------------------------------
  */
 const ContainerAbout = () => {
   /*
   Global State Section
-  canvasState = {...,aboutContainerPosition: , isContainerAboutIntroductionClosed: false,}
+  canvasState = {}
  */
   const canvasGlobalState = useSnapshot(canvasState);
+
+  /*
+  Gesture Section
+  */
+  LimitedPseudoScrolling({ numberOfSlides: 5 });
+
+  //_________
+  // useEffect(() => {
+  //   console.log(
+  //     'ContainerAbout / canvasGlobalState.containerAboutVisibleSlideIndex:',
+  //     canvasGlobalState.containerAboutVisibleSlideIndex
+  //   );
+  //   console.log(
+  //     'LimitedPseudoScrolling / .introContainerEventType:',
+  //     canvasGlobalState.containerAboutGestureType
+  //   );
+  // }, [
+  //   canvasGlobalState.containerAboutVisibleSlideIndex,
+  //   canvasGlobalState.containerAboutGestureType,
+  // ]);
+  //_____
 
   return (
     // canvasGlobalState.currentContainer === 'aboutContainer' && (
