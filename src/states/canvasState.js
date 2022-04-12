@@ -19,7 +19,7 @@ const canvasState = proxy({
   languageVersion: 'pl',
 
   /*
-  ------------------------------------Constants for buttons onClick events...
+  ------------------------------------Global Position Data
   */
   defaultContainerPosition: [0, -5, 0],
   defaultContainerCameraPosition: [0, -5, 2],

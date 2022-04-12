@@ -27,7 +27,7 @@ const SliderProgressIndicator = ({ slidesArrayNumber }) => {
     <div className="slider-progres-indicator__wrapper">
       <p className="slider-progres-indicator__label">
         {`${
-          canvasGlobalState.containerAboutSlideIndex + 1
+          canvasGlobalState.containerAboutVisibleSlideIndex + 1
         }/${slidesArrayNumber}`}
       </p>
     </div>

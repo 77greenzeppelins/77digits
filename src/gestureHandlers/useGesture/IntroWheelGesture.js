@@ -81,7 +81,7 @@ const IntroWheelGesture = () => {
       onWheelEnd: doThisAtTheEndHandler,
     },
     {
-      target: window,
+      target: canvasGlobalState.currentContainer === 'introContainer' && window,
       enabled:
         /*
         why two conditions? 

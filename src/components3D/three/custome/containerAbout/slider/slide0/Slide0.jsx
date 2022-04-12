@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useRef } from 'react';
+import React, { Suspense, useRef } from 'react';
 /*
 Components
 */
@@ -64,12 +64,19 @@ const Slide0 = ({ slideId }) => {
     config: slideSpring.config,
   });
   //______________
-  useEffect(() => {
-    console.log(
-      'canvasGlobalState.containerAboutVisibleSlideIndex:',
-      canvasGlobalState.containerAboutVisibleSlideIndex
-    );
-  }, [canvasGlobalState.containerAboutVisibleSlideIndex]);
+  // useEffect(() => {
+  //   console.log(
+  //     'canvasGlobalState.containerAboutVisibleSlideIndex:',
+  //     canvasGlobalState.containerAboutVisibleSlideIndex
+  //   );
+  //   console.log(
+  //     'canvasGlobalState.containerAboutGestureType:',
+  //     canvasGlobalState.containerAboutGestureType
+  //   );
+  // }, [
+  //   canvasGlobalState.containerAboutVisibleSlideIndex,
+  //   canvasGlobalState.containerAboutGestureType,
+  // ]);
   //______________
 
   /*

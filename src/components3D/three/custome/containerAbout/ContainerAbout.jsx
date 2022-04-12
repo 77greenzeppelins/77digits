@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 /*
 Components
 */
 import Slider from './slider/Slider';
-import NavigationPanel from './navigationPanel/NavigationPanel';
+import InteractivePanel from './interactivePanel/InteractivePanel';
+import GesturePrompt from '../gesturePrompt/GesturePrompt';
+// import NavigationPanel from './navigationPanel/NavigationPanel';
 /*
 Global State Staff
 */
@@ -12,7 +14,7 @@ import { canvasState } from '../../../../states/canvasState';
 /*
 Gesture Staff
 */
-import LimitedPseudoScrolling from '../../../../gestureHandlers/useGesture/LimitedPseudoScrolling';
+// import LimitedPseudoScrolling from '../../../../gestureHandlers/useGesture/LimitedPseudoScrolling';
 /*
 ------------------------------------------------------------------------
  */
@@ -26,7 +28,9 @@ const ContainerAbout = () => {
   /*
   Gesture Section
   */
-  LimitedPseudoScrolling({ numberOfSlides: 5 });
+  // const { pseudoScrollinGesture } = LimitedPseudoScrolling({
+  //   numberOfSlides: 5,
+  // });
 
   //_________
   // useEffect(() => {
@@ -47,13 +51,27 @@ const ContainerAbout = () => {
   return (
     // canvasGlobalState.currentContainer === 'aboutContainer' && (
     <group
+      // {...pseudoScrollinGesture()}
       scale={[1, 1, 1]}
       name="GroupForContainerAbout"
       position={canvasGlobalState.aboutContainerPosition}
     >
       {/*-----Slider Section-----------------------------------*/}
       <Slider />
-      <NavigationPanel />
+
+      {/*-----Interactive Panel Section------------------------*/}
+      {canvasGlobalState.currentContainer === 'aboutContainer' && (
+        <InteractivePanel />
+      )}
+
+      {/*-----Interactive Panel Section------------------------*/}
+      {canvasGlobalState.currentContainer === 'aboutContainer' && (
+        <>
+          <GesturePrompt scena={'caDragSpinningBox'} springsNumber={3} />
+          {/* <GesturePrompt scena={'caJustScroll'} /> */}
+        </>
+      )}
+      {/* <NavigationPanel /> */}
     </group>
   );
   // );

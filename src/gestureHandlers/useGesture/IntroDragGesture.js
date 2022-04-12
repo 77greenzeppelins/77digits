@@ -70,7 +70,7 @@ const IntroDragGesture = () => {
       onDragEnd: doThisAtTheEndHandler,
     },
     {
-      target: window,
+      target: canvasGlobalState.currentContainer === 'introContainer' && window,
       enabled:
         /*
         why two conditions? 

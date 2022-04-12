@@ -15,60 +15,48 @@ const LimitedPseudoScrolling = ({ numberOfSlides }) => {
   /*
   Wheel Handler Section
   */
-  const mainWheelHandler = useCallback(
-    ({ wheeling, direction: [directionX, directionY], last, first }) => {
+  const startWheelHandler = useCallback(
+    ({ wheeling }) => {
       /*
       set gesture type; i.e wheeling or draging
       */
       if (wheeling && canvasGlobalState.containerAboutGestureType === 'none') {
         canvasState.containerAboutGestureType = 'wheeling';
+        // console.log('startWheelHandler was triggered....');
       }
+    },
+    [canvasGlobalState.containerAboutGestureType]
+  );
+
+  const endWheelHandler = useCallback(
+    ({ direction: [, directionY] }) => {
       /*
-      actuall handler logic; I've been testing various "gesture state" combination to avoid multiply changes within one wheel move / scroll;
+      set gesture type; i.e wheeling or draging
       */
       if (
-        /*
-        this very first condition avoid nagative indices
-        */
+        canvasGlobalState.containerAboutGestureType === 'wheeling' &&
         canvasGlobalState.containerAboutVisibleSlideIndex < numberOfSlides &&
-        canvasGlobalState.containerAboutGestureType === 'wheeling' &&
-        directionY === 1 &&
-        first
+        directionY === 1
       ) {
-        console.log(
-          'canvasGlobalState.containerAboutVisibleSlideIndex < numberOfSlides',
-          canvasGlobalState.containerAboutVisibleSlideIndex < numberOfSlides
-        );
-        console.log(
-          "canvasGlobalState.containerAboutGestureType === 'wheeling'",
-          canvasGlobalState.containerAboutGestureType === 'wheeling'
-        );
-        console.log('directionY === 1', directionY === 1);
-        console.log('first', first);
+        // console.log('endWheelHandler was triggered....');
         canvasState.containerAboutVisibleSlideIndex += 1;
-      } else {
-        console.log(
-          'canvasGlobalState.containerAboutVisibleSlideIndex < numberOfSlides',
-          canvasGlobalState.containerAboutVisibleSlideIndex < numberOfSlides
-        );
-        console.log(
-          "canvasGlobalState.containerAboutGestureType === 'wheeling'",
-          canvasGlobalState.containerAboutGestureType === 'wheeling'
-        );
-        console.log('directionY === 1', directionY === 1);
-        console.log('first', first);
+        // console.log(
+        //   'canvasGlobalState.containerAboutVisibleSlideIndex',
+        //   canvasGlobalState.containerAboutVisibleSlideIndex
+        // );
       }
+
       if (
-        /*
-        this very first condition avoid nagative indices
-        */
-        canvasGlobalState.containerAboutVisibleSlideIndex > 0 &&
         canvasGlobalState.containerAboutGestureType === 'wheeling' &&
-        directionY === -1 &&
-        first
+        canvasGlobalState.containerAboutVisibleSlideIndex > 0 &&
+        directionY === -1
       ) {
-        console.log('last', last);
+        // console.log('endWheelHandler was triggered....');
         canvasState.containerAboutVisibleSlideIndex -= 1;
+        // console.log(
+        //   'canvasGlobalState.containerAboutVisibleSlideIndex',
+        //   canvasGlobalState.containerAboutVisibleSlideIndex
+        // );
       }
     },
     [
@@ -78,21 +66,25 @@ const LimitedPseudoScrolling = ({ numberOfSlides }) => {
     ]
   );
 
-  const mainDragHandler = useCallback(
-    ({ dragging, down, movement: [movementX, movementY] }) => {
+  const startDragHandler = useCallback(
+    ({ dragging }) => {
       /*
-      set gesture type i.e wheeling or draging
+      set gesture type; i.e wheeling or draging
       */
       if (dragging && canvasGlobalState.containerAboutGestureType === 'none') {
         canvasState.containerAboutGestureType = 'dragging';
+        // console.log('startWheelHandler was triggered....');
       }
+    },
+    [canvasGlobalState.containerAboutGestureType]
+  );
 
-      /*
-       actuall handler logic; I've been testing various "gesture state" combination to avoid multiply changes within one wheel move / scroll;
-      */
+  const endDragHandler = useCallback(
+    ({ down, movement: [, movementY], direction: [, directionY] }) => {
       if (
         canvasGlobalState.containerAboutGestureType === 'dragging' &&
         movementY > 50 &&
+        // directionY === -1 &&
         !down &&
         /*
         this very last condition avoid nagative indices; i.e if you gey "0" no subtraction is evaluated
@@ -104,6 +96,7 @@ const LimitedPseudoScrolling = ({ numberOfSlides }) => {
       if (
         canvasGlobalState.containerAboutGestureType === 'dragging' &&
         movementY < 50 &&
+        // directionY === 1 &&
         !down &&
         canvasGlobalState.containerAboutVisibleSlideIndex < numberOfSlides
       ) {
@@ -122,11 +115,13 @@ const LimitedPseudoScrolling = ({ numberOfSlides }) => {
   */
   const pseudoScrollinGesture = useGesture(
     {
-      onWheel: mainWheelHandler,
-      onDrag: mainDragHandler,
+      onWheelStart: startWheelHandler,
+      onWheelEnd: endWheelHandler,
+      onDragStart: startDragHandler,
+      onDragEnd: endDragHandler,
     },
     {
-      target: window,
+      // target: window,
       /*
       Why "slideIsCompletted"?
       */

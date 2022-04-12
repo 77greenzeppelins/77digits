@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { debounce } from 'lodash';
 /*
 Components
@@ -21,26 +21,26 @@ const NavigationPanel = () => {
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
-    userExperience Section / onClick Handlers
-    */
-  const goForward = debounce(() => {
-    if (canvasGlobalState.containerAboutSlideIndex < slidesArrayNumber - 1) {
-      canvasState.containerAboutSlideIndex += 1;
-      canvasState.containerAboutSlidingDirection = 'forward';
-    }
-  }, 200);
+  userExperience Section / onClick Handlers
+  */
+  // const goForward = debounce(() => {
+  //   if (canvasGlobalState.containerAboutSlideIndex < slidesArrayNumber - 1) {
+  //     canvasState.containerAboutSlideIndex += 1;
+  //     canvasState.containerAboutSlidingDirection = 'forward';
+  //   }
+  // }, 200);
 
-  const goBackward = debounce(() => {
-    if (
-      /*
-        this condition means: "do nothing if index === 0, work only if index > 0"
-        */
-      canvasGlobalState.containerAboutSlideIndex > 0
-    ) {
-      canvasState.containerAboutSlideIndex -= 1;
-      canvasState.containerAboutSlidingDirection = 'backward';
-    }
-  }, 200);
+  // const goBackward = debounce(() => {
+  //   if (
+  //     /*
+  //       this condition means: "do nothing if index === 0, work only if index > 0"
+  //       */
+  //     canvasGlobalState.containerAboutSlideIndex > 0
+  //   ) {
+  //     canvasState.containerAboutSlideIndex -= 1;
+  //     canvasState.containerAboutSlidingDirection = 'backward';
+  //   }
+  // }, 200);
 
   const rotateBox = debounce(() => {
     switch (canvasGlobalState.containerAboutSlideIndex) {
@@ -57,32 +57,19 @@ const NavigationPanel = () => {
     }
   }, 400);
 
-  //____
-
-  // useEffect(() => {
-  //   console.log(
-  //     'canvasGlobalState.slide0Rotation',
-  //     canvasGlobalState.slide0Rotation
-  //   );
-  //   console.log(
-  //     'canvasGlobalState.slide1Rotation',
-  //     canvasGlobalState.slide1Rotation
-  //   );
-  // }, [canvasGlobalState.slide1Rotation, canvasGlobalState.slide0Rotation]);
-
   /*
   JSX
   */
   return (
     <div className="navigation-panel__container">
-      <button onClick={goBackward} className="navigation-panel__button" />
+      {/* <button onClick={goBackward} className="navigation-panel__button" /> */}
       <div onClick={rotateBox} className="navigation-panel__special_wrapper">
         <button className="navigation-panel__rotate-button"></button>
         <div className="navigation-panel__progress-indicator">
           <SliderProgressIndicator slidesArrayNumber={slidesArrayNumber} />
         </div>
       </div>
-      <button onClick={goForward} className="navigation-panel__button" />
+      {/* <button onClick={goForward} className="navigation-panel__button" /> */}
     </div>
   );
 };
