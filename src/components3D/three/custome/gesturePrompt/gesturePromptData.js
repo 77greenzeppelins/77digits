@@ -1,50 +1,25 @@
 /*
 {springConfigs: [configBasic, molasses]}
 */
-import { springConfigs } from '../../../../data/reactSpring';
+// import { springConfigs } from '../../../../data/reactSpring';
 
 const gesturePromtBasicData = {
   meshProps: { position: [-0.17, -0.33, 0] },
   circleGeometry: { args: [0.0015, 10] },
 };
 
-const caDragSpinningBox = {
-  from: { position: [-0.1, -0.33, 0], scale: [0, 0, 0] },
-  to: { position: [0.1, -0.33, 0], scale: [1, 1, 1] },
-  config: { ...springConfigs.molasses },
-  // loop: () => 1 > counter.current++,
-  delay: 400,
+const caRotateSpinningBox = {
+  valueX: [-0.1, 0.1],
+  positionY: -0.33,
+  config: { duration: 2000 },
+  scaleRange: [0, 0.15, 0.5, 0.85, 1],
+  scaleValues: [0, 1.8, 2, 1.8, 0],
+  // config: { ...springConfigs.molasses },
 };
 
-const caDragSpinningBoxArray = [
-  {
-    id: 1,
-    from: { position: [-0.1, -0.33, 0], scale: [0, 0, 0] },
-    to: { position: [0.1, -0.33, 0], scale: [1, 1, 1] },
-    config: { ...springConfigs.molasses },
-    // loop: () => 1 > counter.current++,
-    delay: 400,
-  },
-  {
-    id: 2,
-    from: { position: [0.1, -0.33, 0], scale: [1, 1, 1] },
-    to: { position: [-0.1, -0.33, 0], scale: [0, 0, 0] },
-    config: { ...springConfigs.molasses },
-    // loop: () => 1 > counter.current++,
-    delay: 400,
-  },
-  {
-    id: 3,
-    from: { position: [-0.1, -0.33, 0], scale: [0, 0, 0] },
-    to: { position: [0.1, -0.33, 0], scale: [1, 1, 1] },
-    config: { ...springConfigs.molasses },
-    // loop: () => 1 > counter.current++,
-    delay: 400,
-  },
-];
+export { gesturePromtBasicData, caRotateSpinningBox };
 
-export { gesturePromtBasicData, caDragSpinningBox, caDragSpinningBoxArray };
-
+//_____________________________________________________________________
 // const caDragSpinningBox = ()=>{
 //       return {
 //         from: { position: [-0.1, -0.33, 0], scale: [0, 0, 0] },
@@ -54,3 +29,22 @@ export { gesturePromtBasicData, caDragSpinningBox, caDragSpinningBoxArray };
 //         delay: 400,
 //       }
 // }
+
+// const caDragSpinningBoxArray = [
+//   {
+//     id: 'one',
+//     from: { position: [-0.1, -0.33, 0], scale: [0, 0, 0] },
+//     to: { position: [0.1, -0.33, 0], scale: [1, 1, 1] },
+//     config: { ...springConfigs.molasses },
+//     // loop: () => 1 > counter.current++,
+//     // delay: 400,
+//   },
+//   {
+//     id: 'two',
+//     from: { position: [0.1, -0.33, 0], scale: [1, 1, 1] },
+//     to: { position: [-0.1, -0.33, 0], scale: [0, 0, 0] },
+//     config: { ...springConfigs.molasses },
+//     // loop: () => 1 > counter.current++,
+//     // delay: 1200,
+//   },
+// ];

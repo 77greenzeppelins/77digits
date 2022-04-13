@@ -1,5 +1,9 @@
 import { useCallback, useRef } from 'react';
-// import { useThree } from '@react-three/fiber';
+/*
+Global State Staff
+*/
+// import { canvasState } from '../../states/canvasState';
+// import { useSnapshot } from 'valtio';
 /*
 Gesture Staff
 */
@@ -33,19 +37,27 @@ const DragRotateStepByStep = ({
   axisLimitation,
 }) => {
   /*
+  Global State Section
+  */
+  // const canvasGlobalState = useSnapshot(canvasState);
+  /*
   References
   */
   let refX = useRef(0);
   let refY = useRef(0);
+  let closeGesturePrompt = useRef(0);
+  let fakeBoolean = useRef(false);
+
   /*
   Spring Section
   */
-  const [{ rotateStepByStep }, api] = useSpring(() => ({
+  const [{ rotateStepByStep, gesturePromptPosition }, api] = useSpring(() => ({
     rotateStepByStep: [
       rotationX || defaultX,
       rotationY || defaultY,
       rotationZ || defaultZ,
     ],
+    gesturePromptPosition: -0.33,
     config: config.molasses,
     // config: { duration: 2000 },
   }));
@@ -68,26 +80,80 @@ const DragRotateStepByStep = ({
       */
       if (movementX > 50 && !down) {
         refX.current += 1;
+        switch (refX.current) {
+          case 0:
+            console.log('refX.current should be 0', refX.current);
+            break;
+          case 1:
+            console.log('refX.current should be 1', refX.current);
+            closeGesturePrompt.current = 1;
+            fakeBoolean.current = true;
+            console.log('closeGesturePrompt', closeGesturePrompt.current);
+            // console.log('fakeBoolean.current', fakeBoolean.current);
+
+            break;
+          // case 4:
+          //   console.log('refX.current should be 4', refX.current);
+          //   break;
+          // case -4:
+          //   console.log('refX.current should be -4', refX.current);
+          //   break;
+          default:
+            console.log('default value:', refX.current);
+            break;
+        }
+        // canvasState.spinningBoxRotation += 1;
         // console.log('movementX / +:', movementX);
-        // console.log('refX.current / -:', refX.current);
+        // console.log('refX.current / left-to-right:', refX.current);
+        // console.log(
+        //   'canvasGlobalState / left-to-right:',
+        //   canvasState.spinningBoxRotation
+        // );
       }
 
       if (movementX < 50 && !down) {
         refX.current -= 1;
+        switch (refX.current) {
+          case 0:
+            console.log('refX.current should be 0', refX.current);
+            break;
+          case -1:
+            console.log('refX.current should be 1', refX.current);
+            closeGesturePrompt.current = -1;
+            fakeBoolean.current = true;
+            console.log('closeGesturePrompt', closeGesturePrompt.current);
+            // console.log('fakeBoolean.current', fakeBoolean.current);
+            break;
+          // case -4:
+          //   console.log('refX.current should be -4', refX.current);
+          //   break;
+          default:
+            console.log('default value:', refX.current);
+            break;
+        }
+        // canvasState.spinningBoxRotation -= 1;
         // console.log('Box movementX / -:', movementX);
-        // console.log('refX.current / +:', refX.current);
+        // console.log('refX.current / right-to-left:', refX.current);
+        // console.log(
+        //   '.spinningBoxRotation / right-to-left:',
+        //   canvasState.spinningBoxRotation
+        // );
+        // console.log(
+        //   'canvasGlobalState / right-to-left:',
+        //   canvasState.spinningBoxRotation
+        // );
       }
 
-      if (movementY > 50 && !down) {
-        refY.current += 1;
-        // console.log('movementY / +:', movementY);
-        // console.log('refY.current / -:', refY.current);
-      }
-      if (movementY < 50 && !down) {
-        refY.current -= 1;
-        // console.log('Box movementY / -:', movementY);
-        // console.log('refY.current / +:', refY.current);
-      }
+      // if (movementY > 50 && !down) {
+      //   refY.current += 1;
+      //   // console.log('movementY / +:', movementY);
+      //   // console.log('refY.current / -:', refY.current);
+      // }
+      // if (movementY < 50 && !down) {
+      //   refY.current -= 1;
+      //   // console.log('Box movementY / -:', movementY);
+      //   // console.log('refY.current / +:', refY.current);
+      // }
       /*
       Spring API
       */
@@ -108,13 +174,27 @@ const DragRotateStepByStep = ({
           axisLimitation === 'y' ? refY.current * Math.PI * 0.5 : 0,
           /*
           calculate Y
+          listen to gesture on x-axis and using valuse from this gesture calculate rotation along y-axis; a bit odd... 
           */
+          // axisLimitation === 'x' ? refX.current * Math.PI * 0.5 : 0,
+          // axisLimitation === 'x'
+          //   ? canvasState.spinningBoxRotation * Math.PI * 0.5
+          //   : 0,
+
           axisLimitation === 'x' ? refX.current * Math.PI * 0.5 : 0,
+
           /*
           calculate z
           */
           rotationZ || defaultZ,
         ],
+        /*
+        this springValue is used in <GesturePrompt>
+        */
+        gesturePromptPosition:
+          closeGesturePrompt.current === 1 || closeGesturePrompt.current === -1
+            ? -0.4
+            : -0.33,
       });
     },
     [api, rotationZ, axisLimitation]
@@ -131,14 +211,26 @@ const DragRotateStepByStep = ({
     axis sets "active" axis; component "listen to" draggs along this axis
     */
     {
+      // target: window,
       axis: axisLimitation,
     }
   );
 
+  //_________
+  // console.log(
+  //   'DragRotateStepByStep / gesturePromptPosition',
+  //   gesturePromptPosition
+  // );
+
   /*
   Final "return staff" of this function
   */
-  return [rotateStepByStep, dragRotateStepByStep];
+  return {
+    fakeBoolean,
+    rotateStepByStep,
+    gesturePromptPosition,
+    dragRotateStepByStep,
+  };
 };
 
 export default DragRotateStepByStep;

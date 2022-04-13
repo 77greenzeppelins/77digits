@@ -47,9 +47,9 @@ const NavigationPanel = () => {
       case 0:
         canvasState.slide0Rotation = !canvasGlobalState.slide0Rotation;
         break;
-      case 1:
-        canvasState.slide1Rotation = !canvasGlobalState.slide1Rotation;
-        break;
+      // case 1:
+      //   canvasState.slide1Rotation = !canvasGlobalState.slide1Rotation;
+      //   break;
       default:
         canvasGlobalState.slide0Rotation = false;
         canvasGlobalState.slide1Rotation = false;
@@ -61,16 +61,19 @@ const NavigationPanel = () => {
   JSX
   */
   return (
-    <div className="navigation-panel__container">
-      {/* <button onClick={goBackward} className="navigation-panel__button" /> */}
-      <div onClick={rotateBox} className="navigation-panel__special_wrapper">
-        <button className="navigation-panel__rotate-button"></button>
-        <div className="navigation-panel__progress-indicator">
-          <SliderProgressIndicator slidesArrayNumber={slidesArrayNumber} />
+    (canvasGlobalState.spinningBoxRotation === 4 ||
+      canvasGlobalState.spinningBoxRotation === -4) && (
+      <div className="navigation-panel__container">
+        {/* <button onClick={goBackward} className="navigation-panel__button" /> */}
+        <div onClick={rotateBox} className="navigation-panel__special_wrapper">
+          <button className="navigation-panel__rotate-button"></button>
+          <div className="navigation-panel__progress-indicator">
+            <SliderProgressIndicator slidesArrayNumber={slidesArrayNumber} />
+          </div>
         </div>
+        {/* <button onClick={goForward} className="navigation-panel__button" /> */}
       </div>
-      {/* <button onClick={goForward} className="navigation-panel__button" /> */}
-    </div>
+    )
   );
 };
 

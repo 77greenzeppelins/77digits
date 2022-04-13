@@ -123,6 +123,11 @@ const canvasState = proxy({
   containerAboutGestureType: 'none',
   containerAboutVisibleSlideIndex: 0,
   /*
+  this props controlls rotoation of <SpinningBox>
+  valu [4, -4] means rotated 360 deg;
+  */
+  spinningBoxRotation: 0,
+  /*
   this props is ment to freez "LimitedPseudoScrolling"
   it anables / disables "LPS"
   is change to "false" in "LPS" handlers

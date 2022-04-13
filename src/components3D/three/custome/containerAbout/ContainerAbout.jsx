@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 /*
 Components
 */
@@ -35,17 +35,10 @@ const ContainerAbout = () => {
   //_________
   // useEffect(() => {
   //   console.log(
-  //     'ContainerAbout / canvasGlobalState.containerAboutVisibleSlideIndex:',
-  //     canvasGlobalState.containerAboutVisibleSlideIndex
+  //     'ContainerAbout / canvasGlobalState.spinningBoxRotation:',
+  //     canvasGlobalState.spinningBoxRotation
   //   );
-  //   console.log(
-  //     'LimitedPseudoScrolling / .introContainerEventType:',
-  //     canvasGlobalState.containerAboutGestureType
-  //   );
-  // }, [
-  //   canvasGlobalState.containerAboutVisibleSlideIndex,
-  //   canvasGlobalState.containerAboutGestureType,
-  // ]);
+  // }, [canvasGlobalState.spinningBoxRotation]);
   //_____
 
   return (
@@ -65,12 +58,13 @@ const ContainerAbout = () => {
       )}
 
       {/*-----Interactive Panel Section------------------------*/}
-      {canvasGlobalState.currentContainer === 'aboutContainer' && (
-        <>
-          <GesturePrompt scena={'caDragSpinningBox'} springsNumber={3} />
-          {/* <GesturePrompt scena={'caJustScroll'} /> */}
-        </>
-      )}
+      {canvasGlobalState.currentContainer === 'aboutContainer' &&
+        canvasGlobalState.spinningBoxRotation === 0 && (
+          <>
+            <GesturePrompt scena="caDragSpinningBox" springsNumber={3} />
+            {/* <GesturePrompt scena={'caJustScroll'} /> */}
+          </>
+        )}
       {/* <NavigationPanel /> */}
     </group>
   );

@@ -47,29 +47,12 @@ const SpinningBox = React.forwardRef(
     Call this gesture!!!
     returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
     */
-    const [rotateStepByStep, dragRotateStepByStep] = DragRotateStepByStep({
+    const { rotateStepByStep, dragRotateStepByStep } = DragRotateStepByStep({
       /*
       set axis that is active
       */
       axisLimitation: springConfig.axisLimitation,
     });
-
-    // useEffect(() => {
-    //   // if (
-    //   //   ref.current.name === 'groupForSpinningBox_slide_0' &&
-    //   //   ref.current.rotation.z === 0
-    //   // ) {
-    //   //   console.log('SpinningBox / ref.current:', ref.current.rotation);
-    //   // } else console.log('SpinningBox WTF');
-    //   console.log(
-    //     'SpinningBox / springConfig.axisLimitation:',
-    //     springConfig.axisLimitation
-    //   );
-    //   console.log(
-    //     'SpinningBox / gestureSettings.axisLimitation:',
-    //     gestureSettings.axisLimitation
-    //   );
-    // }, [springConfig.axisLimitation, gestureSettings.axisLimitation]);
 
     /*
   JSX
@@ -79,9 +62,9 @@ const SpinningBox = React.forwardRef(
         ref={ref}
         {...groupProps}
         {...dragRotateStepByStep()}
-        rotation={rotateStepByStep}
+        // rotation={rotateStepByStep} //___
       >
-        <a.group ref={autorotatingGroup}>
+        <a.group ref={autorotatingGroup} rotation={rotateStepByStep}>
           {spinningBoxConfig.map(
             (
               {
@@ -110,6 +93,10 @@ const SpinningBox = React.forwardRef(
             )
           )}
         </a.group>
+        <mesh position={[0, -0.93, 0]}>
+          <planeGeometry args={[0.1, 0.1]} />
+          <meshBasicMaterial color={[1, 0, 0]} />
+        </mesh>
       </a.group>
     );
   }

@@ -99,7 +99,7 @@ const slide0Box1Data = [
       /*
       in case we want some <UniqueObject> component
       */
-      uniqueObjectName: 'unique3DText',
+      // uniqueObjectName: 'unique3DText',
     },
 
     labelPropsReverse: {
@@ -134,7 +134,7 @@ const slide0Box1Data = [
       /*
       in case we want some <UniqueObject> component
       */
-      uniqueObjectName: 'unique3DText',
+      // uniqueObjectName: 'unique3DText',
     },
     /*
     for <SpinningBoxSide>'s <UniversalFrame>
@@ -286,7 +286,7 @@ const slide0Box1Data = [
       /*
       in case of <UniqueObject>
       */
-      uniqueObjectName: 'musicNote',
+      // uniqueObjectName: 'musicNote',
     },
 
     labelPropsReverse: {
