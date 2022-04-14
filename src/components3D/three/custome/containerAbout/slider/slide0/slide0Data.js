@@ -30,7 +30,7 @@ const fontSizesVerySmall = {
 };
 
 /*
-Settings used by <Slide0> & <Slide1>
+Settings used by <Slide0> & <Slide1> as data for "slider engine"; specifies position "in center" or "at top" depending on slide index
 */
 const slideSpring = {
   centralPosition: 0,
@@ -41,7 +41,7 @@ const slideSpring = {
 
 /*
 Slide1's Layout
-it actually define <SlideBox>'s scale & position depending on device size;
+it actually define <SlideBox>'s scale & position depending on device size; i.e wher it stand on 
 */
 const slide0Box1Layout = {
   mobile: { scale: [0.32, 0.32, 0.32], position: [0, 0.03, 0] },
@@ -425,6 +425,10 @@ const slide0Box1Data = [
     },
   },
 ];
+
+/*
+data for <GesturePrompt>
+*/
 
 export {
   slideSpring,

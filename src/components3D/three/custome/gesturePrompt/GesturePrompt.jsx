@@ -10,80 +10,73 @@ import { a, useSpring } from '@react-spring/three';
 /*
 Gesture Staff
 */
-import DragRotateStepByStep from '../../../../gestureHandlers/useDrag/DragRotateStepByStep';
+// import DragRotateStepByStep from '../../../../gestureHandlers/useDrag/DragRotateStepByStep';
 /*
 Basic Data
 */
 let aPositionX;
-let positionX;
 let aPositionY;
-let positionY;
 let aScale;
+let movesNumber = 2;
 
 /*
 ----------------------------------------------------------------------
 */
-const GesturePrompt = ({ scena }) => {
+const GesturePrompt = ({ groupProps, scena }) => {
   /*
   Component State Section
   */
   const [value, setValue] = useState(0);
+
   /*
-  useEffect exclusivelly for "stateSetet"
+  useEffect exclusivelly for "stateSetter"
   */
   useEffect(() => {
     const interval = setInterval(() => {
-      setValue(value => Number(!value));
-    }, 3000);
+      value < movesNumber && setValue(value => value + 1);
+      // console.log('value', value);
+    }, 1000);
     return () => {
       clearInterval(interval);
+      // console.log('GesturePrompt was dismounted');
     };
-  }, []);
+  }, [value]);
+  // useEffect(() => {
+  //   console.log('GesturePrompt / value', value);
+  // }, [value]);
   /*
-  Spring Section
+  Spring Sectiona
   */
   const [{ springValue }] = useSpring(
     {
-      springValue: value,
-      // config: { mass: 5, tension: 1000, friction: 50, precision: 0.0001 },
+      /*
+      "springValue" has value 0 or 1 depending on interval; using "%" we cen convert "value" that is intiger into only-two-value-falsy staff
+      */
+      springValue: value % 2,
       config: caRotateSpinningBox.config,
     },
     [value]
   );
   /*
-  Gesture Section
-  */
-  /*
-    Call this gesture!!!
-    returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
-    */
-  const { rotateStepByStep, gesturePromptPosition, fakeBoolean } =
-    DragRotateStepByStep({
-      /*
-    set axis that is active
-    */
-      axisLimitation: 'x',
-    });
-  useEffect(() => {
-    console.log('rotateStepByStep', rotateStepByStep);
-    console.log('gesturePromptPosition', gesturePromptPosition);
-    console.log('fakeBoolean.current', fakeBoolean.current);
-  }, [rotateStepByStep, gesturePromptPosition, fakeBoolean]);
-
-  /*
-  
+  Switcher; in case we want to reuse it...
   */
   switch (scena) {
     case 'caDragSpinningBox':
+      /*
+      "aPositionX" is a sort of "interpolator" / predefined interpolation;
+      */
       aPositionX = springValue.to([0, 1], caRotateSpinningBox.valueX);
-      positionY = caRotateSpinningBox.positionY;
       aScale = springValue.to(
         caRotateSpinningBox.scaleRange,
         caRotateSpinningBox.scaleValues
       );
+      aPositionY = springValue.to(
+        caRotateSpinningBox.aPositionYRange,
+        caRotateSpinningBox.valueX
+      );
       break;
     case 'ciJustScroll':
-      aPositionY = springValue.to([0, 1], caRotateSpinningBox.valueX);
+      // aPositionY = springValue.to([0, 1], caRotateSpinningBox.valueX);
       break;
     default:
       break;
@@ -92,18 +85,10 @@ const GesturePrompt = ({ scena }) => {
   JSX
   */
   return (
-    <a.group
-      // rotation={rotateStepByStep}
-      position-x={0}
-      position-y={fakeBoolean.current ? -0.4 : -0.33}
-      position-z={0}
-      // position={[0, -0.33, 0]}
-    >
+    <a.group {...groupProps}>
       <a.mesh
-        position-x={aPositionX || 0}
-        // position-y={aPositionY || positionY}
-        // position-x={0}
-        position-y={0}
+        position-x={aPositionX}
+        position-y={-0.01}
         position-z={0}
         scale={aScale || 1}
       >

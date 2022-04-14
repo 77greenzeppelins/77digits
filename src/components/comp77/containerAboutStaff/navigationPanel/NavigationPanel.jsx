@@ -61,8 +61,7 @@ const NavigationPanel = () => {
   JSX
   */
   return (
-    (canvasGlobalState.spinningBoxRotation === 4 ||
-      canvasGlobalState.spinningBoxRotation === -4) && (
+    canvasGlobalState.isRotateButtonActive && (
       <div className="navigation-panel__container">
         {/* <button onClick={goBackward} className="navigation-panel__button" /> */}
         <div onClick={rotateBox} className="navigation-panel__special_wrapper">

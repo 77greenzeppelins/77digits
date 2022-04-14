@@ -57,14 +57,23 @@ const ContainerAbout = () => {
         <InteractivePanel />
       )}
 
+      {canvasGlobalState.currentContainer === 'aboutContainer' && (
+        <GesturePrompt
+          scena="caDragSpinningBox"
+          groupProps={{
+            position: [0, 0, 0.6],
+          }}
+        />
+      )}
+
       {/*-----Interactive Panel Section------------------------*/}
-      {canvasGlobalState.currentContainer === 'aboutContainer' &&
+      {/* {canvasGlobalState.currentContainer === 'aboutContainer' &&
         canvasGlobalState.spinningBoxRotation === 0 && (
           <>
             <GesturePrompt scena="caDragSpinningBox" springsNumber={3} />
-            {/* <GesturePrompt scena={'caJustScroll'} /> */}
+            
           </>
-        )}
+        )} */}
       {/* <NavigationPanel /> */}
     </group>
   );

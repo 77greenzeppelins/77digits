@@ -145,6 +145,10 @@ const canvasState = proxy({
   containerAboutSlideIndex: 0,
   containerAboutSlidingDirection: 'none',
   /*
+  for 2D fake-button that rotates <SpinningBox>'s sides
+  */
+  isRotateButtonActive: false,
+  /*
   these values are changed in <NavigatoionPanel> 2D component' s button; this buton works as toggler; "the heart of logic" is in <SpinningBoxSide>'s spring; anyway... when value is 0, <SBS> has "initial rotation value"; when value is 1 <SBS> rotates to "rotated rotation value";
   */
   slide0Rotation: false,

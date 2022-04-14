@@ -236,8 +236,16 @@ const UniversalFrame = React.memo(
 export default UniversalFrame;
 
 /*
+_____create instance:
 <UniversalFrame
-        groupProps={{ name: 'groupFor' }}
+  groupProps={{
+    name: 'groupForPanelFront',
+    scale: [0.15, 0.15, 0.15],
+    position: [0, -0.35, 0],
+  }}
+  format="banner"
+  cylinderFi={0.015}
+  sphereRadious={0.03}
 />
 
 ... case of smaller frames:

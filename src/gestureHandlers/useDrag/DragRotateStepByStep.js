@@ -2,8 +2,8 @@ import { useCallback, useRef } from 'react';
 /*
 Global State Staff
 */
-// import { canvasState } from '../../states/canvasState';
-// import { useSnapshot } from 'valtio';
+import { canvasState } from '../../states/canvasState';
+import { useSnapshot } from 'valtio';
 /*
 Gesture Staff
 */
@@ -15,12 +15,7 @@ import { useSpring, config } from '@react-spring/three';
 /*
 Basic Data
 */
-const [defaultX, defaultY, defaultZ] = [0, 0, 0];
-// let horizontalDragValue = 0;
-// let verticalDragValue = 0;
-
-// let someBool = null;
-
+// const [defaultX, defaultY, defaultZ] = [0, 0, 0];
 /*
 --------------------------------------------------------------------------
 */
@@ -39,27 +34,50 @@ const DragRotateStepByStep = ({
   /*
   Global State Section
   */
-  // const canvasGlobalState = useSnapshot(canvasState);
+  const canvasGlobalState = useSnapshot(canvasState);
   /*
   References
   */
   let refX = useRef(0);
-  let refY = useRef(0);
-  let closeGesturePrompt = useRef(0);
-  let fakeBoolean = useRef(false);
+  //____
+  // if (canvasGlobalState.isRotateButtonActive) {
+  //   refX.current = 0;
+  // }
+  //____
 
   /*
   Spring Section
+  "rotateStepByStep" refers to <SpinningBox> rotation;
+  "gpVisibility" refersto <GesturePrompts> visibility
   */
-  const [{ rotateStepByStep, gesturePromptPosition }, api] = useSpring(() => ({
-    rotateStepByStep: [
-      rotationX || defaultX,
-      rotationY || defaultY,
-      rotationZ || defaultZ,
-    ],
-    gesturePromptPosition: -0.33,
+  const [
+    { rotateStepByStep, rotateButtonPosition, rotateButtonVisibility },
+    api,
+  ] = useSpring(() => ({
+    rotateStepByStep: [0, 0, 0],
+    // rotateStepByStep: [
+    //   rotationX || defaultX,
+    //   rotationY || defaultY,
+    //   rotationZ || defaultZ,
+    // ],
+    //_____testers
+    rotateButtonPosition: [0, -0.22, 0],
+    rotateButtonVisibility: false,
+
+    //_____
     config: config.molasses,
     // config: { duration: 2000 },
+    /*
+    What this does???
+    It is ment to triger rendering of 2D button for 3D button that rotate <SBF>; as it's global state we can acces it on 2D-domaine 
+    */
+    onRest: () => {
+      if (refX.current === 4 || refX.current === -4) {
+        canvasState.isRotateButtonActive = true;
+      } else {
+        canvasState.isRotateButtonActive = false;
+      }
+    },
   }));
 
   /*
@@ -78,82 +96,15 @@ const DragRotateStepByStep = ({
       "refX.current" / "refY.current" works as counter;
       concept of "reseter": if(canvasGlobalState.currentContainer !== "aboutContainer") {refX.current = 0};
       */
-      if (movementX > 50 && !down) {
+      if (movementX > 50 && !down && refX.current <= 3) {
         refX.current += 1;
-        switch (refX.current) {
-          case 0:
-            console.log('refX.current should be 0', refX.current);
-            break;
-          case 1:
-            console.log('refX.current should be 1', refX.current);
-            closeGesturePrompt.current = 1;
-            fakeBoolean.current = true;
-            console.log('closeGesturePrompt', closeGesturePrompt.current);
-            // console.log('fakeBoolean.current', fakeBoolean.current);
-
-            break;
-          // case 4:
-          //   console.log('refX.current should be 4', refX.current);
-          //   break;
-          // case -4:
-          //   console.log('refX.current should be -4', refX.current);
-          //   break;
-          default:
-            console.log('default value:', refX.current);
-            break;
-        }
-        // canvasState.spinningBoxRotation += 1;
-        // console.log('movementX / +:', movementX);
-        // console.log('refX.current / left-to-right:', refX.current);
-        // console.log(
-        //   'canvasGlobalState / left-to-right:',
-        //   canvasState.spinningBoxRotation
-        // );
+        console.log('refX.current / left-to-right', refX.current);
       }
 
-      if (movementX < 50 && !down) {
+      if (movementX < 50 && !down && refX.current >= -3) {
         refX.current -= 1;
-        switch (refX.current) {
-          case 0:
-            console.log('refX.current should be 0', refX.current);
-            break;
-          case -1:
-            console.log('refX.current should be 1', refX.current);
-            closeGesturePrompt.current = -1;
-            fakeBoolean.current = true;
-            console.log('closeGesturePrompt', closeGesturePrompt.current);
-            // console.log('fakeBoolean.current', fakeBoolean.current);
-            break;
-          // case -4:
-          //   console.log('refX.current should be -4', refX.current);
-          //   break;
-          default:
-            console.log('default value:', refX.current);
-            break;
-        }
-        // canvasState.spinningBoxRotation -= 1;
-        // console.log('Box movementX / -:', movementX);
-        // console.log('refX.current / right-to-left:', refX.current);
-        // console.log(
-        //   '.spinningBoxRotation / right-to-left:',
-        //   canvasState.spinningBoxRotation
-        // );
-        // console.log(
-        //   'canvasGlobalState / right-to-left:',
-        //   canvasState.spinningBoxRotation
-        // );
+        console.log('refX.current / right-to-left', refX.current);
       }
-
-      // if (movementY > 50 && !down) {
-      //   refY.current += 1;
-      //   // console.log('movementY / +:', movementY);
-      //   // console.log('refY.current / -:', refY.current);
-      // }
-      // if (movementY < 50 && !down) {
-      //   refY.current -= 1;
-      //   // console.log('Box movementY / -:', movementY);
-      //   // console.log('refY.current / +:', refY.current);
-      // }
       /*
       Spring API
       */
@@ -171,33 +122,34 @@ const DragRotateStepByStep = ({
           /*
           calculate X
           */
-          axisLimitation === 'y' ? refY.current * Math.PI * 0.5 : 0,
+          // axisLimitation === 'y' ? refY.current * Math.PI * 0.5 : 0,
+          0,
           /*
           calculate Y
           listen to gesture on x-axis and using valuse from this gesture calculate rotation along y-axis; a bit odd... 
           */
-          // axisLimitation === 'x' ? refX.current * Math.PI * 0.5 : 0,
-          // axisLimitation === 'x'
-          //   ? canvasState.spinningBoxRotation * Math.PI * 0.5
-          //   : 0,
-
+          // axisLimitation === 'x' && refX.current < 5
+          //   ? refX.current * Math.PI * 0.5
+          //   : 4 * Math.PI * 0.5,
           axisLimitation === 'x' ? refX.current * Math.PI * 0.5 : 0,
-
           /*
           calculate z
           */
-          rotationZ || defaultZ,
+          // rotationZ || defaultZ,
+          0,
         ],
         /*
-        this springValue is used in <GesturePrompt>
+        .........springValues for tests
         */
-        gesturePromptPosition:
-          closeGesturePrompt.current === 1 || closeGesturePrompt.current === -1
-            ? -0.4
-            : -0.33,
+        rotateButtonPosition:
+          refX.current === 4 || refX.current === -4
+            ? [0, -0.35, 0]
+            : [0, -0.18, 0],
+        rotateButtonVisibility:
+          refX.current > 2 || refX.current < -2 ? true : false,
       });
     },
-    [api, rotationZ, axisLimitation]
+    [api, axisLimitation]
   );
 
   /*
@@ -215,20 +167,13 @@ const DragRotateStepByStep = ({
       axis: axisLimitation,
     }
   );
-
-  //_________
-  // console.log(
-  //   'DragRotateStepByStep / gesturePromptPosition',
-  //   gesturePromptPosition
-  // );
-
   /*
   Final "return staff" of this function
   */
   return {
-    fakeBoolean,
     rotateStepByStep,
-    gesturePromptPosition,
+    rotateButtonPosition,
+    rotateButtonVisibility,
     dragRotateStepByStep,
   };
 };

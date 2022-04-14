@@ -3,11 +3,16 @@ import React, { Suspense, useRef } from 'react';
 Components
 */
 import SpinningBox from '../../../spinningBox/SpinningBox';
+import UniversalFrame from '../../../matcapFrames/UniversalFrame';
 /*
 Global State Staf
 */
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../../../states/canvasState';
+/*
+Gesture Section
+*/
+import DragRotateStepByStep from '../../../../../../gestureHandlers/useDrag/DragRotateStepByStep';
 /*
 Spring data
 */
@@ -47,65 +52,24 @@ const Slide0 = ({ slideId }) => {
   const canvasGlobalState = useSnapshot(canvasState);
   /*
   "sliderEngine"
+  depending on "slideId < canvasGlobalState.containerAboutVisibleSlideIndex"
+  slide can be "in center" or "at top"
   */
-  const sliderEngine = useSpring({
-    from: [slideSpring.centralPosition, 0, 0],
-    to: {
-      position: [
-        0,
-        canvasGlobalState.currentContainer === 'aboutContainer' &&
-        slideId < canvasGlobalState.containerAboutVisibleSlideIndex
-          ? slideSpring.topPosition
-          : slideSpring.centralPosition,
+  // const sliderEngine = useSpring({
+  //   from: [slideSpring.centralPosition, 0, 0],
+  //   to: {
+  //     position: [
+  //       0,
+  //       canvasGlobalState.currentContainer === 'aboutContainer' &&
+  //       slideId < canvasGlobalState.containerAboutVisibleSlideIndex
+  //         ? slideSpring.topPosition
+  //         : slideSpring.centralPosition,
 
-        0,
-      ],
-    },
-    config: slideSpring.config,
-  });
-  //______________
-  // useEffect(() => {
-  //   console.log(
-  //     'canvasGlobalState.containerAboutVisibleSlideIndex:',
-  //     canvasGlobalState.containerAboutVisibleSlideIndex
-  //   );
-  //   console.log(
-  //     'canvasGlobalState.containerAboutGestureType:',
-  //     canvasGlobalState.containerAboutGestureType
-  //   );
-  // }, [
-  //   canvasGlobalState.containerAboutVisibleSlideIndex,
-  //   canvasGlobalState.containerAboutGestureType,
-  // ]);
-  //______________
-
-  /*
-  useEffectSection
-  */
-  // useEffect(() => {
-  //   if (canvasGlobalState.currentContainer === 'aboutContainer') {
-  //     console.log('you are in aboutContainer /  Slide0');
-  //     console.log(
-  //       'you are in aboutContainer /  spinBox.current',
-  //       spinBox.current.rotation
-  //     );
-  //     console.log(
-  //       '<Slide0> /  canvasGlobalState.slide0Rotation',
-  //       canvasGlobalState.slide0Rotation
-  //     );
-  //   } else {
-  //     console.log('you are outside aboutContainer /  Slide0');
-  //     canvasState.slide0Rotation = false;
-  //   }
-  // }, [canvasGlobalState.currentContainer, canvasGlobalState.slide0Rotation]);
-  // useEffect(() => {
-  //   if (
-  //     canvasGlobalState.currentContainer === 'aboutContainer' &&
-  //     spinBox.current
-  //   ) {
-  //     console.log('spinBox.current', spinBox.current.children[0]);
-  //   }
-  // }, [canvasGlobalState.currentContainer]);
+  //       0,
+  //     ],
+  //   },
+  //   config: slideSpring.config,
+  // });
   /*
   "Reseter"
   Allowes to reset position of <SpinningBoxSide> to "client label"
@@ -113,19 +77,36 @@ const Slide0 = ({ slideId }) => {
   if (canvasGlobalState.currentContainer !== 'aboutContainer') {
     canvasState.slide0Rotation = false;
   }
+  /*
+    Call this gesture!!!
+    returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
+    */
+  const {
+    //____
+    rotateStepByStep,
+    rotateButtonPosition,
+    rotateButtonVisibility,
+    dragRotateStepByStep,
+  } = DragRotateStepByStep({
+    /*
+      set axis that is active
+      */
+    axisLimitation: slide0Box1DataForSpring.axisLimitation,
+  });
 
-  //___
   /*
   JSX
   */
   return (
     <a.group
-      name="GroupForSliderEngineAnimationOfSlide_0"
-      position={sliderEngine.position}
+      name="GroupForSlide_0"
+      // position={sliderEngine.position}
+      {...dragRotateStepByStep()}
     >
       {/*-----Body Section------------------------------------------*/}
       <Suspense fallback={null}>
         <SpinningBox
+          rotateStepByStep={rotateStepByStep}
           ref={spinBox}
           groupProps={{
             name: 'groupForSpinningBox_slide_0',
@@ -142,8 +123,8 @@ const Slide0 = ({ slideId }) => {
                 : slide0Box1Layout.desktop.position,
           }}
           /*
-            "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
-            */
+          "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
+          */
           spinningBoxConfig={slide0Box1Data}
           springConfig={slide0Box1DataForSpring}
           isSlideVisible={
@@ -152,6 +133,21 @@ const Slide0 = ({ slideId }) => {
           isSideRotating={canvasGlobalState.slide0Rotation}
         />
       </Suspense>
+      <a.group position={rotateButtonPosition} visible={rotateButtonVisibility}>
+        <Suspense fallback={null}>
+          <UniversalFrame
+            groupProps={{
+              name: 'groupForButton',
+              scale: [0.15, 0.15, 0.15],
+              // position: [0, -0.35, 0],
+              position: [0, 0, 0],
+            }}
+            format="banner"
+            cylinderFi={0.015}
+            sphereRadious={0.03}
+          />
+        </Suspense>
+      </a.group>
     </a.group>
   );
 };

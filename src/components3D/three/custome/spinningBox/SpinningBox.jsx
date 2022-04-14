@@ -3,10 +3,12 @@ import React, { useRef } from 'react';
 Components
 */
 import SpinningBoxSide from './SpinningBoxSide';
+
 /*
-Gesture Section
+State Staff
 */
-import DragRotateStepByStep from '../../../../gestureHandlers/useDrag/DragRotateStepByStep';
+// import { canvasState } from '../../../../states/canvasState';
+// import { useSnapshot } from 'valtio';
 /*
 Spring Section
 */
@@ -33,9 +35,9 @@ const SpinningBox = React.forwardRef(
       isSlideVisible,
       isSideRotating,
       /*
-      props for <SpinningBoxSide>'s gesture
+      springValue from "DragRotateStepByStep"
       */
-      gestureSettings,
+      rotateStepByStep,
     },
     ref
   ) => {
@@ -44,26 +46,14 @@ const SpinningBox = React.forwardRef(
     */
     const autorotatingGroup = useRef();
     /*
-    Call this gesture!!!
-    returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
+    Global State Section
     */
-    const { rotateStepByStep, dragRotateStepByStep } = DragRotateStepByStep({
-      /*
-      set axis that is active
-      */
-      axisLimitation: springConfig.axisLimitation,
-    });
-
+    // const canvasGlobalState = useSnapshot(canvasState);
     /*
-  JSX
-  */
+    JSX
+    */
     return (
-      <a.group
-        ref={ref}
-        {...groupProps}
-        {...dragRotateStepByStep()}
-        // rotation={rotateStepByStep} //___
-      >
+      <a.group ref={ref} {...groupProps}>
         <a.group ref={autorotatingGroup} rotation={rotateStepByStep}>
           {spinningBoxConfig.map(
             (
@@ -93,10 +83,28 @@ const SpinningBox = React.forwardRef(
             )
           )}
         </a.group>
-        <mesh position={[0, -0.93, 0]}>
-          <planeGeometry args={[0.1, 0.1]} />
+
+        {/*
+        Section of additional component; one for each side
+        */}
+        {/* {canvasGlobalState.currentContainer === 'aboutContainer' && (
+          <GesturePrompt
+            scena="caDragSpinningBox"
+            groupProps={{
+              position: gesturePromptsData.position,
+              // visible: gpVisibility,
+            }}
+          />
+        )} */}
+        {/* <mesh
+          // scale={xScale}
+          position={[0, -0.93, 0]}
+          visible={false}
+          // rotation={rotateStepByStep}
+        >
+          <boxGeometry args={[0.2, 0.2, 0.2]} />
           <meshBasicMaterial color={[1, 0, 0]} />
-        </mesh>
+        </mesh> */}
       </a.group>
     );
   }
