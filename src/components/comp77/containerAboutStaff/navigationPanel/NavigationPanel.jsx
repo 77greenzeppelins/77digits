@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { debounce } from 'lodash';
 /*
 Components
@@ -43,19 +43,29 @@ const NavigationPanel = () => {
   // }, 200);
 
   const rotateBox = debounce(() => {
-    switch (canvasGlobalState.containerAboutSlideIndex) {
-      case 0:
-        canvasState.slide0Rotation = !canvasGlobalState.slide0Rotation;
-        break;
-      // case 1:
-      //   canvasState.slide1Rotation = !canvasGlobalState.slide1Rotation;
-      //   break;
-      default:
-        canvasGlobalState.slide0Rotation = false;
-        canvasGlobalState.slide1Rotation = false;
-        break;
-    }
+    canvasState.facetOfSpinningBoxSide = Number(
+      !canvasGlobalState.facetOfSpinningBoxSide
+    );
+    // switch (canvasGlobalState.containerAboutSlideIndex) {
+    //   case 0:
+    //     canvasState.slide0Rotation = !canvasGlobalState.slide0Rotation;
+    //     break;
+    //   // case 1:
+    //   //   canvasState.slide1Rotation = !canvasGlobalState.slide1Rotation;
+    //   //   break;
+    //   default:
+    //     canvasGlobalState.slide0Rotation = false;
+    //     canvasGlobalState.slide1Rotation = false;
+    //     break;
+    // }
   }, 400);
+
+  useEffect(() => {
+    console.log(
+      'canvasGlobalState.facetOfSpinningBoxSide',
+      canvasGlobalState.facetOfSpinningBoxSide
+    );
+  }, [canvasGlobalState.facetOfSpinningBoxSide]);
 
   /*
   JSX

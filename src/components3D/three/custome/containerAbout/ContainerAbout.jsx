@@ -57,14 +57,14 @@ const ContainerAbout = () => {
         <InteractivePanel />
       )}
 
-      {canvasGlobalState.currentContainer === 'aboutContainer' && (
+      {/* {canvasGlobalState.currentContainer === 'aboutContainer' && (
         <GesturePrompt
           scena="caDragSpinningBox"
           groupProps={{
             position: [0, 0, 0.6],
           }}
         />
-      )}
+      )} */}
 
       {/*-----Interactive Panel Section------------------------*/}
       {/* {canvasGlobalState.currentContainer === 'aboutContainer' &&

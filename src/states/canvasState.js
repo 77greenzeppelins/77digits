@@ -98,42 +98,36 @@ const canvasState = proxy({
   -----------------------------------------------<Turbo Overlay 2D staff>
   */
   isTurboOverlayActive: 0,
+
   /*
+  -----------------------------------------------<Header 2D staff>
   .....main idea: <Header> is invisible when eny of menu is visible
   is used to toggle display value of <Header> between "none" and "block"
   is changed to false in "77digitButton" and "manuBatton"
   is changed to true by <AboutMenu>'s buttons and <MainMenu>'s buttons 
   */
-  /*
-  -----------------------------------------------<Header 2D staff>
-  */
   isHeaderDisplayed: true,
-  /*
-  is set to "true" in <Cookies> which button's onClick chandlers can do this; as a result we get rid of "cookies pop-up" and have clean space on page's bottom...
-  take part in some conditions:
-  ...in <IntroWheelGesture> 
-  ...if it's "false" + currentContainer === "menuContainer" => <Cookies> should has display: 'none'
-  ....if it's "false" + currentContainer === "aboutSontainer" + user clicks some button within <AboutContainerIntro> => <Cookies>'s color should change to pink(?) + user should receive message about expectation towards  "cookies pop-up".
-  */
-  // userAteCookies: false,
-
   /*
   ---------------------------------------------<ContainerAbout>
   */
   containerAboutGestureType: 'none',
   containerAboutVisibleSlideIndex: 0,
   /*
-  this props controlls rotoation of <SpinningBox>
-  valu [4, -4] means rotated 360 deg;
-  */
-  spinningBoxRotation: 0,
-  /*
   this props is ment to freez "LimitedPseudoScrolling"
-  it anables / disables "LPS"
+  it enables / disables "LPS"
   is change to "false" in "LPS" handlers
   is changed to true in springs of every slide; i.e. onRest() should does it!
   */
   slideIsCompletted: true,
+  /*
+  is used in "IncrementalSpinOnDrag" / mainHandler; 
+  "1" means "Jesteś Ty" is visible vs. "0" means "Jestem Ja" is visible
+  */
+  facetOfSpinningBoxSide: 1,
+  /*
+  is used in "IncrementalSpinOnDrag" / endDragHandler; as condition in logic and is also changed to true/false in toggler way
+  */
+  isClientSideVisible: true,
 
   /*
   --------------------------------------------<ContainerAbout2DStaff>
@@ -148,11 +142,6 @@ const canvasState = proxy({
   for 2D fake-button that rotates <SpinningBox>'s sides
   */
   isRotateButtonActive: false,
-  /*
-  these values are changed in <NavigatoionPanel> 2D component' s button; this buton works as toggler; "the heart of logic" is in <SpinningBoxSide>'s spring; anyway... when value is 0, <SBS> has "initial rotation value"; when value is 1 <SBS> rotates to "rotated rotation value";
-  */
-  slide0Rotation: false,
-  slide1Rotation: false,
 
   /*
   -------------------------------------------<Container Manu 2D staff> 

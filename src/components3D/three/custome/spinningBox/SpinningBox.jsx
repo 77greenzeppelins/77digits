@@ -77,8 +77,6 @@ const SpinningBox = React.forwardRef(
                 props for <SpinningBoxSide>'s springAnimation;
                 */
                 springConfig={springConfig}
-                isSlideVisible={isSlideVisible}
-                isSideRotating={isSideRotating}
               />
             )
           )}

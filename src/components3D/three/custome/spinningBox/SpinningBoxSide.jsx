@@ -1,5 +1,10 @@
 import React from 'react';
 /*
+Global State Staff
+*/
+import { snapshot, useSnapshot } from 'valtio';
+import { canvasState } from '../../../../states/canvasState';
+/*
 Components
 */
 import UniversalFrame from '../matcapFrames/UniversalFrame';
@@ -22,12 +27,9 @@ const SpinningBoxSide = (
   */
     sideProps,
     springConfig,
-    isSlideVisible,
-    isSideRotating,
     /*
   Props for children components
   */
-    canvasProps,
     frameProps,
     labelProps,
     labelPropsReverse,
@@ -37,8 +39,11 @@ const SpinningBoxSide = (
   Props destructuring
   */
   const { position, rotation } = sideProps;
-  const { axisLimitation, animationDelay, config } = springConfig;
-
+  const { animationDelay, config } = springConfig;
+  /*
+Global state section
+*/
+  const canvasGlobalState = useSnapshot(canvasState);
   /*
   SpringSection
   */
@@ -46,27 +51,17 @@ const SpinningBoxSide = (
     from: { springValue: rotation },
     to: {
       springValue: [
-        /*
-        important for "banner"'s sides that rotate along x-axis
-        */
-        axisLimitation === 'y' && isSlideVisible && isSideRotating
-          ? rotation[0] + Math.PI
-          : rotation[0],
-        /*
-        important for "portrait"'s sides that rotate along y-axis;
-        */
-        axisLimitation === 'x' && isSlideVisible && isSideRotating
-          ? rotation[1] + Math.PI
-          : rotation[1],
-        /*
-        z-axis value
-        */
-        rotation[2],
+        0,
+        canvasGlobalState.isClientSideVisible === true
+          ? rotation[1]
+          : rotation[1] + Math.PI,
+
+        0,
       ],
     },
     config: config,
     delay: animationDelay,
-    cancel: isSlideVisible ? false : true, //????
+    // cancel: isSlideVisible ? false : true, //????
   });
   /*
   JSX

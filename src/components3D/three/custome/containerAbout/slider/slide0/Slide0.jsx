@@ -3,7 +3,7 @@ import React, { Suspense, useRef } from 'react';
 Components
 */
 import SpinningBox from '../../../spinningBox/SpinningBox';
-import UniversalFrame from '../../../matcapFrames/UniversalFrame';
+import GesturePrompt from '../../../gesturePrompt/GesturePrompt';
 /*
 Global State Staf
 */
@@ -12,11 +12,12 @@ import { canvasState } from '../../../../../../states/canvasState';
 /*
 Gesture Section
 */
-import DragRotateStepByStep from '../../../../../../gestureHandlers/useDrag/DragRotateStepByStep';
+import IncrementalSpinOnDrag from '../../../../../../gestureHandlers/useGesture/IncrementalSpinOnDrag';
+
 /*
 Spring data
 */
-import { a, useSpring } from '@react-spring/three';
+import { a } from '@react-spring/three';
 /*
 Hook Staff
 */
@@ -25,7 +26,7 @@ import useWindowSize from '../../../../../../hooks/useWindowSize';
  Basic Data
  */
 import {
-  slideSpring,
+  // slideSpring,
   slide0Box1Layout,
   slide0Box1Data,
   slide0Box1DataForSpring,
@@ -74,81 +75,66 @@ const Slide0 = ({ slideId }) => {
   "Reseter"
   Allowes to reset position of <SpinningBoxSide> to "client label"
   */
-  if (canvasGlobalState.currentContainer !== 'aboutContainer') {
-    canvasState.slide0Rotation = false;
-  }
+  // if (canvasGlobalState.currentContainer !== 'aboutContainer') {
+  //   canvasState.slide0Rotation = false;
+  // }
   /*
-    Call this gesture!!!
-    returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
-    */
-  const {
-    //____
-    rotateStepByStep,
-    rotateButtonPosition,
-    rotateButtonVisibility,
-    dragRotateStepByStep,
-  } = DragRotateStepByStep({
+  Call this gesture!!!
+  returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
+  */
+  const { rotateStepByStep, incrementalSpinOnDrag } = IncrementalSpinOnDrag({
     /*
-      set axis that is active
-      */
+    set axis that is active
+    */
     axisLimitation: slide0Box1DataForSpring.axisLimitation,
+    rotationInitVal: [0, 0, 0],
   });
-
   /*
   JSX
   */
   return (
-    <a.group
-      name="GroupForSlide_0"
-      // position={sliderEngine.position}
-      {...dragRotateStepByStep()}
-    >
-      {/*-----Body Section------------------------------------------*/}
-      <Suspense fallback={null}>
-        <SpinningBox
-          rotateStepByStep={rotateStepByStep}
-          ref={spinBox}
-          groupProps={{
-            name: 'groupForSpinningBox_slide_0',
-            /*
+    <group name="GroupForSlide_0">
+      <a.group
+        name="GroupForSlide_0...incrementalSpinOnDrag()"
+        {...incrementalSpinOnDrag()}
+      >
+        {/*-----Body Section------------------------------------------*/}
+        <Suspense fallback={null}>
+          <SpinningBox
+            rotateStepByStep={rotateStepByStep}
+            ref={spinBox}
+            groupProps={{
+              name: 'groupForSpinningBox_slide_0',
+              /*
               a bit of responsiveness; 
               */
-            scale:
-              windowSize.width < minForTablet
-                ? slide0Box1Layout.mobile.scale
-                : slide0Box1Layout.desktop.scale,
-            position:
-              windowSize.width < minForTablet
-                ? slide0Box1Layout.mobile.position
-                : slide0Box1Layout.desktop.position,
-          }}
-          /*
+              scale:
+                windowSize.width < minForTablet
+                  ? slide0Box1Layout.mobile.scale
+                  : slide0Box1Layout.desktop.scale,
+              position:
+                windowSize.width < minForTablet
+                  ? slide0Box1Layout.mobile.position
+                  : slide0Box1Layout.desktop.position,
+            }}
+            /*
           "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
           */
-          spinningBoxConfig={slide0Box1Data}
-          springConfig={slide0Box1DataForSpring}
-          isSlideVisible={
-            slideId === canvasGlobalState.containerAboutSlideIndex
-          }
-          isSideRotating={canvasGlobalState.slide0Rotation}
-        />
-      </Suspense>
-      <a.group position={rotateButtonPosition} visible={rotateButtonVisibility}>
-        <Suspense fallback={null}>
-          <UniversalFrame
-            groupProps={{
-              name: 'groupForButton',
-              scale: [0.15, 0.15, 0.15],
-              // position: [0, -0.35, 0],
-              position: [0, 0, 0],
-            }}
-            format="banner"
-            cylinderFi={0.015}
-            sphereRadious={0.03}
+            spinningBoxConfig={slide0Box1Data}
+            springConfig={slide0Box1DataForSpring}
           />
         </Suspense>
       </a.group>
-    </a.group>
+
+      {canvasGlobalState.currentContainer === 'aboutContainer' && (
+        <GesturePrompt
+          scena="caDragSpinningBox"
+          groupProps={{
+            position: [0, 0, 0.6],
+          }}
+        />
+      )}
+    </group>
   );
 };
 

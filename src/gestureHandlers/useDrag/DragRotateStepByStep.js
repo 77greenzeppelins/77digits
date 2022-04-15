@@ -3,7 +3,7 @@ import { useCallback, useRef } from 'react';
 Global State Staff
 */
 import { canvasState } from '../../states/canvasState';
-import { useSnapshot } from 'valtio';
+// import { useSnapshot } from 'valtio';
 /*
 Gesture Staff
 */
@@ -34,7 +34,7 @@ const DragRotateStepByStep = ({
   /*
   Global State Section
   */
-  const canvasGlobalState = useSnapshot(canvasState);
+  // const canvasGlobalState = useSnapshot(canvasState);
   /*
   References
   */
@@ -88,7 +88,7 @@ const DragRotateStepByStep = ({
     What "down" does ?
     documentation: "true when a mouse button or touch is down"
     */
-    ({ down, movement: [movementX, movementY], memo = 0 }) => {
+    ({ down, movement: [movementX] }) => {
       /*
       Why such "if statement condition" ?
       documentation: "down is true when a mouse button or touch is down"
@@ -109,15 +109,6 @@ const DragRotateStepByStep = ({
       Spring API
       */
       api.start({
-        /*
-        logic explanation: the main idea is that I want to restrict rotation of "frame-like components" to certain value; i.e. no full "360 deg" rotation;
-        "active === true" means that user is dragging;
-        first check if value is positive ("movementX > 0"); in practice it means that user drags finger from left to right or drag mouse from left to right; in that case console logs values from 0 to XXX;
-        
-        What "movementX !== 0" does?
-        It prevent from frame's move when clicking without dragging;
-        */
-
         rotateStepByStep: [
           /*
           calculate X
