@@ -123,12 +123,15 @@ const canvasState = proxy({
   is used in "IncrementalSpinOnDrag" / mainHandler; 
   "1" means "Jesteś Ty" is visible vs. "0" means "Jestem Ja" is visible
   */
-  facetOfSpinningBoxSide: 1,
+  // facetOfSpinningBoxSide: 1,
   /*
   is used in "IncrementalSpinOnDrag" / endDragHandler; as condition in logic and is also changed to true/false in toggler way
   */
   isClientSideVisible: true,
-
+  /*
+  for 2D / 3D <NavigationPanel> in <ContainerAbout>
+  */
+  isNavPanelOpened: false,
   /*
   --------------------------------------------<ContainerAbout2DStaff>
   */

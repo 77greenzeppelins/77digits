@@ -29,15 +29,11 @@ const SpinningBox = React.forwardRef(
       */
       spinningBoxConfig,
       /*
-      props for <SpinningBoxSide>'s spring
-      */
-      springConfig,
-      isSlideVisible,
-      isSideRotating,
-      /*
-      springValue from "DragRotateStepByStep"
+      springValue from "ContainerAboutGesture.js"
       */
       rotateStepByStep,
+      // rotateSpinningBoxSide,
+      gesturesForSidesRotations,
     },
     ref
   ) => {
@@ -49,6 +45,10 @@ const SpinningBox = React.forwardRef(
     Global State Section
     */
     // const canvasGlobalState = useSnapshot(canvasState);
+    // useEffect(() => {
+    //   console.log('gesturesForSidesRotations', gesturesForSidesRotations);
+    // }, [gesturesForSidesRotations]);
+
     /*
     JSX
     */
@@ -68,15 +68,12 @@ const SpinningBox = React.forwardRef(
             ) => (
               <SpinningBoxSide
                 key={index}
+                sideProps={sideProps}
+                animatedRotation={gesturesForSidesRotations[index]}
                 labelProps={labelProps}
                 labelPropsReverse={labelPropsReverse}
-                sideProps={sideProps}
                 canvasProps={canvasProps}
                 frameProps={frameProps}
-                /*
-                props for <SpinningBoxSide>'s springAnimation;
-                */
-                springConfig={springConfig}
               />
             )
           )}

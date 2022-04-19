@@ -28,6 +28,11 @@ const fontSizesVerySmall = {
   fontMedium: 0.05,
   fontLarge: 0.06,
 };
+// const fontSizesUltraSmall = {
+//   fontSmall: 0.03,
+//   fontMedium: 0.04,
+//   fontLarge: 0.032,
+// };
 
 /*
 Settings used by <Slide0> & <Slide1> as data for "slider engine"; specifies position "in center" or "at top" depending on slide index
@@ -49,18 +54,6 @@ const slide0Box1Layout = {
 };
 
 /*
-Slide1's springAnimation
-how user can drag <SlideBox> & how <SlideBox> reacts on button click
-*/
-const slide0Box1DataForSpring = {
-  /* necessary for <SpinningBox>'s gestures animation */
-  axisLimitation: 'x',
-  /* necessary for <SpinningBoxside>'s rotation spring animation */
-  config: springConfigs.molasses,
-  animationDelay: 600,
-};
-
-/*
 Set of props for <UniversaleFrame> and two <SideLabel>s
 */
 const slide0Box1Data = [
@@ -72,13 +65,23 @@ const slide0Box1Data = [
       /*
       Pl for <TextSlideFromArray>
       */
-      textLinesPl: ['Jesteś', 'Ty'],
+      textLinesPl: ['Jesteś', 'Ty', 'v', 'v', 'v'],
       textPropsPl: [
         { position: [0, 0.4, 0.01] },
         { position: [0.15, 0.2, 0.01] },
+        { position: [-0.05, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
+        { position: [0.0, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
+        { position: [0.05, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
       ],
-      fontPl: ['garamont', 'garamont'],
-      fontSizePl: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
+      fontPl: ['garamont', 'garamont', 'jost', 'jost'],
+      fontSizePl: [
+        { ...fontSizesVeryLarge },
+        { ...fontSizesVeryLarge },
+        { ...fontSizesMedium },
+        { ...fontSizesMedium },
+        { ...fontSizesMedium },
+      ],
+      textAlignPl: ['left', 'left', 'right', 'right', 'right'],
       /*
       En for <TextSlideFromArray>
       */
@@ -149,7 +152,7 @@ const slide0Box1Data = [
 
   /* -----Panel Left------------------------------------------------  */
   {
-    sideProps: { position: [-0.455, 0, -0], rotation: [0, Math.PI * -0.5, 0] },
+    sideProps: { position: [-0.455, 0, -0], rotation: [0, -0.5 * Math.PI, 0] },
     labelProps: {
       /*
       Pl for <TextSlideFromArray>
@@ -430,9 +433,4 @@ const slide0Box1Data = [
 data for <GesturePrompt>
 */
 
-export {
-  slideSpring,
-  slide0Box1Layout,
-  slide0Box1Data,
-  slide0Box1DataForSpring,
-};
+export { slideSpring, slide0Box1Layout, slide0Box1Data };

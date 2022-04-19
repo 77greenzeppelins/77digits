@@ -8,13 +8,17 @@ import Slide0 from './slide0/Slide0';
 /*
 -----------------------------------------------------------------
 */
-const Slider = () => {
+const Slider = ({ rotateStepByStep, gesturesForSidesRotations }) => {
   /*
   JSX
   */
   return (
     <group scale={[1, 1, 1]} name="groupForSlider">
-      <Slide0 slideId={0} />
+      <Slide0
+        slideId={0}
+        rotateStepByStep={rotateStepByStep}
+        gesturesForSidesRotations={gesturesForSidesRotations}
+      />
       {/* <Slide1 slideId={1} /> */}
 
       {/*---Central Plane*/}

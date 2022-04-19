@@ -66,6 +66,7 @@ const GesturePrompt = ({ groupProps, scena }) => {
       "aPositionX" is a sort of "interpolator" / predefined interpolation;
       */
       aPositionX = springValue.to([0, 1], caRotateSpinningBox.valueX);
+
       aScale = springValue.to(
         caRotateSpinningBox.scaleRange,
         caRotateSpinningBox.scaleValues

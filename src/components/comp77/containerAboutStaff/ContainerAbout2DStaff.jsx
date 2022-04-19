@@ -53,9 +53,9 @@ const ContainerAbout2DStaff = () => {
         <div
           className="container-about__navigation-wrapper"
           style={{
-            height: windowSize.height * 0.111,
+            height: windowSize.height * 0.137,
             width: windowSize.height * 0.425,
-            top: -windowSize.height * 0.111,
+            top: -windowSize.height * 0.137,
           }}
         >
           <NavigationPanel />

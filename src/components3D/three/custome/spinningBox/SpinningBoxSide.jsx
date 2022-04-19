@@ -2,8 +2,8 @@ import React from 'react';
 /*
 Global State Staff
 */
-import { snapshot, useSnapshot } from 'valtio';
-import { canvasState } from '../../../../states/canvasState';
+// import { useSnapshot } from 'valtio';
+// import { canvasState } from '../../../../states/canvasState';
 /*
 Components
 */
@@ -12,7 +12,7 @@ import SideLabel from './SideLabel';
 /*
 Spring Section
 */
-import { a, useSpring } from '@react-spring/three';
+import { a } from '@react-spring/three';
 
 /*
 ----------------------------------------------------------------------
@@ -23,65 +23,62 @@ const SpinningBoxSide = (
   */
   {
     /*
-  Props used by <SpinningBoxSide>
-  */
+    Props used by <SpinningBoxSide>
+    */
     sideProps,
-    springConfig,
     /*
-  Props for children components
-  */
+    Props for children components
+    */
     frameProps,
     labelProps,
     labelPropsReverse,
+    /*
+    ...
+    */
+    animatedRotation,
   }
 ) => {
   /*
-  Props destructuring
+  Global state section
   */
-  const { position, rotation } = sideProps;
-  const { animationDelay, config } = springConfig;
-  /*
-Global state section
-*/
-  const canvasGlobalState = useSnapshot(canvasState);
+  // const canvasGlobalState = useSnapshot(canvasState);
   /*
   SpringSection
   */
-  const { springValue } = useSpring({
-    from: { springValue: rotation },
-    to: {
-      springValue: [
-        0,
-        canvasGlobalState.isClientSideVisible === true
-          ? rotation[1]
-          : rotation[1] + Math.PI,
+  // const { springValue } = useSpring({
+  //   from: { springValue: sideProps.rotation },
+  //   to: {
+  //     springValue: [
+  //       sideProps.rotation[0],
+  //       canvasGlobalState.isClientSideVisible === true
+  //         ? sideProps.rotation[1]
+  //         : sideProps.rotation[1] + Math.PI,
 
-        0,
-      ],
-    },
-    config: config,
-    delay: animationDelay,
-    // cancel: isSlideVisible ? false : true, //????
-  });
+  //       sideProps.rotation[2],
+  //     ],
+  //   },
+  //   config: springConfig.config,
+  //   delay: springConfig.animationDelay,
+  // });
+
+  // useEffect(() => {
+  //   console.log('animatedRotation', animatedRotation);
+  // }, [animatedRotation]);
   /*
   JSX
   */
   return (
     <a.group
       name="GroupForSpinningBoxSides"
-      position={position}
-      rotation={springValue}
+      position={sideProps.position}
+      rotation={animatedRotation}
     >
       <UniversalFrame
         groupProps={{ name: 'groupForFrameInSpiningBoxSide' }}
         {...frameProps}
       />
-      {/* <UniversalCanvas {...canvasProps} /> */}
       <SideLabel labelProps={labelPropsReverse} />
       <SideLabel labelProps={labelProps} />
-      {/* <group position={[0.3, 0, 0]}>
-        <SideLabel labelProps={labelProps} />
-      </group> */}
     </a.group>
   );
 };

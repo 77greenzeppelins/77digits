@@ -3,17 +3,11 @@ import React, { Suspense, useRef } from 'react';
 Components
 */
 import SpinningBox from '../../../spinningBox/SpinningBox';
-import GesturePrompt from '../../../gesturePrompt/GesturePrompt';
 /*
 Global State Staf
 */
-import { useSnapshot } from 'valtio';
-import { canvasState } from '../../../../../../states/canvasState';
-/*
-Gesture Section
-*/
-import IncrementalSpinOnDrag from '../../../../../../gestureHandlers/useGesture/IncrementalSpinOnDrag';
-
+// import { useSnapshot } from 'valtio';
+// import { canvasState } from '../../../../../../states/canvasState';
 /*
 Spring data
 */
@@ -29,7 +23,6 @@ import {
   // slideSpring,
   slide0Box1Layout,
   slide0Box1Data,
-  slide0Box1DataForSpring,
 } from './slide0Data';
 
 const minForTablet = 850;
@@ -37,7 +30,7 @@ const minForTablet = 850;
 /*
 ----------------------------------------------------------------------
 */
-const Slide0 = ({ slideId }) => {
+const Slide0 = ({ slideId, rotateStepByStep, gesturesForSidesRotations }) => {
   /*
   References
   */
@@ -50,7 +43,7 @@ const Slide0 = ({ slideId }) => {
   Global State Section
     {containerAboutSlideIndex: 0,...}
   */
-  const canvasGlobalState = useSnapshot(canvasState);
+  // const canvasGlobalState = useSnapshot(canvasState);
   /*
   "sliderEngine"
   depending on "slideId < canvasGlobalState.containerAboutVisibleSlideIndex"
@@ -82,13 +75,20 @@ const Slide0 = ({ slideId }) => {
   Call this gesture!!!
   returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
   */
-  const { rotateStepByStep, incrementalSpinOnDrag } = IncrementalSpinOnDrag({
-    /*
-    set axis that is active
-    */
-    axisLimitation: slide0Box1DataForSpring.axisLimitation,
-    rotationInitVal: [0, 0, 0],
-  });
+  // const { rotateStepByStep, incrementalSpinOnDrag } = IncrementalSpinOnDrag({
+  //   /*
+  //   set axis that is active
+  //   */
+  //   axisLimitation: slide0Box1DataForSpring.axisLimitation,
+  //   rotationInitVal: [0, 0, 0],
+  // });
+
+  // useEffect(() => {
+  //   console.log(
+  //     'Slide0 / gesturesForSidesRotations:',
+  //     gesturesForSidesRotations
+  //   );
+  // }, [gesturesForSidesRotations]);
   /*
   JSX
   */
@@ -96,12 +96,13 @@ const Slide0 = ({ slideId }) => {
     <group name="GroupForSlide_0">
       <a.group
         name="GroupForSlide_0...incrementalSpinOnDrag()"
-        {...incrementalSpinOnDrag()}
+        // {...incrementalSpinOnDrag()}
       >
         {/*-----Body Section------------------------------------------*/}
         <Suspense fallback={null}>
           <SpinningBox
             rotateStepByStep={rotateStepByStep}
+            gesturesForSidesRotations={gesturesForSidesRotations}
             ref={spinBox}
             groupProps={{
               name: 'groupForSpinningBox_slide_0',
@@ -121,19 +122,29 @@ const Slide0 = ({ slideId }) => {
           "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
           */
             spinningBoxConfig={slide0Box1Data}
-            springConfig={slide0Box1DataForSpring}
           />
         </Suspense>
       </a.group>
 
-      {canvasGlobalState.currentContainer === 'aboutContainer' && (
+      {/* {canvasGlobalState.currentContainer === 'aboutContainer' && (
         <GesturePrompt
           scena="caDragSpinningBox"
           groupProps={{
             position: [0, 0, 0.6],
           }}
         />
-      )}
+      )} */}
+      {/* {canvasGlobalState.currentContainer === 'aboutContainer' && (
+        <a.group
+          position={rotateSpinningBoxSide}
+          // position={[-0.1, 0, 0.6]}
+        >
+          <mesh>
+            <planeGeometry args={[0.01, 0.01]} />
+            <meshBasicMaterial color={[0, 1, 0]} />
+          </mesh>
+        </a.group>
+      )} */}
     </group>
   );
 };
