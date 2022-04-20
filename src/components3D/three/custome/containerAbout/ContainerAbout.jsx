@@ -13,7 +13,7 @@ import { canvasState } from '../../../../states/canvasState';
 /*
 Spring Staff
 */
-import { a } from '@react-spring/three';
+// import { a } from '@react-spring/three';
 /*
 Gesture Staff
 */
@@ -21,7 +21,7 @@ import ContainerAboutGestures from '../../../../gestureHandlers/useGesture/Conta
 /*
 Basic Data
 */
-import { navPanelGroupData } from './containerAbout';
+// import { navPanelGroupData } from './containerAbout';
 /*
 ------------------------------------------------------------------------
  */
@@ -36,12 +36,10 @@ const ContainerAbout = () => {
   */
   const {
     rotateStepByStep,
-    rotateSpinningBoxSide,
     sideFrontRotation,
     sideLeftRotation,
     sideBackRotation,
     sideRightRotation,
-    positionNavPanel,
     containerAboutGestures,
   } = ContainerAboutGestures({
     /*
@@ -52,13 +50,13 @@ const ContainerAbout = () => {
   });
 
   //_________
-  useEffect(() => {
-    console.log('ContainerAbout / sideFrontRotation:', sideFrontRotation);
-    console.log(
-      'ContainerAbout / rotateSpinningBoxSide:',
-      rotateSpinningBoxSide
-    );
-  }, [sideFrontRotation, rotateSpinningBoxSide]);
+  // useEffect(() => {
+  //   console.log('ContainerAbout / sideFrontRotation:', sideFrontRotation);
+  //   console.log(
+  //     'ContainerAbout / rotateSpinningBoxSide:',
+  //     rotateSpinningBoxSide
+  //   );
+  // }, [sideFrontRotation, rotateSpinningBoxSide]);
   //_____
 
   const gesturesForSidesRotations = useMemo(() => {
@@ -93,29 +91,7 @@ const ContainerAbout = () => {
       />
 
       {/*-----Navigation Panel Section------------------------*/}
-      {/* {canvasGlobalState.isNavPanelOpened && (
-        <a.group
-          //  position={positionNavPanel}
-          position={navPanelGroupData.position}
-        > */}
       <NavigationPanel />
-      {/* </a.group>
-      )} */}
-
-      {/*-----Interactive Panel Section------------------------*/}
-      {/* {canvasGlobalState.currentContainer === 'aboutContainer' && (
-        <InteractivePanel />
-      )} */}
-
-      {/*-----Interactive Panel Section------------------------*/}
-      {/* {canvasGlobalState.currentContainer === 'aboutContainer' &&
-        canvasGlobalState.spinningBoxRotation === 0 && (
-          <>
-            <GesturePrompt scena="caDragSpinningBox" springsNumber={3} />
-            
-          </>
-        )} */}
-      {/* <NavigationPanel /> */}
     </group>
   );
   // );

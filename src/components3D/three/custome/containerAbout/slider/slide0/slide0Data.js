@@ -41,7 +41,7 @@ const slideSpring = {
   centralPosition: 0,
   topPosition: 1,
   config: springConfigs.configBasic,
-  // config: springConfigs.molasses,
+  configDown: springConfigs.molasses,
 };
 
 /*

@@ -135,10 +135,10 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
       ) {
         isNavPanelOpened.current = true;
         canvasState.isNavPanelOpened = true;
-        console.log('.......fire buttons');
-        console.log('isClientSideVisible.current', isClientSideVisible.current);
-        console.log('refX.current', refX.current);
-        console.log('dirX', dirX);
+        // console.log('.......fire buttons');
+        // console.log('isClientSideVisible.current', isClientSideVisible.current);
+        // console.log('refX.current', refX.current);
+        // console.log('dirX', dirX);
       }
 
       /*

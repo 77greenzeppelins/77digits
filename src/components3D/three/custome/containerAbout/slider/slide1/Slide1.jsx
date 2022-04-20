@@ -1,33 +1,25 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
 /*
 Components
 */
-import SpinningBox from '../../../spinningBox/SpinningBox';
+import InteractivePanel from '../../interactivePanel/InteractivePanel';
 /*
 Global State Staf
 */
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../../../states/canvasState';
 /*
+Gesture data
+*/
+import ContAboutSlide1 from '../../../../../../gestureHandlers/useGesture/ContAboutSlide1';
+/*
 Spring data
 */
-import { a, useSpring } from '@react-spring/three';
-/*
-Hook Staff
-*/
-import useWindowSize from '../../../../../../hooks/useWindowSize';
+// import { a, useSpring } from '@react-spring/three';
 /*
  Basic Data
  */
-import {
-  slideSpring,
-  gestureSettings,
-  slide1Box1Layout,
-  slide1Box1DataForSides,
-  slide1DataForSpring,
-} from './slide1Data';
-
-const minForTablet = 850;
+import { globalPositionData } from '../../../../../../data/globalData';
 
 /*
 ----------------------------------------------------------------------
@@ -38,116 +30,56 @@ const Slide1 = ({ slideId }) => {
   Hook Section
   Why this hook?
   */
-  const windowSize = useWindowSize();
   /*
   Global State Section
-    {containerAboutSlideIndex: 0,...}
+    {containerAboutVisibleSlideIndex: 0,...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
 
   /*
-  Spring for animation entiled: "go away from here to top or left"it animates slide move on y-axis...
+  Gesture Section
   */
-  // const springGroup = useSpring({
-  //   from: { position: [0, 0, 0] },
-  //   to: {
-  //     position: [
-  //       /*
-  //       in case of "mobile" animation goes along the y-axis;
-  //       */
-  //       canvasGlobalState.currentContainer === 'aboutContainer' &&
-  //       slideId < canvasGlobalState.containerAboutSlideIndex &&
-  //       windowSize.width < minForTablet
-  //         ? slideSpring.hiddenPositionX
-  //         : slideSpring.visiblePosition,
-  //       /*
-  //       in case of "tablet/desctop" animation goes along the y-axis;
-  //       */
-  //       canvasGlobalState.currentContainer === 'aboutContainer' &&
-  //       slideId < canvasGlobalState.containerAboutSlideIndex &&
-  //       windowSize.width > minForTablet
-  //         ? slideSpring.hiddenPositionY
-  //         : slideSpring.visiblePosition,
-  //       0,
-  //     ],
-  //   },
-  //   config: { ...slideSpring.config },
-  // });
-
-  /*
-  Spring for animation of "going from behind the scene"i.e on z-axis...
-  */
-  const springSlideContent = useSpring({
-    from: { position: [slideSpring.rightPositionX, 0, 0] },
-    to: {
-      position: [
-        0,
-        canvasGlobalState.currentContainer === 'aboutContainer' &&
-        slideId === canvasGlobalState.containerAboutSlideIndex
-          ? slideSpring.centralPositionX
-          : slideId < canvasGlobalState.containerAboutSlideIndex
-          ? slideSpring.topPosition
-          : slideSpring.bottomPosition,
-
-        0,
-      ],
-    },
-    config: { ...slideSpring.config },
+  const { contAboutSlide1 } = ContAboutSlide1({
+    numberOfSlides: 2,
   });
+
+  // useEffect(() => {
+  //   console.log(
+  //     'Slide1 / canvasGlobalState.containerAboutVisibleSlideIndex:',
+  //     canvasGlobalState.containerAboutVisibleSlideIndex
+  //   );
+  //   console.log('Slide1 / slideId:', slideId);
+  // }, [canvasGlobalState.containerAboutVisibleSlideIndex, slideId]);
 
   /*
   JSX
   */
   return (
-    <a.group
-      name="GroupForAnimationLevelSlideOfSlide_0"
-      position={springSlideContent.position}
-    >
-      {/*-----Body Section------------------------------------------*/}
-      <Suspense fallback={null}>
-        {/* <a.group
-          name="GroupForAnimationLevelSlideContentOfSlide_0"
-          position={springGroup.position}
-        > */}
-        <SpinningBox
-          groupProps={{
-            name: 'groupForSpinningBox_slide_0_Box_1_Data',
-            /*
-            a bit of responsiveness based on data from "slide1Box1Layout"; 
-            */
-            scale:
-              windowSize.width < minForTablet
-                ? slide1Box1Layout.mobile.scale
-                : slide1Box1Layout.desktop.scale,
-            position:
-              windowSize.width < minForTablet
-                ? slide1Box1Layout.mobile.position
-                : slide1Box1Layout.desktop.position,
-            // ...slide0Box1Layout.mobile,
-          }}
+    canvasGlobalState.containerAboutVisibleSlideIndex === slideId && (
+      // <InteractivePanel
+      //   gestureHandler={ContAboutSlide1}
+      //   color={[0.015, 0.0001, 0.019]}
+      // />
+      <mesh
+        position={[
+          0,
+          0,
           /*
-          array of props; using map() we get 4 <SpinningBoxSide>
-          */
-          spinningBoxConfig={slide1Box1DataForSides}
-          springConfig={slide1DataForSpring}
-          /*
-          props for <SpinningBoxSide>'s gesture; 
-          */
-          gestureSettings={gestureSettings}
-          /*
-          props for <SpinningBoxSide>'s spring;
-          */
-          isSlideVisible={
-            slideId === canvasGlobalState.containerAboutSlideIndex
-          }
-          /*
-          props for <SpinningBoxSide>'s spring; one of conditions that decide if side rotates; it chaneges within 2D <NavigationPanel> button;
-          */
-          isSideRotating={canvasGlobalState.slide1Rotation}
+        to cover the whole sreen position this plane very close to camera; value 0.9 makes it invisible; test with smaller values
+        */
+          globalPositionData.aboutContainerCameraPosition[2] * 0.9,
+        ]}
+        // {...pseudoScrollinGesture()}
+        {...contAboutSlide1()}
+        //   visible={false}
+      >
+        <planeGeometry args={[0.3, 0.3]} />
+        <meshBasicMaterial
+          //  color={[0.015, 0.0001, 0.019]}
+          wireframe
         />
-        {/* </a.group> */}
-      </Suspense>
-    </a.group>
+      </mesh>
+    )
   );
 };
 

@@ -6,12 +6,12 @@ import SpinningBox from '../../../spinningBox/SpinningBox';
 /*
 Global State Staf
 */
-// import { useSnapshot } from 'valtio';
-// import { canvasState } from '../../../../../../states/canvasState';
+import { useSnapshot } from 'valtio';
+import { canvasState } from '../../../../../../states/canvasState';
 /*
 Spring data
 */
-import { a } from '@react-spring/three';
+import { a, useSpring } from '@react-spring/three';
 /*
 Hook Staff
 */
@@ -19,11 +19,7 @@ import useWindowSize from '../../../../../../hooks/useWindowSize';
 /*
  Basic Data
  */
-import {
-  // slideSpring,
-  slide0Box1Layout,
-  slide0Box1Data,
-} from './slide0Data';
+import { slideSpring, slide0Box1Layout, slide0Box1Data } from './slide0Data';
 
 const minForTablet = 850;
 
@@ -41,47 +37,32 @@ const Slide0 = ({ slideId, rotateStepByStep, gesturesForSidesRotations }) => {
   const windowSize = useWindowSize();
   /*
   Global State Section
-    {containerAboutSlideIndex: 0,...}
+    {containerAboutVisibleSlideIndex: 0,...}
   */
-  // const canvasGlobalState = useSnapshot(canvasState);
+  const canvasGlobalState = useSnapshot(canvasState);
   /*
   "sliderEngine"
   depending on "slideId < canvasGlobalState.containerAboutVisibleSlideIndex"
   slide can be "in center" or "at top"
   */
-  // const sliderEngine = useSpring({
-  //   from: [slideSpring.centralPosition, 0, 0],
-  //   to: {
-  //     position: [
-  //       0,
-  //       canvasGlobalState.currentContainer === 'aboutContainer' &&
-  //       slideId < canvasGlobalState.containerAboutVisibleSlideIndex
-  //         ? slideSpring.topPosition
-  //         : slideSpring.centralPosition,
+  const { position } = useSpring({
+    from: { position: [slideSpring.centralPosition, 0, 0] },
+    to: {
+      position: [
+        0,
+        canvasGlobalState.currentContainer === 'aboutContainer' &&
+        slideId < canvasGlobalState.containerAboutVisibleSlideIndex
+          ? slideSpring.topPosition
+          : slideSpring.centralPosition,
 
-  //       0,
-  //     ],
-  //   },
-  //   config: slideSpring.config,
-  // });
-  /*
-  "Reseter"
-  Allowes to reset position of <SpinningBoxSide> to "client label"
-  */
-  // if (canvasGlobalState.currentContainer !== 'aboutContainer') {
-  //   canvasState.slide0Rotation = false;
-  // }
-  /*
-  Call this gesture!!!
-  returned staf includes: rotateStepByStep,gestureCounter, dragRotateStepByStep
-  */
-  // const { rotateStepByStep, incrementalSpinOnDrag } = IncrementalSpinOnDrag({
-  //   /*
-  //   set axis that is active
-  //   */
-  //   axisLimitation: slide0Box1DataForSpring.axisLimitation,
-  //   rotationInitVal: [0, 0, 0],
-  // });
+        0,
+      ],
+    },
+    config:
+      slideId < canvasGlobalState.containerAboutVisibleSlideIndex
+        ? slideSpring.config /* when going up */
+        : slideSpring.configDown /* when going down (molasses) */,
+  });
 
   // useEffect(() => {
   //   console.log(
@@ -94,10 +75,7 @@ const Slide0 = ({ slideId, rotateStepByStep, gesturesForSidesRotations }) => {
   */
   return (
     <group name="GroupForSlide_0">
-      <a.group
-        name="GroupForSlide_0...incrementalSpinOnDrag()"
-        // {...incrementalSpinOnDrag()}
-      >
+      <a.group name="GroupForSlide_0" position={position}>
         {/*-----Body Section------------------------------------------*/}
         <Suspense fallback={null}>
           <SpinningBox
@@ -125,26 +103,6 @@ const Slide0 = ({ slideId, rotateStepByStep, gesturesForSidesRotations }) => {
           />
         </Suspense>
       </a.group>
-
-      {/* {canvasGlobalState.currentContainer === 'aboutContainer' && (
-        <GesturePrompt
-          scena="caDragSpinningBox"
-          groupProps={{
-            position: [0, 0, 0.6],
-          }}
-        />
-      )} */}
-      {/* {canvasGlobalState.currentContainer === 'aboutContainer' && (
-        <a.group
-          position={rotateSpinningBoxSide}
-          // position={[-0.1, 0, 0.6]}
-        >
-          <mesh>
-            <planeGeometry args={[0.01, 0.01]} />
-            <meshBasicMaterial color={[0, 1, 0]} />
-          </mesh>
-        </a.group>
-      )} */}
     </group>
   );
 };

@@ -2,7 +2,8 @@ import React from 'react';
 /*
 Components
 */
-import NavigationPanel from './navigationPanel/NavigationPanel';
+import NavigationPanel from './navigationPanel/NavigationPanel2D';
+import Slader2D from './slider2D/Slider2D';
 /*
 Global State Staff
 */
@@ -17,6 +18,8 @@ Basic Data
 "slidesArrayNumber" is just a number for fakeSlider...
 */
 // const minForTablet = 850;
+import { containerAbout2DLayout } from './containerAbout2DStaffData';
+const { navigationWrapper, topSectionWrapper } = containerAbout2DLayout;
 
 /*
 -------------------------------------------------------------------------------
@@ -31,10 +34,10 @@ const ContainerAbout2DStaff = () => {
   Reset Indicator;
   If user changes container indicator is reset to 0;
   */
-  if (canvasGlobalState.currentContainer !== 'aboutContainer') {
-    canvasState.containerAboutSlideIndex = 0;
-    canvasState.containerAboutSlidingDirection = 'none';
-  }
+  // if (canvasGlobalState.currentContainer !== 'aboutContainer') {
+  //   canvasState.containerAboutSlideIndex = 0;
+  //   canvasState.containerAboutSlidingDirection = 'none';
+  // }
   /*
   Hook Section
   */
@@ -44,21 +47,33 @@ const ContainerAbout2DStaff = () => {
   */
   return (
     canvasGlobalState.currentContainer === 'aboutContainer' && (
-      <div
-        className="container-about__bottom-wrapper"
-        style={{
-          width: windowSize.width,
-        }}
-      >
+      <div className="container-about__wrapper">
         <div
-          className="container-about__navigation-wrapper"
+          className="container-about__top-wrapper"
           style={{
-            height: windowSize.height * 0.137,
-            width: windowSize.height * 0.425,
-            top: -windowSize.height * 0.137,
+            height: windowSize.height * topSectionWrapper.height,
+            width: windowSize.width,
           }}
         >
-          <NavigationPanel />
+          <Slader2D />
+        </div>
+
+        <div
+          className="container-about__bottom-wrapper"
+          style={{
+            width: windowSize.width,
+          }}
+        >
+          <div
+            className="container-about__navigation-wrapper"
+            style={{
+              height: windowSize.height * navigationWrapper.height,
+              width: windowSize.height * navigationWrapper.width,
+              top: -windowSize.height * navigationWrapper.height,
+            }}
+          >
+            <NavigationPanel />
+          </div>
         </div>
       </div>
     )

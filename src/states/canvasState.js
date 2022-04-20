@@ -111,14 +111,13 @@ const canvasState = proxy({
   ---------------------------------------------<ContainerAbout>
   */
   containerAboutGestureType: 'none',
-  containerAboutVisibleSlideIndex: 0,
   /*
   this props is ment to freez "LimitedPseudoScrolling"
   it enables / disables "LPS"
   is change to "false" in "LPS" handlers
   is changed to true in springs of every slide; i.e. onRest() should does it!
   */
-  slideIsCompletted: true,
+  // slideIsCompletted: true,
   /*
   is used in "IncrementalSpinOnDrag" / mainHandler; 
   "1" means "Jesteś Ty" is visible vs. "0" means "Jestem Ja" is visible
@@ -130,16 +129,34 @@ const canvasState = proxy({
   isClientSideVisible: true,
   /*
   for 2D / 3D <NavigationPanel> in <ContainerAbout>
+  is changed to "true" in "ContainerAboutGesture.js" / "mainDragHandler"; from that moment, whenever user jumps to other container and return to <CA> navPanel is "repositioned" as it's based on useTransition 
   */
   isNavPanelOpened: false,
+  /*
+  props that are used to disable navButtons 2D; all logic takes place in <NavigationPanel2D> 
+  */
+  isSlide1Debutes: true,
+  isSlide2Debutes: true,
+  /*
+  props used in <Slide1>; all manipilations take place in "contAboutSlide1.js" gesture
+  */
+  slide1Part: 0,
+  //_____
   /*
   --------------------------------------------<ContainerAbout2DStaff>
   */
   /*
-  is changed in <NavigatoionPanel> 2D component;
+  is changed in <NavigatoionPanel2D>;
   */
-  containerAboutEventCounter: 0,
-  containerAboutSlideIndex: 0,
+  // containerAboutEventCounter: 0,
+  /*
+  is incremented / decremented in <NavigatoionPanel2D> / onClick handlers;
+  */
+  containerAboutVisibleSlideIndex: 0,
+  // containerAboutSlideIndex: 0,
+  /*
+  is incremented / decremented in <NavigatoionPanel2D>;
+  */
   containerAboutSlidingDirection: 'none',
   /*
   for 2D fake-button that rotates <SpinningBox>'s sides

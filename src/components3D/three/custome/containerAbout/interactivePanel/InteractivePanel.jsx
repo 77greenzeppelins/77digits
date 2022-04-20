@@ -8,13 +8,13 @@ Gesture Staff
 */
 import LimitedPseudoScrolling from '../../../../../gestureHandlers/useGesture/LimitedPseudoScrolling';
 
-const InteractivePanel = () => {
+const InteractivePanel = ({ gestureHandler, color }) => {
   /*
   Gesture Section
   */
-  const { pseudoScrollinGesture } = LimitedPseudoScrolling({
-    numberOfSlides: 5,
-  });
+  // const { pseudoScrollinGesture } = LimitedPseudoScrolling({
+  //   numberOfSlides: 5,
+  // });
   /*
   JSX
   */
@@ -24,15 +24,16 @@ const InteractivePanel = () => {
         0,
         0,
         /*
-        to cover the whole sreen position this plane very close to camera
+        to cover the whole sreen position this plane very close to camera; value 0.9 makes it invisible; test with smaller values
         */
-        globalPositionData.aboutContainerCameraPosition[2] * 0.9,
+        globalPositionData.aboutContainerCameraPosition[2] * 0.5,
       ]}
-      {...pseudoScrollinGesture()}
+      // {...pseudoScrollinGesture()}
+      {...gestureHandler()}
       //   visible={false}
     >
       <planeGeometry args={[0.3, 0.3]} />
-      <meshBasicMaterial />
+      <meshBasicMaterial color={color || [0, 0, 0]} />
     </mesh>
   );
 };

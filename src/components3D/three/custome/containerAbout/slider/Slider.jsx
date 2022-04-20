@@ -3,7 +3,7 @@ import React from 'react';
 Components
 */
 import Slide0 from './slide0/Slide0';
-// import Slide1 from './slide1/Slide1';
+import Slide1 from './slide1/Slide1';
 
 /*
 -----------------------------------------------------------------
@@ -19,7 +19,7 @@ const Slider = ({ rotateStepByStep, gesturesForSidesRotations }) => {
         rotateStepByStep={rotateStepByStep}
         gesturesForSidesRotations={gesturesForSidesRotations}
       />
-      {/* <Slide1 slideId={1} /> */}
+      <Slide1 slideId={1} />
 
       {/*---Central Plane*/}
       {/* <mesh position={[0, 0, 0]}>

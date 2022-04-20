@@ -54,6 +54,29 @@ const NavigationPanel = () => {
       config: mainGroupSpringData.config,
     }
   );
+
+  /*
+  Tests............
+  */
+  // useEffect(() => {
+  //   // if (
+  //   //   canvasGlobalState.currentContainer === 'aboutContainer' &&
+  //   //   canvasGlobalState.isNavPanelOpened === true
+  //   // ) {
+  //   //   console.log('NavigationPanel works........');
+  //   // } else {
+  //   //   console.log('NavigationPanel  fails........');
+  //   // }
+  //   //_________________
+  //   console.log(
+  //     'canvasGlobalState.containerAboutSlideIndex',
+  //     canvasGlobalState.containerAboutSlideIndex
+  //   );
+  // }, [
+  //   // canvasGlobalState.currentContainer, canvasGlobalState.isNavPanelOpened
+  //   canvasGlobalState.containerAboutSlideIndex,
+  // ]);
+
   /*
   JSX
   */
