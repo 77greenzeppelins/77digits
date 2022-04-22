@@ -12,6 +12,7 @@ import TextSection from './textSection/TextSection';
 import StillLifeSection from './stillLifeSection/StillLifeSection';
 import EndButtons from './endButtonsSection/EndButtons';
 import RaphaelSection from './raphaelSection/RaphaelSection';
+import IntroScrollSection from './scrollSections/IntroScrollSection';
 /*
 Gesture Section
 */
@@ -60,6 +61,7 @@ const ContainerIntro = () => {
         {/*-----77-------------------------------------------------*/}
         <FramedObjects />
         {/*-----StillLifeSection------------------------------------*/}
+        <IntroScrollSection />
         <StillLifeSection />
         {/*-----EndButtons------------------------------------------*/}
         {canvasGlobalState.currentContainer === 'introContainer' && (

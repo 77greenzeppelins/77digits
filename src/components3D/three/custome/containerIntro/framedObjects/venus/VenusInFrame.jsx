@@ -5,7 +5,9 @@ Components
 import UniversalFrame from '../../../matcapFrames/UniversalFrame';
 import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
 import TextSlide from '../../../textSlides/textSlide/TextSlide';
-import Logo from '../../../extrudedObjects/logo/Logo';
+import CustomMeshWithMatcap from '../../../_meshesWithMatcap/CustomMeshWithMatcap';
+import LogoGeometry from '../../../extrudedObjects/logo/LogoGeometry';
+
 /*
 Gesture Staff
 "DragRotateReturn" works as pseudoOrbitController; it just rotate obiect along with defined axis;
@@ -66,10 +68,19 @@ const VenusInFrame = () => {
       <UniversalFrame {...venusInFrameData.frameProps} />
       <UniversalCanvas {...venusInFrameData.canvasProps} />
       {/*-----77 Logo-----------------------------------------*/}
-      <Logo
+      {/* <Logo
         meshProps={{ position: [-0.2, -0.28, -0.01], scale: [0.5, 0.5, 0.5] }}
         materialProps={{ color: [1, 0, 0] }}
-      />
+      /> */}
+
+      <CustomMeshWithMatcap
+        meshProps={{
+          position: [-0.2, -0.28, -0.01],
+          scale: [0.5, 0.5, 0.5],
+        }}
+      >
+        <LogoGeometry />
+      </CustomMeshWithMatcap>
 
       {/*----------Funny Text Thanks for Sandro---------------*/}
       <TextSlide

@@ -178,8 +178,9 @@ const UniversalFrame = React.memo(
     );
 
     const matcapMaterial = useMemo(() => {
-      const matcapMaterial = new THREE.MeshMatcapMaterial();
-      matcapMaterial.matcap = matcapTexture;
+      const matcapMaterial = new THREE.MeshMatcapMaterial({
+        matcap: matcapTexture,
+      });
       return matcapMaterial;
     }, [matcapTexture]);
 

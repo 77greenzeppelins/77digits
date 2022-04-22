@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 /*
@@ -8,9 +8,9 @@ const temp3DObject = new THREE.Object3D();
 const tempMatrix = new THREE.Matrix4();
 const tempVector = new THREE.Vector3();
 
-const justLerp = (val1, val2, interpolant) => {
-  return val1 * (1 - interpolant) + val2 * interpolant;
-};
+// const justLerp = (val1, val2, interpolant) => {
+//   return val1 * (1 - interpolant) + val2 * interpolant;
+// };
 
 /*
 ----------------------------------------------------------------------------

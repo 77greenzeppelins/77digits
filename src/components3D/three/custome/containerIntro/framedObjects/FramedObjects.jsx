@@ -60,7 +60,7 @@ const FramedObjects = ({ groupProps }) => {
     <a.group {...groupProps} position={springPositionZ}>
       <a.group rotation={rotateWithMouseMove}>
         <VenusInFrame />
-        <ScrollBanner />
+        {/* <ScrollBanner /> */}
       </a.group>
     </a.group>
   );
