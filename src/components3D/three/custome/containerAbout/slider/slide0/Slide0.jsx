@@ -1,8 +1,9 @@
-import React, { Suspense, useRef } from 'react';
+import React, { useRef } from 'react';
 /*
 Components
 */
 import SpinningBox from '../../../spinningBox/SpinningBox';
+import ArrowPrompt from './arrowPrompt/ArrowPrompt';
 /*
 Global State Staf
 */
@@ -17,16 +18,25 @@ Hook Staff
 */
 import useWindowSize from '../../../../../../hooks/useWindowSize';
 /*
- Basic Data
- */
-import { slideSpring, slide0Box1Layout, slide0Box1Data } from './slide0Data';
-
-const minForTablet = 850;
+Basic Data
+*/
+import {
+  minForTablet,
+  sliderEngineSpring,
+  slide0Box1Layout,
+  slide0Box1Data,
+  arrowPromptData,
+} from './slide0Data';
 
 /*
 ----------------------------------------------------------------------
 */
-const Slide0 = ({ slideId, rotateStepByStep, gesturesForSidesRotations }) => {
+const Slide0 = ({
+  slideId,
+  rotateStepByStep,
+  gesturesForSidesRotations,
+  arrowPromptGroupRotation,
+}) => {
   /*
   References
   */
@@ -42,26 +52,25 @@ const Slide0 = ({ slideId, rotateStepByStep, gesturesForSidesRotations }) => {
   const canvasGlobalState = useSnapshot(canvasState);
   /*
   "sliderEngine"
-  depending on "slideId < canvasGlobalState.containerAboutVisibleSlideIndex"
-  slide can be "in center" or "at top"
+  depending on the final valu of this statement: "slideId < canvasGlobalState.containerAboutVisibleSlideIndex" slide can be "in the center of a screen" or "just above the top frame of a screen" or "just below the bottom frame of a screen"
   */
   const { position } = useSpring({
-    from: { position: [slideSpring.centralPosition, 0, 0] },
+    from: { position: [sliderEngineSpring.centralPosition, 0, 0] },
     to: {
       position: [
         0,
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         slideId < canvasGlobalState.containerAboutVisibleSlideIndex
-          ? slideSpring.topPosition
-          : slideSpring.centralPosition,
+          ? sliderEngineSpring.topPosition
+          : sliderEngineSpring.centralPosition,
 
         0,
       ],
     },
     config:
       slideId < canvasGlobalState.containerAboutVisibleSlideIndex
-        ? slideSpring.config /* when going up */
-        : slideSpring.configDown /* when going down (molasses) */,
+        ? sliderEngineSpring.config /* when going up */
+        : sliderEngineSpring.configDown /* when going down (molasses) */,
   });
 
   // useEffect(() => {
@@ -77,31 +86,36 @@ const Slide0 = ({ slideId, rotateStepByStep, gesturesForSidesRotations }) => {
     <group name="GroupForSlide_0">
       <a.group name="GroupForSlide_0" position={position}>
         {/*-----Body Section------------------------------------------*/}
-        <Suspense fallback={null}>
-          <SpinningBox
-            rotateStepByStep={rotateStepByStep}
-            gesturesForSidesRotations={gesturesForSidesRotations}
-            ref={spinBox}
-            groupProps={{
-              name: 'groupForSpinningBox_slide_0',
-              /*
+
+        <SpinningBox
+          rotateStepByStep={rotateStepByStep}
+          gesturesForSidesRotations={gesturesForSidesRotations}
+          ref={spinBox}
+          groupProps={{
+            name: 'groupForSpinningBox_slide_0',
+            /*
               a bit of responsiveness; 
               */
-              scale:
-                windowSize.width < minForTablet
-                  ? slide0Box1Layout.mobile.scale
-                  : slide0Box1Layout.desktop.scale,
-              position:
-                windowSize.width < minForTablet
-                  ? slide0Box1Layout.mobile.position
-                  : slide0Box1Layout.desktop.position,
-            }}
-            /*
+            scale:
+              windowSize.width < minForTablet
+                ? slide0Box1Layout.mobile.scale
+                : slide0Box1Layout.desktop.scale,
+            position:
+              windowSize.width < minForTablet
+                ? slide0Box1Layout.mobile.position
+                : slide0Box1Layout.desktop.position,
+          }}
+          /*
           "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
           */
-            spinningBoxConfig={slide0Box1Data}
-          />
-        </Suspense>
+          spinningBoxConfig={slide0Box1Data}
+        />
+        <ArrowPrompt
+          responsiveness={
+            windowSize.width < arrowPromptData.responsivenessFactor ? 1 : 0
+          }
+          arrowPromptGroupRotation={arrowPromptGroupRotation}
+        />
       </a.group>
     </group>
   );

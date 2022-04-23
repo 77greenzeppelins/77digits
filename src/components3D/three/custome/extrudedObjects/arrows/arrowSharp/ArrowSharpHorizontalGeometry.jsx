@@ -3,16 +3,19 @@ import { Shape } from 'three';
 /*
 Basic Data
 */
-import { sharpArrowCoordinatesData, arrowExtrudeSettings } from '../arrowsData';
+import {
+  sharpArrowHorizontalCoordinatesData,
+  arrowExtrudeSettings,
+} from '../arrowsData';
 
 /*
 --------------------------------------------------------------------------
 */
-const ArrowSharpGeometry = () => {
+const ArrowSharpHorizontalGeometry = () => {
   /*
   Shape creator; requires array of points
   */
-  const shape = new Shape(sharpArrowCoordinatesData);
+  const shape = new Shape(sharpArrowHorizontalCoordinatesData);
 
   /*
   JSX
@@ -20,4 +23,4 @@ const ArrowSharpGeometry = () => {
   return <extrudeGeometry args={[shape, arrowExtrudeSettings]} />;
 };
 
-export default ArrowSharpGeometry;
+export default ArrowSharpHorizontalGeometry;

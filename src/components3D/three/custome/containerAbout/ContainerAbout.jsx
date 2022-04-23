@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, Suspense } from 'react';
 /*
 Components
 */
@@ -40,6 +40,7 @@ const ContainerAbout = () => {
     sideLeftRotation,
     sideBackRotation,
     sideRightRotation,
+    arrowPromptGroupRotation,
     containerAboutGestures,
   } = ContainerAboutGestures({
     /*
@@ -51,12 +52,12 @@ const ContainerAbout = () => {
 
   //_________
   // useEffect(() => {
-  //   console.log('ContainerAbout / sideFrontRotation:', sideFrontRotation);
+  //   // console.log('ContainerAbout / sideFrontRotation:', sideFrontRotation);
   //   console.log(
-  //     'ContainerAbout / rotateSpinningBoxSide:',
-  //     rotateSpinningBoxSide
+  //     'ContainerAbout / arrowPromptGroupRotation:',
+  //     arrowPromptGroupRotation
   //   );
-  // }, [sideFrontRotation, rotateSpinningBoxSide]);
+  // }, [arrowPromptGroupRotation]);
   //_____
 
   const gesturesForSidesRotations = useMemo(() => {
@@ -75,26 +76,34 @@ const ContainerAbout = () => {
 
   /*
   JSX
+  Remarks:
+  (1) initial concpet ... 
   */
   return (
-    // canvasGlobalState.currentContainer === 'aboutContainer' && (
     <group
       scale={[1, 1, 1]}
       name="GroupForContainerAbout"
       position={canvasGlobalState.aboutContainerPosition}
       {...containerAboutGestures()}
     >
-      {/*-----Slider Section-----------------------------------*/}
-      <Slider
-        rotateStepByStep={rotateStepByStep}
-        gesturesForSidesRotations={gesturesForSidesRotations}
-      />
-
-      {/*-----Navigation Panel Section------------------------*/}
-      <NavigationPanel />
+      <Suspense fallback={null}>
+        {/*-----Slider Section-----------------------------------
+      "rotateStepByStep" gestures for <SpinningBox>
+      "gesturesForSidesRotations" gestures for <SpinningBoxSide>
+      */}
+        <Slider
+          rotateStepByStep={rotateStepByStep}
+          gesturesForSidesRotations={gesturesForSidesRotations}
+          /*
+          for <Slider> / <Slide0> / <ArrowPrompt> 
+          */
+          arrowPromptGroupRotation={arrowPromptGroupRotation}
+        />
+        {/*-----Navigation Panel Section------------------------*/}
+        <NavigationPanel />
+      </Suspense>
     </group>
   );
-  // );
 };
 
 export default ContainerAbout;

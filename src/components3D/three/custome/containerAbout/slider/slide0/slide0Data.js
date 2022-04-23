@@ -35,13 +35,59 @@ const fontSizesVerySmall = {
 // };
 
 /*
+--------------------------------------------------------------------
+*/
+
+/*
+for <Slide0> some general responsiveness setings
+*/
+const minForTablet = 850;
+
+/*
 Settings used by <Slide0> & <Slide1> as data for "slider engine"; specifies position "in center" or "at top" depending on slide index
 */
-const slideSpring = {
+const sliderEngineSpring = {
   centralPosition: 0,
   topPosition: 1,
+  bottomPosition: -1,
   config: springConfigs.configBasic,
   configDown: springConfigs.molasses,
+};
+
+const arrowPromptData = {
+  /*
+  value for responsiveness; 
+  */
+  responsivenessFactor: 490,
+  /*
+  general position of arrow's <group> 
+  */
+  tabletGroupPosition: [0, 0, -1],
+  mobileGroupPosition: [0, -0.3, -0.15],
+
+  /*
+  for <CustomeMeshWithMatcap>
+  */
+  tabletMeshPropsLeftArrow: {
+    position: [-0.45, 0, 0],
+    scale: [0.06, 0.06, 0.06],
+    rotation: [0, 0, 0],
+  },
+  tabletMeshPropsRightArrow: {
+    position: [0.45, 0, 0],
+    scale: [0.06, 0.06, 0.06],
+    rotation: [0, 0, 0],
+  },
+  mobileMeshPropsLeftArrow: {
+    position: [-0.01, 0, 0],
+    scale: [0.02, 0.02, 0.02],
+    rotation: [0, 0, 0],
+  },
+  mobileMeshPropsRightArrow: {
+    position: [0.01, 0, 0],
+    scale: [0.02, 0.02, 0.02],
+    rotation: [0, 0, 0],
+  },
 };
 
 /*
@@ -65,23 +111,19 @@ const slide0Box1Data = [
       /*
       Pl for <TextSlideFromArray>
       */
-      textLinesPl: ['Jesteś', 'Ty', 'v', 'v', 'v'],
+      // textLinesPl: ['Jesteś', 'Ty', 'v', 'v', 'v'],
+      textLinesPl: ['Jesteś', 'Ty'],
+
       textPropsPl: [
         { position: [0, 0.4, 0.01] },
         { position: [0.15, 0.2, 0.01] },
-        { position: [-0.05, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
-        { position: [0.0, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
-        { position: [0.05, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
+        // { position: [-0.05, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
+        // { position: [0.0, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
+        // { position: [0.05, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
       ],
-      fontPl: ['garamont', 'garamont', 'jost', 'jost'],
-      fontSizePl: [
-        { ...fontSizesVeryLarge },
-        { ...fontSizesVeryLarge },
-        { ...fontSizesMedium },
-        { ...fontSizesMedium },
-        { ...fontSizesMedium },
-      ],
-      textAlignPl: ['left', 'left', 'right', 'right', 'right'],
+      fontPl: ['garamont', 'garamont'],
+      fontSizePl: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
+      textAlignPl: ['left', 'left'],
       /*
       En for <TextSlideFromArray>
       */
@@ -433,4 +475,10 @@ const slide0Box1Data = [
 data for <GesturePrompt>
 */
 
-export { slideSpring, slide0Box1Layout, slide0Box1Data };
+export {
+  minForTablet,
+  sliderEngineSpring,
+  slide0Box1Layout,
+  slide0Box1Data,
+  arrowPromptData,
+};

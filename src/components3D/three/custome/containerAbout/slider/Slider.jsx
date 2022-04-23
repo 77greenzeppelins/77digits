@@ -8,7 +8,11 @@ import Slide1 from './slide1/Slide1';
 /*
 -----------------------------------------------------------------
 */
-const Slider = ({ rotateStepByStep, gesturesForSidesRotations }) => {
+const Slider = ({
+  rotateStepByStep,
+  gesturesForSidesRotations,
+  arrowPromptGroupRotation,
+}) => {
   /*
   JSX
   */
@@ -18,6 +22,7 @@ const Slider = ({ rotateStepByStep, gesturesForSidesRotations }) => {
         slideId={0}
         rotateStepByStep={rotateStepByStep}
         gesturesForSidesRotations={gesturesForSidesRotations}
+        arrowPromptGroupRotation={arrowPromptGroupRotation}
       />
       <Slide1 slideId={1} />
 

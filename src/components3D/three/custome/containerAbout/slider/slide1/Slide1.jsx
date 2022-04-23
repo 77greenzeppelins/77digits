@@ -56,17 +56,16 @@ const Slide1 = ({ slideId }) => {
   */
   return (
     canvasGlobalState.containerAboutVisibleSlideIndex === slideId && (
-      // <InteractivePanel
-      //   gestureHandler={ContAboutSlide1}
-      //   color={[0.015, 0.0001, 0.019]}
-      // />
+      /*
+     it actually plays role of <InteractivePanel>; it only receives "gestures inputs"; output from contAboutSlide1() manipulates global state "canvasState.slide1Part = refX.current"; then according to current value of "slide1Part" appropriate non-canvas staff is rendered...
+     */
       <mesh
         position={[
           0,
           0,
           /*
-        to cover the whole sreen position this plane very close to camera; value 0.9 makes it invisible; test with smaller values
-        */
+          to cover the whole sreen,  this plane should be positioned very close to camera; value 0.9 makes it "invisible"; for test purpose smaller values should be used;
+          */
           globalPositionData.aboutContainerCameraPosition[2] * 0.9,
         ]}
         // {...pseudoScrollinGesture()}

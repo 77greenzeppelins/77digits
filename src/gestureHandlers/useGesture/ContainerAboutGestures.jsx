@@ -41,11 +41,11 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
   const [
     {
       rotateStepByStep,
-      positionNavPanel,
       sideFrontRotation,
       sideLeftRotation,
       sideBackRotation,
       sideRightRotation,
+      arrowPromptGroupRotation,
     },
     api,
   ] = useSpring(() => ({
@@ -54,12 +54,10 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
     sideLeftRotation: [0, slide0Box1Data[1].sideProps.rotation[1], 0],
     sideBackRotation: [0, slide0Box1Data[2].sideProps.rotation[1], 0],
     sideRightRotation: [0, slide0Box1Data[3].sideProps.rotation[1], 0],
-    //_____testers
-    positionNavPanel: [0, -0.3, -2.2],
-    rotateButtonVisibility: false,
-    //_____
+    //
+    arrowPromptGroupRotation: [0, 0, 0],
+    //
     config: config.molasses,
-    // config: { duration: 2000 },
     /*
     What "onRest()" does?
     It opens 2D navPanel;  
@@ -214,6 +212,11 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
             : slide0Box1Data[3].sideProps.rotation[1] + Math.PI,
           0,
         ],
+        arrowPromptGroupRotation: [
+          0,
+          isClientSideVisible.current ? 0 : Math.PI,
+          0,
+        ],
         // /*
         // springValue: "positionNavPanel"
         // */
@@ -256,7 +259,7 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
     sideLeftRotation,
     sideBackRotation,
     sideRightRotation,
-    positionNavPanel,
+    arrowPromptGroupRotation,
     containerAboutGestures,
   };
 };

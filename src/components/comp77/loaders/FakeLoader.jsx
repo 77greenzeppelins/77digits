@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 /*
+Components
+*/
+import LogoIntroAnimation from '../svgComponents/svgLogo/LogoIntroAnimation';
+/*
 Global State Staff
 */
 import { useSnapshot } from 'valtio';
@@ -11,9 +15,9 @@ import { animated, useSprings, useSpring, config } from '@react-spring/web';
 /*
   Basic data
   */
-import { images } from './fakeLoaderData';
+// import { images } from './fakeLoaderData';
 
-const delayFactor = 300;
+// const delayFactor = 300;
 
 /*
 --------------------------------------------------------------------------
@@ -36,29 +40,29 @@ const FakeLoader = () => {
   Final result is achieved by changing component state within onRest()
   This change triggers useSpring 
   */
-  const springs = useSprings(
-    /*
-    create the following number of "springs"
-    */
-    images.length,
-    /*
-    use "images" array to create springConfig object
-    */
-    images.map((item, index) => {
-      const springConfig = {
-        // config: { duration: 200 },
-        config: config.default,
-        from: { opacity: 0 },
-        to: { opacity: 1 },
-        delay: 300 * index + delayFactor,
-      };
-      if (item.id === 100) {
-        springConfig.onRest = () => setVal(false);
-        springConfig.delay = 200 * index + delayFactor * 5;
-      }
-      return springConfig;
-    })
-  );
+  // const springs = useSprings(
+  //   /*
+  //   create the following number of "springs"
+  //   */
+  //   images.length,
+  //   /*
+  //   use "images" array to create springConfig object
+  //   */
+  //   images.map((item, index) => {
+  //     const springConfig = {
+  //       // config: { duration: 200 },
+  //       config: config.default,
+  //       from: { opacity: 0 },
+  //       to: { opacity: 1 },
+  //       delay: 300 * index + delayFactor,
+  //     };
+  //     if (item.id === 100) {
+  //       springConfig.onRest = () => setVal(false);
+  //       springConfig.delay = 200 * index + delayFactor * 5;
+  //     }
+  //     return springConfig;
+  //   })
+  // );
   /*
   useSpring Section
   Final result is "opacity: 0" of ".fake-loader__container"
@@ -70,7 +74,7 @@ const FakeLoader = () => {
     Why "delay" ?
     This spring wait until useSprings() ends; it's a sort of "primitive hardcoding" approach;
     */
-    delay: 400,
+    delay: 1000,
     /*
     How onRest() work? 
     My guess: after all animation this method is evaluated; 
@@ -87,7 +91,7 @@ const FakeLoader = () => {
   return (
     /*
     What this condition "canvasGlobalState.fakeLoaderCounter === 0" does??
-    There was an issue: <Cookies> is mounted; user click "więcej informacji" and goes to <CookiesPage>; then click browser "backward arrow" of mouse "left side button" and went back to <MainPage>; what user sees are <FakeLoader> buring animation and <Cookies>; both components overlap...
+    There was an issue: <Cookies> is mounted; user click "więcej informacji" and goes to <CookiesPage>; then click browser "backward arrow" or mouse "left side button" and went back to <MainPage>; what user can see are <FakeLoader> buring animation and <Cookies>; both components overlap...
     Solution: restrict <FakeLoader> animation to only one "show" during initila page loading + value "fakeLoaderCounter === 1" is set in useSpring() above;
     */
     canvasGlobalState.fakeLoaderCounter === 0 && (
@@ -95,9 +99,10 @@ const FakeLoader = () => {
         className="fake-loader__container"
         style={{ opacity: springValue }}
       >
-        <div className="fake-loader__images-container">
-          {/* Let's use springs to creat components */}
-          {springs.map((springConfig, index) => (
+        {/* <div className="fake-loader__images-container"> */}
+        <LogoIntroAnimation />
+        {/* Let's use springs to creat components */}
+        {/* {springs.map((springConfig, index) => (
             <animated.img
               key={images[index].id}
               src={images[index].image}
@@ -108,10 +113,10 @@ const FakeLoader = () => {
               }}
             />
           ))}
-        </div>
-        <div className="fake-loader__percentage">
-          <p>%</p>
-        </div>
+        </div> */}
+        {/* <div className="fake-loader__percentage"> */}
+        {/* <p>%</p> */}
+        {/* </div> */}
       </animated.div>
     )
   );
