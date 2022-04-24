@@ -95,8 +95,8 @@ const TestingPlane = ({ meshProps }) => {
       {/* <introBackgroundShaderMaterial
           ref={material}
         /> */}
-      <smillyShaderMaterial ref={material} />
-      {/* <logoShaderMaterial ref={material}/> */}
+      {/* <smillyShaderMaterial ref={material} /> */}
+      {/* <logoShaderMaterial ref={material} /> */}
       {/* <spaceGifShaderMaterial ref={material} /> */}
       {/* <domainDistortionShaderMaterial ref={material} /> */}
       {/* <polarCoordinatesShaderMaterial ref={material} /> */}

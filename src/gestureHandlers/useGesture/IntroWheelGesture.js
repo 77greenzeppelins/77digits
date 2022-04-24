@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 // import { useThree } from '@react-three/fiber';
 import { useSpring, config } from '@react-spring/three';
 import { useGesture } from '@use-gesture/react';
@@ -15,6 +15,10 @@ const factorPositionY = 0.005;
 -------------------------------------------------------------------------------
 */
 const IntroWheelGesture = () => {
+  /*
+  ...
+  */
+  const gestureType = useRef();
   /*
   State
   */
@@ -43,6 +47,7 @@ const IntroWheelGesture = () => {
        */
       if (wheeling && canvasGlobalState.introContainerEventType === 'none') {
         canvasState.introContainerEventType = 'wheeling';
+        gestureType.current = 'wheeling';
       }
       /*
       Spring Section;

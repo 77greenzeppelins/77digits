@@ -13,11 +13,14 @@ import StillLifeSection from './stillLifeSection/StillLifeSection';
 import EndButtons from './endButtonsSection/EndButtons';
 import RaphaelSection from './raphaelSection/RaphaelSection';
 import IntroScrollSection from './scrollSections/IntroScrollSection';
+// import TestingPlane from './TestingPlane';
 /*
 Gesture Section
 */
 import IntroDragGesture from '../../../../gestureHandlers/useGesture/IntroDragGesture';
 import IntroWheelGesture from '../../../../gestureHandlers/useGesture/IntroWheelGesture';
+
+import ContIntroGest from '../../../../gestureHandlers/useGesture/ContIntroGest';
 /*
 Spring Section
 */
@@ -42,6 +45,8 @@ const ContainerIntro = () => {
   const [draggedPositionZ] = IntroDragGesture();
   const { wheeledPositionZ } = IntroWheelGesture();
 
+  // const { positionZ } = ContIntroGest();
+
   /*
   JSX
   */
@@ -54,20 +59,23 @@ const ContainerIntro = () => {
           ? draggedPositionZ.to(draggedPositionZ => draggedPositionZ)
           : wheeledPositionZ.to(wheeledPositionZ => wheeledPositionZ)
       }
+      // position-z={positionZ}
     >
       {/*-----Text Slides------------------------------------------*/}
       <TextSection />
       <Suspense fallback={null}>
+        {/* <TestingPlane /> */}
         {/*-----77-------------------------------------------------*/}
         <FramedObjects />
-        {/*-----StillLifeSection------------------------------------*/}
+        {/*-----ScrollPromptSection--------------------------------*/}
         <IntroScrollSection />
+        {/*-----StillLifeSection-----------------------------------*/}
         <StillLifeSection />
-        {/*-----EndButtons------------------------------------------*/}
+        {/*-----EndButtons-----------------------------------------*/}
         {canvasGlobalState.currentContainer === 'introContainer' && (
           <EndButtons />
         )}
-        {/*-----RaphaelSection--------------------------------------*/}
+        {/*-----RaphaelSection-------------------------------------*/}
         {canvasGlobalState.currentContainer === 'introContainer' && (
           <RaphaelSection />
         )}

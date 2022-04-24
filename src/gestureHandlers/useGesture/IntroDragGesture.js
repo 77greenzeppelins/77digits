@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-// import { useThree } from '@react-three/fiber';
 /*
 Spring Staff
 */
