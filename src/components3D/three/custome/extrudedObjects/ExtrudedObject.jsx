@@ -12,14 +12,18 @@ Memoised Material
 /*
 -------------------------------------------------------------------------
 */
-const ExtrudedObject = ({
-  meshProps,
-  materialProps,
-  customeShape,
-  customeMaterial,
-  pointsCoordinatesArray,
-  extrudeSettings,
-}) => {
+const ExtrudedObject = props => {
+  /*
+  Props destruct...
+  */
+  const {
+    meshProps,
+    materialProps,
+    customeShape,
+    customGeometry,
+    pointsCoordinatesArray,
+    extrudeSettings,
+  } = props;
   /*
   Shape creator; requires array of points
   */
@@ -49,13 +53,22 @@ const ExtrudedObject = ({
   return (
     <mesh
       {...meshProps}
-      // material={MatcapMaterialInMemo}
       material={matcapMaterial}
+      geometry={customGeometry && customGeometry}
     >
-      <extrudeGeometry
-        args={[pointsCoordinatesArray ? shape : customeShape, extrudeSettings]}
-      />
-      {/* {customeMaterial || <meshBasicMaterial {...materialProps} />} */}
+      {
+        /*
+      we can props any geometry, including "textGeometry", or just props data for "args"; 
+      */
+        props.children || (
+          <extrudeGeometry
+            args={[
+              pointsCoordinatesArray ? shape : customeShape,
+              extrudeSettings,
+            ]}
+          />
+        )
+      }
     </mesh>
   );
 };

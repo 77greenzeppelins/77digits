@@ -36,13 +36,13 @@ const resetButtonTextSlide = {
 };
 
 const auxiliaryTopButton = {
-  groupProps: { scale: [0.17, 0.17, 0.17], position: [0.25, 0.31, -0.6] },
+  groupProps: { scale: [0.17, 0.17, 0.17], position: [0.22, 0.27, -0.6] },
   frameProps: { format: 'portrait' },
-  canvasProps: { format: 'portrait' },
+  // canvasProps: { format: 'portrait' },
   textSlideProps: {
     groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
     textProps: { position: [0, 0, 0] },
-    fontSize: { fontSmall: 0.55, fontMiddle: 0.5, fontLarge: 0.55 },
+    fontSize: { fontSmall: 0.55, fontMedium: 0.5, fontLarge: 0.55 },
     font: 'garamont',
     textLinePl: '?',
     textLineEn: '?',
@@ -50,13 +50,13 @@ const auxiliaryTopButton = {
 };
 
 const auxiliaryBottomButton = {
-  groupProps: { scale: [0.17, 0.17, 0.17], position: [-0.25, -0.31, -0.6] },
+  groupProps: { scale: [0.17, 0.17, 0.17], position: [-0.27, -0.38, -0.6] },
   frameProps: { format: 'portrait' },
-  canvasProps: { format: 'portrait' },
+  // canvasProps: { format: 'portrait' },
   textSlideProps: {
     groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
     textProps: { position: [0, 0, 0] },
-    fontSize: { fontSmall: 0.55, fontMiddle: 0.5, fontLarge: 0.55 },
+    fontSize: { fontSmall: 0.55, fontMedium: 0.5, fontLarge: 0.55 },
     font: 'garamont',
     textLinePl: '?',
     textLineEn: '?',

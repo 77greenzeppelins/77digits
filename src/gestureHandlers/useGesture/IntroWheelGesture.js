@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback } from 'react';
 // import { useThree } from '@react-three/fiber';
 import { useSpring, config } from '@react-spring/three';
 import { useGesture } from '@use-gesture/react';
@@ -10,7 +10,10 @@ import { canvasState } from '../../states/canvasState';
 /*
 Basic Data
 */
-const factorPositionY = 0.005;
+import {
+  onWheelData,
+  factorPositionY,
+} from '../../components3D/three/custome/containerIntro/containerIntroData';
 /*
 -------------------------------------------------------------------------------
 */
@@ -18,7 +21,8 @@ const IntroWheelGesture = () => {
   /*
   ...
   */
-  const gestureType = useRef();
+  // const positionZ = useRef();
+
   /*
   State
   */
@@ -35,20 +39,34 @@ const IntroWheelGesture = () => {
     someValue: 0,
     wheeledPositionZ: 0,
     config: config.molasses,
+    /*
+    Works...but there is still some "tick" in weeling
+    */
+    // onRest: () => {
+    //   if (positionZ.current === onWheelData.bottom) {
+    //     canvasState.endOfContainerIntro = true;
+    //     // console.log('onRest / positionZ.current:', positionZ.current);
+    //   }
+    // },
   }));
-  /*
-  Main Handler Section
-  */
-  const mainWheelHandler = useCallback(
-    ({ offset: [, offsetY], wheeling }) => {
+
+  const onWheelStartHandler = useCallback(
+    ({ wheeling }) => {
       /*
       this operation sets two global state properties that are crucial in <ContainerIntroContent> as they determines what was the very first users's gesture; the same operation is in <IntroDragGesture>
       I've been testing various "state" mechanism: <i> bare "let" before function; <2> useRef, <3> useState; only global state solve my problem...
        */
       if (wheeling && canvasGlobalState.introContainerEventType === 'none') {
         canvasState.introContainerEventType = 'wheeling';
-        gestureType.current = 'wheeling';
       }
+    },
+    [canvasGlobalState.introContainerEventType]
+  );
+  /*
+  Main Handler Section
+  */
+  const mainWheelHandler = useCallback(
+    ({ offset: [, offsetY], down }) => {
       /*
       Spring Section;
       */
@@ -57,24 +75,38 @@ const IntroWheelGesture = () => {
         wheeledPositionZ: offsetY * factorPositionY,
       });
     },
-    [api, canvasGlobalState.introContainerEventType]
+    [api]
   );
   /*
   Additional Handler for last wheel 
   */
-  const doThisAtTheEndHandler = useCallback(
-    ({ offset: [, y], down }) => {
+  const onWheelEndHandler = useCallback(
+    ({ offset: [, offsetY], down }) => {
       /*
       What should happen if user wheels to the end?
       */
-      if (
-        y === canvasGlobalState.introContainerWheelDragBounds.bottom &&
-        !down
-      ) {
+      if (offsetY === onWheelData.bottom && !down) {
         canvasState.endOfContainerIntro = true;
+        // positionZ.current = offsetY++;
+        // console.log('onWheelEndHandler / offsetY:', offsetY);
+        // console.log(
+        //   'onWheelEndHandler / positionZ.current:',
+        //   positionZ.current
+        // );
       }
+
+      // if (!down) {
+      //   positionZ.current = offsetY++;
+      //   console.log('onWheelEndHandler / offsetY:', offsetY);
+      //   console.log(
+      //     'onWheelEndHandler / positionZ.current:',
+      //     positionZ.current
+      //   );
+      // }
     },
-    [canvasGlobalState.introContainerWheelDragBounds.bottom]
+    [
+      // canvasGlobalState.introContainerWheelDragBounds.bottom
+    ]
   );
 
   /*
@@ -82,23 +114,24 @@ const IntroWheelGesture = () => {
   */
   const containerIntroWheel = useGesture(
     {
+      onWheelStart: onWheelStartHandler,
       onWheel: mainWheelHandler,
-      onWheelEnd: doThisAtTheEndHandler,
+      onWheelEnd: onWheelEndHandler,
     },
     {
       target: canvasGlobalState.currentContainer === 'introContainer' && window,
       enabled:
         /*
         why two conditions? 
-        (1) about ".currentContainer" - bacause we want to keep scrolling in "disable state" untill cookies are eatten i.e no scroll when user is in LInitialOverlay>;
-        (2) about ".endOfContainerIntro" - it is initially false and changes to true when user scrolls to the end
+        (1) about ".currentContainer" - bacause we want...
+        (2) about ".endOfContainerIntro" - it is initially false and changes to true when user scrolls to the end; without this condition user can scroll backward = scrolling doesn't stop
         */
         canvasGlobalState.currentContainer === 'introContainer' &&
         !canvasGlobalState.endOfContainerIntro,
       wheel: {
         axis: 'y',
-        bounds: { ...canvasGlobalState.introContainerWheelDragBounds },
-        threshold: 100,
+        bounds: { ...onWheelData },
+        threshold: 150,
       },
     }
   );

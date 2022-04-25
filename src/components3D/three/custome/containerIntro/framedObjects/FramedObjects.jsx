@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 /*
 Components
 */
 import VenusInFrame from './venus/VenusInFrame';
-import ScrollBanner from './scrollBanner/ScrollBanner';
+// import ScrollBanner from './scrollBanner/ScrollBanner';
 /*
 Global State Section
 */
@@ -21,13 +21,17 @@ import { a, useSpring } from '@react-spring/three';
 Basic Data
 "tillFactor" for sake of "BasicMove"
 */
-import { springConfig, BasicMoveConfig } from './framedObjectsData';
+import { springConfig, basicMoveConfig } from './framedObjectsData';
 /*
 
 /*
 ------------------------------------------------------------------------
 */
 const FramedObjects = ({ groupProps }) => {
+  /*
+  Component State
+  */
+  const [isDebiut, setIsDebiut] = useState(true);
   /*
   Global State Section
   canvasState = {endOfContainerIntro: false, startOfContainerIntroShow: false, ...}
@@ -38,8 +42,8 @@ const FramedObjects = ({ groupProps }) => {
   this animation response to mouse move and slightly rotates components
   */
   const [rotateWithMouseMove] = BasicMove({
-    target: BasicMoveConfig.target,
-    tileFactor: BasicMoveConfig.tillFactor,
+    target: basicMoveConfig.target,
+    tileFactor: basicMoveConfig.tillFactor,
   });
   /*
   Spring Animation Section
@@ -51,13 +55,22 @@ const FramedObjects = ({ groupProps }) => {
         : springConfig.positionStart,
     config: springConfig.configBasic,
     delay: springConfig.delay,
+    /*
+    What onRest() does?
+    Changing state we prevent a sort of odd behaviour; condition besed on ".currentCondition" triggered s-axis animation every time user changes continer; but we want only one such animation;
+    */
+    onRest: () => {
+      setIsDebiut(false);
+    },
   });
-
   /*
   JSX
   */
   return (
-    <a.group {...groupProps} position={springPositionZ}>
+    <a.group
+      {...groupProps}
+      position={isDebiut ? springPositionZ : springConfig.positionEnd}
+    >
       <a.group rotation={rotateWithMouseMove}>
         <VenusInFrame />
         {/* <ScrollBanner /> */}

@@ -15,7 +15,10 @@ import { canvasState } from '../../states/canvasState';
 /*
 Basic Data
 */
-const factorPositionY = 0.005;
+import {
+  onDragData,
+  factorPositionY,
+} from '../../components3D/three/custome/containerIntro/containerIntroData';
 /*
 -----------------------------------------------------------------------
 */
@@ -55,17 +58,14 @@ const IntroDragGesture = () => {
   /*
   Additional Handler Section for onDragEnd
   */
-  const doThisAtTheEndHandler = useCallback(
-    ({ offset: [, y] }) => {
-      /*
+  const doThisAtTheEndHandler = useCallback(({ offset: [, y] }) => {
+    /*
       What should happen if user wheels to the end?
       */
-      if (y === canvasGlobalState.introContainerWheelDragBounds.bottom) {
-        canvasState.endOfContainerIntro = true;
-      }
-    },
-    [canvasGlobalState.introContainerWheelDragBounds.bottom]
-  );
+    if (y === onDragData.bottom) {
+      canvasState.endOfContainerIntro = true;
+    }
+  }, []);
   /*
   Gesture Section
   */
@@ -79,14 +79,15 @@ const IntroDragGesture = () => {
       enabled:
         /*
         why two conditions? 
-        Bacause we want to keep scrolling in "disable state" untill cookies are eatten i.e no scroll befor decirion about cookies
+        (1) about ".currentContainer" - bacause we want...
+        (2) about ".endOfContainerIntro" - it is initially false and changes to true when user scrolls to the end; without this condition user can scroll backward = scrolling doesn't stop
         */
         canvasGlobalState.currentContainer === 'introContainer' &&
         !canvasGlobalState.endOfContainerIntro,
       drag: {
         axis: 'y',
-        bounds: { ...canvasGlobalState.introContainerWheelDragBounds },
-        threshold: -10,
+        bounds: { ...onDragData },
+        threshold: 50,
       },
     }
   );

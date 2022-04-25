@@ -8,6 +8,7 @@ Font
 import fontGaramont from '../../../../assets/fonts/sansSerif/EB Garamond Medium_Regular.json';
 /*
 The extend function increase three-fibers catalogue of JSX elements
+TextGeometry is a sort of extruded object
 */
 extend({ TextGeometry });
 
@@ -17,6 +18,7 @@ extend({ TextGeometry });
 const BasicTextGeometry = ({ textGeometryProps, text }) => {
   /*
   Font Loader
+  "parse()" is required as we use json file
   */
   const font = new FontLoader().parse(fontGaramont);
   /*

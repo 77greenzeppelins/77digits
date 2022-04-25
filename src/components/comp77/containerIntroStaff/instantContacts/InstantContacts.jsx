@@ -109,8 +109,8 @@ const InstantContacts = () => {
             <div
               className="container-intro__auxiliary-button-top"
               style={{
-                height: windowSize.height * 0.35 * 0.3,
-                width: windowSize.height * 0.27 * 0.3,
+                height: windowSize.height * 0.35 * 0.25,
+                width: windowSize.height * 0.27 * 0.21,
               }}
             >
               <AuxiliaryButton id="auxiliary-button-top" />
@@ -118,8 +118,8 @@ const InstantContacts = () => {
             <div
               className="container-intro__auxiliary-button-bottom"
               style={{
-                height: windowSize.height * 0.35 * 0.3,
-                width: windowSize.height * 0.27 * 0.3,
+                height: windowSize.height * 0.35 * 0.25,
+                width: windowSize.height * 0.27 * 0.21,
               }}
             >
               <AuxiliaryButton id="auxiliary-button-bottom" />

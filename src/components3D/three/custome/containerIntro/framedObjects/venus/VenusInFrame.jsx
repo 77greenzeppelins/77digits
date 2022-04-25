@@ -7,7 +7,6 @@ import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
 import TextSlide from '../../../textSlides/textSlide/TextSlide';
 import CustomMeshWithMatcap from '../../../_meshesWithMatcap/CustomMeshWithMatcap';
 import LogoGeometry from '../../../extrudedObjects/logo/LogoGeometry';
-
 /*
 Gesture Staff
 "DragRotateReturn" works as pseudoOrbitController; it just rotate obiect along with defined axis;

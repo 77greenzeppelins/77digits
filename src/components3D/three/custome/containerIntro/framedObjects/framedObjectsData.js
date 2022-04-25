@@ -4,7 +4,7 @@ import venus from '../../../../../assets/textures/venus_1.webp';
 /*
 ------------------------------------------------------------------------
 */
-const BasicMoveConfig = {
+const basicMoveConfig = {
   target: window,
   tillFactor: 0.03,
 };
@@ -142,7 +142,7 @@ const bannerRightText = {
 };
 
 export {
-  BasicMoveConfig,
+  basicMoveConfig,
   springConfig,
   venusGestureConfiguration,
   bannerGestureConfiguration,

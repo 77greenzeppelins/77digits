@@ -51,7 +51,7 @@ const EndButtons = () => {
   });
   const { springPositionY } = useSpring({
     /*
-    this animation happens when clicks any of auxiliary button: it's actually the very firs part of larger animation where the cesond part referce to "Platon&Aristotles";
+    this animation happens when clicks any of auxiliary button: it's actually the very first part of larger animation where the second part referce to "Platon&Aristotles";
     */
     springPositionY: canvasGlobalState.startOfContainerIntroShow
       ? springConfig.positionYEnd
@@ -75,6 +75,7 @@ const EndButtons = () => {
       <a.group position={springPositionZ}>
         {/*-----Instant Contact Buttons-------------------------------*/}
         <InstantContactsSection />
+
         {/*-----Reset Button------------------------------------------*/}
         <group {...resetButtonFrame.groupProps}>
           <UniversalFrame {...resetButtonFrame.frameProps} />
@@ -87,6 +88,7 @@ const EndButtons = () => {
             textLineEn={resetButtonTextSlide.textLineEn}
           />
         </group>
+
         {/*-----Auxiliary Buttons-----------------------------------*/}
         <AuxiliaryButtonSection />
       </a.group>

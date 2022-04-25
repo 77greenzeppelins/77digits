@@ -5,7 +5,6 @@ import music from '../../../../../../assets/textures/containerAbout_Slide0_music
 import medicine from '../../../../../../assets/textures/containerAbout_Slide0_medicine_2_445_800.webp';
 //___
 import family from '../../../../../../assets/textures/containerAbout_Slide1_family_3.webp';
-
 //
 import { springConfigs } from '../../../../../../data/reactSpring';
 /*

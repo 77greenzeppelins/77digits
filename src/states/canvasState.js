@@ -58,22 +58,18 @@ const canvasState = proxy({
 
   /*
   ----------------------------------------<IntroContainer> 3D Staff
-  */
   /*
-  constants for onGesture events; last 4530
-  */
-  introContainerWheelDragBounds: { top: 0, bottom: 3920 },
   /*
-  this value is required in <ContainerIntroContent>
+  this value is required in <ContainerIntr>
   it is set in <IntroWheelGesture> & <IntroDragGesture>
   it's used to asset "proper and unique" way of moving to user device / experience;
   it's actually "first part" of condition used in <IntroWheelGesture> & <IntroDragGesture>;
   */
   introContainerEventType: 'none',
   /*
-  idea: when user scrolls/drags to the end, it changer to "true" and:
+  idea: when user scrolls/drags to the end, it changes to "true" within <IntroWheelGesture> & <IntroDragGesture> and:
   (1) scrolls/drags gestures are disabled
-  (2) <InstantContact> comes into the scene. i.e. goes on z-axis from fog  
+  (2) <EndButtons> comes into the scene. i.e. goes on z-axis from fog  
   */
   endOfContainerIntro: false,
   /*
