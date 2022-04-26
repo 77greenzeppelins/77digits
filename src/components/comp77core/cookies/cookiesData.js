@@ -1,11 +1,45 @@
+/*
+Data for <CookiesBanner>
+*/
 const mainTextPl =
-  'Serwis używa plików cookies. Brak zmiany ustawień przeglądarki oznacza zgodę na ich użycie.';
-const buttonPl = 'Akceptuję';
-const linkPl = 'Polityka Prywatności';
+  'Używamy plików cookies, aby dostosować naszą stronę do Twoich preferencji. ';
+const linkTextPl = 'Dowiedz się więcej.';
+
+const buttonYesPl = 'Zgadzam się';
+const buttonNoPl = 'Nie, dziękuję';
 
 const mainTextEn =
-  'Service uses cookies. Brak zmiany ustawień przeglądarki oznacza zgodę na ich użycie.';
-const buttonEn = 'Akceptuję';
-const linkEn = 'Polityka Prywatności';
+  'We use cookies to optimize our service to your prefrerences. ';
+const linkTextEn = 'Find out more.';
+const buttonYesEn = 'I accept';
+const buttonNoEn = 'No, thanks';
 
-export { mainTextPl, buttonPl, linkPl, mainTextEn, buttonEn, linkEn };
+/*
+Data for <LanguageSelector>
+*/
+const languageSelectionTextEn = 'Do you prefere english version?';
+const languageSelectionButtonTextEn = 'EN';
+
+const languageSelectionTextPl = 'Wolisz polską wersję językową?';
+const languageSelectionButtonTextPl = 'PL';
+
+export {
+  /*
+  for <CookiesBanner>
+  */
+  mainTextPl,
+  buttonYesPl,
+  buttonNoPl,
+  linkTextPl,
+  mainTextEn,
+  buttonYesEn,
+  buttonNoEn,
+  linkTextEn,
+  /*
+  for <LanguageSelector>
+  */
+  languageSelectionTextPl,
+  languageSelectionButtonTextPl,
+  languageSelectionTextEn,
+  languageSelectionButtonTextEn,
+};

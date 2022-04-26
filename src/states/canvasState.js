@@ -16,8 +16,7 @@ const canvasState = proxy({
   /*
   ...
   */
-  languageVersion: 'pl',
-
+  languageVersion: 1,
   /*
   ------------------------------------Global Position Data
   */

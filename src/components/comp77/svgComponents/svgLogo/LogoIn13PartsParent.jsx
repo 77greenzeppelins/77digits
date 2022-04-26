@@ -36,7 +36,6 @@ const LogoIn13PartsParent = ({ fakeLoaderStateSetter }) => {
     <DiamondCenter key="diamondCenter" />,
     <Seven1Body3 key="seven1Body-3" />,
     <Seven1Triangle2 key="seven1Triangle-2" />,
-
     //
     <Seven2Triangle2 key="seven2Triangle-2" />,
     <Seven2Body3 key="seven2Body-3" />,
@@ -66,7 +65,7 @@ const LogoIn13PartsParent = ({ fakeLoaderStateSetter }) => {
           in case of last animation this staff should be evaluated
           */
           if (index === logoParts.length - 1) {
-            console.log('item index: ', index);
+            // console.log('item index: ', index);
             fakeLoaderStateSetter(false);
           }
         },

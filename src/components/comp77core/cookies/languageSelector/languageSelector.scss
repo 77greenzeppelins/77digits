@@ -1,6 +1,4 @@
-@import '../../../../sass/index.scss';
-
-.cookies-banner {
+.language-selector {
   &__container {
     display: flex;
     flex-direction: column;
@@ -21,7 +19,7 @@
     letter-spacing: 1.5px;
     text-align: justify;
   }
-  &__buttons {
+  &__button-container {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -32,25 +30,16 @@
     }
   }
   &__button {
-    width: 110px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: setColor(venusSky);
     border-radius: 5px;
     padding: 5px 7px;
     margin: 0 5px;
   }
-  &__link {
-    display: inline;
-    // white-space: pre;
-    background-color: setColor(venusSky);
-    border-radius: 5px;
-    padding: 5px 7px;
-  }
   &__button-text {
-    // color: setColor(light);
-    // font-size: $fontSmall;
-    // font-weight: 100;
-    // letter-spacing: 1.5px;
-    // line-height: 1;
     color: darken(setColor(light), 10%);
     font-size: $fontSmall;
     user-select: none;

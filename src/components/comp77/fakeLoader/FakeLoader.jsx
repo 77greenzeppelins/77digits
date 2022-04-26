@@ -33,15 +33,7 @@ const FakeLoader = () => {
   */
   const { springValue } = useSpring({
     springValue: val ? 1 : 0,
-    /*
-    Why "delay" ?
-    This spring wait until useSprings() ends; it's a sort of "primitive hardcoding" approach;
-    */
-    delay: 800,
-    /*
-    How onRest() work? 
-    My guess: after all animation this method is evaluated; 
-    */
+    delay: 400,
     onRest: () => {
       canvasState.isCookiesPopUpMounted = true;
       canvasState.currentContainer = 'introContainer';
@@ -53,7 +45,7 @@ const FakeLoader = () => {
     /*
     What this condition "canvasGlobalState.fakeLoaderCounter === 0" does??
     There was an issue: <Cookies> is mounted; user click "więcej informacji" and goes to <CookiesPage>; then click browser "backward arrow" or mouse "left side button" and went back to <MainPage>; what user can see are <FakeLoader> buring animation and <Cookies>; both components overlap...
-    Solution: restrict <FakeLoader> animation to only one "show" during initila page loading + value "fakeLoaderCounter === 1" is set in useSpring() above;
+    Solution: restrict <FakeLoader> animation to only one "show" during initil page loading + value "fakeLoaderCounter === 1" is set in useSpring() above;
     */
     canvasGlobalState.fakeLoaderCounter === 0 && (
       <animated.div

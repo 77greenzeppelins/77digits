@@ -2,10 +2,8 @@ import React from 'react';
 /*
 Components
 */
-import Cookies from '../cookies/Cookies';
-import FakeLoader from '../../comp77/loaders/FakeLoader';
-import Clock from '../../comp77/clock/Clock';
-import DateDisplayer from '../../comp77/date/DateDisplayer';
+import InitialOverlayTopSection from './InitialOverlayTopSection/InitialOverlayTopSection';
+import InitialOverlayBottomSection from './InitialOverlayBottomSection/InitialOverlayBottomSection';
 /*
 React-router-dom Staf
 */
@@ -13,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 /*
 Spring Staff
 */
-import { useTransition, useSpring, animated as a } from '@react-spring/web';
+import { useTransition, animated as a } from '@react-spring/web';
 /*
 Global State Staff
 */
@@ -59,13 +57,6 @@ const InitialOverlay = () => {
       delay: canvasGlobalState.isCookiesPopUpMounted ? 100 : 100,
     }
   );
-  const { springValue } = useSpring({
-    /*
-    when <FakeCounter>; onRest() changes isCookiesPopUpMounted to "true" 
-    */
-    springValue: canvasGlobalState.isCookiesPopUpMounted === true ? 0.5 : 1,
-    duration: 600,
-  });
   /*
   JSX
   */
@@ -78,47 +69,20 @@ const InitialOverlay = () => {
             opacity: opacity,
           }}
         >
+          <div
+            /* it's a simple overlay that initially covers "canvas staff", due to "position:absolute" it doesn't effect "initial-overlay__container"
+             */
+            className="initial-overlay__cover"
+          />
           {childTransition(
             (styles, item) =>
               item && (
                 <a.div className="initial-overlay__container" style={styles}>
-                  <a.div className="initial-overlay__top">
-                    <div className="initial-overlay__top-foreground">
-                      <FakeLoader />
-                      <Cookies />
-                    </div>
-                    <a.div
-                      className="initial-overlay__top-background"
-                      style={{ opacity: springValue }}
-                    />
+                  <a.div className="initial-overlay__top-section-container">
+                    <InitialOverlayTopSection />
                   </a.div>
-                  <div className="initial-overlay__bottom">
-                    <div className="initial-overlay__bottom-foreground">
-                      <div className="initial-overlay__bottom-part clocks">
-                        <Clock
-                          city={'Dzierżoniów'}
-                          timeZone={'Europe/Warsaw'}
-                          // style={{ paddingBottom: '20px' }}
-                        />
-                        <Clock
-                          city={'Washington DC'}
-                          timeZone={'America/New_York'}
-                          // style={{ paddingBottom: '20px' }}
-                        />
-                        <Clock
-                          city={'Beijing'}
-                          timeZone={'Asia/Shanghai'}
-                          // style={{ paddingBottom: '20px' }}
-                        />
-                      </div>
-                      <div className="initial-overlay__bottom-part date">
-                        <DateDisplayer />
-                      </div>
-                    </div>
-                    <a.div
-                      className="initial-overlay__bottom-background"
-                      style={{ opacity: springValue }}
-                    />
+                  <div className="initial-overlay__bottom-section-container">
+                    <InitialOverlayBottomSection />
                   </div>
                 </a.div>
               )

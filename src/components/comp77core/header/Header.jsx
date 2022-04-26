@@ -44,10 +44,12 @@ const Header = () => {
   return (
     /*
     Why conditional rendering?
-    It's a metter of navigation among containers;
+    First condition explanation: "canvasGlobalState.currentContainer !== 'none'"; It's a metter of navigation among containers;
     When user clicks on the following buttons: "77digits", "menu", "links in menu Container" camera goes to "noneContainer" so <header> is hidden;
+    Second condition explanation: "canvasGlobalState.isInitialOverlayMounted === false"; I just don't want <H> to be displayed when <InitialOverlay> is mounted;
     */
-    canvasGlobalState.currentContainer !== 'none' && (
+    canvasGlobalState.currentContainer !== 'none' &&
+    canvasGlobalState.isInitialOverlayMounted === false && (
       <header
         className="header"
         style={{

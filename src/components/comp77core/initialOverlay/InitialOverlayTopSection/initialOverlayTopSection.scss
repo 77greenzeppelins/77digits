@@ -1,0 +1,24 @@
+.initial-overlay-top-section {
+  &__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 950;
+  }
+  &__fake-loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /*
+    in JS is the following setting: "height: 100% or 0%"; it allowes to vertically center "svgLogo" without css-efforts
+    */
+  }
+  &__cookies-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+  }
+}
