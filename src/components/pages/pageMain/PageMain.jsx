@@ -21,7 +21,7 @@ import { canvasState } from '../../../states/canvasState';
 /*
 
 */
-import { backgroundColors } from '../../../data/colors';
+import { backgroundColors } from '../../../data/globalData';
 /*
 -------------------------------------------------------------------------
 */
@@ -38,7 +38,7 @@ const PageMain = () => {
       case 'introContainer':
         return backgroundColors.containerIntro;
       case 'menuContainer':
-        return backgroundColors.antiqueWhite;
+        return backgroundColors.linen;
 
       case 'aboutContainer':
         return backgroundColors.containerAbout;
@@ -79,7 +79,7 @@ const PageMain = () => {
             /*
             What "gl-shadowMaps-type" does???
             */
-            gl-shadowMaps-type={THREE.PCFSoftShadowMap}
+            // gl-shadowMaps-type={THREE.PCFSoftShadowMap}
             dpr={[1, 2]} // doubles canvas' width and size ???
             // pixelRatio={[1, 2]} //?? syntax
             // pixelRatio={window.devicePixelRatio} //?? syntax

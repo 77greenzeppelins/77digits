@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-
 /*
 Components
 */
@@ -52,15 +51,10 @@ const InstantContactsSection = () => {
   */
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
-    /*
-    Why two conditions in "if statement" ?
-    I don't want any animation/rotation when user is in any other container;
-    */
+
     if (canvasGlobalState.currentContainer === 'menuContainer') {
       phoneButton.current.rotation.y = Math.cos(time * 0.4) * 0.4;
       phoneButton.current.rotation.z = Math.sin(time * 0.4) * 0.1;
-    }
-    if (canvasGlobalState.currentContainer === 'menuContainer') {
       emailButton.current.rotation.y = -Math.cos(time * 0.4) * 0.4;
       emailButton.current.rotation.z = -Math.sin(time * 0.4) * 0.1;
     }
@@ -69,10 +63,7 @@ const InstantContactsSection = () => {
   JSX
   */
   return (
-    <a.group
-      position={spring.position}
-      // position={[0, -0.5, 0.03]}
-    >
+    <a.group position={spring.position}>
       {/*-----Phone Button------------------------------------------*/}
       <InstantContactButton
         ref={phoneButton}

@@ -1,11 +1,24 @@
 @import '../../../../sass/index.scss';
 
-.container-menu-top-content {
-  margin-inline: auto;
-  max-width: 500px;
-  padding: 7vh 20px 15px 20px;
-  height: 100%;
-  display: flex;
-  // justify-content: space-between; //??????????
-  align-items: center;
+.container-menu-body {
+  &__mobile {
+    margin-inline: auto;
+    max-width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    &-marquee-section {
+      width: 100%;
+    }
+    &-main-section {
+      width: 100%;
+    }
+  }
+  &__no-mobile {
+    // margin-inline: auto;
+    // max-width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }

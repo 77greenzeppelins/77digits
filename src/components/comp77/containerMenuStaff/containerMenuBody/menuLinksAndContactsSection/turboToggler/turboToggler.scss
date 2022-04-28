@@ -1,0 +1,25 @@
+@import '../../../../../../sass/index.scss';
+
+.turbo-toggler {
+  &__wrapper {
+    // position: rel;
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid setColor(dark);
+  }
+  &__label-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transform-origin: top center;
+  }
+  &__label {
+    font-size: 1rem;
+    transform: rotate(90deg);
+    color: setColor(dark);
+    font-family: $serif;
+  }
+}

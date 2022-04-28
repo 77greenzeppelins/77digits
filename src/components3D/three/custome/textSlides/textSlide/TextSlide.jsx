@@ -47,7 +47,7 @@ const TextSlide = ({
   /*
   JSX
   */
-  return canvasGlobalState.languageVersion === 'pl' ? (
+  return canvasGlobalState.languageVersion === 1 ? (
     <A11y role="content" description={textLinePl}>
       <group {...groupProps}>
         <TextVerse

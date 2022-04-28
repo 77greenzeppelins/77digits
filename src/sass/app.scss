@@ -59,7 +59,7 @@ body {
   /*
   end----------
   */
-  font-family: 'Jost', sans-serif;
+  font-family: $sanSerif, sans-serif;
   /*
   avoid text selection
   */
@@ -106,7 +106,7 @@ button {
   border: none;
   outline: transparent;
   cursor: pointer;
-  font-family: 'Jost', sans-serif;
+  font-family: $sanSerif, sans-serif;
   /*
   property below solve the problem of sparkling button 
   */

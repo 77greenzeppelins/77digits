@@ -17,7 +17,7 @@ Basic Data
 */
 const containersArray = [
   { id: 1, label: 'Start', destinationContainer: 'introContainer' },
-  { id: 2, label: 'Ty & Ja', destinationContainer: 'aboutContainer' },
+  { id: 2, label: 'Ty & 77digits', destinationContainer: 'aboutContainer' },
 ];
 
 // [

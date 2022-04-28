@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 /*
 Components
 */
-import LinksToContainers from './linksToContainers/LinksToContainers';
-import ContactButton from './contactButton/ContactButton';
-import ContactOverlay from './contactOverlay/ContactOverlay';
+import MenuLinksAndContacts from './menuLinksAndContactsSection/MenuLinksAndContacts';
 /*
 Global State Staff
 */
@@ -14,24 +12,26 @@ import { canvasState } from '../../../../states/canvasState';
 Spring Staff
 */
 import { animated, useTransition } from '@react-spring/web';
-/*
-react-device-detect Staff
-*/
-import { isMobileOnly } from 'react-device-detect';
-/*
-Basic Data
-*/
-import { colorsPalette } from '../../../../data/colors';
 
 /*
 ------------------------------------------------------------------------
 */
-const ContainerMenuBody = () => {
+const ContainerMenuBody = ({
+  bodyMainContentHeight,
+  bodyMarqueeHeight,
+  isMobileOnly,
+}) => {
   /*
   Global State Section
   canvasState = {canvasGlobalState.currentContainer: 'none', isContactOverlayOpened: 'false}
   */
   const canvasGlobalState = useSnapshot(canvasState);
+  /*
+  Local Sate Section
+  "1" means: "contact" + <LinkToContainers>;
+  "0" means: x / contact data / <Marquee>
+  */
+  const [buttonState, setButtonState] = useState(1);
   /*
   Spring Staff
   Remarks:
@@ -54,30 +54,49 @@ const ContainerMenuBody = () => {
     ({ animatedValue }, value) =>
       value && (
         <animated.div
-          className="container-menu-top-content"
+          className={
+            /*
+            shortly: if isMobileOnly width is limited to 500px
+            */
+            isMobileOnly
+              ? 'container-menu-body__mobile'
+              : 'container-menu-body__no-mobile'
+          }
           style={{
             opacity: animatedValue,
           }}
         >
-          {/*-----Contact Button-------------------*/}
-          <ContactOverlay
-            isMobileOnly={isMobileOnly}
-            specialColor={colorsPalette.p4royalBlue}
-            specialBgColor={colorsPalette.p4antiqueWhiteRGB}
-          />
-          <ContactButton
-            isMobileOnly={isMobileOnly}
-            specialColor={colorsPalette.p4royalBlue}
-          />
-          {/*-----Links to containers--------------------------------*/}
-          <LinksToContainers
-            isMobileOnly={isMobileOnly}
-            specialColor={colorsPalette.p4royalBlue}
-          />
-          {}
+          <div
+            className={
+              isMobileOnly
+                ? 'container-menu-body__mobile-marquee-section'
+                : 'container-menu-body__no-mobile-marquee-section'
+            }
+            style={{ height: isMobileOnly && bodyMarqueeHeight }}
+          >
+            {/*
+            marquee staff
+            */}
+          </div>
+
+          <div
+            className={
+              isMobileOnly
+                ? 'container-menu-body__mobile-main-section'
+                : 'container-menu-body__no-mobile-main-section'
+            }
+            style={{ height: isMobileOnly && bodyMainContentHeight }}
+          >
+            <MenuLinksAndContacts
+              /*
+              staff for button <TurboToggler> to switch between <1,0>
+              */
+              buttonState={buttonState}
+              setButtonState={setButtonState}
+            />
+          </div>
         </animated.div>
       )
   );
 };
-
 export default ContainerMenuBody;

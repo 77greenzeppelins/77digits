@@ -9,7 +9,7 @@ const canvasState = proxy({
   ------------------------------------------Universal Property
   ___currentContainer
   ...is changed within onClick events that allowe user to jump among containers;
-  ...options: introContainer, aboutContainer, menuContainer, answerYesContainer, answerNoContainer
+  ...options: introContainer, aboutContainer, menuContainer;
   */
   currentContainer: 'none',
   // currentContainer: 'introContainer', // to switch off <InitialContainer>

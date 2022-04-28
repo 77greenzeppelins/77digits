@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-import { useThree } from '@react-three/fiber';
 /*
 Global State Staff
 */
@@ -14,10 +13,6 @@ react-device-detect Staff
 */
 import { isMobileOnly } from 'react-device-detect';
 /*
-HOOK
-*/
-// import useWindowSize from '../../../../hooks/useWindowSize';
-/*
 Assets
 */
 
@@ -30,32 +25,23 @@ const ContainerMenu = () => {
   canvasState = {}
   */
   const canvasGlobalState = useSnapshot(canvasState);
-  /*
-  useThree Section
-  */
-  const { viewport } = useThree();
 
   /*
  JSX
  */
-  return isMobileOnly &&
-    canvasGlobalState.currentContainer === 'menuContainer' ? (
-    <group
-      name="BasicGroupOfMenuContainerMobile"
-      position={canvasGlobalState.menuContainerPosition}
-    >
-      <Suspense fallback={null}>
-        <InstantContactsSection />
-      </Suspense>
-
-      <mesh position={[0, 0, 0]}>
-        <planeGeometry
-          args={[viewport.width * 0.25, viewport.height * 0.25, 1, 1]}
-        />
-        <meshBasicMaterial color={0xffffff} />
-      </mesh>
-    </group>
-  ) : null;
+  return (
+    isMobileOnly &&
+    canvasGlobalState.currentContainer === 'menuContainer' && (
+      <group
+        name="BasicGroupOfMenuContainerMobile"
+        position={canvasGlobalState.menuContainerPosition}
+      >
+        <Suspense fallback={null}>
+          <InstantContactsSection />
+        </Suspense>
+      </group>
+    )
+  );
 };
 
 export default ContainerMenu;

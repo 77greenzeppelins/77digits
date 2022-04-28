@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useThree } from '@react-three/fiber';
 /*
 Components
@@ -76,7 +76,7 @@ const TextSlideFromArray = ({
   /*
   JSX
   */
-  return canvasGlobalState.languageVersion === 'pl' ? (
+  return canvasGlobalState.languageVersion === 1 ? (
     <A11y role="content" description={textLinesPl.join(' ')}>
       <group {...groupProps}>
         {textLinesPl.map((line, index) => (

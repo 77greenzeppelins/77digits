@@ -1,0 +1,33 @@
+.links-to-containers {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.link-to-container {
+  &__button-wrapper {
+    padding-top: 40px;
+  }
+  &__button {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    //_____?
+    width: fit-content;
+    /*
+    property below solve problem of sparkling / lighting button's background 
+    */
+    -webkit-tap-highlight-color: transparent;
+    &-label {
+      font-family: $serif;
+      color: setColor(dark);
+      font-size: 2.7rem;
+      text-align: left;
+      line-height: 1;
+      // white-space: nowrap;
+      @media (min-width: 370px) {
+        font-size: 3rem;
+      }
+    }
+  }
+}

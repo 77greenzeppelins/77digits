@@ -1,0 +1,14 @@
+.menu-links-and-contacts {
+  &__wrapper {
+    display: flex;
+    justify-content: flex-start;
+    height: 100%;
+  }
+  &__turbo-toggler-container {
+    width: 40px;
+    height: 100%;
+  }
+  &__links-and-contacts-container {
+    padding-left: 20px;
+  }
+}

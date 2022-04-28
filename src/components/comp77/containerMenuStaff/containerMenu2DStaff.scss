@@ -3,17 +3,21 @@
 .container-menu {
   // position: relative;
   position: fixed;
-  display: none;
+  // display: none;
   width: 100%;
   height: 100%;
   z-index: 400;
-  &__top {
+  &__mobile-top {
     position: relative;
   }
 
-  &__bottom {
+  &__mobile-bottom {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  &__no-mobile {
+    position: relative;
+    width: 100%;
   }
 }

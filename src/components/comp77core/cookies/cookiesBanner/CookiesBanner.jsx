@@ -61,7 +61,7 @@ const CookiesBanner = ({
         >
           {mainTextPl}
           <Link to="/cookies">
-            <animated.p
+            <animated.span
               className="cookies-banner__main-text"
               style={{
                 opacity: opacity,
@@ -70,7 +70,7 @@ const CookiesBanner = ({
               }}
             >
               {linkTextPl}
-            </animated.p>
+            </animated.span>
           </Link>
         </animated.p>
 
@@ -104,7 +104,7 @@ const CookiesBanner = ({
         >
           {mainTextEn}
           <Link to="/cookies">
-            <animated.p
+            <animated.span
               className="cookies-banner__main-text"
               style={{
                 opacity: opacity,
@@ -113,7 +113,7 @@ const CookiesBanner = ({
               }}
             >
               {linkTextEn}
-            </animated.p>
+            </animated.span>
           </Link>
         </animated.p>
 
