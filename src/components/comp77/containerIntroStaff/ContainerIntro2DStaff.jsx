@@ -2,6 +2,7 @@ import React from 'react';
 /*
 Components
 */
+import IntroGesturePrompt from './2DgesturesPrompts/GesturePrompt_1/IntroGesturePrompt';
 import InstantContacts from './instantContacts/InstantContacts';
 import ResetButton from './resetButton/ResetButton';
 /*
@@ -33,6 +34,14 @@ const ContainerIntro2DStaff = () => {
   */
   return (
     <>
+      {/*
+      thera are "gestures propmpts"
+      */}
+      <IntroGesturePrompt windowSize={windowSize} />
+
+      {/*
+      Components used bellow are used to map 3D pseudobuttons in <Containerintro>
+      */}
       <InstantContacts />
       {
         /*

@@ -1,29 +1,39 @@
 const TurboTogglerData = {
   averseLabelPl: ['K', 'O', 'N', 'T', 'A', 'K', 'T'],
+  reverseLabelPl: ['N', 'A', 'W', 'I', 'G', 'A', 'C', 'J', 'A'],
   averseLabelEn: ['C', 'O', 'N', 'T', 'A', 'C', 'T'],
-  reverseLabelPl: ['P', 'O', 'W', 'R', 'Ó', 'T'],
-  reverseLabelEn: ['C', 'L', 'O', 'S', 'E'],
+  reverseLabelEn: ['N', 'A', 'V', 'I', 'G', 'A', 'T', 'I', 'O', 'N'],
 };
 
 const LinksToContainersData = [
   {
     id: 'LinkToContainerIntro',
     destinationContainer: 'introContainer',
-    labelPl: 'Start',
+    labelPl: 'START',
     labelEn: 'START',
   },
   {
     id: 'LinkToContainerAbout',
     destinationContainer: 'aboutContainer',
-    labelPl: 'Ty & 77digits',
+    labelPl: 'TY & 77digits',
     labelEn: 'YOU & 77digits',
   },
 ];
 
 const ContactResourcesData = {
   mainLinks: [
-    { labelPL: 'telefon', labelEn: 'phone', number: '798905550' },
-    { labelPL: 'e-mail', labelEn: 'e-mail', number: '77@77digits.com' },
+    {
+      id: 'link1',
+      labelPL: 'TELEFON',
+      labelEn: 'PHONE',
+      resource: '798905550',
+    },
+    {
+      id: 'link2',
+      labelPL: 'EMAIL',
+      labelEn: 'EMAIL',
+      resource: '77@77digits.com',
+    },
   ],
   instagram: '',
 };

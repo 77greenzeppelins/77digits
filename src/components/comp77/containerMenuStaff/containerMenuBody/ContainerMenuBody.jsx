@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 /*
 Components
 */
+// import MarqueeSection from './marqueeSection/MarqueeSection';
 import MenuLinksAndContacts from './menuLinksAndContactsSection/MenuLinksAndContacts';
 /*
 Global State Staff
@@ -74,9 +75,7 @@ const ContainerMenuBody = ({
             }
             style={{ height: isMobileOnly && bodyMarqueeHeight }}
           >
-            {/*
-            marquee staff
-            */}
+            {/* <MarqueeSection /> */}
           </div>
 
           <div

@@ -1,7 +1,26 @@
+/*
+_____TurboParent
+*/
 @import './containerMenu2DStaff.scss';
+/*
+_____1_____Staff for <ContainerMenuBody>
+*/
 @import './containerMenuBody/containerMenuBody.scss';
+/*
+Staff for menuLinksAndContactsSection
+*/
 @import './containerMenuBody/menuLinksAndContactsSection/menuLinksAndContacts.scss';
 @import './containerMenuBody/menuLinksAndContactsSection/turboToggler/turboToggler.scss';
 @import './containerMenuBody/menuLinksAndContactsSection/LinksAndContacts/linksAndContacts.scss';
 @import './containerMenuBody/menuLinksAndContactsSection/LinksAndContacts/linksToContainers/linksToContainers.scss';
+@import './containerMenuBody/menuLinksAndContactsSection/LinksAndContacts/contactsResources/contactsResources.scss';
+/*
+Staff for marqueeSection
+*/
+@import './containerMenuBody/marqueeSection/marqueeSection.scss';
+@import './containerMenuBody/marqueeSection/marquee/marquee.scss';
+
+/*
+_____2_____Staff for <ContainerMenuInstantContacts>
+*/
 @import './containerMenuInstantContact/containerMenuInstantContact.scss';

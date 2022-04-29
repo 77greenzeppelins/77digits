@@ -5,12 +5,12 @@ Jost is main sanserif font; styles: extra-light 200, regular 400;
 
 @import './index.scss';
 //_____components77
-@import '../components/comp77/arrows/IndexArrows.scss';
+// @import '../components/comp77/arrows/IndexArrows.scss';
 @import '../components/comp77/clock/clock.scss';
+@import '../components/comp77/date/dateDisplayer.scss';
 @import '../components/comp77/containerAboutStaff/indexContainerAbout2DStaff.scss';
 @import '../components/comp77/containerMenuStaff/indexContainerMenu2DStaff.scss';
-@import '../components/comp77/containerIntroStaff/containerIntro2DStaff.scss';
-@import '../components/comp77/date/dateDisplayer.scss';
+@import '../components/comp77/containerIntroStaff/containerIntro2DStaffIndex.scss';
 @import '../components/comp77/links/linkToInstantContact/linkToInstantContact.scss';
 @import '../components/comp77/fakeLoader/fakeLoader.scss';
 @import '../components/comp77/progressIndicators/IndexProgressIndicator.scss';
@@ -63,7 +63,8 @@ body {
   /*
   avoid text selection
   */
-  user-select: none !important;
+  // user-select: none !important;
+  user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;

@@ -58,21 +58,21 @@ const InstantContacts = () => {
     (styles, transitionCondition) =>
       transitionCondition && (
         <animated.div
-          className="container-intro__wrapper"
+          className="instant-contacts__wrapper"
           style={{
             ...styles,
             width: windowSize.width,
           }}
         >
           <div
-            className="container-intro__buttons-container"
+            className="instant-contacts__buttons-container"
             style={{
               height: windowSize.height,
               width: windowSize.height * 0.27,
             }}
           >
             <button
-              className="container-intro__phone-button"
+              className="instant-contacts__phone-button"
               style={{
                 height: windowSize.height * 0.35,
                 width: windowSize.height * 0.27,
@@ -84,7 +84,7 @@ const InstantContacts = () => {
               />
             </button>
             <div
-              className="container-intro__reset-button"
+              className="instant-contacts__reset-button"
               style={{
                 height: windowSize.height * 0.1,
                 width: windowSize.height * 0.22,
@@ -93,7 +93,7 @@ const InstantContacts = () => {
               <ResetButton toDo="reset" />
             </div>
             <button
-              className="container-intro__email-button"
+              className="instant-contacts__email-button"
               style={{
                 height: windowSize.height * 0.35,
                 width: windowSize.height * 0.27,
@@ -107,7 +107,7 @@ const InstantContacts = () => {
 
             {/*-----auxiliart buttons--------------------------------*/}
             <div
-              className="container-intro__auxiliary-button-top"
+              className="instant-contacts__auxiliary-button-top"
               style={{
                 height: windowSize.height * 0.35 * 0.25,
                 width: windowSize.height * 0.27 * 0.21,
@@ -116,7 +116,7 @@ const InstantContacts = () => {
               <AuxiliaryButton id="auxiliary-button-top" />
             </div>
             <div
-              className="container-intro__auxiliary-button-bottom"
+              className="instant-contacts__auxiliary-button-bottom"
               style={{
                 height: windowSize.height * 0.35 * 0.25,
                 width: windowSize.height * 0.27 * 0.21,

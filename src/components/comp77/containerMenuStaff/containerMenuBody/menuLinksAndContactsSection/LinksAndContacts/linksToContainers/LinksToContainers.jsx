@@ -40,7 +40,7 @@ const LinksToContainers = () => {
   return (
     <div className="links-to-containers__wrapper">
       {LinksToContainersData.map(
-        ({ id, destinationContainer, labelPl, labelEn }, i) => (
+        ({ id, destinationContainer, labelPl, labelEn }) => (
           <div key={id} className="link-to-container__button-wrapper">
             <button
               className="link-to-container__button"

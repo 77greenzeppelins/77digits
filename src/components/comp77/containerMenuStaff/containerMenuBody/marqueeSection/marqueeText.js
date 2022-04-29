@@ -18,8 +18,10 @@ const marqueeHello = [
 //   ' ',
 //   " It's probably the greates day of this week!  ",
 // ];
+const marqueeHelloFake =
+  '   Pozdrowienia z Dzierżoniowa! Dziś jest piątek To prawdopodobnie najpiękniejszy dziań tego tygodnia!  ';
 
-export { marqueeHello };
+export { marqueeHello, marqueeHelloFake };
 
 /*
   Pozdrowienia z Dzierżoniowa!  Dziś jest poniedziałek.   To prawdopodobnie najpiękniejszy dziań tego tygodnia.

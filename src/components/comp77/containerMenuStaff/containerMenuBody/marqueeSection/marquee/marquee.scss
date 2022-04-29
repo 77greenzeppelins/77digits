@@ -1,0 +1,19 @@
+.marquee {
+  &__container {
+    width: 80%;
+    overflow: hidden;
+  }
+  &__main-text {
+    font-family: $serif;
+    color: setColor(dark);
+    font-size: 1.2rem;
+    text-align: left;
+    line-height: 1;
+    padding-top: 10px;
+    white-space: nowrap;
+    padding-left: 50%;
+    // @media (min-width: 370px) {
+    //   font-size: 1.5rem;
+    // }
+  }
+}

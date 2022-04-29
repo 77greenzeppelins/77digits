@@ -15,10 +15,23 @@
     }
   }
   &__no-mobile {
-    // margin-inline: auto;
-    // max-width: 500px;
     height: 100%;
     display: flex;
     flex-direction: column;
+    &-marquee-section {
+      width: 100%;
+      height: 40%;
+    }
+    &-main-section {
+      width: 100%;
+      height: 60%;
+      padding-bottom: 20vh;
+      /*
+      "padding-bottom: 10%" interesting... when changing width of "screen" links move down....
+      */
+      // padding-bottom: 10%;
+
+      padding-left: 20%;
+    }
   }
 }

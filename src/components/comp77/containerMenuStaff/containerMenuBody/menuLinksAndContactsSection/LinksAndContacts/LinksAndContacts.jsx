@@ -3,6 +3,7 @@ import React from 'react';
 Components
 */
 import LinksToContainers from './linksToContainers/LinksToContainers';
+import ContactsResources from './contactsResources/ContactsResources';
 /*
 Spring Staff
 */
@@ -42,7 +43,7 @@ const LinksAndContacts = ({ buttonState }) => {
             style={styles}
             className="links-and-contacts__contacts-container"
           >
-            Email and Telephon
+            <ContactsResources />
           </animated.div>
         )
       )}

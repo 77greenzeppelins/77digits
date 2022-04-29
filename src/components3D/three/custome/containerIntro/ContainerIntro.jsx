@@ -64,7 +64,7 @@ const ContainerIntro = () => {
         {/*-----77-------------------------------------------------*/}
         <BotticelliSection />
         {/*-----ScrollPromptSection--------------------------------*/}
-        <IntroScrollSection />
+        {/* <IntroScrollSection /> */}
         {/*-----WyrfinowanySection-----------------------------------*/}
         {/*-----EndButtons-----------------------------------------*/}
         {canvasGlobalState.currentContainer === 'introContainer' && (

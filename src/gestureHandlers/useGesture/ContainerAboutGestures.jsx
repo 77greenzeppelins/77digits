@@ -58,6 +58,7 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
     arrowPromptGroupRotation: [0, 0, 0],
     //
     config: config.molasses,
+    delay: 200,
     /*
     What "onRest()" does?
     It opens 2D navPanel;  
@@ -217,14 +218,6 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
           isClientSideVisible.current ? 0 : Math.PI,
           0,
         ],
-        // /*
-        // springValue: "positionNavPanel"
-        // */
-        // positionNavPanel: [
-        //   0,
-        //   -0.245,
-        //   canvasGlobalState.isNavPanelOpened === true ? 0.3 : -2.2,
-        // ],
       });
     },
     [

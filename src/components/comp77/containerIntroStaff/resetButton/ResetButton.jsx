@@ -6,8 +6,8 @@ import { canvasState } from '../../../../states/canvasState';
 
 /*
 ----------------------------------------------------------------------------
-Is used in: 
-(1) <ContainerIntro> at the end of scrolling
+Is used to map 3D pseudobuttons in: 
+(1) <ContainerIntro> <EndButtons> at the end of scrolling
 (2) <ContainerIntro> / <RaphaelSection> to close section;
 */
 const ResetButton = ({ toDo }) => {
