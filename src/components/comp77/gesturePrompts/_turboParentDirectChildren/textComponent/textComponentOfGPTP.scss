@@ -1,0 +1,20 @@
+.text-component-of-GPTP {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  &__word {
+    // width: fit-content;
+    color: setColor(light);
+    font-size: $fontSmall;
+    user-select: none;
+    font-weight: 400;
+    font-family: $sanSerif;
+    letter-spacing: 3px;
+    // @media (min-width: 370px) {
+    //   font-size: 1.3rem;
+    // }
+  }
+}

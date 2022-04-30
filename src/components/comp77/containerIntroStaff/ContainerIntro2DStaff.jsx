@@ -2,7 +2,9 @@ import React from 'react';
 /*
 Components
 */
-import IntroGesturePrompt from './2DgesturesPrompts/GesturePrompt_1/IntroGesturePrompt';
+import IntroGesturePrompt from '../gesturePrompts/1_contIntroPrompts/a_FirstGesturePrompt/IntroGesturePrompt';
+// import IntroGesturePrompt from '../GesturePrompts/GesturePrompt_1/IntroGesturePrompt';
+// import IntroGesturePrompt from './2DgesturesPrompts/GesturePrompt_1/IntroGesturePrompt';
 import InstantContacts from './instantContacts/InstantContacts';
 import ResetButton from './resetButton/ResetButton';
 /*
@@ -35,17 +37,16 @@ const ContainerIntro2DStaff = () => {
   return (
     <>
       {/*
-      thera are "gestures propmpts"
+      Gesture Prompts that suggest to scroll / drag "down" when <Containerintro> has been mounted
       */}
-      <IntroGesturePrompt windowSize={windowSize} />
-
+      <IntroGesturePrompt />
       {/*
-      Components used bellow are used to map 3D pseudobuttons in <Containerintro>
+      Components used bellow are used to map 3D "pseudo-buttons" in <Containerintro>
       */}
       <InstantContacts />
       {
         /*
-        this second piece of JS have a logic that specify when  html-map on 3D-closeButton of <RaphaelSection> should by rendered
+        this second piece of JS have a logic that specifies layout of mask for pseudo-button of <RaphaelSection>
         */
         canvasGlobalState.startOfContainerIntroShow && (
           <div
