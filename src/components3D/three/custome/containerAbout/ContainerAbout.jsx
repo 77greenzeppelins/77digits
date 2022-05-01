@@ -17,7 +17,7 @@ Spring Staff
 /*
 Gesture Staff
 */
-import ContainerAboutGestures from '../../../../gestureHandlers/useGesture/ContainerAboutGestures';
+import ContAboutGest from '../../../../gestureHandlers/useGesture/ContAboutGest';
 /*
 Basic Data
 */
@@ -40,9 +40,10 @@ const ContainerAbout = () => {
     sideLeftRotation,
     sideBackRotation,
     sideRightRotation,
+    positionNavPanel,
     arrowPromptGroupRotation,
     containerAboutGestures,
-  } = ContainerAboutGestures({
+  } = ContAboutGest({
     /*
     set axis that is active
     */
@@ -100,7 +101,7 @@ const ContainerAbout = () => {
           arrowPromptGroupRotation={arrowPromptGroupRotation}
         />
         {/*-----Navigation Panel Section------------------------*/}
-        <NavigationPanel />
+        <NavigationPanel positionNavPanel={positionNavPanel} />
       </Suspense>
     </group>
   );

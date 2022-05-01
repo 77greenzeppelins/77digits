@@ -53,49 +53,52 @@ const sliderEngineSpring = {
   configDown: springConfigs.molasses,
 };
 
-const arrowPromptData = {
-  /*
+// const arrowPromptData = {
+/*
   value for responsiveness; 
   */
-  responsivenessFactor: 490,
-  /*
+// responsivenessFactor: 490,
+/*
   general position of arrow's <group> 
   */
-  tabletGroupPosition: [0, 0, -1],
-  mobileGroupPosition: [0, -0.3, -0.15],
+// tabletGroupPosition: [0, 0, -1],
+// mobileGroupPosition: [0, -0.3, -0.15],
 
-  /*
+/*
   for <CustomeMeshWithMatcap>
   */
-  tabletMeshPropsLeftArrow: {
-    position: [-0.45, 0, 0],
-    scale: [0.06, 0.06, 0.06],
-    rotation: [0, 0, 0],
-  },
-  tabletMeshPropsRightArrow: {
-    position: [0.45, 0, 0],
-    scale: [0.06, 0.06, 0.06],
-    rotation: [0, 0, 0],
-  },
-  mobileMeshPropsLeftArrow: {
-    position: [-0.01, 0, 0],
-    scale: [0.02, 0.02, 0.02],
-    rotation: [0, 0, 0],
-  },
-  mobileMeshPropsRightArrow: {
-    position: [0.01, 0, 0],
-    scale: [0.02, 0.02, 0.02],
-    rotation: [0, 0, 0],
-  },
-};
+//   tabletMeshPropsLeftArrow: {
+//     position: [-0.45, 0, 0],
+//     scale: [0.06, 0.06, 0.06],
+//     rotation: [0, 0, 0],
+//   },
+//   tabletMeshPropsRightArrow: {
+//     position: [0.45, 0, 0],
+//     scale: [0.06, 0.06, 0.06],
+//     rotation: [0, 0, 0],
+//   },
+//   mobileMeshPropsLeftArrow: {
+//     position: [-0.01, 0, 0],
+//     scale: [0.02, 0.02, 0.02],
+//     rotation: [0, 0, 0],
+//   },
+//   mobileMeshPropsRightArrow: {
+//     position: [0.01, 0, 0],
+//     scale: [0.02, 0.02, 0.02],
+//     rotation: [0, 0, 0],
+//   },
+// };
 
 /*
 Slide1's Layout
 it actually define <SlideBox>'s scale & position depending on device size; i.e wher it stand on 
 */
 const slide0Box1Layout = {
-  mobile: { scale: [0.32, 0.32, 0.32], position: [0, 0.03, 0] },
-  desktop: { scale: [0.35, 0.35, 0.35], position: [0, 0.02, 0] },
+  mobile: { scale: [0.32, 0.32, 0.32], position: [0, 0.0, 0] },
+  desktop: { scale: [0.33, 0.33, 0.33], position: [0, 0.0, 0] },
+  //____before 01.05
+  // mobile: { scale: [0.32, 0.32, 0.32], position: [0, 0.03, 0] },
+  // desktop: { scale: [0.35, 0.35, 0.35], position: [0, 0.02, 0] },
 };
 
 /*
@@ -479,5 +482,5 @@ export {
   sliderEngineSpring,
   slide0Box1Layout,
   slide0Box1Data,
-  arrowPromptData,
+  // arrowPromptData,
 };

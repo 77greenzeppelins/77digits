@@ -7,7 +7,7 @@ Data for main containers of 2D / 3D  navPanels
 */
 const mainGroupSpringData = {
   //_____3D only
-  startingPosition: [0, -1, 1.3],
+  startingPosition: [0, -1, 0.3],
   endingPosition: [0, -0.245, 0.3],
   delay: 200,
   //_____2D only
@@ -18,23 +18,22 @@ const mainGroupSpringData = {
 
 const leftButton = {
   groupProps: {
-    scale: [0.08, 0.08, 0.08],
-    position: [-0.08, 0, 0],
-    rotation: [0, 0, Math.PI],
+    position: [-0.08, -0.015, 0],
   },
-  frameProps: { format: 'portrait' },
-  canvasProps: { format: 'portrait', image: godsFingerLeft },
+  customeMeshProps: {
+    scale: [0.04, 0.04, 0.04],
+    rotation: [0, 0, -0.5 * Math.PI],
+  },
 };
 
 const rightButton = {
   groupProps: {
-    scale: [0.08, 0.08, 0.08],
-    // position: [0.1, -0.245, 0.3],
-    position: [0.08, 0, 0],
-    rotation: [0, 0, 0],
+    position: [0.08, -0.015, 0],
   },
-  frameProps: { format: 'portrait' },
-  canvasProps: { format: 'portrait', image: godsFingerRight },
+  customeMeshProps: {
+    scale: [0.04, 0.04, 0.04],
+    rotation: [0, 0, 0.5 * Math.PI],
+  },
 };
 
 export { mainGroupSpringData, leftButton, rightButton };

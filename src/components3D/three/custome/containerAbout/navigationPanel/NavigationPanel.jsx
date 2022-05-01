@@ -1,104 +1,113 @@
-import React, { useRef, Suspense } from 'react';
+import React, { useRef, Suspense, useEffect } from 'react';
 /*
 Components
 */
 import UniversalFrame from '../../matcapFrames/UniversalFrame';
-import UniversalCanvas from '../../matcapFrames/UniversalCanvas';
+// import UniversalCanvas from '../../matcapFrames/UniversalCanvas';
+import CustomeMeshWithMatcap from '../../_meshesWithMatcap/CustomMeshWithMatcap';
+import ArrowSharpHorizontalGeometry from '../../extrudedObjects/arrows/arrowSharp/ArrowSharpHorizontalGeometry';
+
 /*
 Global State Staff
 */
-import { useSnapshot } from 'valtio';
-import { canvasState } from '../../../../../states/canvasState';
+// import { useSnapshot } from 'valtio';
+// import { canvasState } from '../../../../../states/canvasState';
 /*
 Spring Staff
 */
-import { a, useTransition } from '@react-spring/three';
+import { a } from '@react-spring/three';
 
 /*
 Basic Data
 */
 import {
-  mainGroupSpringData,
+  // mainGroupSpringData,
   leftButton,
   rightButton,
 } from './navigationPanelData';
 
-const NavigationPanel = () => {
+/*
+-----------------------------------------------------------------------
+*/
+const NavigationPanel = ({ positionNavPanel }) => {
   /*
   References
   */
   const leftButtonRef = useRef();
   const rightButtonRef = useRef();
+  const groupRef = useRef();
+
   /*
   Global State Section
   canvasState = {}
   */
-  const canvasGlobalState = useSnapshot(canvasState);
+  // const canvasGlobalState = useSnapshot(canvasState);
   /*
   Spring Section
   */
-  const transition = useTransition(
-    /*
-    condition
-    */
-    canvasGlobalState.currentContainer === 'aboutContainer' &&
-      canvasGlobalState.isNavPanelOpened === true,
-    /*
-    configObj  
-    */
-    {
-      from: { position: mainGroupSpringData.startingPosition },
-      enter: { position: mainGroupSpringData.endingPosition },
-      leave: { position: mainGroupSpringData.startingPosition },
-      // delay: 200,
-      config: mainGroupSpringData.config,
-    }
-  );
+  // const springValue = useSpring({
+  //   position:
+  //     canvasGlobalState.isNavPanelOpened === true
+  //       ? mainGroupSpringData.endingPosition
+  //       : mainGroupSpringData.startingPosition,
+  //   config: mainGroupSpringData.config,
+  // });
 
   /*
   Tests............
   */
   // useEffect(() => {
-  //   // if (
-  //   //   canvasGlobalState.currentContainer === 'aboutContainer' &&
-  //   //   canvasGlobalState.isNavPanelOpened === true
-  //   // ) {
-  //   //   console.log('NavigationPanel works........');
-  //   // } else {
-  //   //   console.log('NavigationPanel  fails........');
-  //   // }
-  //   //_________________
   //   console.log(
-  //     'canvasGlobalState.containerAboutSlideIndex',
-  //     canvasGlobalState.containerAboutSlideIndex
+  //     'canvasGlobalState.isNavPanelOpened',
+  //     canvasGlobalState.isNavPanelOpened
   //   );
-  // }, [
-  //   // canvasGlobalState.currentContainer, canvasGlobalState.isNavPanelOpened
-  //   canvasGlobalState.containerAboutSlideIndex,
-  // ]);
+  //   console.log('positionNavPanel', positionNavPanel);
+  //   console.log('groupRef.current', groupRef.current);
+  // }, [canvasGlobalState.isNavPanelOpened, positionNavPanel]);
 
   /*
   JSX
   */
-  return transition(
-    ({ position }, condition) =>
-      condition && (
-        <a.group position={position}>
-          <Suspense fallback={null}>
-            {/*-----Auxiliary Left Button---------------------------------*/}
-            <group ref={leftButtonRef} {...leftButton.groupProps}>
-              <UniversalFrame {...leftButton.frameProps} />
-              <UniversalCanvas {...leftButton.canvasProps} />
-            </group>
+  return (
+    <a.group ref={groupRef} position={positionNavPanel}>
+      <Suspense fallback={null}>
+        {/*----- Left Button---------------------------------*/}
+        <group ref={leftButtonRef} {...leftButton.groupProps}>
+          <CustomeMeshWithMatcap meshProps={leftButton.customeMeshProps}>
+            <ArrowSharpHorizontalGeometry />
+          </CustomeMeshWithMatcap>
+        </group>
 
-            {/*-----Auxiliary Right Button------------------------------*/}
-            <group ref={rightButtonRef} {...rightButton.groupProps}>
-              <UniversalFrame {...rightButton.frameProps} />
-              <UniversalCanvas {...rightButton.canvasProps} />
-            </group>
-          </Suspense>
-        </a.group>
-      )
+        {/*----- Right Button------------------------------*/}
+        <group ref={rightButtonRef} {...rightButton.groupProps}>
+          <CustomeMeshWithMatcap meshProps={rightButton.customeMeshProps}>
+            <ArrowSharpHorizontalGeometry />
+          </CustomeMeshWithMatcap>
+        </group>
+
+        {/* <group ref={rightButtonRef} {...rightButton.groupProps}>
+          <CustomeMeshWithMatcap
+            meshProps={{
+              scale: [0.04, 0.04, 0.04],
+              rotation: [0, 0, 0.5 * Math.PI],
+              position: [0, 0.045, 0],
+            }}
+          >
+            <ArrowSharpHorizontalGeometry />
+          </CustomeMeshWithMatcap>
+
+          <CustomeMeshWithMatcap
+            meshProps={{
+              scale: [0.04, 0.04, 0.04],
+              rotation: [0, 0, -0.5 * Math.PI],
+              position: [0, -0.023, 0],
+            }}
+          >
+            <ArrowSharpHorizontalGeometry />
+          </CustomeMeshWithMatcap>
+        </group> */}
+      </Suspense>
+    </a.group>
   );
 };
 

@@ -3,7 +3,7 @@ import { useCallback, useRef } from 'react';
 /*
 GlobalState
 */
-import { useSnapshot } from 'valtio';
+// import { useSnapshot } from 'valtio';
 import { canvasState } from '../../states/canvasState';
 /*
 Spring Staff
@@ -17,17 +17,18 @@ import { useGesture } from '@use-gesture/react';
 Basic Data
 */
 import { slide0Box1Data } from '../../components3D/three/custome/containerAbout/slider/slide0/slide0Data';
+import { mainGroupSpringData } from '../../components3D/three/custome/containerAbout/navigationPanel/navigationPanelData';
 
 /*
 -----------------------------------------------------------------------
 */
 
-const ContainerAboutGestures = ({ axisLimitation }) => {
+const ContAboutGest = ({ axisLimitation }) => {
   /*
   Global States for SpringValues;
   canvasState = {}
   */
-  const canvasGlobalState = useSnapshot(canvasState);
+  // const canvasGlobalState = useSnapshot(canvasState);
   /*
   References
   */
@@ -45,6 +46,7 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
       sideLeftRotation,
       sideBackRotation,
       sideRightRotation,
+      positionNavPanel,
       arrowPromptGroupRotation,
     },
     api,
@@ -57,28 +59,24 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
     //
     arrowPromptGroupRotation: [0, 0, 0],
     //
+    // positionNavPanel: mainGroupSpringData.startingPosition,
+    positionNavPanel: [0, -1, 1.3],
+
+    //
     config: config.molasses,
     delay: 200,
     /*
     What "onRest()" does?
-    It opens 2D navPanel;  
+    It changes global state & opens 2D navPanel;  
     */
+    onChange: () => {
+      if (isNavPanelOpened.current === true) {
+        canvasState.isNavPanelOpened = true;
+      }
+    },
     // onRest: () => {
-    //   if (
-    //     isClientSideVisible.current === false &&
-    //     refX.current === 0 &&
-    //     /*
-    //     this last condition guarantees "only one" eveluation of the callback; i.e. buttons appears only once and lasts for ever;
-    //     */
-    //     isNavPanelOpened.current === false
-    //   ) {
-    //     isNavPanelOpened.current = true;
+    //   if (isNavPanelOpened.current === true) {
     //     canvasState.isNavPanelOpened = true;
-    //     // console.log('.......fire buttons');
-    //     console.log('isClientSideVisible.current', isClientSideVisible.current);
-    //     console.log('refX.current', refX.current);
-    //     console.log('isNavPanelOpened.current', isNavPanelOpened.current);
-    //     // console.log('dirX', dirX);
     //   }
     // },
   }));
@@ -91,31 +89,52 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
     What "down" does ?
     documentation: "true when a mouse button or touch is down"
     */
-    ({ down, movement: [movementX, movementY], direction: [dirX, dirY] }) => {
+    ({ down, movement: [movementX, movementY] }) => {
       // console.log('dirX, dirY:', dirX, dirY);
       /*
       Why such "if statement condition" ?
      "down" is true when a mouse button or touch is down (documentation)
-      I'm looking for "unique set of properties" i.e the one that "happens once" within "current gesture"; bare "movementX" triggers multiply times within every drag; i.e within particular user's drags this value changes a number of time;
+      I'm looking for "unique set of gesture properties" i.e the one that "happens only once" within "current gesture"; bare "movementX" triggers / "is being changed" multiply times within every drag; i.e within particular user's drags this value changes a number of time;
       "refX.current" / "refY.current" works as counter;
-      ".facetOfSpinningBoxSide === 1" means we are on "Jesteś Ty" side
       */
       /*___________part for "Jesteś Ty" */
       if (movementX > 50 && !down && refX.current <= 3) {
         refX.current++;
-        // console.log('refX.current / client / left-to-right', refX.current);
-        // console.log(
-        //   'canvasGlobalState.facetOfSpinningBoxSide / left-to-right',
-        //   canvasGlobalState.facetOfSpinningBoxSide
-        // );
       }
 
       if (movementX < 50 && !down && refX.current > 0) {
         refX.current--;
-        // console.log('refX.current / client / right-to-left', refX.current);
+      }
+
+      /*
+      Spring API
+      */
+      api.start({
+        /*
+        springValue: "rotateStepByStep"
+        */
+        rotateStepByStep: [0, refX.current * Math.PI * 0.5, 0],
+      });
+    },
+    [api]
+  );
+
+  const endDragHandler = useCallback(
+    /*
+    this "logic" refers to situaction when user rotates "spinning box" and something happens when he gets to "the end" of "Client Section"; "the end" in this case means , that bilboard is about to rotate 360deg = back to initial position; but this "final gesture" actually triggers "77digits Section";
+    */
+    ({ down, direction: [dirX, dirY] }) => {
+      if (
+        !down &&
+        refX.current === 4 &&
+        // canvasGlobalState.isClientSideVisible === true
+        isClientSideVisible.current === true
+      ) {
+        isClientSideVisible.current = false;
         // console.log(
-        //   'canvasGlobalState.facetOfSpinningBoxSide / left-to-right',
-        //   canvasGlobalState.facetOfSpinningBoxSide
+        //   'endDragHandler / first logic / refX.current / isClientSideVisible.current',
+        //   refX.current,
+        //   isClientSideVisible.current
         // );
       }
 
@@ -133,57 +152,22 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
         isNavPanelOpened.current === false
       ) {
         isNavPanelOpened.current = true;
-        canvasState.isNavPanelOpened = true;
-        // console.log('.......fire buttons');
-        // console.log('isClientSideVisible.current', isClientSideVisible.current);
-        // console.log('refX.current', refX.current);
-        // console.log('dirX', dirX);
+        // canvasState.isNavPanelOpened = true;
       }
 
       /*
-      Spring API
+      This logic refers to moment when user returns from "77digits Section" to "Client Section" 
       */
-      api.start({
-        /*
-        springValue: "rotateStepByStep"
-        */
-        rotateStepByStep: [0, refX.current * Math.PI * 0.5, 0],
-
-        /*
-        springValue: "positionNavPanel"
-        */
-        positionNavPanel: [
-          0,
-          -0.245,
-          canvasGlobalState.isNavPanelOpened === true ? 0.3 : -2.2,
-        ],
-      });
-    },
-    [api, canvasGlobalState.isNavPanelOpened]
-  );
-
-  const endDragHandler = useCallback(
-    ({ down }) => {
-      if (
-        !down &&
-        refX.current === 4 &&
-        // canvasGlobalState.isClientSideVisible === true
-        isClientSideVisible.current === true
-      ) {
-        isClientSideVisible.current = false;
-      }
-
       if (
         !down &&
         refX.current === 0 &&
-        // canvasGlobalState.isClientSideVisible === false
         isClientSideVisible.current === false
       ) {
         isClientSideVisible.current = true;
       }
       /*
-    Spring API
-    */
+      Spring API
+      */
       api.start({
         sideFrontRotation: [
           0,
@@ -217,6 +201,22 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
           0,
           isClientSideVisible.current ? 0 : Math.PI,
           0,
+        ],
+        /*
+        springValue: "positionNavPanel" for <NavigationPanel>
+        Why "full logic" instead of just "mainGroupSpringData.endingPosition"?
+        Besause after the very first gesture "panel" flied to popsition [0,0,0]... 
+        */
+        positionNavPanel: [
+          isNavPanelOpened.current === true
+            ? mainGroupSpringData.endingPosition[0]
+            : mainGroupSpringData.startingPosition[0],
+          isNavPanelOpened.current === true
+            ? mainGroupSpringData.endingPosition[1]
+            : mainGroupSpringData.startingPosition[1],
+          isNavPanelOpened.current === true
+            ? mainGroupSpringData.endingPosition[2]
+            : mainGroupSpringData.startingPosition[2],
         ],
       });
     },
@@ -252,9 +252,10 @@ const ContainerAboutGestures = ({ axisLimitation }) => {
     sideLeftRotation,
     sideBackRotation,
     sideRightRotation,
+    positionNavPanel,
     arrowPromptGroupRotation,
     containerAboutGestures,
   };
 };
 
-export default ContainerAboutGestures;
+export default ContAboutGest;

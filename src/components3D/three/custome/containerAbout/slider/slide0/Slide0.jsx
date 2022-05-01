@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 Components
 */
 import SpinningBox from '../../../spinningBox/SpinningBox';
-import ArrowPrompt from './arrowPrompt/ArrowPrompt';
+// import ArrowPrompt from './arrowPrompt/ArrowPrompt';
 /*
 Global State Staf
 */
@@ -25,7 +25,7 @@ import {
   sliderEngineSpring,
   slide0Box1Layout,
   slide0Box1Data,
-  arrowPromptData,
+  // arrowPromptData,
 } from './slide0Data';
 
 /*
@@ -110,12 +110,12 @@ const Slide0 = ({
           */
           spinningBoxConfig={slide0Box1Data}
         />
-        <ArrowPrompt
+        {/* <ArrowPrompt
           responsiveness={
             windowSize.width < arrowPromptData.responsivenessFactor ? 1 : 0
           }
           arrowPromptGroupRotation={arrowPromptGroupRotation}
-        />
+        /> */}
       </a.group>
     </group>
   );
