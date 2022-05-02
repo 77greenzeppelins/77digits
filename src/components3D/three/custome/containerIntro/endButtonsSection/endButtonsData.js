@@ -37,30 +37,46 @@ const resetButtonTextSlide = {
 
 const auxiliaryTopButton = {
   groupProps: { scale: [0.17, 0.17, 0.17], position: [0.22, 0.27, -0.6] },
-  frameProps: { format: 'portrait' },
-  // canvasProps: { format: 'portrait' },
-  textSlideProps: {
-    groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
-    textProps: { position: [0, 0, 0] },
-    fontSize: { fontSmall: 0.55, fontMedium: 0.5, fontLarge: 0.55 },
-    font: 'garamont',
-    textLinePl: '?',
-    textLineEn: '?',
+  fontExtrudeSettings: {
+    size: 0.7,
+    height: 0.03,
+    bevelEnabled: true,
+    curveSegments: 2,
+    bevelThickness: 0.01,
+    bevelSize: 0.005,
   },
+  // frameProps: { format: 'portrait' },
+  // canvasProps: { format: 'portrait' },
+  // textSlideProps: {
+  //   groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
+  //   textProps: { position: [0, 0, 0] },
+  //   fontSize: { fontSmall: 0.55, fontMedium: 0.5, fontLarge: 0.55 },
+  //   font: 'garamont',
+  //   textLinePl: '?',
+  //   textLineEn: '?',
+  // },
 };
 
 const auxiliaryBottomButton = {
   groupProps: { scale: [0.17, 0.17, 0.17], position: [-0.27, -0.38, -0.6] },
-  frameProps: { format: 'portrait' },
-  // canvasProps: { format: 'portrait' },
-  textSlideProps: {
-    groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
-    textProps: { position: [0, 0, 0] },
-    fontSize: { fontSmall: 0.55, fontMedium: 0.5, fontLarge: 0.55 },
-    font: 'garamont',
-    textLinePl: '?',
-    textLineEn: '?',
+  fontExtrudeSettings: {
+    size: 0.7,
+    height: 0.03,
+    bevelEnabled: true,
+    curveSegments: 2,
+    bevelThickness: 0.01,
+    bevelSize: 0.005,
   },
+  // frameProps: { format: 'portrait' },
+  // canvasProps: { format: 'portrait' },
+  // textSlideProps: {
+  //   groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
+  //   textProps: { position: [0, 0, 0] },
+  //   fontSize: { fontSmall: 0.55, fontMedium: 0.5, fontLarge: 0.55 },
+  //   font: 'garamont',
+  //   textLinePl: '?',
+  //   textLineEn: '?',
+  // },
 };
 
 export {

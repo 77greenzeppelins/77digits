@@ -11,7 +11,7 @@ import { canvasState } from '../../../../../states/canvasState';
 /*
 Basic Data
 */
-import { introGesturePromptData } from '../../gesturePromptData';
+import { spinningBoxGesturePromptData } from '../../gesturePromptData';
 
 /*
 ------------------------------------------------------------------------
@@ -32,19 +32,24 @@ const SpinningBoxGesturePrompt = () => {
         taken from globalState
         */
         useTransitionCondition={
-          canvasGlobalState.currentContainer === 'aboutContainer'
-          //   &&
-          //   canvasGlobalState.introContainerEventType === 'none'
+          canvasGlobalState.currentContainer === 'aboutContainer' &&
+          canvasGlobalState.isSpinningBoxGesturePromptMounted
         }
         textChildCondition={canvasGlobalState.languageVersion}
         /*
         taken from external file
         */
-        useTransitionConfig={introGesturePromptData.transitionConfig}
-        useSpringConfig={introGesturePromptData.springConfig}
-        highFactor={introGesturePromptData.highFactor}
-        widthFactor={introGesturePromptData.widthFactor}
-        promptWrapperStyle={introGesturePromptData.promptWrapperStyle}
+        useTransitionConfig={spinningBoxGesturePromptData.transitionConfig}
+        useSpringConfig={spinningBoxGesturePromptData.springConfig}
+        classPromptWrapperCSS={
+          spinningBoxGesturePromptData.classPromptWrapperCSS
+        }
+        classGraphicWrapperCSS={
+          spinningBoxGesturePromptData.classGraphicWrapperCSS
+        }
+        classTextWrapperCSS={spinningBoxGesturePromptData.classTextWrapperCSS}
+        textComponentData={spinningBoxGesturePromptData.textComponentData}
+        graphicComponentData={spinningBoxGesturePromptData.graphicComponentData}
       />
     </>
   );

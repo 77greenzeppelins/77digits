@@ -1,17 +1,13 @@
 .graphic-component-of-GPTP {
   &__holder {
-    //   display: block;
-    //   margin-left: auto;
-    //   margin-right: auto;
     margin-left: 20px; // why margin instead of padding-left: 20px ???
     height: 90%;
     width: 1px;
-    //   background-color: darken(setColor(light), 80%);
     overflow: hidden;
   }
   &__line {
     height: 100%;
-    width: 1px;
+    width: 100%;
     background-color: setColor(light);
   }
 }

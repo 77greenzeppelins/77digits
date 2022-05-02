@@ -18,6 +18,7 @@ Basic Data
 */
 import { slide0Box1Data } from '../../components3D/three/custome/containerAbout/slider/slide0/slide0Data';
 import { mainGroupSpringData } from '../../components3D/three/custome/containerAbout/navigationPanel/navigationPanelData';
+const scaleFactor = 1.6;
 
 /*
 -----------------------------------------------------------------------
@@ -35,6 +36,7 @@ const ContAboutGest = ({ axisLimitation }) => {
   let refX = useRef(0);
   let isClientSideVisible = useRef(true);
   let isNavPanelOpened = useRef(false);
+  let isSpinningBoxGesturePromptMounted = useRef(true);
   /*
   Spring Section
   "rotateStepByStep" refers to <SpinningBox> rotation;
@@ -48,6 +50,11 @@ const ContAboutGest = ({ axisLimitation }) => {
       sideRightRotation,
       positionNavPanel,
       arrowPromptGroupRotation,
+      number1,
+      number2,
+      number3,
+      number4,
+      number77,
     },
     api,
   ] = useSpring(() => ({
@@ -56,6 +63,11 @@ const ContAboutGest = ({ axisLimitation }) => {
     sideLeftRotation: [0, slide0Box1Data[1].sideProps.rotation[1], 0],
     sideBackRotation: [0, slide0Box1Data[2].sideProps.rotation[1], 0],
     sideRightRotation: [0, slide0Box1Data[3].sideProps.rotation[1], 0],
+    number1: 1,
+    number2: 1,
+    number3: 1,
+    number4: 1,
+    number77: 0,
     //
     arrowPromptGroupRotation: [0, 0, 0],
     //
@@ -73,7 +85,11 @@ const ContAboutGest = ({ axisLimitation }) => {
       if (isNavPanelOpened.current === true) {
         canvasState.isNavPanelOpened = true;
       }
+      if (isSpinningBoxGesturePromptMounted.current === false) {
+        canvasState.isSpinningBoxGesturePromptMounted = false;
+      }
     },
+    // },
     // onRest: () => {
     //   if (isNavPanelOpened.current === true) {
     //     canvasState.isNavPanelOpened = true;
@@ -90,7 +106,20 @@ const ContAboutGest = ({ axisLimitation }) => {
     documentation: "true when a mouse button or touch is down"
     */
     ({ down, movement: [movementX, movementY] }) => {
-      // console.log('dirX, dirY:', dirX, dirY);
+      /*
+      triggers once only; allowes to unmount <SpinningBoxGesturePrompt>
+      */
+      if (
+        !down &&
+        movementX !== 0 &&
+        isSpinningBoxGesturePromptMounted.current === true
+      ) {
+        isSpinningBoxGesturePromptMounted.current = false;
+        // console.log(
+        //   'isSpinningBoxGesturePromptMounted.current:',
+        //   isSpinningBoxGesturePromptMounted.current
+        // );
+      }
       /*
       Why such "if statement condition" ?
      "down" is true when a mouse button or touch is down (documentation)
@@ -100,10 +129,12 @@ const ContAboutGest = ({ axisLimitation }) => {
       /*___________part for "Jesteś Ty" */
       if (movementX > 50 && !down && refX.current <= 3) {
         refX.current++;
+        // console.log('refX.current', refX.current);
       }
 
       if (movementX < 50 && !down && refX.current > 0) {
         refX.current--;
+        // console.log('refX.current', refX.current);
       }
 
       /*
@@ -111,7 +142,7 @@ const ContAboutGest = ({ axisLimitation }) => {
       */
       api.start({
         /*
-        springValue: "rotateStepByStep"
+        "rotateStepByStep" animates <SpinningBox>'s rotation
         */
         rotateStepByStep: [0, refX.current * Math.PI * 0.5, 0],
       });
@@ -121,21 +152,11 @@ const ContAboutGest = ({ axisLimitation }) => {
 
   const endDragHandler = useCallback(
     /*
-    this "logic" refers to situaction when user rotates "spinning box" and something happens when he gets to "the end" of "Client Section"; "the end" in this case means , that bilboard is about to rotate 360deg = back to initial position; but this "final gesture" actually triggers "77digits Section";
+    this "logic" refers to situation when user rotates "spinning box" and something happens when he gets to "the end" of "Client Section"; "the end" in this case means , that bilboard is about to rotate 360deg = back to initial position; but this "final gesture" actually triggers "77digits Section";
     */
     ({ down, direction: [dirX, dirY] }) => {
-      if (
-        !down &&
-        refX.current === 4 &&
-        // canvasGlobalState.isClientSideVisible === true
-        isClientSideVisible.current === true
-      ) {
+      if (!down && refX.current === 4 && isClientSideVisible.current === true) {
         isClientSideVisible.current = false;
-        // console.log(
-        //   'endDragHandler / first logic / refX.current / isClientSideVisible.current',
-        //   refX.current,
-        //   isClientSideVisible.current
-        // );
       }
 
       if (
@@ -202,6 +223,36 @@ const ContAboutGest = ({ axisLimitation }) => {
           isClientSideVisible.current ? 0 : Math.PI,
           0,
         ],
+
+        /*
+        set of animations for <SpinningBoxIndicator>
+        */
+        number1:
+          (refX.current === 0 && isClientSideVisible.current) ||
+          (refX.current === 4 && !isClientSideVisible.current)
+            ? scaleFactor
+            : 1,
+
+        number2:
+          (refX.current === 1 && isClientSideVisible.current) ||
+          (refX.current === 3 && !isClientSideVisible.current)
+            ? scaleFactor
+            : 1,
+
+        number3:
+          (refX.current === 2 && isClientSideVisible.current) ||
+          (refX.current === 2 && !isClientSideVisible.current)
+            ? scaleFactor
+            : 1,
+
+        number4:
+          (refX.current === 3 && isClientSideVisible.current) ||
+          (refX.current === 1 && !isClientSideVisible.current)
+            ? scaleFactor
+            : 1,
+
+        number77: !isClientSideVisible.current ? Math.PI * 2 : 0,
+
         /*
         springValue: "positionNavPanel" for <NavigationPanel>
         Why "full logic" instead of just "mainGroupSpringData.endingPosition"?
@@ -254,6 +305,11 @@ const ContAboutGest = ({ axisLimitation }) => {
     sideRightRotation,
     positionNavPanel,
     arrowPromptGroupRotation,
+    number1,
+    number2,
+    number3,
+    number4,
+    number77,
     containerAboutGestures,
   };
 };

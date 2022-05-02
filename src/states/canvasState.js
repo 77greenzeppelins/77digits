@@ -136,7 +136,11 @@ const canvasState = proxy({
   props used in <Slide1>; all manipilations take place in "contAboutSlide1.js" gesture
   */
   slide1Part: 0,
-  //_____
+  /*
+  props that allows to unmount <SpinningBoxGesturePrompt>
+  is set to false in "ContAboutGest" / useSpring() / onChange()
+  */
+  isSpinningBoxGesturePromptMounted: true,
   /*
   --------------------------------------------<ContainerAbout2DStaff>
   */

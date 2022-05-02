@@ -50,7 +50,7 @@ const ContainerAbout2DStaff = () => {
   return (
     canvasGlobalState.currentContainer === 'aboutContainer' && (
       <>
-        {/* <SpinningBoxGesturePrompt /> */}
+        <SpinningBoxGesturePrompt />
 
         <div className="container-about__wrapper">
           <div

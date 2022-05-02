@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, Suspense } from 'react';
+import React, { useMemo, Suspense } from 'react';
 /*
 Components
 */
 import Slider from './slider/Slider';
 // import InteractivePanel from './interactivePanel/InteractivePanel';
 import NavigationPanel from './navigationPanel/NavigationPanel';
+
 /*
 Global State Staff
 */
@@ -18,10 +19,7 @@ Spring Staff
 Gesture Staff
 */
 import ContAboutGest from '../../../../gestureHandlers/useGesture/ContAboutGest';
-/*
-Basic Data
-*/
-// import { navPanelGroupData } from './containerAbout';
+
 /*
 ------------------------------------------------------------------------
  */
@@ -41,7 +39,11 @@ const ContainerAbout = () => {
     sideBackRotation,
     sideRightRotation,
     positionNavPanel,
-    arrowPromptGroupRotation,
+    number1,
+    number2,
+    number3,
+    number4,
+    number77,
     containerAboutGestures,
   } = ContAboutGest({
     /*
@@ -61,6 +63,9 @@ const ContainerAbout = () => {
   // }, [arrowPromptGroupRotation]);
   //_____
 
+  /*
+  array of animation for all <SpinningBoxSide>
+  */
   const gesturesForSidesRotations = useMemo(() => {
     return [
       sideFrontRotation,
@@ -76,9 +81,14 @@ const ContainerAbout = () => {
   ]);
 
   /*
-  JSX
-  Remarks:
-  (1) initial concpet ... 
+  array of animation for all <SpinningBoxSide>
+  */
+  const gesturesForSidesRotationsIndicator = useMemo(() => {
+    return [number1, number2, number3, number4, number77];
+  }, [number1, number2, number3, number4, number77]);
+
+  /*
+  JSX 
   */
   return (
     <group
@@ -95,10 +105,9 @@ const ContainerAbout = () => {
         <Slider
           rotateStepByStep={rotateStepByStep}
           gesturesForSidesRotations={gesturesForSidesRotations}
-          /*
-          for <Slider> / <Slide0> / <ArrowPrompt> 
-          */
-          arrowPromptGroupRotation={arrowPromptGroupRotation}
+          gesturesForSidesRotationsIndicator={
+            gesturesForSidesRotationsIndicator
+          }
         />
         {/*-----Navigation Panel Section------------------------*/}
         <NavigationPanel positionNavPanel={positionNavPanel} />

@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 Components
 */
 import SpinningBox from '../../../spinningBox/SpinningBox';
-// import ArrowPrompt from './arrowPrompt/ArrowPrompt';
+import SpinningBoxSideIndicator from '../../../spinningBox/SpinningBoxSideIndicator';
 /*
 Global State Staf
 */
@@ -25,7 +25,7 @@ import {
   sliderEngineSpring,
   slide0Box1Layout,
   slide0Box1Data,
-  // arrowPromptData,
+  indicatorData,
 } from './slide0Data';
 
 /*
@@ -35,7 +35,7 @@ const Slide0 = ({
   slideId,
   rotateStepByStep,
   gesturesForSidesRotations,
-  arrowPromptGroupRotation,
+  gesturesForSidesRotationsIndicator,
 }) => {
   /*
   References
@@ -85,8 +85,16 @@ const Slide0 = ({
   return (
     <group name="GroupForSlide_0">
       <a.group name="GroupForSlide_0" position={position}>
-        {/*-----Body Section------------------------------------------*/}
+        {/*-----SpinningBoxSideIndicator Section--------------------------*/}
+        <SpinningBoxSideIndicator
+          indicatorData={indicatorData}
+          /*
+          "scaleValue" is a shorten name then "gesturesForSidesRotationsIndicator" what matters within <SpinningBoxSideIndicator>
+          */
+          springValue={gesturesForSidesRotationsIndicator}
+        />
 
+        {/*-----SpinningBox Section---------------------------------------*/}
         <SpinningBox
           rotateStepByStep={rotateStepByStep}
           gesturesForSidesRotations={gesturesForSidesRotations}
@@ -94,8 +102,8 @@ const Slide0 = ({
           groupProps={{
             name: 'groupForSpinningBox_slide_0',
             /*
-              a bit of responsiveness; 
-              */
+            a bit of responsiveness; 
+            */
             scale:
               windowSize.width < minForTablet
                 ? slide0Box1Layout.mobile.scale
@@ -110,12 +118,6 @@ const Slide0 = ({
           */
           spinningBoxConfig={slide0Box1Data}
         />
-        {/* <ArrowPrompt
-          responsiveness={
-            windowSize.width < arrowPromptData.responsivenessFactor ? 1 : 0
-          }
-          arrowPromptGroupRotation={arrowPromptGroupRotation}
-        /> */}
       </a.group>
     </group>
   );

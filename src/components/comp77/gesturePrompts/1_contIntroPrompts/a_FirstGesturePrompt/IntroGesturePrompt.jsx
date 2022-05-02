@@ -42,9 +42,9 @@ const IntroGesturePrompt = () => {
         */
         useTransitionConfig={introGesturePromptData.transitionConfig}
         useSpringConfig={introGesturePromptData.springConfig}
-        highFactor={introGesturePromptData.highFactor}
-        widthFactor={introGesturePromptData.widthFactor}
-        promptWrapperStyle={introGesturePromptData.promptWrapperStyle}
+        classPromptWrapperCSS={introGesturePromptData.classPromptWrapperCSS}
+        textComponentData={introGesturePromptData.textComponentData}
+        graphicComponentData={introGesturePromptData.graphicComponentData}
       />
     </>
   );

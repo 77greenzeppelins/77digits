@@ -41,6 +41,10 @@ const fontSizesVerySmall = {
 for <Slide0> some general responsiveness setings
 */
 const minForTablet = 850;
+/*
+for indicator
+*/
+const gapFactorX = 1.4;
 
 /*
 Settings used by <Slide0> & <Slide1> as data for "slider engine"; specifies position "in center" or "at top" depending on slide index
@@ -52,43 +56,6 @@ const sliderEngineSpring = {
   config: springConfigs.configBasic,
   configDown: springConfigs.molasses,
 };
-
-// const arrowPromptData = {
-/*
-  value for responsiveness; 
-  */
-// responsivenessFactor: 490,
-/*
-  general position of arrow's <group> 
-  */
-// tabletGroupPosition: [0, 0, -1],
-// mobileGroupPosition: [0, -0.3, -0.15],
-
-/*
-  for <CustomeMeshWithMatcap>
-  */
-//   tabletMeshPropsLeftArrow: {
-//     position: [-0.45, 0, 0],
-//     scale: [0.06, 0.06, 0.06],
-//     rotation: [0, 0, 0],
-//   },
-//   tabletMeshPropsRightArrow: {
-//     position: [0.45, 0, 0],
-//     scale: [0.06, 0.06, 0.06],
-//     rotation: [0, 0, 0],
-//   },
-//   mobileMeshPropsLeftArrow: {
-//     position: [-0.01, 0, 0],
-//     scale: [0.02, 0.02, 0.02],
-//     rotation: [0, 0, 0],
-//   },
-//   mobileMeshPropsRightArrow: {
-//     position: [0.01, 0, 0],
-//     scale: [0.02, 0.02, 0.02],
-//     rotation: [0, 0, 0],
-//   },
-// };
-
 /*
 Slide1's Layout
 it actually define <SlideBox>'s scale & position depending on device size; i.e wher it stand on 
@@ -99,6 +66,75 @@ const slide0Box1Layout = {
   //____before 01.05
   // mobile: { scale: [0.32, 0.32, 0.32], position: [0, 0.03, 0] },
   // desktop: { scale: [0.35, 0.35, 0.35], position: [0, 0.02, 0] },
+};
+
+/*
+props for <SpinningBoxIndicator>'s <CustomMeshWithMatcap> & <TextGeometryFromFont>
+*/
+const indicatorData = {
+  mainGroupProps: { position: [-0.14, 0.29, 0], scale: [0.02, 0.02, 0.02] },
+  glyphs: [
+    {
+      glyphGroupProps: { position: [0, 0, 0], scale: [1, 1, 1] },
+      fontExtrudeSettings: {
+        size: 0.7,
+        height: 0.03,
+        bevelEnabled: true,
+        curveSegments: 2,
+        bevelThickness: 0.01,
+        bevelSize: 0.005,
+      },
+      text: '1',
+    },
+    {
+      glyphGroupProps: { position: [1 * gapFactorX, 0, 0], scale: [1, 1, 1] },
+      fontExtrudeSettings: {
+        size: 0.7,
+        height: 0.03,
+        bevelEnabled: true,
+        curveSegments: 2,
+        bevelThickness: 0.01,
+        bevelSize: 0.005,
+      },
+      text: '2',
+    },
+    {
+      glyphGroupProps: { position: [2 * gapFactorX, 0, 0], scale: [1, 1, 1] },
+      fontExtrudeSettings: {
+        size: 0.7,
+        height: 0.03,
+        bevelEnabled: true,
+        curveSegments: 2,
+        bevelThickness: 0.01,
+        bevelSize: 0.005,
+      },
+      text: '3',
+    },
+    {
+      glyphGroupProps: { position: [3 * gapFactorX, 0, 0], scale: [1, 1, 1] },
+      fontExtrudeSettings: {
+        size: 0.7,
+        height: 0.03,
+        bevelEnabled: true,
+        curveSegments: 2,
+        bevelThickness: 0.01,
+        bevelSize: 0.005,
+      },
+      text: '4',
+    },
+    {
+      glyphGroupProps: { position: [4 * gapFactorX, 0, 0], scale: [1, 1, 1] },
+      fontExtrudeSettings: {
+        size: 0.7,
+        height: 0.03,
+        bevelEnabled: true,
+        curveSegments: 2,
+        bevelThickness: 0.01,
+        bevelSize: 0.005,
+      },
+      text: '77',
+    },
+  ],
 };
 
 /*
@@ -482,5 +518,5 @@ export {
   sliderEngineSpring,
   slide0Box1Layout,
   slide0Box1Data,
-  // arrowPromptData,
+  indicatorData,
 };

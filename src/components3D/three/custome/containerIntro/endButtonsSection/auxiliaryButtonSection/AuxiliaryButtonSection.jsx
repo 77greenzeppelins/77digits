@@ -1,13 +1,10 @@
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { BoxBufferGeometry } from 'three';
 /*
 Components
 */
-import UniversalFrame from '../../../matcapFrames/UniversalFrame';
-import TextSlide from '../../../textSlides/textSlide/TextSlide';
-import ExtrudedObject from '../../../extrudedObjects/ExtrudedObject';
-import BasicTextGeometry from '../../../text3D/BasicTextGeometry';
+import CustomMeshWithMatcap from '../../../_meshesWithMatcap/CustomMeshWithMatcap';
+import TextGeometryFromFont from '../../../extrudedObjects/text/TextGeometryFromFont';
 /*
 Global State Staff
 */
@@ -62,38 +59,23 @@ const AuxiliaryButtonSection = () => {
       <group ref={topButton} {...auxiliaryTopButton.groupProps}>
         {/* <UniversalFrame {...auxiliaryTopButton.frameProps} />
         <TextSlide {...auxiliaryTopButton.textSlideProps} /> */}
-        <ExtrudedObject>
-          <BasicTextGeometry
-            textGeometryProps={{
-              size: 0.7,
-              height: 0.03,
-              bevelEnabled: true,
-              curveSegments: 2,
-              bevelThickness: 0.01,
-              bevelSize: 0.005,
-            }}
+        <CustomMeshWithMatcap>
+          <TextGeometryFromFont
+            fontExtrudeSettings={auxiliaryTopButton.fontExtrudeSettings}
             text="?"
           />
           {/* <boxGeometry /> */}
-        </ExtrudedObject>
+        </CustomMeshWithMatcap>
       </group>
 
       {/*-----Auxiliary Bottom Button------------------------------*/}
       <group ref={bottomButton} {...auxiliaryBottomButton.groupProps}>
-        <ExtrudedObject>
-          <BasicTextGeometry
-            textGeometryProps={{
-              size: 0.7,
-              height: 0.03,
-              bevelEnabled: true,
-              curveSegments: 2,
-              bevelThickness: 0.01,
-              bevelSize: 0.005,
-            }}
+        <CustomMeshWithMatcap>
+          <TextGeometryFromFont
+            fontExtrudeSettings={auxiliaryTopButton.fontExtrudeSettings}
             text="?"
           />
-        </ExtrudedObject>
-        {/* <UniversalFrame {...auxiliaryBottomButton.frameProps} /> */}
+        </CustomMeshWithMatcap>
       </group>
     </>
   );

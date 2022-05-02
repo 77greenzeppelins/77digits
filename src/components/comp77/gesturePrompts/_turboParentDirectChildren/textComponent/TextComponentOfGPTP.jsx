@@ -1,27 +1,40 @@
 import React from 'react';
-
-/*
-Basic Data
-*/
-import { introGesturePromptData } from '../../gesturePromptData';
-
 /*
 -----------------------------------------------------------------------
 */
-const TextComponentOfGPTP = ({ textChildCondition }) => {
+const TextComponentOfGPTP = ({ textComponentData, textChildCondition }) => {
+  /*
+  Check props and return JSXStaff
+  */
+  const createText = () => {
+    if (
+      Object.entries(textComponentData).length === 0 &&
+      !Array.isArray(textComponentData.text)
+    ) {
+      return;
+    }
+    return textComponentData.text.map(({ wordPl, wordEn, id }) =>
+      textChildCondition ? (
+        <p className="text-component-of-GPTP__word" key={id}>
+          {wordPl}
+        </p>
+      ) : (
+        <p className="text-component-of-GPTP__word" key={id}>
+          {wordEn}
+        </p>
+      )
+    );
+  };
+
+  /*
+  JSX
+  */
   return (
-    <div className="text-component-of-GPTP__wrapper">
-      {introGesturePromptData.textComponentData.map(({ wordPl, wordEn, id }) =>
-        textChildCondition ? (
-          <p className="text-component-of-GPTP__word" key={id}>
-            {wordPl}
-          </p>
-        ) : (
-          <p className="text-component-of-GPTP__word" key={id}>
-            {wordEn}
-          </p>
-        )
-      )}
+    <div
+      className="text-component-of-GPTP__wrapper"
+      style={textComponentData && { ...textComponentData.classWrapperCSS }}
+    >
+      {createText()}
     </div>
   );
 };

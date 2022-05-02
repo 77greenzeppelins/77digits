@@ -23,13 +23,24 @@ import useWindowSize from '../../../hooks/useWindowSize';
 */
 const GesturePromptTurboParent = (
   {
+    /*
+    Spring staff
+    */
     useTransitionCondition,
     useTransitionConfig,
     useSpringConfig,
-    highFactor,
-    widthFactor,
-    promptWrapperStyle,
+    /*
+    staff for .gesture-prompt-turbo-parent__prompt-wrapper
+    */
+    classPromptWrapperCSS,
+    classTextWrapperCSS,
+    classGraphicWrapperCSS,
+    /*
+    condition based on canvasState.languageVersion
+    */
     textChildCondition,
+    graphicComponentData,
+    textComponentData,
   },
   props
 ) => {
@@ -65,6 +76,10 @@ const GesturePromptTurboParent = (
     ...useSpringConfig,
   });
 
+  // useEffect(() => {
+  //   console.log('classGraphicWrapperCSS', classGraphicWrapperCSS);
+  // }, []);
+
   /*
   JSX
   */
@@ -78,25 +93,37 @@ const GesturePromptTurboParent = (
           <div
             className="gesture-prompt-turbo-parent__prompt-wrapper"
             style={{
-              height: windowSize.height * highFactor,
-              width: windowSize.height * widthFactor,
-              top: -windowSize.height * highFactor,
-              ...promptWrapperStyle,
+              height: windowSize.height * classPromptWrapperCSS.highFactor,
+              width: windowSize.height * classPromptWrapperCSS.widthFactor,
+              top: -windowSize.height * classPromptWrapperCSS.highFactor,
+              ...classPromptWrapperCSS,
             }}
           >
             {/*
             Text component
             */}
 
-            <div className="gesture-prompt-turbo-parent__text-wrapper">
-              <TextComponentOfGPTP textChildCondition={textChildCondition} />
+            <div
+              className="gesture-prompt-turbo-parent__text-wrapper"
+              style={classTextWrapperCSS}
+            >
+              <TextComponentOfGPTP
+                textComponentData={textComponentData}
+                textChildCondition={textChildCondition}
+              />
             </div>
 
             {/*
             Graphic component
             */}
-            <div className="gesture-prompt-turbo-parent__graphic-wrapper">
-              <GraphicComponentOfGPTP spring={spring} />
+            <div
+              className="gesture-prompt-turbo-parent__graphic-wrapper"
+              style={classGraphicWrapperCSS}
+            >
+              <GraphicComponentOfGPTP
+                spring={spring}
+                graphicComponentData={graphicComponentData}
+              />
             </div>
           </div>
         </animated.div>
