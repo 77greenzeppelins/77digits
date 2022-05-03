@@ -1,8 +1,4 @@
-import React, { useEffect } from 'react';
-/*
-Components
-*/
-import InteractivePanel from '../../interactivePanel/InteractivePanel';
+import React from 'react';
 /*
 Global State Staf
 */
@@ -11,16 +7,11 @@ import { canvasState } from '../../../../../../states/canvasState';
 /*
 Gesture data
 */
-import ContAboutSlide1 from '../../../../../../gestureHandlers/useGesture/ContAboutSlide1';
-/*
-Spring data
-*/
-// import { a, useSpring } from '@react-spring/three';
+import ContAboutSlide1 from '../../../../../../gestureHandlers/useGesture/ContAboutSlide1Gest';
 /*
  Basic Data
  */
-import { globalPositionData } from '../../../../../../data/globalData';
-
+import { interactivePanelData } from './slide1Data';
 /*
 ----------------------------------------------------------------------
 */
@@ -40,7 +31,7 @@ const Slide1 = ({ slideId }) => {
   Gesture Section
   */
   const { contAboutSlide1 } = ContAboutSlide1({
-    numberOfSlides: 2,
+    numberOfSlides: interactivePanelData.numberOfSlides,
   });
 
   // useEffect(() => {
@@ -57,25 +48,17 @@ const Slide1 = ({ slideId }) => {
   return (
     canvasGlobalState.containerAboutVisibleSlideIndex === slideId && (
       /*
-     it actually plays role of <InteractivePanel>; it only receives "gestures inputs"; output from contAboutSlide1() manipulates global state "canvasState.slide1Part = refX.current"; then according to current value of "slide1Part" appropriate non-canvas staff is rendered...
+     it actually plays role of <InteractivePanel>; it only receives "gestures inputs"; output from "contAboutSlide1.js" manipulates global state "canvasState.slide1Part = refX.current"; then according to current value of "slide1Part" appropriate non-canvas staff is rendered...
      */
       <mesh
-        position={[
-          0,
-          0,
-          /*
-          to cover the whole sreen,  this plane should be positioned very close to camera; value 0.9 makes it "invisible"; for test purpose smaller values should be used;
-          */
-          globalPositionData.aboutContainerCameraPosition[2] * 0.9,
-        ]}
-        // {...pseudoScrollinGesture()}
+        position={interactivePanelData.position}
         {...contAboutSlide1()}
-        //   visible={false}
+        visible={false}
       >
-        <planeGeometry args={[0.3, 0.3]} />
+        <planeGeometry args={interactivePanelData.planeGeometryArgs} />
         <meshBasicMaterial
-          //  color={[0.015, 0.0001, 0.019]}
-          wireframe
+        //  color={[0.015, 0.0001, 0.019]}
+        // wireframe
         />
       </mesh>
     )

@@ -52,20 +52,17 @@ const Slide0 = ({
   const canvasGlobalState = useSnapshot(canvasState);
   /*
   "sliderEngine"
-  depending on the final valu of this statement: "slideId < canvasGlobalState.containerAboutVisibleSlideIndex" slide can be "in the center of a screen" or "just above the top frame of a screen" or "just below the bottom frame of a screen"
+  depending on the final valu of this statement: "slideId < canvasGlobalState.containerAboutVisibleSlideIndex" slide can be "in the center of a screen" or "just above the top frame of a screen" (or, in case of <Slide1> "just below the bottom frame of a screen")
   */
-  const { position } = useSpring({
-    from: { position: [sliderEngineSpring.centralPosition, 0, 0] },
+  const { positionY } = useSpring({
+    from: {
+      positionY: sliderEngineSpring.centralPosition,
+    },
     to: {
-      position: [
-        0,
-        canvasGlobalState.currentContainer === 'aboutContainer' &&
+      positionY:
         slideId < canvasGlobalState.containerAboutVisibleSlideIndex
           ? sliderEngineSpring.topPosition
           : sliderEngineSpring.centralPosition,
-
-        0,
-      ],
     },
     config:
       slideId < canvasGlobalState.containerAboutVisibleSlideIndex
@@ -84,7 +81,7 @@ const Slide0 = ({
   */
   return (
     <group name="GroupForSlide_0">
-      <a.group name="GroupForSlide_0" position={position}>
+      <a.group name="GroupForSlide_0" position-y={positionY}>
         {/*-----SpinningBoxSideIndicator Section--------------------------*/}
         <SpinningBoxSideIndicator
           indicatorData={indicatorData}
@@ -114,7 +111,7 @@ const Slide0 = ({
                 : slide0Box1Layout.desktop.position,
           }}
           /*
-          "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>
+          "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>s
           */
           spinningBoxConfig={slide0Box1Data}
         />

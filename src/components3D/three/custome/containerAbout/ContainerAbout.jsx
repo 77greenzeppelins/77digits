@@ -1,9 +1,9 @@
-import React, { useMemo, Suspense } from 'react';
+import React, { useMemo, Suspense, useRef, useEffect } from 'react';
 /*
 Components
 */
 import Slider from './slider/Slider';
-// import InteractivePanel from './interactivePanel/InteractivePanel';
+import InteractivePanel from './interactivePanel/InteractivePanel';
 import NavigationPanel from './navigationPanel/NavigationPanel';
 
 /*
@@ -24,6 +24,10 @@ import ContAboutGest from '../../../../gestureHandlers/useGesture/ContAboutGest'
 ------------------------------------------------------------------------
  */
 const ContainerAbout = () => {
+  /*
+  References
+  */
+  const group = useRef();
   /*
   Global State Section
   canvasState = {}
@@ -88,15 +92,27 @@ const ContainerAbout = () => {
   }, [number1, number2, number3, number4, number77]);
 
   /*
+  ...
+  */
+
+  useEffect(() => {
+    if (group) {
+      console.log('group.current:', group.current);
+    }
+  }, []);
+
+  /*
   JSX 
   */
   return (
     <group
+      ref={group}
       scale={[1, 1, 1]}
       name="GroupForContainerAbout"
       position={canvasGlobalState.aboutContainerPosition}
       {...containerAboutGestures()}
     >
+      <InteractivePanel meshProps={{ name: 'PanelForContainerAbout' }} />
       <Suspense fallback={null}>
         {/*-----Slider Section-----------------------------------
       "rotateStepByStep" gestures for <SpinningBox>

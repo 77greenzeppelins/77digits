@@ -2,38 +2,43 @@ import React from 'react';
 /*
 Basic Data
 */
-import { globalPositionData } from '../../../../../data/globalData';
+import { interactivePanelData } from './interactivePanelData';
 /*
 Gesture Staff
 */
-import LimitedPseudoScrolling from '../../../../../gestureHandlers/useGesture/LimitedPseudoScrolling';
+import ContAboutNavGest from '../../../../../gestureHandlers/useGesture/ContAboutNavGest';
+// import LimitedPseudoScrolling from '../../../../../gestureHandlers/useGesture/LimitedPseudoScrolling';
 
-const InteractivePanel = ({ gestureHandler, color }) => {
+const InteractivePanel = ({ meshProps }) => {
   /*
   Gesture Section
   */
   // const { pseudoScrollinGesture } = LimitedPseudoScrolling({
   //   numberOfSlides: 5,
   // });
+
+  /*
+  Gesture Section
+  */
+  const { contAboutNavGest } = ContAboutNavGest({
+    // numberOfSlides: interactivePanelData.numberOfSlides,
+    numberOfSlides: 5,
+  });
+
   /*
   JSX
   */
   return (
     <mesh
-      position={[
-        0,
-        0,
-        /*
-        to cover the whole sreen position this plane very close to camera; value 0.9 makes it invisible; test with smaller values
-        */
-        globalPositionData.aboutContainerCameraPosition[2] * 0.5,
-      ]}
+      {...meshProps}
+      position={interactivePanelData.position}
+      {...contAboutNavGest()}
       // {...pseudoScrollinGesture()}
-      {...gestureHandler()}
+      // {...gestureHandler()}
       //   visible={false}
     >
-      <planeGeometry args={[0.3, 0.3]} />
-      <meshBasicMaterial color={color || [0, 0, 0]} />
+      <planeGeometry args={interactivePanelData.planeGeometryArgs} />
+      <meshBasicMaterial color={[0, 0, 0]} />
     </mesh>
   );
 };

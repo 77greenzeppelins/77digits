@@ -1,14 +1,20 @@
-// import manOnTheMoon from '../../../../../../assets/textures/containerAbout_Slide0_the_dzow_times_445_800.webp';
+/*
+assets for "Client Section"
+*/
 import manOnTheMoon from '../../../../../../assets/textures/containerAbout_Slide0_moon_5_445_800.webp';
 import tech from '../../../../../../assets/textures/containerAbout_Slide0_tech_3_445_800.webp';
 import music from '../../../../../../assets/textures/containerAbout_Slide0_music_4_445_800.webp';
 import medicine from '../../../../../../assets/textures/containerAbout_Slide0_medicine_2_445_800.webp';
-//___
+/*
+assets for "77digits Section"
+*/
 import family from '../../../../../../assets/textures/containerAbout_Slide1_family_3.webp';
-//
+/*
+Basic Imported Data
+*/
 import { springConfigs } from '../../../../../../data/reactSpring';
 /*
-BasicData
+Basic Local Data - fonts sizes, minForTablet
 */
 // const fontSizesLarge = { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 };
 const fontSizesVeryLarge = {
@@ -27,25 +33,22 @@ const fontSizesVerySmall = {
   fontMedium: 0.05,
   fontLarge: 0.06,
 };
-// const fontSizesUltraSmall = {
-//   fontSmall: 0.03,
-//   fontMedium: 0.04,
-//   fontLarge: 0.032,
-// };
 
-/*
---------------------------------------------------------------------
-*/
-
-/*
-for <Slide0> some general responsiveness setings
-*/
 const minForTablet = 850;
 /*
-for indicator
+Basic Local Data - extrude configObj for <SpinningBoxIndicator>'s numbers
 */
-const gapFactorX = 1.4;
+const indicatorExtrudeSettings = {
+  size: 0.7,
+  height: 0.03,
+  bevelEnabled: true,
+  curveSegments: 2,
+  bevelThickness: 0.01,
+  bevelSize: 0.005,
+};
+const glyphsGapFactorX = 1.4;
 
+/*-------------------------------------------------------------------------*/
 /*
 Settings used by <Slide0> & <Slide1> as data for "slider engine"; specifies position "in center" or "at top" depending on slide index
 */
@@ -57,8 +60,8 @@ const sliderEngineSpring = {
   configDown: springConfigs.molasses,
 };
 /*
-Slide1's Layout
-it actually define <SlideBox>'s scale & position depending on device size; i.e wher it stand on 
+<Slide0> Layout
+it actually define <SpinningBox>'s scale & position depending on device size; i.e where it stand on "screen";
 */
 const slide0Box1Layout = {
   mobile: { scale: [0.32, 0.32, 0.32], position: [0, 0.0, 0] },
@@ -67,78 +70,60 @@ const slide0Box1Layout = {
   // mobile: { scale: [0.32, 0.32, 0.32], position: [0, 0.03, 0] },
   // desktop: { scale: [0.35, 0.35, 0.35], position: [0, 0.02, 0] },
 };
-
 /*
-props for <SpinningBoxIndicator>'s <CustomMeshWithMatcap> & <TextGeometryFromFont>
+props for <SpinningBoxIndicator>'s <CustomMeshWithMatcap> & <TextGeometryFromFont>; i.e. for "extruded numbers"
 */
 const indicatorData = {
+  /*
+  container for all numbers
+  */
   mainGroupProps: { position: [-0.14, 0.29, 0], scale: [0.02, 0.02, 0.02] },
+  /*
+  array of "configObj items"; prepered for .map();
+  */
   glyphs: [
     {
       glyphGroupProps: { position: [0, 0, 0], scale: [1, 1, 1] },
-      fontExtrudeSettings: {
-        size: 0.7,
-        height: 0.03,
-        bevelEnabled: true,
-        curveSegments: 2,
-        bevelThickness: 0.01,
-        bevelSize: 0.005,
-      },
+      fontExtrudeSettings: { ...indicatorExtrudeSettings },
       text: '1',
     },
     {
-      glyphGroupProps: { position: [1 * gapFactorX, 0, 0], scale: [1, 1, 1] },
-      fontExtrudeSettings: {
-        size: 0.7,
-        height: 0.03,
-        bevelEnabled: true,
-        curveSegments: 2,
-        bevelThickness: 0.01,
-        bevelSize: 0.005,
+      glyphGroupProps: {
+        position: [1 * glyphsGapFactorX, 0, 0],
+        scale: [1, 1, 1],
       },
+      fontExtrudeSettings: { ...indicatorExtrudeSettings },
       text: '2',
     },
     {
-      glyphGroupProps: { position: [2 * gapFactorX, 0, 0], scale: [1, 1, 1] },
-      fontExtrudeSettings: {
-        size: 0.7,
-        height: 0.03,
-        bevelEnabled: true,
-        curveSegments: 2,
-        bevelThickness: 0.01,
-        bevelSize: 0.005,
+      glyphGroupProps: {
+        position: [2 * glyphsGapFactorX, 0, 0],
+        scale: [1, 1, 1],
       },
+      fontExtrudeSettings: { ...indicatorExtrudeSettings },
       text: '3',
     },
     {
-      glyphGroupProps: { position: [3 * gapFactorX, 0, 0], scale: [1, 1, 1] },
-      fontExtrudeSettings: {
-        size: 0.7,
-        height: 0.03,
-        bevelEnabled: true,
-        curveSegments: 2,
-        bevelThickness: 0.01,
-        bevelSize: 0.005,
+      glyphGroupProps: {
+        position: [3 * glyphsGapFactorX, 0, 0],
+        scale: [1, 1, 1],
       },
+      fontExtrudeSettings: { ...indicatorExtrudeSettings },
       text: '4',
     },
     {
-      glyphGroupProps: { position: [4 * gapFactorX, 0, 0], scale: [1, 1, 1] },
-      fontExtrudeSettings: {
-        size: 0.7,
-        height: 0.03,
-        bevelEnabled: true,
-        curveSegments: 2,
-        bevelThickness: 0.01,
-        bevelSize: 0.005,
+      glyphGroupProps: {
+        position: [4 * glyphsGapFactorX, 0, 0],
+        scale: [1, 1, 1],
       },
+      fontExtrudeSettings: { ...indicatorExtrudeSettings },
       text: '77',
     },
   ],
 };
 
 /*
-Set of props for <UniversaleFrame> and two <SideLabel>s
+Set of props for <SpinningBoxSide>s and their childComponents: <UniversaleFrame> and two <SideLabel>s
 */
 const slide0Box1Data = [
   /* -----Panel Front ---------------------------------------------*/
@@ -149,15 +134,10 @@ const slide0Box1Data = [
       /*
       Pl for <TextSlideFromArray>
       */
-      // textLinesPl: ['Jesteś', 'Ty', 'v', 'v', 'v'],
       textLinesPl: ['Jesteś', 'Ty'],
-
       textPropsPl: [
         { position: [0, 0.4, 0.01] },
         { position: [0.15, 0.2, 0.01] },
-        // { position: [-0.05, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
-        // { position: [0.0, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
-        // { position: [0.05, -0.8, 0.01], rotation: [0, 0, Math.PI * 0.5] },
       ],
       fontPl: ['garamont', 'garamont'],
       fontSizePl: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
@@ -167,7 +147,7 @@ const slide0Box1Data = [
       */
       textLinesEn: ['I create web page for demanding Clients'],
       textPropsEn: [{ position: [0, 0, 0.01] }],
-      fontEn: ['jost'],
+      fontEn: ['garamont'],
       fontSizeEn: [{ ...fontSizesSmall }],
       textAlignEn: ['left'],
       whiteSpaceEn: ['normal'],
