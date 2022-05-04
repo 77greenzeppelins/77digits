@@ -79,8 +79,6 @@ const ContAboutNavGest = ({ numberOfSlides }) => {
         canvasState.containerAboutVisibleSlideIndex = navY.current;
         // console.log('from bottom-to-top / movementY:', movementY);
         // console.log('from bottom-to-top / directionY:', directionY);
-
-        // canvasState.containerAboutVisibleSlideIndex += 1;
       }
     },
     [numberOfSlides]
@@ -91,14 +89,13 @@ const ContAboutNavGest = ({ numberOfSlides }) => {
   */
   const contAboutNavGest = useGesture(
     {
-      //   onWheelStart: startWheelHandler,
-      onWheel: onWheelHandler,
-      // onWheelEnd: endDragHandler,
-      //   onDragStart: startDragHandler,
+      // onWheelStart: startWheelHandler,
+      // onWheel: onWheelHandler,
+      onWheelEnd: onWheelHandler,
+      // onDragStart: startDragHandler,
       onDragEnd: endDragHandler,
     },
     {
-      // target: window,
       /*
       Why "slideIsCompletted"?
       */

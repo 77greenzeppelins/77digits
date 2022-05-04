@@ -1,0 +1,51 @@
+.slider-2D {
+  &__container {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-color: darken(setColor(light), 90);
+    background-color: transparent;
+    /*
+    "pointer-events: none" => in this case it allowes to enter 3D component <Slide1> or rather its planeGeometry that register "gestures"
+    */
+    pointer-events: none;
+  }
+}
+
+.slide {
+  &__container {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 15vh;
+  }
+
+  &__header {
+    &-text {
+      font-family: $serif;
+      color: setColor(light);
+      font-size: 3rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      span:nth-of-type(2) {
+        font-family: $sanSerif;
+        font-weight: 200;
+        letter-spacing: 1.5px;
+      }
+    }
+  }
+  &__paragraph {
+    &-wrapper {
+      padding-top: 5vh;
+    }
+    &-text {
+      font-family: $serif;
+      font-size: $fontMobile;
+      color: setColor(light);
+      letter-spacing: 1.2px;
+    }
+  }
+}

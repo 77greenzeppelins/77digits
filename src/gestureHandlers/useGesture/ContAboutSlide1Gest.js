@@ -46,8 +46,7 @@ const ContAboutSlide1 = ({ numberOfSlides }) => {
         console.log('from up-to-down movementY:', movementY);
         refX.current++;
         canvasState.slide1Part = refX.current;
-        console.log('refX.current:', refX.current);
-
+        // console.log('refX.current:', refX.current);
         // canvasState.containerAboutVisibleSlideIndex += 1;
         // console.log(
         //   'canvasGlobalState.containerAboutVisibleSlideIndex',
@@ -60,7 +59,7 @@ const ContAboutSlide1 = ({ numberOfSlides }) => {
         console.log('from down-to-up movementY:', movementY);
         refX.current--;
         canvasState.slide1Part = refX.current;
-        console.log('refX.current:', refX.current);
+        // console.log('refX.current:', refX.current);
       }
     },
     [numberOfSlides]
@@ -100,9 +99,9 @@ const ContAboutSlide1 = ({ numberOfSlides }) => {
       ) {
         refX.current--;
         canvasState.slide1Part = refX.current;
-        console.log('from left-to-right / refX.current:', refX.current);
-        console.log('from left-to-right / movementX:', movementX);
-        console.log('from left-to-right / directionX:', directionX);
+        // console.log('from left-to-right / refX.current:', refX.current);
+        // console.log('from left-to-right / movementX:', movementX);
+        // console.log('from left-to-right / directionX:', directionX);
 
         // canvasState.containerAboutVisibleSlideIndex -= 1;
       }
@@ -118,9 +117,9 @@ const ContAboutSlide1 = ({ numberOfSlides }) => {
       ) {
         refX.current++;
         canvasState.slide1Part = refX.current;
-        console.log('from right-to-left / refX.current:', refX.current);
-        console.log('from right-to-left / movementX:', movementX);
-        console.log('from right-to-left / directionX:', directionX);
+        // console.log('from right-to-left / refX.current:', refX.current);
+        // console.log('from right-to-left / movementX:', movementX);
+        // console.log('from right-to-left / directionX:', directionX);
 
         // canvasState.containerAboutVisibleSlideIndex += 1;
       }
@@ -149,7 +148,7 @@ const ContAboutSlide1 = ({ numberOfSlides }) => {
         canvasGlobalState.slideIsCompletted,
       drag: { axis: 'x' },
       wheel: {
-        // axis: 'x',
+        axis: 'x',
         // threshold: 300,
       },
     }

@@ -4,8 +4,6 @@ Components
 */
 import Slider from './slider/Slider';
 import InteractivePanel from './interactivePanel/InteractivePanel';
-import NavigationPanel from './navigationPanel/NavigationPanel';
-
 /*
 Global State Staff
 */
@@ -42,7 +40,6 @@ const ContainerAbout = () => {
     sideLeftRotation,
     sideBackRotation,
     sideRightRotation,
-    positionNavPanel,
     number1,
     number2,
     number3,
@@ -126,7 +123,6 @@ const ContainerAbout = () => {
           }
         />
         {/*-----Navigation Panel Section------------------------*/}
-        <NavigationPanel positionNavPanel={positionNavPanel} />
       </Suspense>
     </group>
   );

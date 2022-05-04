@@ -49,39 +49,38 @@ const ContainerAbout2DStaff = () => {
   */
   return (
     canvasGlobalState.currentContainer === 'aboutContainer' && (
-      <>
+      /*
+      ".wrapper-empty-class" nas no CSS style; used only to oganize devTool;
+      */
+      <div className="container-about__wrapper-empty-class">
+        {/*
+        Gestiure prompt that inform what to do with <SpoinningBox>;
+        has internal "useTransition()"-based concept of mounting;
+        */}
         <SpinningBoxGesturePrompt />
+        {/*
+        <Slider2D > has internal ".containerAboutVisibleSlideIndex > 0 "-based concept of mounting;
+        */}
+        <Slader2D />
 
-        <div className="container-about__wrapper">
+        <div
+          className="container-about__bottom-wrapper"
+          style={{
+            width: windowSize.width,
+          }}
+        >
           <div
-            className="container-about__top-wrapper"
+            className="container-about__navigation-wrapper"
             style={{
-              height: windowSize.height * topSectionWrapper.height,
-              width: windowSize.width,
+              height: windowSize.height * navigationWrapper.height,
+              width: windowSize.height * navigationWrapper.width,
+              top: -windowSize.height * navigationWrapper.height,
             }}
           >
-            <Slader2D />
-          </div>
-
-          <div
-            className="container-about__bottom-wrapper"
-            style={{
-              width: windowSize.width,
-            }}
-          >
-            <div
-              className="container-about__navigation-wrapper"
-              style={{
-                height: windowSize.height * navigationWrapper.height,
-                width: windowSize.height * navigationWrapper.width,
-                top: -windowSize.height * navigationWrapper.height,
-              }}
-            >
-              <NavigationPanel />
-            </div>
+            <NavigationPanel />
           </div>
         </div>
-      </>
+      </div>
     )
   );
 };

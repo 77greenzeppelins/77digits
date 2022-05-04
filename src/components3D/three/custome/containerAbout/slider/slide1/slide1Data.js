@@ -11,7 +11,7 @@ const interactivePanelData = {
     0,
     0,
     /*
-    to cover the whole sreen,  this plane should be positioned very close to camera; value 0.9 makes it "invisible"; for test purpose smaller values should be used;
+    to cover the whole screen, this plane should be positioned very close to camera; value 0.9 makes it "invisible"; for test purpose smaller values should be used;
     */
     globalPositionData.aboutContainerCameraPosition[2] * 0.89,
   ],
@@ -19,4 +19,9 @@ const interactivePanelData = {
   numberOfSlides: 2,
 };
 
-export { interactivePanelData };
+const slide1Content = {
+  slidePart_1: { header: 'Kimkolwiek jesteś', mainText: '' },
+  slidePart_2: { header: '', mainText: '' },
+};
+
+export { interactivePanelData, slide1Content };

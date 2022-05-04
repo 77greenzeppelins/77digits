@@ -17,7 +17,6 @@ import { useGesture } from '@use-gesture/react';
 Basic Data
 */
 import { slide0Box1Data } from '../../components3D/three/custome/containerAbout/slider/slide0/slide0Data';
-import { mainGroupSpringData } from '../../components3D/three/custome/containerAbout/navigationPanel/navigationPanelData';
 const scaleFactor = 1.6;
 
 /*
@@ -48,7 +47,6 @@ const ContAboutGest = ({ axisLimitation }) => {
       sideLeftRotation,
       sideBackRotation,
       sideRightRotation,
-      positionNavPanel,
       arrowPromptGroupRotation,
       number1,
       number2,
@@ -69,17 +67,11 @@ const ContAboutGest = ({ axisLimitation }) => {
     number4: 1,
     number77: 0,
     //
-    arrowPromptGroupRotation: [0, 0, 0],
-    //
-    // positionNavPanel: mainGroupSpringData.startingPosition,
-    positionNavPanel: [0, -1, 1.3],
-
-    //
     config: config.molasses,
     delay: 200,
     /*
     What "onRest()" does?
-    It changes global state & opens 2D navPanel;  
+    Here two global state props are changed: (i) to close initial gesture prompt  (ii) to open 2D navPanel => or rather to open gesture prompt indicator for slide changes...;  
     */
     onChange: () => {
       if (isNavPanelOpened.current === true) {
@@ -218,12 +210,6 @@ const ContAboutGest = ({ axisLimitation }) => {
             : slide0Box1Data[3].sideProps.rotation[1] + Math.PI,
           0,
         ],
-        arrowPromptGroupRotation: [
-          0,
-          isClientSideVisible.current ? 0 : Math.PI,
-          0,
-        ],
-
         /*
         set of animations for <SpinningBoxIndicator>
         */
@@ -252,23 +238,6 @@ const ContAboutGest = ({ axisLimitation }) => {
             : 1,
 
         number77: !isClientSideVisible.current ? Math.PI * 2 : 0,
-
-        /*
-        springValue: "positionNavPanel" for <NavigationPanel>
-        Why "full logic" instead of just "mainGroupSpringData.endingPosition"?
-        Besause after the very first gesture "panel" flied to popsition [0,0,0]... 
-        */
-        positionNavPanel: [
-          isNavPanelOpened.current === true
-            ? mainGroupSpringData.endingPosition[0]
-            : mainGroupSpringData.startingPosition[0],
-          isNavPanelOpened.current === true
-            ? mainGroupSpringData.endingPosition[1]
-            : mainGroupSpringData.startingPosition[1],
-          isNavPanelOpened.current === true
-            ? mainGroupSpringData.endingPosition[2]
-            : mainGroupSpringData.startingPosition[2],
-        ],
       });
     },
     [
@@ -303,7 +272,6 @@ const ContAboutGest = ({ axisLimitation }) => {
     sideLeftRotation,
     sideBackRotation,
     sideRightRotation,
-    positionNavPanel,
     arrowPromptGroupRotation,
     number1,
     number2,

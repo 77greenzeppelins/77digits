@@ -11,7 +11,7 @@ import { canvasState } from '../../../../../states/canvasState';
 /*
 Basic Data
 */
-import { introGesturePromptData } from '../../gesturePromptData';
+import { introGesturePromptData } from '../../gesturesPromptData';
 
 /*
 ------------------------------------------------------------------------

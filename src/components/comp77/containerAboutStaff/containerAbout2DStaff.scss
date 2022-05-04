@@ -1,107 +1,27 @@
 @import '../../../sass/index.scss';
 
 .container-about {
-  position: fixed;
-  width: 100%;
-  /*
-  remember that <ContainerAbout2DStaff> covers <ContainerAbout> (3D)
-  */
-  &__body {
-    /*
-    Why "height: 1px" ?
-    */
-    position: relative;
-    height: 1px;
-    margin-inline: auto;
-    max-width: 1000px;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  &__sectionA-tablet {
-    position: relative;
-    height: 100vh;
-    width: 300px;
-    padding-top: 30vh;
-    padding-right: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-    @media (max-height: 850px) {
-      padding-top: 22vh;
-    }
-  }
-  &__sectionA-mobile {
-    position: relative;
-    width: 100%;
-    padding-top: 100px;
-    display: flex;
-    justify-content: center;
-  }
-
-  &__sectionB-container {
-    position: relative;
-    width: 100%;
-    //_____height in JS
-  }
-
-  &__navigation-mobile {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 250px;
-    //___height: JS;
-    /*
-    change layout if screen width is larger then 600px
-    */
-    @media (min-width: 600px) {
-      width: 500px;
-    }
-  }
-  &__navigation-tablet {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 0px;
-    max-width: 1000px;
-    padding: 0 20px 0 20px;
-    display: flex;
-    justify-content: flex-end;
-    overflow: visible;
-  }
-  /*
-  there is also a sort of fake-container
-  className="container-about__navigation-tablet-fake-wrapper"
-  style={{
-    position: 'absolute',
-    height: windowSize.height * 0.3,
-    width: '50px',
-    top: -windowSize.height * 0.3,
-  }}
-  important: "top: -windowSize.height * 0.3" it allowes to overflow "navigation-tablet" parent class that have "height: 0px"; 
-  */
-}
-
-.container-about {
-  &__top-wrapper {
-    position: fixed;
-    // position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // background-color: darken(setColor(light), 90);
-    background-color: transparent;
+  &__wrapper-empty-class {
     /*
     "pointer-events: none" => in this case it allowes to enter 3D component <Slide1> or rather its planeGeometry that register "gestures"
     */
     pointer-events: none;
-    // touch-action: none;
   }
+  // &__top-wrapper {
+  // position: fixed;
+  // // position: absolute;
+  // top: 0;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // // background-color: darken(setColor(light), 90);
+  // background-color: transparent;
+  // /*
+  // "pointer-events: none" => in this case it allowes to enter 3D component <Slide1> or rather its planeGeometry that register "gestures"
+  // */
+  // pointer-events: none;
+  // // touch-action: none;
+  // }
   &__bottom-wrapper {
     position: fixed;
     bottom: 0;

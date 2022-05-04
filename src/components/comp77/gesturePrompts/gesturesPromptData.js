@@ -1,3 +1,7 @@
+/*
+Data for all gestures used in App
+*/
+
 import { springConfigs } from '../../../data/reactSpring';
 
 //______________________________<ContainerIntro>_____________________
