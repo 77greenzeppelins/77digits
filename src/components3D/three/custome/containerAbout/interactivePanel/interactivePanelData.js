@@ -1,7 +1,10 @@
 /*
  Basic Data
  */
-import { globalPositionData } from '../../../../../data/globalData';
+import {
+  globalPositionData,
+  contAboutSlidesNumber,
+} from '../../../../../data/globalData';
 
 const interactivePanelData = {
   position: [
@@ -13,7 +16,7 @@ const interactivePanelData = {
     globalPositionData.aboutContainerCameraPosition[2] * 0.9,
   ],
   planeGeometryArgs: [0.3, 0.3],
-  numberOfSlides: 2,
+  numberOfSlides: contAboutSlidesNumber,
 };
 
 export { interactivePanelData };

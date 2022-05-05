@@ -25,8 +25,8 @@ const ContAboutNavGest = ({ numberOfSlides }) => {
       set gesture type; i.e wheeling or draging
       */
       if (!active && directionY === 1 && navY.current < numberOfSlides - 1) {
-        console.log('from up-to-down directionY:', directionY);
-        console.log('from up-to-down movementY:', movementY);
+        // console.log('from up-to-down directionY:', directionY);
+        // console.log('from up-to-down movementY:', movementY);
         navY.current++;
         canvasState.containerAboutVisibleSlideIndex = navY.current;
         // console.log('navY.current:', navY.current);
@@ -101,7 +101,7 @@ const ContAboutNavGest = ({ numberOfSlides }) => {
       */
       enabled:
         canvasGlobalState.currentContainer === 'aboutContainer' &&
-        canvasGlobalState.slideIsCompletted,
+        canvasGlobalState.sliderIsReady,
       drag: { axis: 'y' },
       wheel: {
         axis: 'y',

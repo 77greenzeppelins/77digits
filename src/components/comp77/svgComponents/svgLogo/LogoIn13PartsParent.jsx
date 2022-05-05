@@ -29,20 +29,39 @@ const LogoIn13PartsParent = ({ fakeLoaderStateSetter }) => {
   */
   const logoParts = [
     //___ver2
-    <Seven1Triangle1 key="seven1Triangle-1" />,
-    <Seven1Body1 key="seven1Body-1" />,
-    <DiamondSeven1 key="diamondSeven1" />,
+    // <Seven1Triangle1 key="seven1Triangle-1" />,
+    // <Seven1Body1 key="seven1Body-1" />,
+    // <DiamondSeven1 key="diamondSeven1" />,
+    // <Seven1Body2 key="seven1Body-2" />,
+    // <DiamondCenter key="diamondCenter" />, // d i a m o n d
+    // <Seven1Body3 key="seven1Body-3" />,
+    // <Seven1Triangle2 key="seven1Triangle-2" />,
+    // //
+    // <Seven2Triangle2 key="seven2Triangle-2" />,
+    // <Seven2Body3 key="seven2Body-3" />,
+    // <DiamondSeven2 key="diamondSeven2" />,
+    // <Seven2Body2 key="seven2Body-2" />,
+    // <Seven2Body1 key="seven2Body-1" />,
+    // <Seven2Triangle1 key="seven2Triangle-1" />,
+
+    <DiamondCenter key="diamondCenter" />, // d i a m o n d
+
     <Seven1Body2 key="seven1Body-2" />,
-    <DiamondCenter key="diamondCenter" />,
     <Seven1Body3 key="seven1Body-3" />,
-    <Seven1Triangle2 key="seven1Triangle-2" />,
-    //
-    <Seven2Triangle2 key="seven2Triangle-2" />,
-    <Seven2Body3 key="seven2Body-3" />,
-    <DiamondSeven2 key="diamondSeven2" />,
     <Seven2Body2 key="seven2Body-2" />,
     <Seven2Body1 key="seven2Body-1" />,
-    <Seven2Triangle1 key="seven2Triangle-1" />,
+
+    <Seven1Triangle2 key="seven1Triangle-2" />,
+    <Seven2Triangle1 key="seven2Triangle-2" />,
+
+    <DiamondSeven1 key="diamondSeven1" />,
+    <DiamondSeven2 key="diamondSeven2" />,
+
+    <Seven1Body1 key="seven1Body-1" />,
+    <Seven2Body3 key="seven2Body-3" />,
+
+    <Seven1Triangle1 key="seven1Triangle-1" />,
+    <Seven2Triangle2 key="seven2Triangle-1" />,
   ];
   /*
   Springs Section
@@ -59,7 +78,20 @@ const LogoIn13PartsParent = ({ fakeLoaderStateSetter }) => {
         "600" is an offset that "skips" initial-opacity-animation of <FakeLoader>; 
         "less then 7" are indices of "seven1"; i.e. "seven1" has a bit different delay then "seven2"
          */
-        delay: index < 7 ? 600 + index * 300 : 2400 + index * 200,
+        // delay: index < 7 ? 600 + index * 300 : 2400 + index * 200,
+        delay:
+          index === 0
+            ? 600
+            : index > 0 && index < 5
+            ? 1000 + 300
+            : index === 5 || index === 6
+            ? 1500 + 300
+            : index === 7 || index === 8
+            ? 2800 + 300
+            : index === 9 || index === 10
+            ? 3000 + 300
+            : 3300 + 300,
+
         onRest: () => {
           /*
           in case of last animation this staff should be evaluated
@@ -93,8 +125,10 @@ const LogoIn13PartsParent = ({ fakeLoaderStateSetter }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="265"
-      height="380"
+      // width="265"
+      // height="380"
+      width="132.5"
+      height="190"
       version="1.1"
       viewBox="0 0 70.115 100.542"
     >

@@ -86,7 +86,7 @@ const Slide0 = ({
         <SpinningBoxSideIndicator
           indicatorData={indicatorData}
           /*
-          "scaleValue" is a shorten name then "gesturesForSidesRotationsIndicator" what matters within <SpinningBoxSideIndicator>
+          "scaleValue" name is significantly shorten word then "gesturesForSidesRotationsIndicator"; it matters within <SpinningBoxSideIndicator>
           */
           springValue={gesturesForSidesRotationsIndicator}
         />

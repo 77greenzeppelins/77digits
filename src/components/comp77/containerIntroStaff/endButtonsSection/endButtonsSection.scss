@@ -1,7 +1,4 @@
-.instant-contacts {
-  /*
-  container-intro__wrapper appears in <InstantContacts>
-  */
+.end-buttons2D {
   &__wrapper {
     position: fixed;
     display: flex;
@@ -32,29 +29,20 @@
     // background-color: #fff;
     // opacity: 0.3;
   }
-  &__auxiliary-button-top {
-    position: absolute;
-    top: 21.5vh;
-    /*
-    why "transform: translateX(230%)" ?
-    it allowes position this button on x-axis regarding the center of x-axis
-    it allowes to keep this button in constant distance to "phone-instant-contact-button"; so despite resizing it keep that distance;
-    this "230%" refers to button size I guess...
-    */
-    transform: translateX(325%);
-    // background-color: #fff;
-    // opacity: 0.3;
-  }
   &__auxiliary-button-bottom {
     position: absolute;
-    bottom: 21.5vh;
+    // bottom: 21.5vh;
+    bottom: 3.5vh;
+
     /*
     why "transform: translateX(230%)" ?
     it allowes position this button on x-axis regarding the center of x-axis
     it allowes to keep this button in constant distance to "phone-instant-contact-button"; so despite resizing it keep that distance;
     this "230%" refers to button size I guess...
     */
-    transform: translateX(-325%);
+    // transform: translateX(325%);
+    transform: translateX(400%);
+
     // background-color: #fff;
     // opacity: 0.3;
   }

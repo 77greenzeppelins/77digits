@@ -3,10 +3,8 @@ import React from 'react';
 Components
 */
 import IntroGesturePrompt from '../gesturePrompts/1_contIntroPrompts/a_FirstGesturePrompt/IntroGesturePrompt';
-// import IntroGesturePrompt from '../GesturePrompts/GesturePrompt_1/IntroGesturePrompt';
-// import IntroGesturePrompt from './2DgesturesPrompts/GesturePrompt_1/IntroGesturePrompt';
-import InstantContacts from './instantContacts/InstantContacts';
 import ResetButton from './resetButton/ResetButton';
+import EndButtons2D from './endButtonsSection/EndButtons2D';
 /*
 Global State Staff
 */
@@ -43,7 +41,8 @@ const ContainerIntro2DStaff = () => {
       {/*
       Components used bellow are used to map 3D "pseudo-buttons" in <Containerintro>
       */}
-      <InstantContacts />
+      {/* <InstantContacts /> */}
+      <EndButtons2D />
       {
         /*
         this second piece of JS have a logic that specifies layout of mask for pseudo-button of <RaphaelSection>

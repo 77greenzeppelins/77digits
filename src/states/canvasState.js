@@ -2,10 +2,6 @@ import { proxy } from 'valtio';
 
 const canvasState = proxy({
   /*
-  Tests
-  */
-  // spinningBox1: false,
-  /*
   ------------------------------------------Universal Property
   ___currentContainer
   ...is changed within onClick events that allowe user to jump among containers;
@@ -28,12 +24,6 @@ const canvasState = proxy({
 
   aboutContainerPosition: [-5, 0, 0],
   aboutContainerCameraPosition: [-5, 0, 1],
-
-  // answerYesContainerPosition: [0, -6, 0],
-  // answerYesContainerCameraPosition: [0, -6, 2],
-
-  // answerNoContainerPosition: [0, -9, 0],
-  // answerNoContainerCameraPosition: [0, -9, 2],
 
   menuContainerPosition: [5, 0, 0],
   menuContainerCameraPosition: [5, 0, 2],
@@ -76,7 +66,6 @@ const canvasState = proxy({
   when is true <AuxiliaryButtons> come into the scene
   */
   startOfContainerIntroShow: false,
-
   /*
   -----------------------------------------------<Cookies 2D staff>
   */
@@ -86,9 +75,7 @@ const canvasState = proxy({
   */
   // isCookiesPopUpMounted: false,
   isCookiesPopUpMounted: false, // to switch off <InitialContainer>
-  /*
-  properties for onClick events that engage TurboOverlay
-  */
+
   /*
   -----------------------------------------------<Turbo Overlay 2D staff>
   */
@@ -107,31 +94,13 @@ const canvasState = proxy({
   */
   containerAboutGestureType: 'none',
   /*
-  this props is ment to freez "LimitedPseudoScrolling"
-  it enables / disables "LPS"
-  is change to "false" in "LPS" handlers
-  is changed to true in springs of every slide; i.e. onRest() should does it!
-  */
-  // slideIsCompletted: true,
-  /*
-  is used in "IncrementalSpinOnDrag" / mainHandler; 
-  "1" means "Jesteś Ty" is visible vs. "0" means "Jestem Ja" is visible
-  */
-  // facetOfSpinningBoxSide: 1,
-  /*
   is used in "IncrementalSpinOnDrag" / endDragHandler; as condition in logic and is also changed to true/false in toggler way
   */
   isClientSideVisible: true,
   /*
-  for 2D / 3D <NavigationPanel> in <ContainerAbout>
-  is changed to "true" in "ContainerAboutGesture.js" / "mainDragHandler"; from that moment, whenever user jumps to other container and return to <CA> navPanel is "repositioned" as it's based on useTransition 
+  "sliderIsReady" is "true" when user rotates <SpinningBox> 360deg; all happens in "ContAboutGest"; it triggers <SliderGesturePrompt> & <SlidesProgressIndicator> & is a value in "ContAboutNavGest" / enable
   */
-  isNavPanelOpened: false,
-  /*
-  props that are used to disable navButtons 2D; all logic takes place in <NavigationPanel2D> 
-  */
-  isSlide1Debutes: true,
-  isSlide2Debutes: true,
+  sliderIsReady: false,
   /*
   props used in <Slide1>; all manipilations take place in "contAboutSlide1.js" gesture
   */

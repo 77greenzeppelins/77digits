@@ -1,3 +1,5 @@
+const contAboutSlidesNumber = 5;
+
 const globalPositionData = {
   defaultContainerPosition: [0, -5, 0],
   defaultContainerCameraPosition: [0, -5, 2],
@@ -69,4 +71,9 @@ const colorsPalette = {
   someGray_2: '#2b2b2b',
 };
 
-export { globalPositionData, backgroundColors, colorsPalette };
+export {
+  contAboutSlidesNumber,
+  globalPositionData,
+  backgroundColors,
+  colorsPalette,
+};

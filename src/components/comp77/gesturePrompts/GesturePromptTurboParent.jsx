@@ -39,6 +39,9 @@ const GesturePromptTurboParent = (
     condition based on canvasState.languageVersion
     */
     textChildCondition,
+    /*
+    simple data from "gesturePromptsData.js"
+    */
     graphicComponentData,
     textComponentData,
   },
@@ -103,15 +106,17 @@ const GesturePromptTurboParent = (
             Text component
             */}
 
-            <div
-              className="gesture-prompt-turbo-parent__text-wrapper"
-              style={classTextWrapperCSS}
-            >
-              <TextComponentOfGPTP
-                textComponentData={textComponentData}
-                textChildCondition={textChildCondition}
-              />
-            </div>
+            {textComponentData && (
+              <div
+                className="gesture-prompt-turbo-parent__text-wrapper"
+                style={classTextWrapperCSS}
+              >
+                <TextComponentOfGPTP
+                  textComponentData={textComponentData}
+                  textChildCondition={textChildCondition}
+                />
+              </div>
+            )}
 
             {/*
             Graphic component

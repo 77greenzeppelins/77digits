@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 /*
 Components
 */
@@ -21,9 +21,15 @@ import useWindowSize from '../../../../hooks/useWindowSize';
 /*
 BasicData
 */
+import {
+  useTransitionConfig,
+  instContactButton,
+  resetButton,
+  auxiliaryButton,
+} from './EndButtons2DData';
 import { businessMail, businessPhone } from '../../../../data/instantContact';
 
-const InstantContacts = () => {
+const EndButtons2D = () => {
   /*
   Global State Section
   canvasState={endOfContainerIntro: false,...}
@@ -44,12 +50,44 @@ const InstantContacts = () => {
   Spring Section
   */
   const mainTransition = useTransition(transitionCondition, {
-    from: { opacity: 0, pointerEvents: 'none' },
-    enter: { opacity: 1, pointerEvents: 'auto' },
-    leave: { opacity: 0, pointerEvents: 'none' },
-    config: { duration: 100 },
+    ...useTransitionConfig,
+    /*
+    "2000" is a time button requires to move on z-axis
+    */
     delay: transitionCondition ? 2000 : 0,
   });
+
+  useEffect(() => {
+    // canvasGlobalState.currentContainer === 'introContainer'
+    //   ? (
+    //   canvasGlobalState.endOfContainerIntro &&
+    //   !canvasGlobalState.startOfContainerIntroShow
+    // )
+    //     ? console.log('first condition for ....')
+    //     : (
+    //   canvasGlobalState.endOfContainerIntro &&
+    //   canvasGlobalState.startOfContainerIntroShow
+    // ) ? console.log('second condition for ....') : null
+
+    if (canvasGlobalState.currentContainer === 'introContainer') {
+      if (
+        canvasGlobalState.endOfContainerIntro &&
+        !canvasGlobalState.startOfContainerIntroShow
+      ) {
+        console.log('first condition for .... ?');
+      }
+      if (
+        canvasGlobalState.endOfContainerIntro &&
+        canvasGlobalState.startOfContainerIntroShow
+      ) {
+        console.log('second condition for .... X');
+      }
+    }
+  }, [
+    canvasGlobalState.currentContainer,
+    canvasGlobalState.endOfContainerIntro,
+    canvasGlobalState.startOfContainerIntroShow,
+  ]);
 
   /*
   JSX
@@ -58,24 +96,24 @@ const InstantContacts = () => {
     (styles, transitionCondition) =>
       transitionCondition && (
         <animated.div
-          className="instant-contacts__wrapper"
+          className="end-buttons2D__wrapper"
           style={{
             ...styles,
             width: windowSize.width,
           }}
         >
           <div
-            className="instant-contacts__buttons-container"
+            className="end-buttons2D__buttons-container"
             style={{
               height: windowSize.height,
-              width: windowSize.height * 0.27,
+              width: windowSize.height * instContactButton.width,
             }}
           >
             <button
-              className="instant-contacts__phone-button"
+              className="end-buttons2D__phone-button"
               style={{
-                height: windowSize.height * 0.35,
-                width: windowSize.height * 0.27,
+                height: windowSize.height * instContactButton.height,
+                width: windowSize.height * instContactButton.width,
               }}
             >
               <LinkToInstantContact
@@ -84,19 +122,19 @@ const InstantContacts = () => {
               />
             </button>
             <div
-              className="instant-contacts__reset-button"
+              className="end-buttons2D__reset-button"
               style={{
-                height: windowSize.height * 0.1,
-                width: windowSize.height * 0.22,
+                width: windowSize.height * resetButton.width,
+                height: windowSize.height * resetButton.height,
               }}
             >
               <ResetButton toDo="reset" />
             </div>
             <button
-              className="instant-contacts__email-button"
+              className="end-buttons2D__email-button"
               style={{
-                height: windowSize.height * 0.35,
-                width: windowSize.height * 0.27,
+                width: windowSize.height * instContactButton.width,
+                height: windowSize.height * instContactButton.height,
               }}
             >
               <LinkToInstantContact
@@ -106,7 +144,7 @@ const InstantContacts = () => {
             </button>
 
             {/*-----auxiliart buttons--------------------------------*/}
-            <div
+            {/* <div
               className="instant-contacts__auxiliary-button-top"
               style={{
                 height: windowSize.height * 0.35 * 0.25,
@@ -114,15 +152,15 @@ const InstantContacts = () => {
               }}
             >
               <AuxiliaryButton id="auxiliary-button-top" />
-            </div>
+            </div> */}
             <div
-              className="instant-contacts__auxiliary-button-bottom"
+              className="end-buttons2D__auxiliary-button-bottom"
               style={{
-                height: windowSize.height * 0.35 * 0.25,
-                width: windowSize.height * 0.27 * 0.21,
+                width: windowSize.height * auxiliaryButton.width,
+                height: windowSize.height * auxiliaryButton.height,
               }}
             >
-              <AuxiliaryButton id="auxiliary-button-bottom" />
+              <AuxiliaryButton />
             </div>
           </div>
         </animated.div>
@@ -130,4 +168,4 @@ const InstantContacts = () => {
   );
 };
 
-export default InstantContacts;
+export default EndButtons2D;

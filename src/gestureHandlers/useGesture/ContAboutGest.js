@@ -34,7 +34,7 @@ const ContAboutGest = ({ axisLimitation }) => {
   */
   let refX = useRef(0);
   let isClientSideVisible = useRef(true);
-  let isNavPanelOpened = useRef(false);
+  let sliderIsReady = useRef(false);
   let isSpinningBoxGesturePromptMounted = useRef(true);
   /*
   Spring Section
@@ -74,8 +74,8 @@ const ContAboutGest = ({ axisLimitation }) => {
     Here two global state props are changed: (i) to close initial gesture prompt  (ii) to open 2D navPanel => or rather to open gesture prompt indicator for slide changes...;  
     */
     onChange: () => {
-      if (isNavPanelOpened.current === true) {
-        canvasState.isNavPanelOpened = true;
+      if (sliderIsReady.current === true) {
+        canvasState.sliderIsReady = true;
       }
       if (isSpinningBoxGesturePromptMounted.current === false) {
         canvasState.isSpinningBoxGesturePromptMounted = false;
@@ -83,8 +83,8 @@ const ContAboutGest = ({ axisLimitation }) => {
     },
     // },
     // onRest: () => {
-    //   if (isNavPanelOpened.current === true) {
-    //     canvasState.isNavPanelOpened = true;
+    //   if (sliderIsReady.current === true) {
+    //     canvasState.sliderIsReady = true;
     //   }
     // },
   }));
@@ -160,12 +160,12 @@ const ContAboutGest = ({ axisLimitation }) => {
         */
         dirX === -1 &&
         /*
-        "isNavPanelOpened.current" condition guarantees "only one" eveluation of the if statement; i.e. buttons appears only once and lasts for ever;
+        "sliderIsReady.current" condition guarantees "only one" eveluation of the if statement; i.e. buttons appears only once and lasts for ever;
         */
-        isNavPanelOpened.current === false
+        sliderIsReady.current === false
       ) {
-        isNavPanelOpened.current = true;
-        // canvasState.isNavPanelOpened = true;
+        sliderIsReady.current = true;
+        // canvasState.sliderIsReady = true;
       }
 
       /*
@@ -242,7 +242,7 @@ const ContAboutGest = ({ axisLimitation }) => {
     },
     [
       api,
-      // canvasGlobalState.isNavPanelOpened
+      // canvasGlobalState.sliderIsReady
     ]
   );
 

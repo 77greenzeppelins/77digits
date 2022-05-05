@@ -8,31 +8,13 @@ import { canvasState } from '../../../../states/canvasState';
 /*
 --------------------------------------------------------------------------
 */
-const AuxiliaryButton = ({ id }) => {
-  /*
-  Global State Section
-  canvasState = {startOfContainerIntroShow: false, ...}
-  */
-  // const canvasGlobalState = useSnapshot(canvasState);
-
-  /*
-  UserExperience Section
-  */
-  const onClickHandler = () => {
-    if (id === 'auxiliary-button-top') {
-      // console.log('auxiliary-button-top in acxtion....');
-      canvasState.startOfContainerIntroShow = true;
-    }
-    if (id === 'auxiliary-button-bottom') {
-      // console.log('auxiliary-button-bottom in acxtion....');
-      canvasState.startOfContainerIntroShow = true;
-    }
-  };
-
+const AuxiliaryButton = () => {
   return (
     <div style={{ width: '100%', height: '100%' }}>
       <button
-        onClick={onClickHandler}
+        onClick={() => {
+          canvasState.startOfContainerIntroShow = true;
+        }}
         style={{ width: '100%', height: '100%' }}
       />
     </div>

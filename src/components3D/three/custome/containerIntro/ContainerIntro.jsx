@@ -11,7 +11,6 @@ import BotticelliSection from './botticelliSection/BotticelliSection';
 import TextSection from './textSection/TextSection';
 import EndButtons from './endButtonsSection/EndButtons';
 import RaphaelSection from './raphaelSection/RaphaelSection';
-import IntroScrollSection from './scrollSections/IntroScrollSection';
 /*
 Gesture Section
 */
@@ -63,9 +62,6 @@ const ContainerIntro = () => {
         {/* <TestingPlane /> */}
         {/*-----77-------------------------------------------------*/}
         <BotticelliSection />
-        {/*-----ScrollPromptSection--------------------------------*/}
-        {/* <IntroScrollSection /> */}
-        {/*-----WyrfinowanySection-----------------------------------*/}
         {/*-----EndButtons-----------------------------------------*/}
         {canvasGlobalState.currentContainer === 'introContainer' && (
           <EndButtons />

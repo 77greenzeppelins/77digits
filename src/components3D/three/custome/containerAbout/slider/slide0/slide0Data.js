@@ -77,7 +77,9 @@ const indicatorData = {
   /*
   container for all numbers
   */
-  mainGroupProps: { position: [-0.14, 0.29, 0], scale: [0.02, 0.02, 0.02] },
+  // mainGroupProps: { position: [-0.14, 0.29, 0], scale: [0.02, 0.02, 0.02] },
+  mainGroupProps: { position: [-0.066, -0.31, 0], scale: [0.02, 0.02, 0.02] },
+
   /*
   array of "configObj items"; prepered for .map();
   */

@@ -14,7 +14,8 @@ import { slideTransitionConfig, slideDelay } from '../../slider2DData';
 /*
 -------------------------------------------------------------------------------
 */
-const Slide2 = ({ slideId, visibleSlideIndex }) => {
+
+const Slide3 = ({ slideId, visibleSlideIndex }) => {
   /*
   Spring Section
   */
@@ -31,14 +32,14 @@ const Slide2 = ({ slideId, visibleSlideIndex }) => {
       condition && (
         <animated.div style={styles} className="slide__container">
           <p
-            style={{ color: 'blue', fontSize: '5rem', zIndex: '999' }}
+            style={{ color: 'yellow', fontSize: '5rem', zIndex: '999' }}
             className="slide__text"
           >
-            Slide2
+            Slide3
           </p>
         </animated.div>
       )
   );
 };
 
-export default Slide2;
+export default Slide3;

@@ -6,6 +6,10 @@ Gesture Section
 import IntroWheelGesture from '../../../../gestureHandlers/useGesture/IntroWheelGesture';
 import { animated } from '@react-spring/web';
 /*
+Basic Data
+*/
+const containerLengtZ = 3550;
+/*
 -----------------------------------------------------------------------
 */
 const ProgressIndicator = () => {
@@ -15,7 +19,7 @@ const ProgressIndicator = () => {
   //   const [draggedPositionZ] = IntroDragGesture();
   const { someValue } = IntroWheelGesture();
   const x = someValue.to(x => {
-    let tempX = (x / 3550) * 100;
+    let tempX = (x / containerLengtZ) * 100;
     // console.log('ProgressIndicator / x:', x);
     return tempX.toFixed(0);
   });

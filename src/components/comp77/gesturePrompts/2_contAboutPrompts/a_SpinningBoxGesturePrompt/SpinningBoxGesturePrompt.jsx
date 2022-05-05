@@ -35,7 +35,6 @@ const SpinningBoxGesturePrompt = () => {
           canvasGlobalState.currentContainer === 'aboutContainer' &&
           canvasGlobalState.isSpinningBoxGesturePromptMounted
         }
-        textChildCondition={canvasGlobalState.languageVersion}
         /*
         taken from external file
         */
@@ -47,8 +46,6 @@ const SpinningBoxGesturePrompt = () => {
         classGraphicWrapperCSS={
           spinningBoxGesturePromptData.classGraphicWrapperCSS
         }
-        classTextWrapperCSS={spinningBoxGesturePromptData.classTextWrapperCSS}
-        textComponentData={spinningBoxGesturePromptData.textComponentData}
         graphicComponentData={spinningBoxGesturePromptData.graphicComponentData}
       />
     </>

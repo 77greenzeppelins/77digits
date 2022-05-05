@@ -1,13 +1,12 @@
 import React from 'react';
 /*
-Basic Data
-*/
-import { interactivePanelData } from './interactivePanelData';
-/*
 Gesture Staff
 */
 import ContAboutNavGest from '../../../../../gestureHandlers/useGesture/ContAboutNavGest';
-// import LimitedPseudoScrolling from '../../../../../gestureHandlers/useGesture/LimitedPseudoScrolling';
+/*
+Basic Data
+*/
+import { interactivePanelData } from './interactivePanelData';
 
 const InteractivePanel = ({ meshProps }) => {
   /*
@@ -21,7 +20,7 @@ const InteractivePanel = ({ meshProps }) => {
   Gesture Section
   */
   const { contAboutNavGest } = ContAboutNavGest({
-    // numberOfSlides: interactivePanelData.numberOfSlides,
+    // numberOfSlides: interactivePanelData.numberOfSlides, //5
     numberOfSlides: 5,
   });
 

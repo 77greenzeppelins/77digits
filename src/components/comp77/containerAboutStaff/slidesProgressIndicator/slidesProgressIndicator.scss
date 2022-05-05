@@ -1,0 +1,30 @@
+.slides-progress-indicator {
+  &__container {
+    position: fixed;
+    top: 0;
+    height: 80px;
+    width: 100%;
+    z-index: 300;
+  }
+
+  &__wrapper {
+    margin-inline: auto;
+    max-width: 1000px;
+    width: 90%;
+    padding: 0 20px 0 20px;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__text {
+    font-size: 2rem;
+    // color: darken(setColor(light), 60);
+    color: setColor(light);
+    opacity: 0.2;
+    @media (min-width: 750px) {
+      font-size: 3rem;
+    }
+  }
+}

@@ -2,26 +2,18 @@ import React from 'react';
 /*
 Components
 */
-import SpinningBoxGesturePrompt from '../gesturePrompts/2_contAboutPrompts/a_SpinningBoxGesturePrompt/SpinningBoxGesturePrompt';
-import NavigationPanel from './navigationPanel/NavigationPanel2D';
 import Slader2D from './slider2D/Slider2D';
-
+import SlidesProgressIndicator from './slidesProgressIndicator/SlidesProgressIndicator';
 /*
 Global State Staff
 */
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../states/canvasState';
 /*
-Hooks
+Gesture Staff
 */
-import useWindowSize from '../../../hooks/useWindowSize';
-/*
-Basic Data
-"slidesArrayNumber" is just a number for fakeSlider...
-*/
-// const minForTablet = 850;
-import { containerAbout2DLayout } from './containerAbout2DStaffData';
-const { navigationWrapper, topSectionWrapper } = containerAbout2DLayout;
+import SpinningBoxGesturePrompt from '../gesturePrompts/2_contAboutPrompts/a_SpinningBoxGesturePrompt/SpinningBoxGesturePrompt';
+import SlidesGesturePrompt from '../gesturePrompts/2_contAboutPrompts/b_SlidesGesturePrompts/SlidesGesturePrompt';
 
 /*
 -------------------------------------------------------------------------------
@@ -32,18 +24,7 @@ const ContainerAbout2DStaff = () => {
   canvasState = {currentContainer: 'none',...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
-  /*
-  Reset Indicator;
-  If user changes container indicator is reset to 0;
-  */
-  // if (canvasGlobalState.currentContainer !== 'aboutContainer') {
-  //   canvasState.containerAboutSlideIndex = 0;
-  //   canvasState.containerAboutSlidingDirection = 'none';
-  // }
-  /*
-  Hook Section
-  */
-  const windowSize = useWindowSize();
+
   /*
   JSX
   */
@@ -58,28 +39,15 @@ const ContainerAbout2DStaff = () => {
         has internal "useTransition()"-based concept of mounting;
         */}
         <SpinningBoxGesturePrompt />
+        <SlidesGesturePrompt />
         {/*
-        <Slider2D > has internal ".containerAboutVisibleSlideIndex > 0 "-based concept of mounting;
+        <Slider2D >'s slides have internal ...
         */}
         <Slader2D />
-
-        <div
-          className="container-about__bottom-wrapper"
-          style={{
-            width: windowSize.width,
-          }}
-        >
-          <div
-            className="container-about__navigation-wrapper"
-            style={{
-              height: windowSize.height * navigationWrapper.height,
-              width: windowSize.height * navigationWrapper.width,
-              top: -windowSize.height * navigationWrapper.height,
-            }}
-          >
-            <NavigationPanel />
-          </div>
-        </div>
+        {/*
+        <SlidesProgressIndicator/> has internal "useTransition()"-based concept of mounting;
+        */}
+        <SlidesProgressIndicator />
       </div>
     )
   );

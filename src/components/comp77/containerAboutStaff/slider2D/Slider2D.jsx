@@ -9,6 +9,9 @@ Components
 */
 import Slide1 from './slides/slide1/Slide1';
 import Slide2 from './slides/slide2/Slide2';
+import Slide3 from './slides/slide3/Slide3';
+import Slide4 from './slides/slide4/Slide4';
+
 /*
 Hooks
 */
@@ -32,7 +35,6 @@ const Slider2D = () => {
   JSX
   */
   return (
-    // canvasGlobalState.containerAboutVisibleSlideIndex > 0 && (
     <div
       className="slider-2D__container"
       style={{
@@ -50,8 +52,17 @@ const Slider2D = () => {
         visibleSlideIndex={canvasGlobalState.containerAboutVisibleSlideIndex}
         language={canvasGlobalState.languageVersion}
       />
+      <Slide3
+        slideId={3}
+        visibleSlideIndex={canvasGlobalState.containerAboutVisibleSlideIndex}
+        language={canvasGlobalState.languageVersion}
+      />
+      <Slide4
+        slideId={4}
+        visibleSlideIndex={canvasGlobalState.containerAboutVisibleSlideIndex}
+        language={canvasGlobalState.languageVersion}
+      />
     </div>
-    // )
   );
 };
 
