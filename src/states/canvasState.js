@@ -58,7 +58,7 @@ const canvasState = proxy({
   /*
   idea: when user scrolls/drags to the end, it changes to "true" within <IntroWheelGesture> & <IntroDragGesture> and:
   (1) scrolls/drags gestures are disabled
-  (2) <EndButtons> comes into the scene. i.e. goes on z-axis from fog  
+  (2) <EndButtons> comes into the scene. i.e. goes on z-axis from fog(-2) 
   */
   endOfContainerIntro: false,
   /*
@@ -66,6 +66,7 @@ const canvasState = proxy({
   when is true <AuxiliaryButtons> come into the scene
   */
   startOfContainerIntroShow: false,
+  isRaphaelVisible: false,
   /*
   -----------------------------------------------<Cookies 2D staff>
   */

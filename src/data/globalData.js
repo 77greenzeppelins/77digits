@@ -1,3 +1,11 @@
+/*
+Instant Contact Buttons
+*/
+const businessMail = 'mailto:77greenzeppelins@gmail.com';
+const businessPhone = 'tel:798-905-558';
+/*
+Container About
+*/
 const contAboutSlidesNumber = 5;
 
 const globalPositionData = {
@@ -72,6 +80,8 @@ const colorsPalette = {
 };
 
 export {
+  businessMail,
+  businessPhone,
   contAboutSlidesNumber,
   globalPositionData,
   backgroundColors,

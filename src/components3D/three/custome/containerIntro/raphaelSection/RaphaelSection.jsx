@@ -2,10 +2,10 @@ import React from 'react';
 /*
 Components
 */
-import UniversalFrame from '../../matcapFrames/UniversalFrame';
-import TextSlide from '../../textSlides/textSlide/TextSlide';
 import RaphaelPainting from './raphaelPainting/RaphaelPainting';
 import PhilosophersAnswers from './philosophersAnswers/PhilosophersAnswers';
+import CustomMeshWithMatcap from '../../_meshesWithMatcap/CustomMeshWithMatcap';
+import TextGeometryFromFont from '../../extrudedObjects/text/TextGeometryFromFont';
 /*
 Global State Section
 */
@@ -27,8 +27,7 @@ Basic Data
 import {
   raphaelSectionSpringConfig,
   raphaelSectionGesturesConfig,
-  closeButtonFrame,
-  closeButtonTextSlide,
+  buttonX,
 } from './raphaelSectionData';
 
 const RaphaelSection = () => {
@@ -43,7 +42,7 @@ const RaphaelSection = () => {
   const { springPositionZ } = useSpring({
     springPositionZ:
       canvasGlobalState.currentContainer === 'introContainer' &&
-      canvasGlobalState.startOfContainerIntroShow
+      canvasGlobalState.isRaphaelVisible
         ? raphaelSectionSpringConfig.positionEnd
         : raphaelSectionSpringConfig.positionStart,
     config: raphaelSectionSpringConfig.configBasic,
@@ -78,20 +77,15 @@ const RaphaelSection = () => {
     >
       <PhilosophersAnswers />
       <RaphaelPainting />
-      {/*-----Close Button-----------------------------------*/}
-      <group {...closeButtonFrame.groupProps}>
-        <UniversalFrame {...closeButtonFrame.frameProps} />
-        <TextSlide
-          groupProps={closeButtonTextSlide.groupProps}
-          textProps={closeButtonTextSlide.textProps}
-          font={closeButtonTextSlide.font}
-          fontSize={closeButtonTextSlide.fontSize}
-          textLinePl={closeButtonTextSlide.textLinePl}
-          textLineEn={closeButtonTextSlide.textLineEn}
-          // thisLetterSpacing ={resetButtonTextSlide.groupProps}
-          // whiteSpace,
-        />
-      </group>
+      {/*-----X Button-----------------------------------*/}
+      <a.group {...buttonX.groupProps}>
+        <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
+          <TextGeometryFromFont
+            fontExtrudeSettings={buttonX.fontExtrudeSettings}
+            text={buttonX.text}
+          />
+        </CustomMeshWithMatcap>
+      </a.group>
     </a.group>
   );
 };

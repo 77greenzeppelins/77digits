@@ -25,6 +25,7 @@ const resetButtonFrame = {
   groupProps: { scale: [0.25, 0.25, 0.25], position: [0, 0, -0.5] },
   frameProps: { format: 'banner' },
 };
+
 const resetButtonTextSlide = {
   groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
   textProps: { position: [0, 0, 0] },
@@ -35,8 +36,11 @@ const resetButtonTextSlide = {
   textLineEn: 'reset',
 };
 
-const auxiliaryButtonQuestionMark = {
-  groupProps: { scale: [0.17, 0.17, 0.17], position: [0.28, -0.63, -0.6] },
+const buttonQuestionMark = {
+  groupProps: {
+    scale: [0.12, 0.12, 0.12],
+    position: [0.18, -0.4, 0], // [x,yEnd,yStart,z]
+  },
   fontExtrudeSettings: {
     size: 0.7,
     height: 0.03,
@@ -54,5 +58,5 @@ export {
   InstantContactButtonEmail,
   resetButtonFrame,
   resetButtonTextSlide,
-  auxiliaryButtonQuestionMark,
+  buttonQuestionMark,
 };

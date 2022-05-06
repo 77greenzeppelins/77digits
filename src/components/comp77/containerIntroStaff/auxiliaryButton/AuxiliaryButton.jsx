@@ -13,7 +13,7 @@ const AuxiliaryButton = () => {
     <div style={{ width: '100%', height: '100%' }}>
       <button
         onClick={() => {
-          canvasState.startOfContainerIntroShow = true;
+          canvasState.isRaphaelVisible = true;
         }}
         style={{ width: '100%', height: '100%' }}
       />

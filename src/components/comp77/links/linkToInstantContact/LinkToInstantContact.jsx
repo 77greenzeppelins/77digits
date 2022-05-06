@@ -1,28 +1,35 @@
-import React, { useRef } from 'react';
+import React from 'react';
+/*
+Components
+*/
 import { Link } from 'react-router-dom';
+/*
+Basic Data
+*/
+import { businessMail, businessPhone } from '../../../../data/globalData';
 
-const LinkToInstantContact = ({ contact, children, style }) => {
-  //_____References
-  const link = useRef(null);
-  //_____OnClick Handler for 'MAILTO'
+/*
+-----------------------------------------------------------------
+*/
+const LinkToInstantContact = ({ type }) => {
+  /*
+  OnClick Handler for 'MAILTO'
+  */
   const onClick = (e, contact) => {
     e.preventDefault();
-    window.location = contact;
+    type === 'phone'
+      ? (window.location = businessPhone)
+      : (window.location = businessMail);
   };
-  //
-  //_____JSX
+  /*
+  JSX
+  */
   return (
-    <>
-      <Link
-        ref={link}
-        to="#"
-        onClick={e => onClick(e, contact)}
-        className="link-to-instant-contact__container"
-        style={style}
-      >
-        {children}
-      </Link>
-    </>
+    <Link
+      to="#"
+      onClick={e => onClick(e)}
+      className="link-to-instant-contact__container"
+    />
   );
 };
 

@@ -13,11 +13,27 @@ const slides = [
     PL
     */
     textLinesPl: ['Dziękuję,', 'że mnie', 'odwiedzasz!'],
-    textPropsPl: [
-      { position: [0, 0.34, 0] },
-      { position: [0, -0.02, -0.4] },
-      { position: [0, -0.38, -0.8] },
+    // textPropsPl: [
+    //   { position: [0, 0.34, 0] },
+    //   { position: [0, -0.02, -0.4] },
+    //   { position: [0, -0.38, -0.8] },
+    // ],
+    mobilePositionPl: [
+      { position: [0, 0.4, 0] },
+      { position: [0.0, 0.1, -0.45] },
+      { position: [0.02, -0.22, -0.75] },
+
+      // { position: [0.03, 0.39, -0.4], rotation: [0, -0.49 * Math.PI, 0] },
+      // { position: [0.32, 0.17, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
     ],
+    desktopPositionPl: [
+      { position: [0, 0.34, -0.1] },
+      { position: [0.02, -0.02, -0.38] },
+      { position: [0.02, -0.39, -0.75] },
+      // { position: [0.1, 0.16, -0.2], rotation: [0, 0.22 * Math.PI, 0] },
+      // { position: [0.6, -0.25, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
+    ],
+
     fontPl: ['garamont', 'garamont', 'garamont'],
     fontSizePl: [
       { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
@@ -107,32 +123,37 @@ const slides = [
     Pl
     */
     textLinesPl: [
-      'J e ś l i    m a s z',
-      'o c h o t ę    n a',
+      'J e ś l i    c z u j e s z,',
+      'ż e   m a s z   o c h o t ę',
+      'n a . . .',
       // 'w y r a f i n o',
       // ' w a n y',
     ],
     mobilePositionPl: [
-      { position: [0, 0.67, 0] },
-      { position: [0.02, 0.57, -0.1] },
-      { position: [0.03, 0.39, -0.4], rotation: [0, -0.49 * Math.PI, 0] },
-      { position: [0.32, 0.17, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
+      { position: [0, 0.42, 0] },
+      { position: [0.0, 0.12, -0.45] },
+      { position: [0.02, -0.12, -0.65] },
+
+      // { position: [0.03, 0.39, -0.4], rotation: [0, -0.49 * Math.PI, 0] },
+      // { position: [0.32, 0.17, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
     ],
     desktopPositionPl: [
-      { position: [0, 0.63, -0.1] },
-      { position: [0.02, 0.4, -0.4] },
-      { position: [0.1, 0.16, -0.2], rotation: [0, 0.22 * Math.PI, 0] },
-      { position: [0.6, -0.25, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
+      { position: [0, 0.34, -0.1] },
+      { position: [0.02, -0.02, -0.4] },
+      { position: [0.02, -0.35, -0.7] },
+      // { position: [0.1, 0.16, -0.2], rotation: [0, 0.22 * Math.PI, 0] },
+      // { position: [0.6, -0.25, -0.4], rotation: [0, 0, -0.49 * Math.PI] },
     ],
-    fontPl: ['garamont', 'garamont', 'garamont', 'garamont'],
+    fontPl: ['garamont', 'garamont', 'garamont'],
     fontSizePl: [
-      { fontSmall: 0.09, fontMiddle: 0.09, fontLarge: 0.17 },
-      { fontSmall: 0.09, fontMiddle: 0.09, fontLarge: 0.17 },
-      { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
-      { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
+      { fontSmall: 0.09, fontMedium: 0.09, fontLarge: 0.17 },
+      { fontSmall: 0.09, fontMedium: 0.09, fontLarge: 0.17 },
+      { fontSmall: 0.09, fontMedium: 0.09, fontLarge: 0.17 },
+      // { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
+      // { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
     ],
-    letterSpacingPl: [-0.02, -0.02, -0.01, -0.01],
-    whiteSpacePl: ['nowrap', 'nowrap', 'nowrap', 'nowrap'],
+    letterSpacingPl: [-0.02, -0.02, -0.02],
+    whiteSpacePl: ['nowrap', 'nowrap', 'nowrap'],
 
     /*
     En
@@ -189,7 +210,7 @@ const slides = [
       'garamont',
     ],
     textPropsPl: [
-      { position: [0, 0.68, 0] },
+      { position: [0, 0.6, -0.4] },
       //___odlot
       { position: [0, 0.45, 0.3] },
       { position: [0, 0.1, -0.1] },
@@ -233,17 +254,30 @@ const slides = [
     /*
     Pl
     */
-    textLinesPl: ['Zadzwoń', 'lub', 'napisz!'],
+    textLinesPl: ['Dzwoń!', 'Pisz!', 'Tańcz!', 'Lajkuj!', 'Tłituj!', 'Kochaj!'],
     textPropsPl: [
       { position: [0, 0.34, 0] },
       { position: [0, -0.02, -0.4] },
-      { position: [0, -0.38, -0.8] },
+      { position: [-0.4, -0.58, -0.9] },
+      { position: [-0.4, 0.48, -0.9] },
+      { position: [0.4, -0.68, -0.9] },
+      { position: [-0.2, -0.38, -0.99] },
     ],
-    fontPl: ['garamont', 'garamont', 'garamont'],
+    fontPl: [
+      'garamont',
+      'garamont',
+      'garamont',
+      'garamont',
+      'garamont',
+      'garamont',
+    ],
     fontSizePl: [
       { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
       { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
-      { fontSmall: 0.09, fontMiddle: 0.12, fontLarge: 0.2 },
+      { fontSmall: 0.03, fontMiddle: 0.07, fontLarge: 0.1 },
+      { fontSmall: 0.03, fontMiddle: 0.07, fontLarge: 0.1 },
+      { fontSmall: 0.03, fontMiddle: 0.07, fontLarge: 0.1 },
+      { fontSmall: 0.03, fontMiddle: 0.07, fontLarge: 0.1 },
     ],
 
     textLinesEn: ['Just', 'let me', 'know!'],

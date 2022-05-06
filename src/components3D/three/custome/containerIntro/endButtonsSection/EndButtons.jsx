@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
 /*
 Components
 */
 import InstantContactsSection from './instantContactsSection/InstantContactsSection';
-import AuxiliaryButtonSection from './auxiliaryButtonSection/AuxiliaryButtonSection';
 import UniversalFrame from '../../matcapFrames/UniversalFrame';
 import TextSlide from '../../textSlides/textSlide/TextSlide';
-
+import CustomMeshWithMatcap from '../../_meshesWithMatcap/CustomMeshWithMatcap';
+import TextGeometryFromFont from '../../extrudedObjects/text/TextGeometryFromFont';
 /*
 Global State Section
 */
@@ -25,12 +26,17 @@ import {
   //_____
   resetButtonFrame,
   resetButtonTextSlide,
+  buttonQuestionMark,
 } from './endButtonsData';
 
 /*
 -----------------------------------------------------------------------------
 */
 const EndButtons = () => {
+  /*
+  References
+  */
+  const questionMark = useRef();
   /*
   Global State Section
   canvasState = {endOfContainerIntro: false, startOfContainerIntroShow: false, ...}
@@ -53,7 +59,7 @@ const EndButtons = () => {
     /*
     this animation happens when clicks any of auxiliary button: it's actually the very first part of larger animation where the second part referce to "Platon&Aristotles";
     */
-    springPositionY: canvasGlobalState.startOfContainerIntroShow
+    springPositionY: canvasGlobalState.isRaphaelVisible
       ? springConfig.positionYEnd
       : springConfig.positionYStart,
     // config: config.molasses,
@@ -67,6 +73,26 @@ const EndButtons = () => {
   //     canvasGlobalState.startOfContainerIntroShow
   //   );
   // }, [canvasGlobalState.startOfContainerIntroShow]);
+
+  /*
+  useFrame Section
+  */
+  useFrame(({ clock }) => {
+    const time = clock.getElapsedTime();
+    /*
+      Why two conditions in "if statement" ?
+      I don't want any animation/rotation when user is in any other container;
+      */
+
+    if (
+      canvasGlobalState.currentContainer === 'introContainer' &&
+      canvasGlobalState.endOfContainerIntro &&
+      !canvasGlobalState.isRaphaelVisible
+    ) {
+      questionMark.current.rotation.y = -Math.cos(time * 0.4) * 0.8;
+      questionMark.current.rotation.z = -Math.sin(time * 0.4) * 0.02;
+    }
+  });
   /*
   JSX
   */
@@ -89,8 +115,16 @@ const EndButtons = () => {
           />
         </group>
 
-        {/*-----Auxiliary Buttons-----------------------------------*/}
-        <AuxiliaryButtonSection />
+        {/*-----? Button------------------------------------------*/}
+
+        <a.group ref={questionMark} {...buttonQuestionMark.groupProps}>
+          <CustomMeshWithMatcap>
+            <TextGeometryFromFont
+              fontExtrudeSettings={buttonQuestionMark.fontExtrudeSettings}
+              text={buttonQuestionMark.text}
+            />
+          </CustomMeshWithMatcap>
+        </a.group>
       </a.group>
     </a.group>
   );

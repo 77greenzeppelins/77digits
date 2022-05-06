@@ -169,22 +169,21 @@ const AristotlesCone = {
 /*
 Close Button
 */
-const closeButtonFrame = {
+const buttonX = {
   groupProps: {
-    scale: [0.25, 0.25, 0.25],
-    position: [0, -0.72, 0],
-    rotation: [Math.PI * 0.13, 0, 0],
+    scale: [0.12, 0.12, 0.12],
+    position: [0, -0.75, 0],
   },
-  frameProps: { format: 'banner' },
-};
-const closeButtonTextSlide = {
-  groupProps: { scale: [1, 1, 1], position: [0, 0, 0] },
-  textProps: { position: [0, 0, 0] },
-  font: 'garamont',
-  fontSize: { fontSmall: 0.09, fontMiddle: 0.1, fontLarge: 0.15 },
-  // whiteSpace: "nowrap",
-  textLinePl: 'powrót',
-  textLineEn: 'back',
+  meshProps: { rotation: [0, 0, 0.25 * Math.PI] },
+  fontExtrudeSettings: {
+    size: 0.7,
+    height: 0.03,
+    bevelEnabled: true,
+    curveSegments: 2,
+    bevelThickness: 0.01,
+    bevelSize: 0.005,
+  },
+  text: '+',
 };
 
 export {
@@ -206,6 +205,5 @@ export {
   AristotlesAnswerText,
   AristotlesCone,
   //___Reset Button
-  closeButtonFrame,
-  closeButtonTextSlide,
+  buttonX,
 };

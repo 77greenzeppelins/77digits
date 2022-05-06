@@ -6,23 +6,18 @@ import { canvasState } from '../../../../states/canvasState';
 
 /*
 ----------------------------------------------------------------------------
-Is used to map 3D pseudobuttons in: 
-(1) <ContainerIntro> <EndButtons> at the end of scrolling
-(2) <ContainerIntro> / <RaphaelSection> to close section;
 */
-const ResetButton = ({ toDo }) => {
+const ResetButton = () => {
   /*
-  User Experiences onClick 
+  JSX
   */
-  const resetOnClick = e => {
-    if (toDo === 'reset') canvasState.endOfContainerIntro = false;
-    if (toDo === 'close') canvasState.startOfContainerIntroShow = false;
-  };
   return (
     <>
       <button
         style={{ width: '100%', height: '100%' }}
-        onClick={resetOnClick}
+        onClick={() => {
+          canvasState.endOfContainerIntro = false;
+        }}
       />
     </>
   );

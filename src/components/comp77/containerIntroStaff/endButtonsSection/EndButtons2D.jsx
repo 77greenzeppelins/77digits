@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 /*
 Components
 */
 import LinkToInstantContact from '../../links/linkToInstantContact/LinkToInstantContact';
 import ResetButton from '../resetButton/ResetButton';
-import AuxiliaryButton from '../auxiliaryButton/AuxiliaryButton';
+// import AuxiliaryButton from '../auxiliaryButton/AuxiliaryButton';
 /*
 Global State Staff
 */
@@ -25,10 +25,11 @@ import {
   useTransitionConfig,
   instContactButton,
   resetButton,
-  auxiliaryButton,
 } from './EndButtons2DData';
-import { businessMail, businessPhone } from '../../../../data/instantContact';
 
+/*
+------------------------------------------------------------------
+*/
 const EndButtons2D = () => {
   /*
   Global State Section
@@ -45,7 +46,7 @@ const EndButtons2D = () => {
   const transitionCondition =
     canvasGlobalState.currentContainer === 'introContainer' &&
     canvasGlobalState.endOfContainerIntro &&
-    !canvasGlobalState.startOfContainerIntroShow;
+    !canvasGlobalState.isRaphaelVisible;
   /*
   Spring Section
   */
@@ -56,38 +57,6 @@ const EndButtons2D = () => {
     */
     delay: transitionCondition ? 2000 : 0,
   });
-
-  useEffect(() => {
-    // canvasGlobalState.currentContainer === 'introContainer'
-    //   ? (
-    //   canvasGlobalState.endOfContainerIntro &&
-    //   !canvasGlobalState.startOfContainerIntroShow
-    // )
-    //     ? console.log('first condition for ....')
-    //     : (
-    //   canvasGlobalState.endOfContainerIntro &&
-    //   canvasGlobalState.startOfContainerIntroShow
-    // ) ? console.log('second condition for ....') : null
-
-    if (canvasGlobalState.currentContainer === 'introContainer') {
-      if (
-        canvasGlobalState.endOfContainerIntro &&
-        !canvasGlobalState.startOfContainerIntroShow
-      ) {
-        console.log('first condition for .... ?');
-      }
-      if (
-        canvasGlobalState.endOfContainerIntro &&
-        canvasGlobalState.startOfContainerIntroShow
-      ) {
-        console.log('second condition for .... X');
-      }
-    }
-  }, [
-    canvasGlobalState.currentContainer,
-    canvasGlobalState.endOfContainerIntro,
-    canvasGlobalState.startOfContainerIntroShow,
-  ]);
 
   /*
   JSX
@@ -116,10 +85,7 @@ const EndButtons2D = () => {
                 width: windowSize.height * instContactButton.width,
               }}
             >
-              <LinkToInstantContact
-                contact={businessPhone}
-                style={{ width: '100%', height: '100%' }}
-              />
+              <LinkToInstantContact type="phone" />
             </button>
             <div
               className="end-buttons2D__reset-button"
@@ -128,7 +94,7 @@ const EndButtons2D = () => {
                 height: windowSize.height * resetButton.height,
               }}
             >
-              <ResetButton toDo="reset" />
+              <ResetButton />
             </div>
             <button
               className="end-buttons2D__email-button"
@@ -137,31 +103,8 @@ const EndButtons2D = () => {
                 height: windowSize.height * instContactButton.height,
               }}
             >
-              <LinkToInstantContact
-                contact={businessMail}
-                style={{ width: '100%', height: '100%' }}
-              />
+              <LinkToInstantContact type="mail" />
             </button>
-
-            {/*-----auxiliart buttons--------------------------------*/}
-            {/* <div
-              className="instant-contacts__auxiliary-button-top"
-              style={{
-                height: windowSize.height * 0.35 * 0.25,
-                width: windowSize.height * 0.27 * 0.21,
-              }}
-            >
-              <AuxiliaryButton id="auxiliary-button-top" />
-            </div> */}
-            <div
-              className="end-buttons2D__auxiliary-button-bottom"
-              style={{
-                width: windowSize.height * auxiliaryButton.width,
-                height: windowSize.height * auxiliaryButton.height,
-              }}
-            >
-              <AuxiliaryButton />
-            </div>
           </div>
         </animated.div>
       )

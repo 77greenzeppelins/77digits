@@ -12,9 +12,5 @@ const resetButton = {
   width: 0.1,
   height: 0.22,
 };
-const auxiliaryButton = {
-  width: 0.0567,
-  height: 0.0875,
-};
 
-export { useTransitionConfig, instContactButton, resetButton, auxiliaryButton };
+export { useTransitionConfig, instContactButton, resetButton };

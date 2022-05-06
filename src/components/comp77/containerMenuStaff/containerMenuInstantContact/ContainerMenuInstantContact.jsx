@@ -16,12 +16,10 @@ import { canvasState } from '../../../../states/canvasState';
 Spring Staff
 */
 import { animated, useTransition } from '@react-spring/web';
-/*
-BasicData
-*/
-const businessMail = 'mailto:77greenzeppelins@gmail.com';
-const businessPhone = 'tel:798-905-558';
 
+/*
+-------------------------------------------------------------------------
+*/
 const ContainerMenuInstantContact = () => {
   /*
   Global State Section
@@ -70,10 +68,7 @@ const ContainerMenuInstantContact = () => {
                   windowSize.height > 700 && windowSize.height * 0.045 + 100,
               }}
             >
-              <LinkToInstantContact
-                contact={businessMail}
-                style={{ width: '100%', height: '100%' }}
-              />
+              <LinkToInstantContact type="email" />
             </button>
             {/*-----separator--------------------------------*/}
             <div
@@ -90,10 +85,7 @@ const ContainerMenuInstantContact = () => {
                   windowSize.height > 700 && windowSize.height * 0.045 + 100,
               }}
             >
-              <LinkToInstantContact
-                contact={businessPhone}
-                style={{ width: '100%', height: '100%' }}
-              />
+              <LinkToInstantContact type="phone" />
             </button>
           </div>
         </animated.div>

@@ -1,0 +1,28 @@
+.raphael-section-toggler {
+  &__container-fixed {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+  &__container {
+    display: flex;
+    pointer-events: none;
+
+    // flex-direction: column;
+    // align-items: center;
+  }
+  &__fake-button {
+    position: absolute;
+    bottom: 3.5vh;
+    /*
+    in JS we have "transform: translateX(...%)" ?
+    it allowes position this button on x-axis regarding the center of x-axis
+    it allowes to keep this button in constant distance to "instant-contact-button"; so despite resizing it keep that distance;
+    this "...%" refers to button size I guess...
+    */
+    pointer-events: all;
+    // background-color: #fff;
+    // opacity: 0.4;
+  }
+}
