@@ -24,9 +24,10 @@ Basic Data
 import {
   springConfig,
   //_____
-  resetButtonFrame,
-  resetButtonTextSlide,
+  // resetButtonFrame,
+  // resetButtonTextSlide,
   buttonQuestionMark,
+  buttonX,
 } from './endButtonsData';
 
 /*
@@ -37,6 +38,8 @@ const EndButtons = () => {
   References
   */
   const questionMark = useRef();
+  const xMark = useRef();
+
   /*
   Global State Section
   canvasState = {endOfContainerIntro: false, startOfContainerIntroShow: false, ...}
@@ -102,8 +105,8 @@ const EndButtons = () => {
         {/*-----Instant Contact Buttons-------------------------------*/}
         <InstantContactsSection />
 
-        {/*-----Reset Button------------------------------------------*/}
-        <group {...resetButtonFrame.groupProps}>
+        {/*-----X Button------------------------------------------*/}
+        {/* <group {...resetButtonFrame.groupProps}>
           <UniversalFrame {...resetButtonFrame.frameProps} />
           <TextSlide
             groupProps={resetButtonTextSlide.groupProps}
@@ -113,7 +116,16 @@ const EndButtons = () => {
             textLinePl={resetButtonTextSlide.textLinePl}
             textLineEn={resetButtonTextSlide.textLineEn}
           />
-        </group>
+        </group> */}
+
+        <a.group ref={xMark} {...buttonX.groupProps}>
+          <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
+            <TextGeometryFromFont
+              fontExtrudeSettings={buttonX.fontExtrudeSettings}
+              text={buttonX.text}
+            />
+          </CustomMeshWithMatcap>
+        </a.group>
 
         {/*-----? Button------------------------------------------*/}
 

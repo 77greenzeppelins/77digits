@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 /*
 Components
 */
@@ -13,10 +13,6 @@ import { a } from '@react-spring/three';
 ----------------------------------------------------------------------------
 */
 const SpinningBoxSideIndicator = ({ indicatorData, springValue }) => {
-  useEffect(() => {
-    console.log('springValue', springValue);
-  }, [springValue]);
-
   /*
   JSX creator
   */

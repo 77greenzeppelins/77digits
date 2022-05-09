@@ -3,9 +3,8 @@ import React from 'react';
 Components
 */
 import UniversalFrame from '../../../matcapFrames/UniversalFrame';
-// import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
-import TextSlide from '../../../textSlides/textSlide/TextSlide';
 import BasicUseMatcapTexture from '../../../matcapMaterials/BasicUseMatcapTexture';
+import DreiText from '../../../../../drei/text/dreiText/DreiText';
 /*
 GestureStaff
 */
@@ -18,15 +17,14 @@ import { a } from '@react-spring/three';
 Basic Data
 */
 import {
-  philosophersAnswers,
-  philosophersAnswersGesture,
+  philosophersAnswersConfig,
   PlatonAnswerGroup,
   PlatoAnswerFrame,
-  PlatoAnswerText,
+  PlatoAnswerTextConfig,
   PlatoCone,
   AristotlesAnswerGroup,
   AristotlesAnswer,
-  // AristotlesAnswerText,
+  AristotlesTextConfig,
   AristotlesCone,
 } from '../raphaelSectionData';
 
@@ -36,28 +34,25 @@ const PhilosophersAnswers = () => {
   this animation effects group for <AnsverYes> & <AnswerNo> to imitate some mouse move
   */
   const [rotateWithMouseMove] = BasicMove({
+    initialRotateValue: philosophersAnswersConfig.groupProps.rotation,
     target: window,
-    tileFactor: philosophersAnswersGesture.tillFactor,
+    tileFactor: philosophersAnswersConfig.tillFactor,
   });
   /*
   JSX
   */
   return (
-    <a.group {...philosophersAnswers.groupProps} rotation={rotateWithMouseMove}>
+    <a.group
+      {...philosophersAnswersConfig.groupProps}
+      rotation={rotateWithMouseMove}
+    >
       {/*-----Plato Answer-------------------------------------------*/}
       <group {...PlatonAnswerGroup.groupProps}>
         <UniversalFrame
           format={PlatoAnswerFrame.format}
           groupProps={PlatoAnswerFrame.groupProps}
         />
-        <TextSlide
-          groupProps={PlatoAnswerText.groupProps}
-          fontSize={PlatoAnswerText.fontSize}
-          textAlign={PlatoAnswerText.textAlign}
-          textLinePl={PlatoAnswerText.textLinePl}
-          textLineEn={PlatoAnswerText.textLineEn}
-          textWidthFactor={PlatoAnswerText.textWidthFactor}
-        />
+        <DreiText textConfig={PlatoAnswerTextConfig} />
         <mesh {...PlatoCone.meshProps}>
           <coneGeometry args={PlatoCone.args} />
           <BasicUseMatcapTexture />
@@ -70,6 +65,7 @@ const PhilosophersAnswers = () => {
           format={AristotlesAnswer.format}
           groupProps={AristotlesAnswer.groupProps}
         />
+        <DreiText textConfig={AristotlesTextConfig} />
         <mesh {...AristotlesCone.meshProps}>
           <coneGeometry args={AristotlesCone.args} />
           <BasicUseMatcapTexture />

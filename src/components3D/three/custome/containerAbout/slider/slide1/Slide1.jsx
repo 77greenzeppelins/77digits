@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 /*
 Global State Staf
 */
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../../../states/canvasState';
 /*
-Gesture data
+Components
 */
-import ContAboutSlide1 from '../../../../../../gestureHandlers/useGesture/ContAboutSlide1Gest';
+import DreiText from '../../../../../drei/text/dreiText/DreiText';
 /*
- Basic Data
- */
-import { interactivePanelData } from './slide1Data';
+Basic Data
+*/
+import { textConfig } from './slide1Data';
 /*
 ----------------------------------------------------------------------
 */
@@ -27,13 +27,6 @@ const Slide1 = ({ slideId }) => {
   */
   const canvasGlobalState = useSnapshot(canvasState);
 
-  /*
-  Gesture Section
-  */
-  const { contAboutSlide1 } = ContAboutSlide1({
-    numberOfSlides: interactivePanelData.numberOfSlides,
-  });
-
   // useEffect(() => {
   //   console.log(
   //     'Slide1 / canvasGlobalState.containerAboutVisibleSlideIndex:',
@@ -47,20 +40,8 @@ const Slide1 = ({ slideId }) => {
   */
   return (
     canvasGlobalState.containerAboutVisibleSlideIndex === slideId && (
-      /*
-     it actually plays role of <InteractivePanel>; it only receives "gestures inputs"; output from "contAboutSlide1.js" manipulates global state "canvasState.slide1Part = refX.current"; then according to current value of "slide1Part" appropriate non-canvas staff is rendered...
-     */
-      <mesh
-        position={interactivePanelData.position}
-        {...contAboutSlide1()}
-        visible={false}
-      >
-        <planeGeometry args={interactivePanelData.planeGeometryArgs} />
-        <meshBasicMaterial
-        //  color={[0.015, 0.0001, 0.019]}
-        // wireframe
-        />
-      </mesh>
+      <DreiText textConfig={textConfig} />
+      // <TextVerse text="TextVerse" />
     )
   );
 };

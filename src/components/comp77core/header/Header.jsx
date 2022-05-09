@@ -58,7 +58,8 @@ const Header = () => {
             This ternary operator disables <Header> in <Container
             Menu>; i.e. no header in menu
             */
-            canvasGlobalState.currentContainer === 'menuContainer'
+            canvasGlobalState.currentContainer === 'menuContainer' ||
+            canvasGlobalState.endOfContainerIntro
               ? 'none'
               : 'block',
         }}

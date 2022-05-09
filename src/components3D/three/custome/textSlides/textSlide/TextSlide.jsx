@@ -25,6 +25,7 @@ const TextSlide = ({
   textLinePl,
   textLineEn,
   thisLetterSpacing,
+  lineHeight,
   thisWhiteSpace,
   textAlign,
   /*
@@ -32,6 +33,7 @@ const TextSlide = ({
   */
   textOrientation,
   textWidthFactor,
+  textWidthValue,
   strokeWidth,
 }) => {
   /*
@@ -51,7 +53,7 @@ const TextSlide = ({
     <A11y role="content" description={textLinePl}>
       <group {...groupProps}>
         <TextVerse
-          textProps={{ ...textProps }}
+          textProps={textProps}
           text={textLinePl}
           font={font}
           fontResponsiveness={
@@ -62,10 +64,16 @@ const TextSlide = ({
               : fontSize.fontLarge
           }
           letterSpacing={thisLetterSpacing || 0.15}
+          lineHeight={lineHeight}
           whiteSpace={thisWhiteSpace} //'normal' "nowrap"
           textAlign={textAlign}
           maxWidth={
-            textOrientation === 'vertical'
+            /*
+            "textWidthValue" is hardcoded valu wheras "textWidthFactor" allowes a kind of responsiveness
+            */
+            textWidthValue
+              ? textWidthValue
+              : textOrientation === 'vertical'
               ? viewport.height / textWidthFactor
               : viewport.width / textWidthFactor
           }
@@ -88,6 +96,7 @@ const TextSlide = ({
               : fontSize.fontLarge
           }
           letterSpacing={thisLetterSpacing || 0.15}
+          lineHeight={lineHeight}
           whiteSpace={thisWhiteSpace} //'normal' "nowrap"
           maxWidth={
             textOrientation === 'vertical'

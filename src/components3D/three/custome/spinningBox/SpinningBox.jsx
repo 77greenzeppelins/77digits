@@ -27,7 +27,7 @@ const SpinningBox = React.forwardRef(
       /*
       props for <SpinningBoxSide> layout and its children
       */
-      spinningBoxConfig,
+      spinningBoxConfig, // "slide0Box1Data"
       /*
       springValue from "ContainerAboutGesture.js"
       */

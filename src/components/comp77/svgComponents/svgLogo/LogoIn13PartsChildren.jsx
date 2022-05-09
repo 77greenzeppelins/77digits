@@ -1,8 +1,3 @@
-/*
-Basic Data
-*/
-const s = 0.2;
-
 const DiamondCenter = props => {
   return (
     <path

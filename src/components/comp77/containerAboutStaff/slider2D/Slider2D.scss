@@ -16,11 +16,19 @@
 
 .slide {
   &__container {
-    width: 80%;
-    height: 100%;
+    // width: 80%;
+    // height: 100%;
+    // display: flex;
+    // flex-direction: column;
+    // padding-top: 15vh;
+    margin-inline: auto;
+    max-width: 1000px;
+    width: 90%;
+    padding: 0 20px 0 20px;
+    height: 80px;
     display: flex;
-    flex-direction: column;
-    padding-top: 15vh;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   &__header {
@@ -46,6 +54,9 @@
       font-size: $fontMobile;
       color: setColor(light);
       letter-spacing: 1.2px;
+      &.special {
+        font-size: 2rem;
+      }
     }
   }
 }

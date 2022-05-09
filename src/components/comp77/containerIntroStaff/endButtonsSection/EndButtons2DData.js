@@ -9,8 +9,8 @@ const instContactButton = {
   height: 0.35,
 };
 const resetButton = {
-  width: 0.1,
-  height: 0.22,
+  width: 0.05,
+  height: 0.07,
 };
 
 export { useTransitionConfig, instContactButton, resetButton };

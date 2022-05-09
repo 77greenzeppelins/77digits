@@ -52,6 +52,23 @@ const buttonQuestionMark = {
   text: '?',
 };
 
+const buttonX = {
+  groupProps: {
+    scale: [0.09, 0.09, 0.09],
+    position: [-0.003, -0.035, 0], // [x,yEnd,yStart,z]
+  },
+  meshProps: { rotation: [0, 0, 0.25 * Math.PI] },
+  fontExtrudeSettings: {
+    size: 0.7,
+    height: 0.03,
+    bevelEnabled: true,
+    curveSegments: 2,
+    bevelThickness: 0.01,
+    bevelSize: 0.005,
+  },
+  text: '+',
+};
+
 export {
   springConfig,
   InstantContactButtonPhone,
@@ -59,4 +76,5 @@ export {
   resetButtonFrame,
   resetButtonTextSlide,
   buttonQuestionMark,
+  buttonX,
 };

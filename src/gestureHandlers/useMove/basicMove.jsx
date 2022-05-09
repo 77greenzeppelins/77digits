@@ -15,7 +15,7 @@ GlobalState
 ------------------------------------------------------------------------
 */
 
-const BasicMove = ({ enabled, target, tileFactor }) => {
+const BasicMove = ({ initialRotateValue, enabled, target, tileFactor }) => {
   /*
   Global States for SpringValues;
   */

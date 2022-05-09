@@ -147,13 +147,15 @@ const slide0Box1Data = [
       /*
       En for <TextSlideFromArray>
       */
-      textLinesEn: ['I create web page for demanding Clients'],
-      textPropsEn: [{ position: [0, 0, 0.01] }],
-      fontEn: ['garamont'],
-      fontSizeEn: [{ ...fontSizesSmall }],
-      textAlignEn: ['left'],
-      whiteSpaceEn: ['normal'],
-      maxWidthFactorEn: [0.01],
+      textLinesEn: ['Here', 'You are'],
+      textPropsEn: [
+        { position: [-0.1, 0.4, 0.01] },
+        { position: [-0.04, 0.25, 0.01] },
+      ],
+      fontEn: ['garamont', 'garamont'],
+      fontSizeEn: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
+      textAlignEn: ['left', 'left'],
+
       /*
       for label's <UniversalFrame> or <UniversalFrameWithoutMap>
       */
@@ -181,13 +183,16 @@ const slide0Box1Data = [
       /*
       En for <TextSlideFromArray>
       */
-      textLinesEn: ['I create web page for demanding Clients'],
-      textPropsEn: [{ position: [0, 0, -0.01], rotation: [0, Math.PI, 0] }],
-      fontEn: ['jost'],
-      fontSizeEn: [{ ...fontSizesSmall }],
-      textAlignEn: ['left'],
-      whiteSpaceEn: ['normal'],
-      maxWidthFactorEn: [0.01],
+      textLinesEn: ['Here', "I'm"],
+      textPropsEn: [
+        { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
+        { position: [0.15, 0.2, -0.01], rotation: [0, Math.PI, 0] },
+      ],
+      fontEn: ['garamont', 'garamont'],
+      fontSizeEn: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
+      // textAlignEn: ['left'],
+      // whiteSpaceEn: ['normal'],
+      // maxWidthFactorEn: [0.01],
       /*
       for label's <UniversalFrame>
       */
@@ -222,7 +227,7 @@ const slide0Box1Data = [
       textLinesPl: ['Może jesteś', 'wielką nadzieją branży medycznej...'],
       textPropsPl: [
         { position: [0, 0.4, 0.01] },
-        { position: [-0.09, 0.1, 0.01] },
+        { position: [-0.08, 0.1, 0.01] },
       ],
 
       textAlignPl: ['left', 'left'],
@@ -232,19 +237,27 @@ const slide0Box1Data = [
       /*
       font-relevant props
       */
-      fontPl: ['garamont', 'jost'],
-      fontSizePl: [{ ...fontSizesMedium }, { ...fontSizesVerySmall }],
-      strokeWidthPl: [0, 0.0005],
+      fontPl: ['garamont', 'garamont'],
+      fontSizePl: [{ ...fontSizesMedium }, { ...fontSizesSmall }],
+      // strokeWidthPl: [0, 0.0005], // worth using with jost
       /*
       En for <TextSlideFromArray>
       */
-      textLinesEn: ['I create web page for demanding Clients'],
-      textPropsEn: [{ position: [0, 0, 0.01] }],
-      fontEn: ['jost'],
-      fontSizeEn: [{ ...fontSizesSmall }],
-      textAlignEn: ['left'],
-      whiteSpaceEn: ['normal'],
-      maxWidthFactorEn: [0.01],
+      textLinesEn: ['Imagin', "you're future of medical business"],
+      textPropsEn: [
+        { position: [0, 0.4, 0.01] },
+        { position: [-0.08, 0.2, 0.01] },
+      ],
+      textAlignEn: ['left', 'left'],
+      // whiteSpacePl: ['normal', 'normal', 'normal', 'normal', 'normal'],
+      maxWidthFactorMobileEn: [0.01, 20],
+      maxWidthFactorDesktopEn: [0.01, 40],
+      /*
+      font-relevant props
+      */
+      fontEn: ['garamont', 'garamont'],
+      fontSizeEn: [{ ...fontSizesMedium }, { ...fontSizesSmall }],
+      // strokeWidthPl: [0, 0.0005], // worth using with jost
       /*
       for <UniversalFrameWithoutMap>
       */

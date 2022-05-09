@@ -5,6 +5,7 @@ Components
 import UniversalFrame from '../../../matcapFrames/UniversalFrame';
 import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
 import TextSlide from '../../../textSlides/textSlide/TextSlide';
+import DreiText from '../../../../../drei/text/dreiText/DreiText';
 /*
 GestureStaff
 */
@@ -21,9 +22,8 @@ Accesibility staff
 Basic Data
 */
 import {
-  raphaelPaintingData,
-  raphaelPaintingGesture,
-  raphaelPaintingLeftText,
+  raphaelPaintingConfig,
+  raphaelPaintingLeftTextConfig,
 } from '../raphaelSectionData';
 
 const RaphaelPainting = () => {
@@ -33,31 +33,24 @@ const RaphaelPainting = () => {
   */
   const [rotateWithMouseMove] = BasicMove({
     target: window,
-    tileFactor: raphaelPaintingGesture.tillFactor,
+    tileFactor: raphaelPaintingConfig.gestureTillFactor,
   });
 
   /*
   JSX
   */
   return (
-    <a.group {...raphaelPaintingData.groupProps} rotation={rotateWithMouseMove}>
-      <UniversalFrame format={raphaelPaintingData.format} />
+    <a.group
+      {...raphaelPaintingConfig.groupProps}
+      rotation={rotateWithMouseMove}
+    >
+      <UniversalFrame format={raphaelPaintingConfig.format} />
       {/* <A11y role="image" description="Raphael. The School of Athens "> */}
       <UniversalCanvas
-        format={raphaelPaintingData.format}
-        image={raphaelPaintingData.texture}
+        format={raphaelPaintingConfig.format}
+        image={raphaelPaintingConfig.texture}
       />
-      {/* </A11y> */}
-      <TextSlide
-        groupProps={raphaelPaintingLeftText.groupProps}
-        fontSize={raphaelPaintingLeftText.fontSize}
-        textLinePl={raphaelPaintingLeftText.textLinePl}
-        textLineEn={raphaelPaintingLeftText.textLineEn}
-        textOrientation={raphaelPaintingLeftText.textOrientation}
-        textWidthFactor={raphaelPaintingLeftText.textWidthFactor}
-        // thisLetterSpacing={venusSideLeftText}
-        // thisWhiteSpace={venusSideLeftText}
-      />
+      <DreiText textConfig={raphaelPaintingLeftTextConfig} />
     </a.group>
   );
 };

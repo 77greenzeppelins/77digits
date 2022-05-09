@@ -22,8 +22,8 @@ const slideDelay = { enter: 400, leave: 200 };
 const slide1 = {
   headerPl: ['TY &', '77digits'],
   text1Pl:
-    'Skoro dotarłeś do tego punktu i czytasz te słowa, to znaczy, że coś nas łączy! Zakładam, iż cenimy sobie podobne rozwiązania estetyczne, a od dostępnych współcześnie technologi oczekujemy naprawdę dużo.',
-  text2Pl: 'Nasze spotkania musi przynieś efekt.',
+    'Skoro dotarłeś do tego punktu i czytasz te słowa, to znaczy, że coś nas łączy! Zakładam, iż cenimy sobie podobne rozwiązania estetyczne, a od dostępnych współcześnie technologi oczekujemy naprawdę wiele. Nasze spotkania musi przynieś spektakularny rezultat.',
+  text2Pl: 'Oto, co zrobimy:',
 
   headerEn: ['YOU &', '77digits'],
   text1En:

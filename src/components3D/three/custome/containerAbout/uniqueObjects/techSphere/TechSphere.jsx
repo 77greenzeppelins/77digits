@@ -4,7 +4,7 @@ import BasicUseMatcapMaterial from '../../../matcapMaterials/BasicUseMatcapTextu
 /*
 Basic Data
 */
-import { meshData, geometryData, materialData } from './techSphereData';
+import { meshData, geometryData } from './techSphereData';
 
 const TechSphere = () => {
   return (

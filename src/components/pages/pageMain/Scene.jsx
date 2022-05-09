@@ -6,7 +6,7 @@ import DraiPerspectiveCamera from '../../../components3D/drei/cameras/DraiPerspe
 /*
 3D Components - Fiber
 */
-import CanvasStateObserver from '../../../components3D/fiber/canvasStateObserver/CanvasStateObserver';
+// import CanvasStateObserver from '../../../components3D/fiber/canvasStateObserver/CanvasStateObserver';
 /*
 3D Components - main content
 */
@@ -18,13 +18,13 @@ import ContainerIntro from '../../../components3D/three/custome/containerIntro/C
 -------------------------------------------------------------------------
 */
 
-const Scene = ({ groupProps }) => {
+const Scene = React.memo(() => {
   /*
   JSX
   */
   return (
     <>
-      {/*-----Camera Control Section-------------------------------------- */}
+      {/*-----Camera Control Section-------------------------------- */}
       <DraiPerspectiveCamera />
 
       {/*-----Intro Container----------------------------------------*/}
@@ -37,9 +37,9 @@ const Scene = ({ groupProps }) => {
       <ContainerMenu />
 
       {/*-----Helpers------------------------------------------------*/}
-      <CanvasStateObserver />
+      {/* <CanvasStateObserver /> */}
     </>
   );
-};
+});
 
 export default Scene;

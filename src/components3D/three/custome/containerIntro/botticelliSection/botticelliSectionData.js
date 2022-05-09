@@ -20,7 +20,7 @@ const springConfig = {
   delay: 400,
 };
 
-const venusGestureConfiguration = {
+const venusGestureConfig = {
   rightDragLimitX: 0.25,
   leftDragLimitX: 0.25,
   rightDragLimitY: 1,
@@ -40,26 +40,30 @@ const venusPaintingData = {
   },
 };
 
-const venusSideLeftText = {
+const venusLeftSideTextConfig = {
   /*
   configuration for <TextSlide>
   */
-  groupProps: {
+  textProps: {
     name: 'groupForTheBirthOf77digits',
     rotation: [0, -Math.PI * 0.45, -Math.PI * 0.5],
-    position: [-0.44, 0, -0.07],
+    position: [-0.43, 0, -0.05],
   },
-  fontSize: { fontSmall: 0.02, fontMedium: 0.03, fontLarge: 0.03 },
+  text: [
+    '"Narodziny  77digits"...  Dziękuję Sandro za inspirację...',
+    '"The Birth of 77digits"... Thanks Sandro for inspiration...',
+  ],
+  fontSize: [0.03, 0.035, 0.033],
   textOrientation: 'vertical',
-  textWidthFactor: 10,
-  textLinePl: '"Narodziny  77digits"...  Dziękuję Sandro za inspirację...',
-  textLineEn: '"The Birth of 77digits"... Thanks Sandro for inspiration...',
+  maxWidthValue: 1.5,
+  letterSpacing: 0.1,
+  lineHeight: 1.5,
 };
 
 export {
   basicMoveConfig,
   springConfig,
   venusPaintingData,
-  venusSideLeftText,
-  venusGestureConfiguration,
+  venusLeftSideTextConfig,
+  venusGestureConfig,
 };

@@ -14,7 +14,6 @@ const TextVerse = React.forwardRef(
     {
       text,
       font,
-      fontColor,
       textProps,
       fontResponsiveness,
       whiteSpace,
@@ -22,13 +21,10 @@ const TextVerse = React.forwardRef(
       letterSpacing,
       lineHeight,
       strokeWidth,
+      strokeColor,
       //
       maxWidth,
       anchorX,
-      //
-      // materialProps,
-      // thisMaterial,
-      // derivedMaterialPropsColor,
     },
     ref
   ) => {
@@ -54,9 +50,8 @@ const TextVerse = React.forwardRef(
         value of "strokeWidth" might be "0.0005" and font is more "fit" 
         */
         strokeWidth={strokeWidth || 0}
-        strokeColor={0x000000}
+        strokeColor={strokeColor || 0x000000}
       >
-        <meshBasicMaterial color={fontColor || 0xffffff} />
         {text}
       </Text>
     );

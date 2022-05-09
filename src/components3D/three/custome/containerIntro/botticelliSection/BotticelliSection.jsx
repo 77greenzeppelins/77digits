@@ -9,7 +9,7 @@ Components
 */
 import UniversalFrame from '../../matcapFrames/UniversalFrame';
 import UniversalCanvas from '../../matcapFrames/UniversalCanvas';
-import TextSlide from '../../textSlides/textSlide/TextSlide';
+import DreiText from '../../../../drei/text/dreiText/DreiText';
 import CustomMeshWithMatcap from '../../_meshesWithMatcap/CustomMeshWithMatcap';
 import LogoGeometry from '../../extrudedObjects/logo/LogoGeometry';
 /*
@@ -29,8 +29,8 @@ import {
   springConfig,
   basicMoveConfig,
   venusPaintingData,
-  venusSideLeftText,
-  venusGestureConfiguration,
+  venusLeftSideTextConfig,
+  venusGestureConfig,
 } from './botticelliSectionData';
 
 /*
@@ -66,14 +66,14 @@ const BotticelliSection = ({ groupProps }) => {
       /*
       set behaviour along x-axis i.e. should frame lean to top or to bottom or mix top & bottom;
       */
-      rightDragLimitX: venusGestureConfiguration.rightDragLimitX,
-      leftDragLimitX: venusGestureConfiguration.leftDragLimitX,
+      rightDragLimitX: venusGestureConfig.rightDragLimitX,
+      leftDragLimitX: venusGestureConfig.leftDragLimitX,
 
       /*
       set behaviour along y-axis i.e. should frame lean to left or to right or mix left & right;
       */
-      rightDragLimitY: venusGestureConfiguration.rightDragLimitY,
-      leftDragLimitY: venusGestureConfiguration.leftDragLimitY,
+      rightDragLimitY: venusGestureConfig.rightDragLimitY,
+      leftDragLimitY: venusGestureConfig.leftDragLimitY,
     }
   );
   /*
@@ -124,16 +124,7 @@ const BotticelliSection = ({ groupProps }) => {
           </CustomMeshWithMatcap>
 
           {/*----------Funny Text Thanks for Sandro---------------*/}
-          <TextSlide
-            groupProps={venusSideLeftText.groupProps}
-            fontSize={venusSideLeftText.fontSize}
-            textLinePl={venusSideLeftText.textLinePl}
-            textLineEn={venusSideLeftText.textLineEn}
-            textOrientation={venusSideLeftText.textOrientation}
-            textWidthFactor={venusSideLeftText.textWidthFactor}
-            // thisLetterSpacing={venusSideLeftText}
-            // thisWhiteSpace={venusSideLeftText}
-          />
+          <DreiText textConfig={venusLeftSideTextConfig} />
         </a.group>
       </a.group>
     </a.group>

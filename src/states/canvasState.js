@@ -59,6 +59,8 @@ const canvasState = proxy({
   idea: when user scrolls/drags to the end, it changes to "true" within <IntroWheelGesture> & <IntroDragGesture> and:
   (1) scrolls/drags gestures are disabled
   (2) <EndButtons> comes into the scene. i.e. goes on z-axis from fog(-2) 
+  (3) <Header> / inline style: display: 'none';
+  is set to "false" again in <ContainerIntro2DStaff> / <ResetButton>
   */
   endOfContainerIntro: false,
   /*

@@ -3,7 +3,8 @@ import React from 'react';
 /*
 Components
 */
-import TextSlideFromArray from '../../textSlides/textSlideFromArray/TextSlideFromArray';
+// import TextSlideFromArray from '../../textSlides/textSlideFromArray/TextSlideFromArray';
+import DreiText from '../../../../drei/text/dreiText/DreiText';
 /*
 Hook Staff
 */
@@ -27,64 +28,13 @@ const TextSection = () => {
   */
   return (
     <>
-      {slides.map((slide, index) => {
-        /*
-        JSX
-        */
-        return (
-          <TextSlideFromArray
-            key={slide.groupProps.name}
-            groupProps={slide.groupProps}
-            /*
-            Section Pl
-            */
-            textLinesPl={slide.textLinesPl}
-            textPropsPl={
-              /*
-              How logic of "textProps" works?
-              First check if "file with data" has "textProps"; if not distinguished between two options, depending on mobile width...
-              */
-              slide.textPropsPl
-                ? slide.textPropsPl
-                : windowSize.width < 600
-                ? slide.mobilePositionPl
-                : slide.desktopPositionPl
-            }
-            fontPl={slide.fontPl}
-            fontSizePl={slide.fontSizePl}
-            letterSpacingPl={slide.letterSpacingPl}
-            // textAlignPl={slide.textAlignPl}
-            maxWidthFactorPl={
-              windowSize.width < 600
-                ? slide.maxWidthFactorMobilePl
-                : slide.maxWidthFactorDesktopPl
-            }
-            whiteSpacePl={slide.whiteSpacePl}
-            /*
-            Section En
-            */
-            textLinesEn={slide.textLinesEn}
-            textPropsEn={
-              /*
-              How logic of "textProps" works?
-              First check if "file with data" has "textProps"; if not distinguished between two options, depending on mobile width...
-              */
-              slide.textPropsEn
-                ? slide.textPropsEn
-                : windowSize.width < 600
-                ? slide.mobilePositionEn
-                : slide.desktopPositionEn
-            }
-            //_____
-            // textProps={slide.textProps}
-            fontEn={slide.fontEn}
-            fontSizeEn={slide.fontSizeEn}
-            letterSpacingEn={slide.letterSpacingEn}
-            // textAlignEn={slide.textAlignEn}
-            // textWidthFactorEn={slide.textWidthFactorEn}
-          />
-        );
-      })}
+      {slides.map(slide => (
+        <group key={slide.id} {...slide.groupProps}>
+          {slide.words.map((word, index) => (
+            <DreiText key={index} textConfig={word} />
+          ))}
+        </group>
+      ))}
     </>
   );
 };

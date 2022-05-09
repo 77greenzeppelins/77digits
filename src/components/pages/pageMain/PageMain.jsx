@@ -31,15 +31,14 @@ const PageMain = () => {
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
- Fog's colos setter
- */
+  Fog & background color setter
+  */
   const setCanvasColors = () => {
     switch (canvasGlobalState.currentContainer) {
       case 'introContainer':
         return backgroundColors.containerIntro;
       case 'menuContainer':
         return backgroundColors.linen;
-
       case 'aboutContainer':
         return backgroundColors.containerAbout;
       default:
@@ -94,6 +93,7 @@ const PageMain = () => {
             )} */}
             <fog attach="fog" args={[setCanvasColors(), 2, 3]} />
 
+            {/*-----S C E N E -----------------------------------------*/}
             <Scene />
           </Canvas>
         </div>

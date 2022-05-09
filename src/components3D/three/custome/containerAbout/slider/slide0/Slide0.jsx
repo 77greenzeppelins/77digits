@@ -111,7 +111,7 @@ const Slide0 = ({
                 : slide0Box1Layout.desktop.position,
           }}
           /*
-          "spinningBoxConfig" is an array with configObjects as items; using map() we get 4 <SpinningBoxSide>s
+          "spinningBoxConfig" is an array with 4 configObjects as items; using map() we get 4 <SpinningBoxSide>s
           */
           spinningBoxConfig={slide0Box1Data}
         />

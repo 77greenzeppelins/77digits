@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 // import { useThree } from '@react-three/fiber';
 import { useSpring, config } from '@react-spring/three';
 import { useGesture } from '@use-gesture/react';
@@ -19,14 +19,10 @@ import {
 */
 const IntroWheelGesture = () => {
   /*
-  ...
+  References
   */
-  // const positionZ = useRef();
-
-  /*
-  State
-  */
-  // const [counter, setCounter] = useState(0);
+  const gestureType = useRef();
+  const endOfWheeling = useRef(false);
   /*
   Global States for SpringValues;
   canvasState = { isCanvasScrollableContainerScrollable: false, wheelBounds: { top: 0, bottom: 3550 }, dragBounds: { top: -3350, bottom:0 }, introContainerWheelDragBounds: {top: 0, bottom: 3550}}
@@ -40,24 +36,32 @@ const IntroWheelGesture = () => {
     wheeledPositionZ: 0,
     config: config.molasses,
     /*
-    Works...but there is still some "tick" in weeling
+    "onStart()"; works...but there is still some "tick" in weeling
     */
-    // onRest: () => {
-    //   if (positionZ.current === onWheelData.bottom) {
+    onStart: () => {
+      // if (positionZ.current === onWheelData.bottom) {
+      //   canvasState.endOfContainerIntro = true;
+      //   // console.log('onRest / positionZ.current:', positionZ.current);
+      // }
+      if (gestureType.current === 'wheeling') {
+        canvasState.introContainerEventType = 'wheeling';
+      }
+    },
+    // onChange: () => {
+    //   if (endOfWheeling.current === true) {
     //     canvasState.endOfContainerIntro = true;
-    //     // console.log('onRest / positionZ.current:', positionZ.current);
     //   }
     // },
   }));
 
   const onWheelStartHandler = useCallback(
-    ({ wheeling }) => {
+    ({ wheeling, offset: [, offsetY] }) => {
       /*
-      this operation sets two global state properties that are crucial in <ContainerIntroContent> as they determines what was the very first users's gesture; the same operation is in <IntroDragGesture>
-      I've been testing various "state" mechanism: <i> bare "let" before function; <2> useRef, <3> useState; only global state solve my problem...
+      this callback sets 
        */
       if (wheeling && canvasGlobalState.introContainerEventType === 'none') {
-        canvasState.introContainerEventType = 'wheeling';
+        // console.log('is wheeling:', wheeling);
+        gestureType.current = 'wheeling';
       }
     },
     [canvasGlobalState.introContainerEventType]
@@ -66,7 +70,7 @@ const IntroWheelGesture = () => {
   Main Handler Section
   */
   const mainWheelHandler = useCallback(
-    ({ offset: [, offsetY], down }) => {
+    ({ offset: [, offsetY] }) => {
       /*
       Spring Section;
       */
@@ -81,28 +85,14 @@ const IntroWheelGesture = () => {
   Additional Handler for last wheel 
   */
   const onWheelEndHandler = useCallback(
-    ({ offset: [, offsetY], down }) => {
+    ({ offset: [, offsetY], active }) => {
       /*
       What should happen if user wheels to the end?
       */
-      if (offsetY === onWheelData.bottom && !down) {
+      if (offsetY === onWheelData.bottom && !active) {
+        endOfWheeling.current = true;
         canvasState.endOfContainerIntro = true;
-        // positionZ.current = offsetY++;
-        // console.log('onWheelEndHandler / offsetY:', offsetY);
-        // console.log(
-        //   'onWheelEndHandler / positionZ.current:',
-        //   positionZ.current
-        // );
       }
-
-      // if (!down) {
-      //   positionZ.current = offsetY++;
-      //   console.log('onWheelEndHandler / offsetY:', offsetY);
-      //   console.log(
-      //     'onWheelEndHandler / positionZ.current:',
-      //     positionZ.current
-      //   );
-      // }
     },
     [
       // canvasGlobalState.introContainerWheelDragBounds.bottom

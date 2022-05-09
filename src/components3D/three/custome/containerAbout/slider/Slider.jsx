@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 /*
 Components
 */
@@ -12,19 +12,22 @@ const Slider = ({
   rotateStepByStep,
   gesturesForSidesRotations,
   gesturesForSidesRotationsIndicator,
-  arrowPromptGroupRotation,
 }) => {
+  const slider = useRef();
+
+  useEffect(() => {
+    console.log('slider.current:', slider.current);
+  }, []);
   /*
   JSX
   */
   return (
-    <group scale={[1, 1, 1]} name="groupForSlider">
+    <group ref={slider} scale={[1, 1, 1]} name="groupForSlider">
       <Slide0
         slideId={0}
         rotateStepByStep={rotateStepByStep}
         gesturesForSidesRotations={gesturesForSidesRotations}
         gesturesForSidesRotationsIndicator={gesturesForSidesRotationsIndicator}
-        arrowPromptGroupRotation={arrowPromptGroupRotation}
       />
       <Slide1 slideId={1} />
 

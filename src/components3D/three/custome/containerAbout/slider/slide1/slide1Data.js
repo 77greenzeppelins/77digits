@@ -1,27 +1,11 @@
-/*
- Basic Data
- */
-import { globalPositionData } from '../../../../../../data/globalData';
-/*
-----------------------------------------------------------------------------
-*/
-
-const interactivePanelData = {
-  position: [
-    0,
-    0,
-    /*
-    to cover the whole screen, this plane should be positioned very close to camera; value 0.9 makes it "invisible"; for test purpose smaller values should be used;
-    */
-    globalPositionData.aboutContainerCameraPosition[2] * 0.89,
+const textConfig = {
+  font: 'garamontt', //means: jost
+  text: [
+    "I want to take-off... Let's call!",
+    'Mam ochotę odlecieć... Dzwonię!',
   ],
-  planeGeometryArgs: [0.3, 0.3],
-  numberOfSlides: 2,
+  fontSize: [0.01, 0.02, 0.06], //mobileSmall / mobile / tabletAndDesktop
+  // maxWidthValue: 0.2, //fixed value of maxWidth
+  maxWidth: [0.1, 0.2, 0.3], //responsive value of maxWidth
 };
-
-const slide1Content = {
-  slidePart_1: { header: 'Kimkolwiek jesteś', mainText: '' },
-  slidePart_2: { header: '', mainText: '' },
-};
-
-export { interactivePanelData, slide1Content };
+export { textConfig };

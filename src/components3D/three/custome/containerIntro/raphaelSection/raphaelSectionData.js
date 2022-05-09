@@ -15,68 +15,61 @@ const raphaelSectionSpringConfig = {
 
 const raphaelSectionGesturesConfig = {
   /*
-    props for "DragRotateReturn"
-    */
+  props for "DragRotateReturn"
+  */
   rotationX: -Math.PI * 0.18,
   rightDragLimitX: -0.15,
   leftDragLimitX: -0.15,
   rightDragLimitY: 1,
   leftDragLimitY: -1,
-  tileFactor: 0.2,
+  // tileFactor: 0.2,
 };
-// const answerSectionGesturesConfig{
 
-// }
-
-const raphaelPaintingData = {
+const raphaelPaintingConfig = {
   /*
   Basic data for <UniversalFrame> & <UniversalCanvas>
   */
   texture: raphaelPainting,
   format: 'portrait',
   groupProps: { position: [0, -0.15, -0.05] },
-};
-
-const raphaelPaintingGesture = {
   /*
-  Data for "BasicMove" 
+  Basic data for "BasicMove.js"
   */
-  tillFactor: 0.15,
+  gestureTillFactor: 0.15,
 };
 
-const raphaelPaintingLeftText = {
+const raphaelPaintingLeftTextConfig = {
   /*
   configuration for <TextSlide>
   */
-  groupProps: {
-    name: 'groupForTheBirthOf77digits',
+  textProps: {
+    name: 'groupForRaphaelPaintingLeftText',
     rotation: [0, -Math.PI * 0.45, -Math.PI * 0.5],
     position: [-0.32, 0, -0.07],
   },
-  fontSize: { fontSmall: 0.02, fontMiddle: 0.03, fontLarge: 0.03 },
-  textOrientation: 'vertical',
-  textWidthFactor: 10,
-  textLinePl: 'Drogi Platonie i Arystotelesie! Liczę na waszą wyrozumiałość...',
-  textLineEn: 'Dear Plato and Aristotles! I count on your understanding...',
+  text: [
+    'Dear Plato and Aristotles! I count on your understanding...',
+    'Drogi Platonie i Arystotelesie! Liczę na waszą wyrozumiałość...',
+  ],
+  fontSize: [0.02, 0.03, 0.03],
+  lineHeight: 1.5,
+  maxWidthValue: 0.7,
 };
 
-const philosophersAnswers = {
-  groupProps: { position: [0, 0.15, -0.05] },
-};
-const philosophersAnswersGesture = {
-  /*
-  Data for "BasicMove" 
-  */
-  tillFactor: 0.29,
+const philosophersAnswersConfig = {
+  groupProps: {
+    position: [0, 0.4, 0.25],
+  },
+  tillFactor: 0.2,
 };
 
 /*
 Platon Answer
 */
-
 const PlatonAnswerGroup = {
   groupProps: {
-    position: [-0.199, 0.3, 0.14],
+    position: [-0.199, 0, 0],
+    rotation: [0.2 * Math.PI, 0, 0],
   },
 };
 
@@ -84,38 +77,32 @@ const PlatoAnswerFrame = {
   format: 'portrait',
   groupProps: {
     scale: [0.4, 0.4, 0.4],
-    rotation: [Math.PI * 0.2, 0, Math.PI * 0.5],
-    position: [0, -0.01, 0.05],
+    rotation: [0, 0, Math.PI * 0.5],
   },
 };
 
-const PlatoAnswerText = {
+const PlatoAnswerTextConfig = {
   /*
-  configuration for <TextSlide>
+  configuration for <DreiText>
   */
-  groupProps: {
-    name: 'groupForAristotlesAnswerText',
-    rotation: [Math.PI * 0.2, 0, 0],
-    position: [0, -0.01, 0.05],
+  textProps: {
+    name: 'DraiTextForPlatoAnswerText',
   },
-  /*
-  "textProps" => no need to specify it as "textWidthFactor" creates as many lines as words in "textLinesPl" / "textLinesEn"
-  */
-  fontSize: { fontSmall: 0.03, fontMiddle: 0.035, fontLarge: 0.04 },
+  text: [
+    "I want to take-off... Let's call!",
+    'Mam ochotę odlecieć... Dzwonię!',
+  ],
+  fontSize: [0.03, 0.035, 0.04],
+  lineHeight: 1.5,
   textAlign: 'center',
-  textLinePl: 'Mam ochotę odlecieć... Dzwonię!',
-  textLineEn: "Let's take-off",
-  /*
-  low factor means narrow width
-  */
-  textWidthFactor: 50,
+  maxWidthValue: 0.3, //large factor means narrow width
 };
 
 const PlatoCone = {
   args: [0.009, 0.19, 16],
   meshProps: {
-    rotation: [1.1 * Math.PI, 0, 0],
-    position: [0.1, -0.198, -0.075],
+    rotation: [Math.PI, 0, 0],
+    position: [0.1, -0.22, 0],
   },
 };
 
@@ -125,44 +112,38 @@ Aristotles Answer
 
 const AristotlesAnswerGroup = {
   groupProps: {
-    position: [0.199, 0.3, 0.14],
+    position: [0.199, 0, 0],
+    rotation: [0.2 * Math.PI, 0, 0],
   },
 };
 
 const AristotlesAnswer = {
   format: 'portrait',
   groupProps: {
-    position: [0, -0.01, 0.05],
     scale: [0.4, 0.4, 0.4],
-    rotation: [Math.PI * 0.15, 0, Math.PI * 0.5],
+    rotation: [0, 0, Math.PI * 0.5],
   },
 };
-const AristotlesAnswerText = {
+
+const AristotlesTextConfig = {
   /*
-  configuration for <TextSlide>
+  configuration for <DreiText>
   */
-  groupProps: {
-    name: 'groupForAristotlesAnswerText',
-    position: [0, -0.01, 0.05],
-    rotation: [Math.PI * 0.15, 0, Math.PI * 0.5],
+  textProps: {
+    name: 'DraiTextForAristotlesAnswerText',
   },
-  /*
-  "textProps" => no need to specify it as "textWidthFactor" creates as many lines as words in "textLinesPl" / "textLinesEn"
-  */
-  fontSize: { fontSmall: 0.05, fontMiddle: 0.06, fontLarge: 0.065 },
+  text: ["I'd rather write... Briefly...", 'Ja raczej  napiszę! Zwięźle...'],
+  fontSize: [0.03, 0.035, 0.04],
+  lineHeight: 1.5,
   textAlign: 'center',
-  textLinePl: 'Mam inne plany...',
-  textLineEn: '...  ...  ....',
-  /*
-  low factor means narrow width
-  */
-  textWidthFactor: 50,
+  maxWidthValue: 0.3, //large factor means narrow width
 };
+
 const AristotlesCone = {
   args: [0.009, 0.19, 16],
   meshProps: {
-    rotation: [1.1 * Math.PI, 0, 0],
-    position: [-0.1, -0.198, -0.075],
+    rotation: [Math.PI, 0, 0],
+    position: [-0.1, -0.22, 0],
   },
 };
 
@@ -189,20 +170,18 @@ const buttonX = {
 export {
   raphaelSectionSpringConfig,
   raphaelSectionGesturesConfig,
-  raphaelPaintingData,
-  raphaelPaintingGesture,
-  raphaelPaintingLeftText,
-  philosophersAnswers,
-  philosophersAnswersGesture,
+  raphaelPaintingConfig,
+  raphaelPaintingLeftTextConfig,
+  philosophersAnswersConfig,
   //_____for Plato
+  PlatoAnswerTextConfig,
   PlatonAnswerGroup,
   PlatoAnswerFrame,
-  PlatoAnswerText,
   PlatoCone,
   //_____for Aristotles
   AristotlesAnswerGroup,
   AristotlesAnswer,
-  AristotlesAnswerText,
+  AristotlesTextConfig,
   AristotlesCone,
   //___Reset Button
   buttonX,
