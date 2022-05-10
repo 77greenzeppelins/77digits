@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text } from '@react-three/drei';
 /*
 Global State Staff
@@ -10,6 +10,10 @@ Hooks
 */
 import useWindowSize from '../../../../hooks/useWindowSize';
 /*
+Handler
+*/
+import defineTextProps from './handlerDefineTextProps';
+/*
 Basic Resources
 */
 import jost from '../../../../assets/fonts/sansSerif/Jost-400-Book.ttf';
@@ -20,9 +24,9 @@ import garamont from '../../../../assets/fonts/sansSerif/EBGaramond-Regular.woff
 */
 const DreiText = React.memo(({ textConfig }) => {
   /*
-    Global State Section
-    canvasState={languageVersion,...}
-    */
+  Global State Section
+  canvasState={languageVersion,...}
+  */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
     Hook Section
@@ -33,38 +37,8 @@ const DreiText = React.memo(({ textConfig }) => {
   */
   // useEffect(() => {
   //   // console.log('DreiText / typeof textConfig ', typeof textConfig);
-  //   console.log('DreiText / textConfig ', textConfig.text[0]);
+  //   console.log('DreiText / textConfig ', textConfig);
   // }, [textConfig]);
-  const prepareTextProps = () => {
-    /*
-    if (textProps for Pl version !== textProps for En version )
-    */
-    if (textConfig.textProps.length === 2) {
-      // console.log('textConfig.textProps is an array');
-      if (canvasGlobalState.languageVersion) {
-        return { ...textConfig.textProps[1] };
-      } else {
-        return { ...textConfig.textProps[0] };
-      }
-    } else {
-      // console.log('textConfig.textProps is an object');
-      return { ...textConfig.textProps };
-    }
-  };
-
-  // const prepareLineHeight = () => {
-  //   if (textConfig.lineHeight.length === 2) {
-  //     // console.log('textConfig.textProps is an array');
-  //     if (windowSize.height > 800) {
-  //       return { ...textConfig.lineHeight[0] }; //mobile
-  //     } else {
-  //       return { ...textConfig.lineHeight[1] }; //no-Mobile
-  //     }
-  //   } else {
-  //     // console.log('textConfig.textProps is an object');
-  //     return { ...textConfig.lineHeight };
-  //   }
-  // };
 
   /*
   JSX
@@ -74,9 +48,11 @@ const DreiText = React.memo(({ textConfig }) => {
       /*
       "textProps" encompasses basic "3D Object" properties like "position", "scale" etc;
       */
-      // position={[-0.5, 0, 0]}
-      // {...textConfig.textProps}
-      {...prepareTextProps()}
+      {...defineTextProps(
+        textConfig.textProps,
+        canvasGlobalState.languageVersion,
+        windowSize.width < 600
+      )}
       font={textConfig.font === 'garamont' ? garamont : jost}
       fontSize={
         windowSize.width < 300
@@ -120,3 +96,20 @@ const DreiText = React.memo(({ textConfig }) => {
 });
 
 export default DreiText;
+
+// const prepareTextProps = () => {
+/*
+    if (textProps for Pl version !== textProps for En version )
+    */
+//   if (textConfig.textProps.length === 2) {
+//     // console.log('textConfig.textProps is an array');
+//     if (canvasGlobalState.languageVersion) {
+//       return { ...textConfig.textProps[1] };
+//     } else {
+//       return { ...textConfig.textProps[0] };
+//     }
+//   } else {
+//     // console.log('textConfig.textProps is an object');
+//     return { ...textConfig.textProps };
+//   }
+// };

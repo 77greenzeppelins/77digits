@@ -59,7 +59,6 @@ const ContainerIntro = () => {
       {/*-----Text Slides------------------------------------------*/}
       <TextSection />
       <Suspense fallback={null}>
-        {/* <TestingPlane /> */}
         {/*-----77-------------------------------------------------*/}
         <BotticelliSection />
         {/*-----EndButtons-----------------------------------------*/}

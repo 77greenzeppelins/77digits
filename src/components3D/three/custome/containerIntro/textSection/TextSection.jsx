@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 // import { useThree } from '@react-three/fiber';
 /*
 Components
@@ -6,9 +6,14 @@ Components
 // import TextSlideFromArray from '../../textSlides/textSlideFromArray/TextSlideFromArray';
 import DreiText from '../../../../drei/text/dreiText/DreiText';
 /*
+Global State Staff
+*/
+// import { canvasState } from '../../../../../states/canvasState';
+// import { useSnapshot } from 'valtio';
+/*
 Hook Staff
 */
-import useWindowSize from '../../../../../hooks/useWindowSize';
+// import useWindowSize from '../../../../../hooks/useWindowSize';
 /*
 Basic Data
 */
@@ -16,23 +21,30 @@ import slides from './textSectionData';
 
 const TextSection = () => {
   /*
-  Hook size
+  Reference
   */
-  const windowSize = useWindowSize();
+  const group = useRef();
   /*
-  useThree Section
+  Global State Section
+  canvasState={languageVersion,...}
   */
-  // const { size } = useThree();
+  // const canvasGlobalState = useSnapshot(canvasState);
+
   /*
   JSX
   */
   return (
     <>
       {slides.map(slide => (
-        <group key={slide.id} {...slide.groupProps}>
-          {slide.words.map((word, index) => (
-            <DreiText key={index} textConfig={word} />
-          ))}
+        <group
+          ref={group}
+          name="groupForFrazeInTextSection"
+          key={slide.id}
+          {...slide.groupProps}
+        >
+          {slide.words.map((word, index) => {
+            return <DreiText key={index} textConfig={word} />;
+          })}
         </group>
       ))}
     </>
