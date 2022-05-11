@@ -64,11 +64,8 @@ const sliderEngineSpring = {
 it actually define <SpinningBox>'s scale & position depending on device size; i.e where it stand on "screen";
 */
 const slide0Box1Layout = {
-  mobile: { scale: [0.32, 0.32, 0.32], position: [0, 0.0, 0] },
-  desktop: { scale: [0.33, 0.33, 0.33], position: [0, 0.0, 0] },
-  //____before 01.05
-  // mobile: { scale: [0.32, 0.32, 0.32], position: [0, 0.03, 0] },
-  // desktop: { scale: [0.35, 0.35, 0.35], position: [0, 0.02, 0] },
+  mobile: { scale: [0.32, 0.32, 0.32] },
+  desktop: { scale: [0.33, 0.33, 0.33] },
 };
 /*
 props for <SpinningBoxIndicator>'s <CustomMeshWithMatcap> & <TextGeometryFromFont>; i.e. for "extruded numbers"
@@ -77,9 +74,7 @@ const indicatorData = {
   /*
   container for all numbers
   */
-  // mainGroupProps: { position: [-0.14, 0.29, 0], scale: [0.02, 0.02, 0.02] },
   mainGroupProps: { position: [-0.066, -0.31, 0], scale: [0.02, 0.02, 0.02] },
-
   /*
   array of "configObj items"; prepered for .map();
   */

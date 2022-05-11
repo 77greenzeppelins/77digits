@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 /*
 Components
 */
@@ -15,9 +15,9 @@ const Slider = ({
 }) => {
   const slider = useRef();
 
-  useEffect(() => {
-    console.log('slider.current:', slider.current);
-  }, []);
+  // useEffect(() => {
+  //   console.log('slider.current:', slider.current);
+  // }, []);
   /*
   JSX
   */

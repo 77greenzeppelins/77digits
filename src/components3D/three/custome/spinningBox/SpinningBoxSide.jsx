@@ -1,10 +1,5 @@
 import React from 'react';
 /*
-Global State Staff
-*/
-// import { useSnapshot } from 'valtio';
-// import { canvasState } from '../../../../states/canvasState';
-/*
 Components
 */
 import UniversalFrame from '../matcapFrames/UniversalFrame';
@@ -39,37 +34,11 @@ const SpinningBoxSide = (
   }
 ) => {
   /*
-  Global state section
-  */
-  // const canvasGlobalState = useSnapshot(canvasState);
-  /*
-  SpringSection
-  */
-  // const { springValue } = useSpring({
-  //   from: { springValue: sideProps.rotation },
-  //   to: {
-  //     springValue: [
-  //       sideProps.rotation[0],
-  //       canvasGlobalState.isClientSideVisible === true
-  //         ? sideProps.rotation[1]
-  //         : sideProps.rotation[1] + Math.PI,
-
-  //       sideProps.rotation[2],
-  //     ],
-  //   },
-  //   config: springConfig.config,
-  //   delay: springConfig.animationDelay,
-  // });
-
-  // useEffect(() => {
-  //   console.log('animatedRotation', animatedRotation);
-  // }, [animatedRotation]);
-  /*
   JSX
   */
   return (
     <a.group
-      name="GroupForSpinningBoxSides"
+      name="GroupForSpinningBoxSide"
       position={sideProps.position}
       rotation={animatedRotation}
     >

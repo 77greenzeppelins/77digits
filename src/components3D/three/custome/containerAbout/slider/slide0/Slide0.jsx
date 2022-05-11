@@ -23,10 +23,10 @@ Basic Data
 import {
   minForTablet,
   sliderEngineSpring,
-  slide0Box1Layout,
-  slide0Box1Data,
-  indicatorData,
-} from './slide0Data';
+  spinningBoxLayout,
+  spinningBoxConfig,
+  indicatorCongif,
+} from './slide0DataWork';
 
 /*
 ----------------------------------------------------------------------
@@ -84,7 +84,7 @@ const Slide0 = ({
       <a.group name="GroupForSlide_0" position-y={positionY}>
         {/*-----SpinningBoxSideIndicator Section--------------------------*/}
         <SpinningBoxSideIndicator
-          indicatorData={indicatorData}
+          indicatorCongif={indicatorCongif}
           /*
           "scaleValue" name is significantly shorten word then "gesturesForSidesRotationsIndicator"; it matters within <SpinningBoxSideIndicator>
           */
@@ -103,17 +103,13 @@ const Slide0 = ({
             */
             scale:
               windowSize.width < minForTablet
-                ? slide0Box1Layout.mobile.scale
-                : slide0Box1Layout.desktop.scale,
-            position:
-              windowSize.width < minForTablet
-                ? slide0Box1Layout.mobile.position
-                : slide0Box1Layout.desktop.position,
+                ? spinningBoxLayout.mobile.scale
+                : spinningBoxLayout.desktop.scale,
           }}
           /*
           "spinningBoxConfig" is an array with 4 configObjects as items; using map() we get 4 <SpinningBoxSide>s
           */
-          spinningBoxConfig={slide0Box1Data}
+          spinningBoxConfig={spinningBoxConfig}
         />
       </a.group>
     </group>

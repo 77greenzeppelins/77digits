@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Text } from '@react-three/drei';
 /*
 Global State Staff
@@ -29,16 +29,9 @@ const DreiText = React.memo(({ textConfig }) => {
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
-    Hook Section
-    */
-  const windowSize = useWindowSize();
-  /*
-  ...
+  Hook Section
   */
-  // useEffect(() => {
-  //   // console.log('DreiText / typeof textConfig ', typeof textConfig);
-  //   console.log('DreiText / textConfig ', textConfig);
-  // }, [textConfig]);
+  const windowSize = useWindowSize();
 
   /*
   JSX
@@ -79,7 +72,7 @@ const DreiText = React.memo(({ textConfig }) => {
       }
       textAlign={textConfig.textAlign || 'left'} //"justify", "right", "center"
       overflowWrap={textConfig.overflowWrap || 'normal'} // "break-word"
-      direction="rtr" //"ltr" or "rtl"
+      // direction="rtr" //"ltr" or "rtl"
       // anchorY="95%" //'top', 'top-baseline', 'top-cap', 'top-ex', 'middle', 'bottom-baseline', or 'bottom'
       /*
       To experiment with font "micro-sizes"; useful in case of "jost"
@@ -96,20 +89,3 @@ const DreiText = React.memo(({ textConfig }) => {
 });
 
 export default DreiText;
-
-// const prepareTextProps = () => {
-/*
-    if (textProps for Pl version !== textProps for En version )
-    */
-//   if (textConfig.textProps.length === 2) {
-//     // console.log('textConfig.textProps is an array');
-//     if (canvasGlobalState.languageVersion) {
-//       return { ...textConfig.textProps[1] };
-//     } else {
-//       return { ...textConfig.textProps[0] };
-//     }
-//   } else {
-//     // console.log('textConfig.textProps is an object');
-//     return { ...textConfig.textProps };
-//   }
-// };

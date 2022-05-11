@@ -12,17 +12,17 @@ import { a } from '@react-spring/three';
 /*
 ----------------------------------------------------------------------------
 */
-const SpinningBoxSideIndicator = ({ indicatorData, springValue }) => {
+const SpinningBoxSideIndicator = ({ indicatorCongif, springValue }) => {
   /*
   JSX creator
   */
   const createJSX = () => {
-    if (!indicatorData) {
+    if (!indicatorCongif) {
       return;
     }
     return (
-      <group {...indicatorData.mainGroupProps}>
-        {indicatorData.glyphs.map(
+      <group {...indicatorCongif.mainGroupProps}>
+        {indicatorCongif.glyphs.map(
           ({ glyphGroupProps, fontExtrudeSettings, text }, index) => (
             <a.group
               key={text}

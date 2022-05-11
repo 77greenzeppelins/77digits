@@ -32,7 +32,6 @@ const SpinningBox = React.forwardRef(
       springValue from "ContainerAboutGesture.js"
       */
       rotateStepByStep,
-      // rotateSpinningBoxSide,
       gesturesForSidesRotations,
     },
     ref
