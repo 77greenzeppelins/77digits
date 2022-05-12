@@ -77,28 +77,6 @@ const SpinningBox = React.forwardRef(
             )
           )}
         </a.group>
-
-        {/*
-        Section of additional component; one for each side
-        */}
-        {/* {canvasGlobalState.currentContainer === 'aboutContainer' && (
-          <GesturePrompt
-            scena="caDragSpinningBox"
-            groupProps={{
-              position: gesturePromptsData.position,
-              // visible: gpVisibility,
-            }}
-          />
-        )} */}
-        {/* <mesh
-          // scale={xScale}
-          position={[0, -0.93, 0]}
-          visible={false}
-          // rotation={rotateStepByStep}
-        >
-          <boxGeometry args={[0.2, 0.2, 0.2]} />
-          <meshBasicMaterial color={[1, 0, 0]} />
-        </mesh> */}
       </a.group>
     );
   }

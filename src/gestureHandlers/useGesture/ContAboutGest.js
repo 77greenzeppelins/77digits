@@ -16,7 +16,7 @@ import { useGesture } from '@use-gesture/react';
 /*
 Basic Data
 */
-import { slide0Box1Data } from '../../components3D/three/custome/containerAbout/slider/slide0/slide0Data';
+import { spinningBoxConfig } from '../../components3D/three/custome/containerAbout/slider/slide0/slide0Data';
 const scaleFactor = 1.6;
 
 /*
@@ -57,10 +57,10 @@ const ContAboutGest = ({ axisLimitation }) => {
     api,
   ] = useSpring(() => ({
     rotateStepByStep: [0, 0, 0],
-    sideFrontRotation: [0, slide0Box1Data[0].sideProps.rotation[1], 0],
-    sideLeftRotation: [0, slide0Box1Data[1].sideProps.rotation[1], 0],
-    sideBackRotation: [0, slide0Box1Data[2].sideProps.rotation[1], 0],
-    sideRightRotation: [0, slide0Box1Data[3].sideProps.rotation[1], 0],
+    sideFrontRotation: [0, spinningBoxConfig[0].sideProps.rotation[1], 0],
+    sideLeftRotation: [0, spinningBoxConfig[1].sideProps.rotation[1], 0],
+    sideBackRotation: [0, spinningBoxConfig[2].sideProps.rotation[1], 0],
+    sideRightRotation: [0, spinningBoxConfig[3].sideProps.rotation[1], 0],
     number1: 1,
     number2: 1,
     number3: 1,
@@ -185,29 +185,29 @@ const ContAboutGest = ({ axisLimitation }) => {
         sideFrontRotation: [
           0,
           isClientSideVisible.current
-            ? slide0Box1Data[0].sideProps.rotation[1]
-            : slide0Box1Data[0].sideProps.rotation[1] + Math.PI,
+            ? spinningBoxConfig[0].sideProps.rotation[1]
+            : spinningBoxConfig[0].sideProps.rotation[1] + Math.PI,
           0,
         ],
         sideLeftRotation: [
           0,
           isClientSideVisible.current
-            ? slide0Box1Data[1].sideProps.rotation[1]
-            : slide0Box1Data[1].sideProps.rotation[1] + Math.PI,
+            ? spinningBoxConfig[1].sideProps.rotation[1]
+            : spinningBoxConfig[1].sideProps.rotation[1] + Math.PI,
           0,
         ],
         sideBackRotation: [
           0,
           isClientSideVisible.current
-            ? slide0Box1Data[2].sideProps.rotation[1]
-            : slide0Box1Data[2].sideProps.rotation[1] + Math.PI,
+            ? spinningBoxConfig[2].sideProps.rotation[1]
+            : spinningBoxConfig[2].sideProps.rotation[1] + Math.PI,
           0,
         ],
         sideRightRotation: [
           0,
           isClientSideVisible.current
-            ? slide0Box1Data[3].sideProps.rotation[1]
-            : slide0Box1Data[3].sideProps.rotation[1] + Math.PI,
+            ? spinningBoxConfig[3].sideProps.rotation[1]
+            : spinningBoxConfig[3].sideProps.rotation[1] + Math.PI,
           0,
         ],
         /*

@@ -3,12 +3,15 @@ import { Shape } from 'three';
 /*
 Basic Data
 */
-import { logoCoordinates, logoExtrudeSettings } from './logoData';
+import {
+  logoCoordinates,
+  logoExtrudeSettings,
+} from './logoExtrudedGeometryData';
 
 /*
 ---------------------------------------------------------------
 */
-const LogoGeometry = () => {
+const LogoExtrudedGeometry = () => {
   /*
   Shape creator; requires array of points
   */
@@ -19,4 +22,4 @@ const LogoGeometry = () => {
   return <extrudeGeometry args={[shape, logoExtrudeSettings]} />;
 };
 
-export default LogoGeometry;
+export default LogoExtrudedGeometry;

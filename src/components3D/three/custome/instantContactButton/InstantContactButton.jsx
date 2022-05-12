@@ -30,7 +30,7 @@ const InstantContactButton = React.forwardRef(
           image={
             /*
                 Why two conditions?
-                It works with one in <ContainerImitial> but in <ContainerMenu> some errors occures;
+                It works with one in <ContainerInitial> but in <ContainerMenu> some errors occures;
                 */
             canvasProps && canvasProps.buttonType === 'phone'
               ? mobileImage

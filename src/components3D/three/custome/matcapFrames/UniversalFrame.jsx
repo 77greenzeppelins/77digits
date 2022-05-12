@@ -1,9 +1,14 @@
-import React, { useRef, useMemo, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import * as THREE from 'three';
+/*
+Components
+*/
+import BasicUseMatcapTexture from '../matcapMaterials/BasicUseMatcapTexture';
+import MatcapMaterialInMemo from '../matcapMaterials/MatcapMaterialInMemo';
 /*
  useMatcapTexture Staff
  */
-import { useMatcapTexture } from '@react-three/drei';
+// import { useMatcapTexture } from '@react-three/drei';
 /*
 Basic Data
 This is a set of "configuration data" that allowes to configure either portrait-like frame or banner-like frame;
@@ -40,6 +45,9 @@ const [thisCorner, thisSideVertical, thisSideHorizontal] = [
   new THREE.Object3D(),
 ];
 
+/*
+---------------------------------------------------------------------------
+*/
 const UniversalFrame = React.memo(
   ({ groupProps, cylinderFi, sphereRadious, format }) => {
     /*
@@ -101,27 +109,11 @@ const UniversalFrame = React.memo(
         verticalBars = null;
         horizontalBars = null;
     }
-    /*
-    version_1: based on boolean props banner / postrait / column
-    */
-    /*
-    Final value of these consts depend on props passed from component that includes instance of <UF>...
-    */
-    // const cornersPositions = useMemo(() => {
-    //   return (portrait && portraitCorners) || (banner && bannerCorners);
-    // }, [portrait, banner]);
 
-    // const verticalBars = useMemo(() => {
-    //   return (portrait && portraitHeight) || (banner && bannerHeight);
-    // }, [portrait, banner]);
-
-    // const horizontalBars = useMemo(() => {
-    //   return (portrait && portraitWidth) || (banner && bannerWidth);
-    // }, [portrait, banner]);
     /*
-  Frame's layout creator;
-  using "InstanceMesh's tremplate" we position "atom-parts" of frame;
-  */
+    Frame's layout creator;
+    using "InstanceMesh's tremplate" we position "atom-parts" of frame;
+    */
     useLayoutEffect(() => {
       /*
      Set corners' position
@@ -163,28 +155,6 @@ const UniversalFrame = React.memo(
     }, [cornersPositions, horizontalBars, verticalBars]);
 
     /*
-  MatcapMaterial Section
-  Doesn't work...
-  There is an issue in "JSX section" I don't understand... 
-  I need to use at least one time this line of code: <meshMatcapMaterial matcap={matcapTexture}/> to use "matcapMaterial" in other cases i.e. some errors appears when I want to use only "matcapMaterial";
-  ...
-  that is why I need: "matcapTexture" & "matcapMaterial"
-  */
-
-    const [matcapTexture] = useMatcapTexture(
-      '434240_D3D3CF_898784_A4A49F', //silver-like
-      // '2A2A2A_DBDBDB_6A6A6A_949494', //grey, high-gloss, !
-      1024
-    );
-
-    const matcapMaterial = useMemo(() => {
-      const matcapMaterial = new THREE.MeshMatcapMaterial({
-        matcap: matcapTexture,
-      });
-      return matcapMaterial;
-    }, [matcapTexture]);
-
-    /*
     JSX
     Create group with  three InstancedMesh !
     */
@@ -193,17 +163,17 @@ const UniversalFrame = React.memo(
         <instancedMesh
           name="corners"
           ref={corners}
-          // args={[null, matcapMaterial, 4]}
-          args={[null, null, 4]}
+          args={[null, MatcapMaterialInMemo(), 4]}
         >
           <sphereGeometry args={[sphereRadious || 0.035, 16, 16]} />
-          <meshMatcapMaterial matcap={matcapTexture} />
+          {/* <meshMatcapMaterial matcap={matcapTexture} /> */}
+          {/* <BasicUseMatcapTexture textureIndex={1} /> */}
         </instancedMesh>
 
         <instancedMesh
           name="sidesHorizontal"
           ref={sidesHorizontal}
-          args={[null, matcapMaterial, 2]}
+          args={[null, MatcapMaterialInMemo(), 2]}
         >
           <cylinderGeometry
             args={[
@@ -218,7 +188,7 @@ const UniversalFrame = React.memo(
         <instancedMesh
           name="sidesVertical"
           ref={sidesVertical}
-          args={[null, matcapMaterial, 2]}
+          args={[null, MatcapMaterialInMemo(), 2]}
         >
           <cylinderGeometry
             args={[
@@ -273,3 +243,21 @@ openEnded — A Boolean indicating whether the ends of the cylinder are open or 
 thetaStart — Start angle for first segment, default = 0 (three o'clock position).
 thetaLength — The central angle, often called theta, of the circular sector. The default is 2*Pi, which makes for a complete cylinder.
 */
+
+/*
+    version_1: based on boolean props banner / postrait / column
+    */
+/*
+    Final value of these consts depend on props passed from component that includes instance of <UF>...
+    */
+// const cornersPositions = useMemo(() => {
+//   return (portrait && portraitCorners) || (banner && bannerCorners);
+// }, [portrait, banner]);
+
+// const verticalBars = useMemo(() => {
+//   return (portrait && portraitHeight) || (banner && bannerHeight);
+// }, [portrait, banner]);
+
+// const horizontalBars = useMemo(() => {
+//   return (portrait && portraitWidth) || (banner && bannerWidth);
+// }, [portrait, banner]);

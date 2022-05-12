@@ -9,6 +9,7 @@ import medicine from '../../../../../../assets/textures/containerAbout_Slide0_me
 assets for "77digits Section"
 */
 import family from '../../../../../../assets/textures/containerAbout_Slide1_family_3.webp';
+import blank from '../../../../../../assets/textures/containerAbout_Slide1_blank_verticalFormat_445_800..webp';
 /*
 Basic Imported Data
 */
@@ -16,37 +17,7 @@ import { springConfigs } from '../../../../../../data/reactSpring';
 /*
 Basic Local Data - fonts sizes, minForTablet
 */
-// const fontSizesLarge = { fontSmall: 0.07, fontMedium: 0.08, fontLarge: 0.09 };
-const fontSizesVeryLarge = {
-  fontSmall: 0.16,
-  fontMedium: 0.18,
-  fontLarge: 0.19,
-};
-const fontSizesMedium = {
-  fontSmall: 0.085,
-  fontMedium: 0.095,
-  fontLarge: 0.105,
-};
-const fontSizesSmall = { fontSmall: 0.05, fontMedium: 0.06, fontLarge: 0.07 };
-const fontSizesVerySmall = {
-  fontSmall: 0.04,
-  fontMedium: 0.05,
-  fontLarge: 0.06,
-};
-
 const minForTablet = 850;
-/*
-Basic Local Data - extrude configObj for <SpinningBoxIndicator>'s numbers
-*/
-const indicatorExtrudeSettings = {
-  size: 0.7,
-  height: 0.03,
-  bevelEnabled: true,
-  curveSegments: 2,
-  bevelThickness: 0.01,
-  bevelSize: 0.005,
-};
-const glyphsGapFactorX = 1.4;
 
 /*-------------------------------------------------------------------------*/
 /*
@@ -60,17 +31,19 @@ const sliderEngineSpring = {
   configDown: springConfigs.molasses,
 };
 /*
-<Slide0> Layout
-it actually define <SpinningBox>'s scale & position depending on device size; i.e where it stand on "screen";
-*/
-const slide0Box1Layout = {
-  mobile: { scale: [0.32, 0.32, 0.32] },
-  desktop: { scale: [0.33, 0.33, 0.33] },
-};
-/*
 props for <SpinningBoxIndicator>'s <CustomMeshWithMatcap> & <TextGeometryFromFont>; i.e. for "extruded numbers"
 */
-const indicatorData = {
+const indicatorExtrudeSettings = {
+  size: 0.7,
+  height: 0.03,
+  bevelEnabled: true,
+  curveSegments: 2,
+  bevelThickness: 0.01,
+  bevelSize: 0.005,
+};
+const glyphsGapFactorX = 1.4;
+
+const indicatorCongif = {
   /*
   container for all numbers
   */
@@ -120,37 +93,77 @@ const indicatorData = {
 };
 
 /*
+<Slide0> Layout
+it actually define <SpinningBox>'s scale & position depending on device size; i.e where it stand on "screen";
+*/
+
+const spinningBoxLayout = {
+  mobile: { scale: [0.32, 0.32, 0.32] },
+  desktop: { scale: [0.33, 0.33, 0.33] },
+};
+
+/*
 Set of props for <SpinningBoxSide>s and their childComponents: <UniversaleFrame> and two <SideLabel>s
 */
-const slide0Box1Data = [
+const frameConfig = {
+  format: 'verticalFormat',
+  cylinderFi: 0.015,
+  sphereRadious: 0.03,
+};
+/*
+Some Basic Data
+*/
+const mF = 0.25;
+const sF = 0.6;
+const xlFontHeader = [0.16, 0.18, 0.19];
+const mFontHeader = [0.16 * sF, 0.18 * sF, 0.19 * sF];
+const mFontParagraph = [0.16 * mF, 0.18 * mF, 0.19 * mF];
+
+const xlHeaderConfig = {
+  font: 'garamont',
+  fontSize: xlFontHeader,
+  letterSpacing: 0.1,
+  maxWidthValue: 0.5,
+  lineHeight: 1.2,
+};
+
+const mHeaderConfig = {
+  textProps: { position: [0, 0.4, 0.01] },
+  font: 'garamont',
+  fontSize: mFontHeader,
+  letterSpacing: 0.1,
+  maxWidthValue: 0.7,
+  lineHeight: 1.2,
+};
+const mParagraphConfig = {
+  font: 'jost',
+  fontSize: mFontParagraph,
+  letterSpacing: 0.14,
+  maxWidthValue: 0.6,
+  lineHeight: 1.3,
+  strokeWidth: 0.00001,
+};
+/*
+Main Staff
+*/
+const spinningBoxConfig = [
   /* -----Panel Front ---------------------------------------------*/
   {
+    /*
+    for <SpinningBoxSide>'s general layout
+    */
     sideProps: { position: [0, 0, 0.455], rotation: [0, 0, 0] },
-
+    /*
+    for <SpinningBoxSide>'s <UniversalFrame>
+    */
+    frameProps: {
+      groupProps: { name: 'groupForPanelFront' },
+      ...frameConfig,
+    },
+    /*
+    for <SpinningBoxSide>'s <SideLabel>
+    */
     labelProps: {
-      /*
-      Pl for <TextSlideFromArray>
-      */
-      textLinesPl: ['Jesteś', 'Ty'],
-      textPropsPl: [
-        { position: [0, 0.4, 0.01] },
-        { position: [0.15, 0.2, 0.01] },
-      ],
-      fontPl: ['garamont', 'garamont'],
-      fontSizePl: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
-      textAlignPl: ['left', 'left'],
-      /*
-      En for <TextSlideFromArray>
-      */
-      textLinesEn: ['Here', 'You are'],
-      textPropsEn: [
-        { position: [-0.1, 0.4, 0.01] },
-        { position: [-0.04, 0.25, 0.01] },
-      ],
-      fontEn: ['garamont', 'garamont'],
-      fontSizeEn: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
-      textAlignEn: ['left', 'left'],
-
       /*
       for label's <UniversalFrame> or <UniversalFrameWithoutMap>
       */
@@ -161,352 +174,325 @@ const slide0Box1Data = [
       /*
       in case we want some <UniqueObject> component
       */
-      // uniqueObjectName: 'unique3DText',
+      uniqueObjectName: 'frontUO',
+      /*
+      for  <DreiText>s
+      */
+      textConfigHeader: {
+        textProps: [
+          // PL: mobile / no-mobile
+          [{ position: [0, 0.25, 0.01] }, { position: [0, 0.34, 0.01] }],
+          // EN: mobile / no-mobile
+          [{ position: [0, 0.2, 0.01] }, { position: [0, 0.34, 0.01] }],
+        ],
+        text: ["Here you're", 'Jesteś Ty...'],
+        ...xlHeaderConfig,
+      },
     },
 
     labelPropsReverse: {
-      /*
-      Pl for <TextSlideFromArray>
-      */
-      textLinesPl: ['Jestem', 'Ja'],
-      textPropsPl: [
-        { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
-        { position: [0.15, 0.2, -0.01], rotation: [0, Math.PI, 0] },
-      ],
-      fontPl: ['garamont', 'garamont'],
-      fontSizePl: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
-      /*
-      En for <TextSlideFromArray>
-      */
-      textLinesEn: ['Here', "I'm"],
-      textPropsEn: [
-        { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
-        { position: [0.15, 0.2, -0.01], rotation: [0, Math.PI, 0] },
-      ],
-      fontEn: ['garamont', 'garamont'],
-      fontSizeEn: [{ ...fontSizesVeryLarge }, { ...fontSizesVeryLarge }],
-      // textAlignEn: ['left'],
-      // whiteSpaceEn: ['normal'],
-      // maxWidthFactorEn: [0.01],
+      canvasProps: {
+        format: 'verticalFormat',
+        image: family,
+        meshProps: { rotation: [0, Math.PI, 0] },
+      },
+      textConfigHeader: {
+        textProps: [
+          // PL: mobile / no-mobile
+          [
+            { position: [0, 0.34, -0.01], rotation: [0, Math.PI, 0] },
+            { position: [0, 0.34, -0.01], rotation: [0, Math.PI, 0] },
+          ],
+          // EN: mobile / no-mobile
+          [
+            { position: [0, 0.2, -0.01], rotation: [0, Math.PI, 0] },
+            { position: [0, 0.1, -0.01], rotation: [0, Math.PI, 0] },
+          ],
+        ],
+        font: 'garamont',
+        text: ["Here I'am", 'Jestem Ja'],
+        ...xlHeaderConfig,
+        lineHeight: 1,
+      },
+    },
+  },
+
+  /* -----Panel Left / TECH & POSZUKUJĘ ------------------------------  */
+  {
+    /*
+    for <SpinningBoxSide>'s general layout
+    */
+    sideProps: { position: [-0.455, 0, -0], rotation: [0, -0.5 * Math.PI, 0] },
+    /*
+    for <SpinningBoxSide>'s <UniversalFrame>
+    */
+    frameProps: {
+      groupProps: { name: 'groupForPanelFront' },
+      ...frameConfig,
+    },
+    /*
+    for "Client Side"
+    */
+    labelProps: {
       /*
       for label's <UniversalFrame>
       */
       canvasProps: {
         format: 'verticalFormat',
-        image: family,
-        meshProps: { rotation: [0, Math.PI, 0] },
+        image: tech,
       },
       /*
       in case we want some <UniqueObject> component
       */
       // uniqueObjectName: 'unique3DText',
+      /*
+      for <DreiText>
+      */
+      textConfigHeader: {
+        text: ["Imagine you're", 'Może jesteś'],
+        ...mHeaderConfig,
+      },
+      paragraphs: [
+        {
+          textConfig: {
+            textProps: [
+              // PL: mobile / no-mobile
+              [{ position: [0, 0.1, 0.01] }, { position: [0, 0.1, 0.01] }],
+              // EN: mobile / no-mobile
+              [{ position: [0, 0.1, 0.01] }, { position: [0, 0.1, 0.01] }],
+            ],
+            text: [
+              'producer of unique and advanced technical solution...',
+              'producentem/ producentką unikalnych rozwiązań technicznych...',
+            ],
+            ...mParagraphConfig,
+          },
+        },
+      ],
     },
     /*
-    for <SpinningBoxSide>'s <UniversalFrame>
+    for "77digits Side"
     */
-    frameProps: {
-      groupProps: { name: 'groupForPanelFront' },
-      format: 'verticalFormat',
-      cylinderFi: 0.015,
-      sphereRadious: 0.03,
-    },
-  },
-
-  /* -----Panel Left------------------------------------------------  */
-  {
-    sideProps: { position: [-0.455, 0, -0], rotation: [0, -0.5 * Math.PI, 0] },
-    labelProps: {
-      /*
-      Pl for <TextSlideFromArray>
-      */
-      textLinesPl: ['Może jesteś', 'wielką nadzieją branży medycznej...'],
-      textPropsPl: [
-        { position: [0, 0.4, 0.01] },
-        { position: [-0.08, 0.1, 0.01] },
-      ],
-
-      textAlignPl: ['left', 'left'],
-      // whiteSpacePl: ['normal', 'normal', 'normal', 'normal', 'normal'],
-      maxWidthFactorMobilePl: [0.01, 20],
-      maxWidthFactorDesktopPl: [0.01, 40],
-      /*
-      font-relevant props
-      */
-      fontPl: ['garamont', 'garamont'],
-      fontSizePl: [{ ...fontSizesMedium }, { ...fontSizesSmall }],
-      // strokeWidthPl: [0, 0.0005], // worth using with jost
-      /*
-      En for <TextSlideFromArray>
-      */
-      textLinesEn: ['Imagin', "you're future of medical business"],
-      textPropsEn: [
-        { position: [0, 0.4, 0.01] },
-        { position: [-0.08, 0.2, 0.01] },
-      ],
-      textAlignEn: ['left', 'left'],
-      // whiteSpacePl: ['normal', 'normal', 'normal', 'normal', 'normal'],
-      maxWidthFactorMobileEn: [0.01, 20],
-      maxWidthFactorDesktopEn: [0.01, 40],
-      /*
-      font-relevant props
-      */
-      fontEn: ['garamont', 'garamont'],
-      fontSizeEn: [{ ...fontSizesMedium }, { ...fontSizesSmall }],
-      // strokeWidthPl: [0, 0.0005], // worth using with jost
-      /*
-      for <UniversalFrameWithoutMap>
-      */
-      canvasProps: {
-        format: 'verticalFormat',
-        image: medicine,
-      },
-    },
-
     labelPropsReverse: {
-      /*
-      Pl for <TextSlideFromArray>
-      */
-      textLinesPl: ['Tworzę', 'strony internetowe dla wspaniałych Klientów'],
-      textPropsPl: [
-        { position: [0.1, 0.4, -0.01], rotation: [0, Math.PI, 0] },
-        { position: [0.08, 0.1, -0.01], rotation: [0, Math.PI, 0] },
-      ],
-
-      textAlignPl: ['left', 'left'],
-      // whiteSpacePl: ['normal', 'normal', 'normal', 'normal', 'normal'],
-      maxWidthFactorMobilePl: [0.01, 20],
-      maxWidthFactorDesktopPl: [0.01, 40],
-      /*
-      font-relevant props
-      */
-      fontPl: ['garamont', 'jost'],
-      fontSizePl: [{ ...fontSizesMedium }, { ...fontSizesVerySmall }],
-      strokeWidthPl: [0, 0.0005],
-      /*
-      En for <TextSlideFromArray>
-      */
-      textLinesEn: ['I create web page for demanding Clients'],
-      textPropsEn: [{ position: [0, 0, -0.01], rotation: [0, Math.PI, 0] }],
-      fontEn: ['jost'],
-      fontSizeEn: [{ ...fontSizesSmall }],
-      textAlignEn: ['left'],
-      whiteSpaceEn: ['normal'],
-      maxWidthFactorEn: [0.01],
-      /*
-      for <UniversalFrameWithoutMap>
-      */
+      textConfigHeader: {
+        ...mHeaderConfig,
+        textProps: { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
+        text: ['I hunt for', 'Poszukuję'],
+      },
       canvasProps: {
         format: 'verticalFormat',
-        image: family,
+        image: blank,
         meshProps: { rotation: [0, Math.PI, 0] },
       },
     },
+  },
+  /* -----Panel Back / MUSIC & BUDUJĘ POŁĄCZENIA---------------------------*/
+  {
+    sideProps: { position: [0, 0, -0.455], rotation: [0, Math.PI, 0] },
     /*
     for <SpinningBoxSide>'s <UniversalFrame>
     */
     frameProps: {
-      groupProps: { name: 'groupForPanelFront' },
-      format: 'verticalFormat',
-      cylinderFi: 0.015,
-      sphereRadious: 0.03,
+      ...frameConfig,
     },
-  },
-
-  /* -----Panel Back--------------------------------------------------------- */
-  {
-    sideProps: { position: [0, 0, -0.455], rotation: [0, Math.PI, 0] },
+    /*
+    for <SpinningBoxSide>'s <SideLabel>
+    */
     labelProps: {
       /*
-      Pl for <TextSlideFromArray>
-      */
-      textLinesPl: [
-        'Może jesteś',
-        'twórczynią/ twórcą wybitnych dzieł muzycznych...',
-      ],
-      textPropsPl: [
-        { position: [0, 0.4, 0.01] },
-        { position: [-0.05, 0.1, 0.01] },
-      ],
-
-      textAlignPl: ['left', 'left'],
-      // whiteSpacePl: ['normal', 'normal', 'normal', 'normal', 'normal'],
-      maxWidthFactorMobilePl: [0.01, 20],
-      maxWidthFactorDesktopPl: [0.01, 40],
-      /*
-      font-relevant props
-      */
-      fontPl: ['garamont', 'jost'],
-      fontSizePl: [{ ...fontSizesMedium }, { ...fontSizesVerySmall }],
-      strokeWidthPl: [0, 0.0005],
-
-      /*
-      En for <TextSlideFromArray>
-      */
-      textLinesEn: ['I create web page for demanding Clients'],
-      textPropsEn: [{ position: [0, 0, 0.01] }],
-      fontEn: ['jost'],
-      fontSizeEn: [{ ...fontSizesSmall }],
-      textAlignEn: ['left'],
-      whiteSpaceEn: ['normal'],
-      // maxWidthFactorEn: [0.01],
-      /*
-      for <UniversalFrameWithoutMap>
+      for label's <UniversalFrame>
       */
       canvasProps: {
         format: 'verticalFormat',
         image: music,
       },
       /*
-      in case of <UniqueObject>
+      in case we want some <UniqueObject> component
       */
-      // uniqueObjectName: 'musicNote',
-    },
-
-    labelPropsReverse: {
+      // uniqueObjectName: 'unique3DText',
       /*
-      Pl for <TextSlideFromArray>
+      for <DreiText>
       */
-      textLinesPl: ['Poszukuję', 'idealnego UI '],
-      textPropsPl: [
-        { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
-        { position: [0.15, 0.2, -0.01], rotation: [0, Math.PI, 0] },
+      textConfigHeader: {
+        text: ["Imagine you're", 'Może jesteś'],
+        ...mHeaderConfig,
+      },
+      paragraphs: [
+        {
+          textConfig: {
+            textProps: [
+              // PL: mobile / no-mobile
+              [{ position: [0, 0.1, 0.01] }, { position: [0, 0.1, 0.01] }],
+              // EN: mobile / no-mobile
+              [{ position: [0, 0.1, 0.01] }, { position: [0, 0.1, 0.01] }],
+            ],
+            text: [
+              'an author of outstanding pieces of music...',
+              'twórczynią/ twórcą wybitnych dzieł muzycznych...',
+            ],
+            ...mParagraphConfig,
+          },
+        },
       ],
-      fontPl: ['garamont', 'garamont'],
-      fontSizePl: [{ ...fontSizesMedium }, { ...fontSizesVerySmall }],
-      /*
-      En for <TextSlideFromArray>
-      */
-      textLinesEn: ['I create web page for demanding Clients'],
-      textPropsEn: [{ position: [0, 0, -0.01], rotation: [0, Math.PI, 0] }],
-      fontEn: ['jost'],
-      fontSizeEn: [{ ...fontSizesSmall }],
-      textAlignEn: ['left'],
-      whiteSpaceEn: ['normal'],
-      maxWidthFactorEn: [0.01],
-      /*
-      for label's <UniversalFrame> or <UniversalFrameWithoutMap>
-      */
+    },
+    /*
+    for "77digits Side"
+    */
+    labelPropsReverse: {
+      textConfigHeader: {
+        ...mHeaderConfig,
+        textProps: { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
+        text: ['I build', 'Buduję'],
+      },
+      paragraphs: [
+        {
+          textConfig: {
+            textProps: [
+              // PL: mobile / no-mobile
+              [
+                { position: [0, 0.15, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [0, 0.15, -0.01], rotation: [0, Math.PI, 0] },
+              ],
+              // EN: mobile / no-mobile
+              [
+                { position: [0, 0.15, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [0, 0.15, -0.01], rotation: [0, Math.PI, 0] },
+              ],
+            ],
+            text: [
+              'subtle connections between technology  ',
+              'subtelne połączenia powiędzy technologią',
+            ],
+            ...mParagraphConfig,
+          },
+        },
+        {
+          textConfig: {
+            textProps: [
+              // PL: mobile / no-mobile
+              [
+                { position: [-0.2, -0.596, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [-0.2, -0.596, -0.01], rotation: [0, Math.PI, 0] },
+              ],
+              // EN: mobile / no-mobile
+              [
+                { position: [-0.2, -0.596, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [-0.2, -0.596, -0.01], rotation: [0, Math.PI, 0] },
+              ],
+            ],
+            text: ['art...  ', 'sztuką...'],
+            ...mParagraphConfig,
+          },
+        },
+      ],
       canvasProps: {
         format: 'verticalFormat',
-        image: family,
+        image: blank,
         meshProps: { rotation: [0, Math.PI, 0] },
       },
       /*
       in case we want some <UniqueObject> component
       */
-      // uniqueObjectName: 'unique3DText',
-    },
-    frameProps: {
-      groupProps: { name: 'groupForPanelFront' },
-      format: 'verticalFormat',
-      cylinderFi: 0.015,
-      sphereRadious: 0.03,
+      uniqueObjectName: 'circledPath',
     },
   },
 
-  /* ------- Panel Right--------------------------------- */
+  /* -----Panel Right / MEDICINE & ---------------------------------------  */
   {
     sideProps: { position: [0.455, 0, 0], rotation: [0, Math.PI * 0.5, 0] },
-
-    labelProps: {
-      textLinesPl: [
-        'Może jesteś',
-        'producentem/ producentką unikalnych rozwiązań technicznych...',
-        // 'albo',
-        // 'twórczynią wybitnych dzieł muzycznych',
-      ],
-      textPropsPl: [
-        { position: [0, 0.4, 0.01] },
-        { position: [-0.05, 0.1, 0.01] },
-      ],
-
-      textAlignPl: ['left', 'left'],
-      // whiteSpacePl: ['normal', 'normal', 'normal', 'normal', 'normal'],
-      maxWidthFactorMobilePl: [0.01, 20],
-      maxWidthFactorDesktopPl: [0.01, 40],
-      /*
-      font-relevant props
-      */
-      fontPl: ['garamont', 'jost'],
-      fontSizePl: [{ ...fontSizesMedium }, { ...fontSizesVerySmall }],
-      strokeWidthPl: [0, 0.0005],
-      /*
-      En for <TextSlideFromArray>
-      */
-      textLinesEn: ['I create web page for demanding Clients'],
-      textPropsEn: [{ position: [0, 0, 0.01] }],
-      textAlignEn: ['left'],
-      whiteSpaceEn: ['normal'],
-      maxWidthFactorEn: [0.01],
-      /*
-      font-relevant props
-      */
-      fontEn: ['jost'],
-      fontSizeEn: [{ ...fontSizesSmall }],
-      strokeWidthEn: [0, 0.0005],
-      /*
-      for <UniversalFrameWithoutMap>
-      */
-      canvasProps: {
-        format: 'verticalFormat',
-        image: tech,
-      },
+    /*
+    for <SpinningBoxSide>'s <UniversalFrame>
+    */
+    frameProps: {
+      ...frameConfig,
     },
-
-    labelPropsReverse: {
+    /*
+    for <SpinningBoxSide>'s <SideLabel>
+    */
+    labelProps: {
       /*
-      Pl for <TextSlideFromArray>
-      */
-      textLinesPl: [
-        'Projektuję',
-        'połączenia pomiędzy domeną technologii i estetyki',
-      ],
-      textPropsPl: [
-        { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
-        { position: [0.15, 0.1, -0.01], rotation: [0, Math.PI, 0] },
-      ],
-      fontPl: ['garamont', 'garamont'],
-      fontSizePl: [{ ...fontSizesMedium }, { ...fontSizesVerySmall }],
-      /*
-      En for <TextSlideFromArray>
-      */
-      textLinesEn: ['I create web page for demanding Clients'],
-      textPropsEn: [{ position: [0, 0, -0.01], rotation: [0, Math.PI, 0] }],
-      fontEn: ['jost'],
-      fontSizeEn: [{ ...fontSizesSmall }],
-      textAlignEn: ['left'],
-      whiteSpaceEn: ['normal'],
-      maxWidthFactorEn: [0.01],
-      /*
-      for label's <UniversalFrame> or <UniversalFrameWithoutMap>
+      for label's <UniversalFrame>
       */
       canvasProps: {
         format: 'verticalFormat',
-        image: family,
-        meshProps: { rotation: [0, Math.PI, 0] },
+        image: medicine,
       },
       /*
       in case we want some <UniqueObject> component
       */
       // uniqueObjectName: 'unique3DText',
+      /*
+      for <DreiText>
+      */
+      textConfigHeader: {
+        text: ["Imagine you're", 'Może jesteś'],
+        ...mHeaderConfig,
+      },
+      paragraphs: [
+        {
+          textConfig: {
+            textProps: [
+              // PL: mobile / no-mobile
+              [{ position: [0, 0.1, 0.01] }, { position: [0, 0.1, 0.01] }],
+              // EN: mobile / no-mobile
+              [{ position: [0, 0.1, 0.01] }, { position: [0, 0.1, 0.01] }],
+            ],
+            text: [
+              'an great hope of medicin....  ',
+              'długo oczekiwaną nadzieją branży medycznej...',
+            ],
+            ...mParagraphConfig,
+          },
+        },
+      ],
     },
-    frameProps: {
-      groupProps: { name: 'groupForPanelFront' },
-      format: 'verticalFormat',
-      cylinderFi: 0.015,
-      sphereRadious: 0.03,
+    /*
+    for "77digits Side"
+    */
+    labelPropsReverse: {
+      textConfigHeader: {
+        ...mHeaderConfig,
+        textProps: { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
+        text: ['I create', 'Tworzę'],
+      },
+
+      paragraphs: [
+        {
+          textConfig: {
+            textProps: [
+              // PL: mobile / no-mobile
+              [
+                { position: [0, 0.1, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [0, 0.1, -0.01], rotation: [0, Math.PI, 0] },
+              ],
+              // EN: mobile / no-mobile
+              [
+                { position: [0, 0.1, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [0, 0.1, -0.01], rotation: [0, Math.PI, 0] },
+              ],
+            ],
+            text: [
+              'web applications only for demanding clients....  ',
+              'aplikacje internetowe wyłacznie dla odważnych Klientów...',
+            ],
+            ...mParagraphConfig,
+          },
+        },
+      ],
+
+      canvasProps: {
+        format: 'verticalFormat',
+        image: blank,
+        meshProps: { rotation: [0, Math.PI, 0] },
+      },
     },
   },
 ];
 
-/*
-data for <GesturePrompt>
-*/
-
 export {
   minForTablet,
   sliderEngineSpring,
-  slide0Box1Layout,
-  slide0Box1Data,
-  indicatorData,
+  spinningBoxLayout,
+  spinningBoxConfig,
+  indicatorCongif,
 };

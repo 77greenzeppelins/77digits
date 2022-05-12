@@ -26,7 +26,7 @@ import {
   spinningBoxLayout,
   spinningBoxConfig,
   indicatorCongif,
-} from './slide0DataWork';
+} from './slide0Data';
 
 /*
 ----------------------------------------------------------------------
@@ -70,12 +70,6 @@ const Slide0 = ({
         : sliderEngineSpring.configDown /* when going down (molasses) */,
   });
 
-  // useEffect(() => {
-  //   console.log(
-  //     'Slide0 / gesturesForSidesRotations:',
-  //     gesturesForSidesRotations
-  //   );
-  // }, [gesturesForSidesRotations]);
   /*
   JSX
   */

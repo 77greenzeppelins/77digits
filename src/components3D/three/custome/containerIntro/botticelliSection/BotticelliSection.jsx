@@ -7,11 +7,10 @@ import { canvasState } from '../../../../../states/canvasState';
 /*
 Components
 */
+import Logo from '../../_77logo/Logo';
 import UniversalFrame from '../../matcapFrames/UniversalFrame';
 import UniversalCanvas from '../../matcapFrames/UniversalCanvas';
 import DreiText from '../../../../drei/text/dreiText/DreiText';
-import CustomMeshWithMatcap from '../../_meshesWithMatcap/CustomMeshWithMatcap';
-import LogoGeometry from '../../extrudedObjects/logo/LogoGeometry';
 /*
 Gesture Staff
 */
@@ -31,6 +30,7 @@ import {
   venusPaintingData,
   venusLeftSideTextConfig,
   venusGestureConfig,
+  logoConfig,
 } from './botticelliSectionData';
 
 /*
@@ -113,15 +113,8 @@ const BotticelliSection = ({ groupProps }) => {
           <UniversalCanvas {...venusPaintingData.canvasProps} />
 
           {/*-----77 Logo-----------------------------------------*/}
-          <CustomMeshWithMatcap
-            meshProps={{
-              position: [0.25, -0.1, 0.11],
-              rotation: [0, -0.15 * Math.PI, -0.05 * Math.PI],
-              scale: [0.4, 0.4, 0.4],
-            }}
-          >
-            <LogoGeometry />
-          </CustomMeshWithMatcap>
+
+          <Logo meshProps={logoConfig} />
 
           {/*----------Funny Text Thanks for Sandro---------------*/}
           <DreiText textConfig={venusLeftSideTextConfig} />

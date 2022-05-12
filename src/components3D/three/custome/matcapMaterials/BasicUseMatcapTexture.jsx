@@ -4,6 +4,9 @@ import React from 'react';
  */
 import { useMatcapTexture } from '@react-three/drei';
 
+/*
+------------------------------------------------------------------------
+*/
 const BasicUseMatcapTexture = ({ textureIndex }) => {
   /*
   Textures switcher
