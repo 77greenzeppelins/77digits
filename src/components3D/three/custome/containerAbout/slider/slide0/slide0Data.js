@@ -397,7 +397,7 @@ const spinningBoxConfig = [
     },
   },
 
-  /* -----Panel Right / MEDICINE & ---------------------------------------  */
+  /* -----Panel Right / MEDICINE & 77 essence-------------------------------  */
   {
     sideProps: { position: [0.455, 0, 0], rotation: [0, Math.PI * 0.5, 0] },
     /*
@@ -420,7 +420,7 @@ const spinningBoxConfig = [
       /*
       in case we want some <UniqueObject> component
       */
-      // uniqueObjectName: 'unique3DText',
+      uniqueObjectName: 'medicineDetail',
       /*
       for <DreiText>
       */
@@ -450,6 +450,16 @@ const spinningBoxConfig = [
     for "77digits Side"
     */
     labelPropsReverse: {
+      canvasProps: {
+        format: 'verticalFormat',
+        image: blank,
+        meshProps: { rotation: [0, Math.PI, 0] },
+      },
+      /*
+      in case we want some <UniqueObject> component
+      */
+      uniqueObjectName: 'braveClient',
+
       textConfigHeader: {
         ...mHeaderConfig,
         textProps: { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
@@ -479,12 +489,6 @@ const spinningBoxConfig = [
           },
         },
       ],
-
-      canvasProps: {
-        format: 'verticalFormat',
-        image: blank,
-        meshProps: { rotation: [0, Math.PI, 0] },
-      },
     },
   },
 ];

@@ -1,7 +1,7 @@
 import React from 'react';
 /*
- useMatcapTexture Staff
- */
+useMatcapTexture Staff
+*/
 import { useMatcapTexture } from '@react-three/drei';
 
 /*

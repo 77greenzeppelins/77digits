@@ -6,6 +6,7 @@ import MatcapMaterialInMemo from '../matcapMaterials/MatcapMaterialInMemo';
 
 /*
 --------------------------------------------------------------------------
+main idea of this component: just send me any geometry ;-)
 */
 const CustomMeshWithMatcap = props => {
   /*

@@ -1,8 +1,5 @@
 import React from 'react';
 import * as THREE from 'three';
-/*
-Drai Staff
-*/
 import { useLoader } from '@react-three/fiber';
 /*
 Basic Data
@@ -61,7 +58,6 @@ const UniversalCanvas = React.memo(
         planeHeight = verticalFormatHeightSize + sizeFactor;
         break;
       default:
-        // console.log('UniversalCanvas / format = default');
         planeWidth = 0;
         planeHeight = 0;
     }
