@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 /*
 Global State Section
 */
@@ -110,6 +111,7 @@ const BotticelliSection = ({ groupProps }) => {
         >
           {/*-----Boticelli Painting------------------------------*/}
           <UniversalFrame {...venusPaintingData.frameProps} />
+
           <UniversalCanvas {...venusPaintingData.canvasProps} />
 
           {/*-----77 Logo-----------------------------------------*/}

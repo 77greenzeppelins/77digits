@@ -8,7 +8,7 @@ import image from '../../../../../../../assets/textures/containerAbout_Slide0_me
 /*
 ---------------------------------------------------------------------------
 */
-const MedicineDatail = () => {
+const MedicineDatail = ({ trigger }) => {
   /*
   References
   */
@@ -21,16 +21,14 @@ const MedicineDatail = () => {
   useFrame Section
   */
   useFrame(({ clock }) => {
-    mesh.current.rotation.z += 0.004;
-    // console.log(mesh.current.rotation.z);
-    mesh.current.position.y += 0.004;
-    // console.log(mesh.current.rotation.z);
-    // console.log(mesh.current.rotation.z);
-    // console.log(0.1 - Math.sin(clock.getElapsedTime() * 0.1) * 0.1);
-    mesh.current.position.y =
-      -0.35 - Math.sin(clock.getElapsedTime() * 0.3) * 0.05;
-    mesh.current.position.x =
-      -0.25 - Math.cos(clock.getElapsedTime() * 0.3) * 0.05;
+    if (trigger) {
+      mesh.current.rotation.z += 0.004;
+      mesh.current.position.y =
+        -0.35 - Math.sin(clock.getElapsedTime() * 0.3) * 0.05;
+      mesh.current.position.x =
+        -0.25 - Math.cos(clock.getElapsedTime() * 0.3) * 0.05;
+    }
+
     //mesh.current.position.lerp(vec, 0.1))
     // console.log(mesh.current.position.y);
   });

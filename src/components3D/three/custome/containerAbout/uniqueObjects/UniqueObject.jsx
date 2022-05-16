@@ -5,16 +5,34 @@ import React from 'react';
 /*
 Components
 */
-import FrontUO from './frontUO/FrontUO';
+import JestesTyText from '../../_meshesWithMatcap/collection/jestesTyText/JestesTyText';
 import MusicNote from './musicNote/MusicNote';
 import MedicineDatail from './clientSide/medicineDetail/MedicineDatail';
 import BraveClientsPictureOnPlane from './77side/braveClientsPictureOnPlane/BraveClientsPictureOnPlane';
 import CircledPath from '../../instancedMeshes/collection/CircledPath/CircledPath';
 import AndSign from '../../_meshesWithMatcap/collection/andSign/AndSign';
 /*
+Global State Staff
+*/
+import { canvasState } from '../../../../../states/canvasState';
+import { useSnapshot } from 'valtio';
+
+/*
 ---------------------------------------------------------------------------
 */
 const UniqueObject = ({ uniqueObject }) => {
+  /*
+  Global state Section
+  */
+  const canvasGlobalState = useSnapshot(canvasState);
+  /*
+  Condition that triggeres animation of particular "uo"
+  */
+  const animationTrigger =
+    canvasGlobalState.currentContainer === 'aboutContainer' &&
+    canvasGlobalState.isClientSideVisible &&
+    canvasGlobalState.containerAboutVisibleSlideIndex === 0;
+  // console.log('animationTrigger', animationTrigger);
   /*
   Turbo SwitchSelector
   */
@@ -23,12 +41,12 @@ const UniqueObject = ({ uniqueObject }) => {
       /*
       clientSection
       */
-      case 'frontUO':
-        return <FrontUO />;
+      case 'youAre':
+        return <JestesTyText trigger={animationTrigger} />;
       case 'musicNote':
         return <MusicNote />;
       case 'medicineDetail':
-        return <MedicineDatail />;
+        return <MedicineDatail trigger={animationTrigger} />;
       /*
       77digitsSection
       */
@@ -37,7 +55,7 @@ const UniqueObject = ({ uniqueObject }) => {
       case 'circledPath':
         return (
           <>
-            <CircledPath />
+            <CircledPath trigger={animationTrigger} />
             <AndSign config="circledPath" />
           </>
         );

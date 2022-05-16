@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 Components
 */
 import Slide0 from './slide0/Slide0';
-import Slide1 from './slide1/Slide1';
+// import Slide1 from './slide1/Slide1';
 
 /*
 -----------------------------------------------------------------
@@ -14,10 +14,6 @@ const Slider = ({
   gesturesForSidesRotationsIndicator,
 }) => {
   const slider = useRef();
-
-  // useEffect(() => {
-  //   console.log('slider.current:', slider.current);
-  // }, []);
   /*
   JSX
   */
@@ -29,7 +25,7 @@ const Slider = ({
         gesturesForSidesRotations={gesturesForSidesRotations}
         gesturesForSidesRotationsIndicator={gesturesForSidesRotationsIndicator}
       />
-      <Slide1 slideId={1} />
+      {/* <Slide1 slideId={1} /> */}
 
       {/*---Central Plane*/}
       {/* <mesh position={[0, 0, 0]}>

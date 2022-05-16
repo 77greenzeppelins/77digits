@@ -10,14 +10,13 @@ Global State Staff
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../states/canvasState';
 /*
-Spring Staff
-*/
-// import { a } from '@react-spring/three';
-/*
 Gesture Staff
 */
 import ContAboutGest from '../../../../gestureHandlers/useGesture/ContAboutGest';
-
+/*
+Basic Data
+*/
+import { contAboutSlidesNumber } from '../../../../data/globalData';
 /*
 ------------------------------------------------------------------------
  */
@@ -99,7 +98,10 @@ const ContainerAbout = () => {
       position={canvasGlobalState.aboutContainerPosition}
       {...containerAboutGestures()}
     >
-      <InteractivePanel meshProps={{ name: 'PanelForContainerAbout' }} />
+      <InteractivePanel
+        meshProps={{ name: 'PanelForContainerAbout' }}
+        slidesNumber={contAboutSlidesNumber}
+      />
       <Suspense fallback={null}>
         {/*-----Slider Section-----------------------------------
       "rotateStepByStep" gestures for <SpinningBox>

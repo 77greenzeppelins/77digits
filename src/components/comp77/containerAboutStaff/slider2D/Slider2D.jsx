@@ -42,11 +42,11 @@ const Slider2D = () => {
         width: windowSize.width,
       }}
     >
-      {/* <Slide1
+      <Slide1
         slideId={1}
         visibleSlideIndex={canvasGlobalState.containerAboutVisibleSlideIndex}
         language={canvasGlobalState.languageVersion}
-      /> */}
+      />
       <Slide2
         slideId={2}
         visibleSlideIndex={canvasGlobalState.containerAboutVisibleSlideIndex}

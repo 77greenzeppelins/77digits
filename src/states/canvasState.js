@@ -100,10 +100,7 @@ const canvasState = proxy({
   is used in "IncrementalSpinOnDrag" / endDragHandler; as condition in logic and is also changed to true/false in toggler way
   */
   isClientSideVisible: true,
-  /*
-  "sliderIsReady" is "true" when user rotates <SpinningBox> 360deg; all happens in "ContAboutGest"; it triggers <SliderGesturePrompt> & <SlidesProgressIndicator> & is a value in "ContAboutNavGest" / enable
-  */
-  sliderIsReady: false,
+
   /*
   props used in <Slide1>; all manipilations take place in "contAboutSlide1.js" gesture
   */
@@ -114,26 +111,23 @@ const canvasState = proxy({
   */
   isSpinningBoxGesturePromptMounted: true,
   /*
-  --------------------------------------------<ContainerAbout2DStaff>
+  ------------------------------<ContainerAbout2DStaff> / CA's gestures
   */
   /*
-  is changed in <NavigatoionPanel2D>;
+  "sliderIsReady" is "true" when user rotates <SpinningBox> 360deg; all happens in "ContAboutGest"; it triggers <SliderGesturePrompt> & <SlidesProgressIndicator> & is a value in "ContAboutNavGest" / enable
   */
-  // containerAboutEventCounter: 0,
+  sliderIsReady: false,
   /*
-  is incremented / decremented in <NavigatoionPanel2D> / onClick handlers;
+  is incremented / decremented within "ContAboutNavGest"'s handlers that attend to drag/wheel gestures;
   */
   containerAboutVisibleSlideIndex: 0,
-  // containerAboutSlideIndex: 0,
   /*
-  is incremented / decremented in <NavigatoionPanel2D>;
+  is used in "ContAboutNavGest" as "enable" propreties;
+  is changed to "false" within  "ContAboutNavGest" after each drag / wheel
+  is changed to "true" in each 2Dslide's useTransition / onRest(); 
+  idea: user can,t drag/wheel until all parts of slide are completed
   */
-  containerAboutSlidingDirection: 'none',
-  /*
-  for 2D fake-button that rotates <SpinningBox>'s sides
-  */
-  isRotateButtonActive: false,
-
+  isSlideComplete: true,
   /*
   -------------------------------------------<Container Manu 2D staff> 
   */

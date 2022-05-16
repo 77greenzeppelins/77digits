@@ -32,7 +32,7 @@
   }
 
   &__header {
-    &-text {
+    &-text-s1 {
       font-family: $serif;
       color: setColor(light);
       font-size: 3rem;
@@ -45,6 +45,38 @@
       }
     }
   }
+  &__header {
+    &-text-s2 {
+      font-family: $serif;
+      color: setColor(light);
+      font-size: 3rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      line-height: 0.8;
+      span:nth-of-type(2) {
+        font-family: $serif;
+        font-size: $fontMobile;
+        color: setColor(light);
+        letter-spacing: 1.2px;
+      }
+    }
+  }
+  &__header {
+    &-text-s3 {
+      font-family: $sanSerif;
+      color: setColor(light);
+      font-size: 3rem;
+      font-weight: 200;
+      letter-spacing: 3px;
+      line-height: 0.8;
+      span:nth-of-type(2) {
+        font-family: $serif;
+        font-size: $fontMobile;
+        color: setColor(light);
+        letter-spacing: 1.2px;
+      }
+    }
+  }
   &__paragraph {
     &-wrapper {
       padding-top: 5vh;
@@ -53,9 +85,14 @@
       font-family: $serif;
       font-size: $fontMobile;
       color: setColor(light);
-      letter-spacing: 1.2px;
+      letter-spacing: 1.4px;
+      //___
+      font-weight: 200;
+      font-family: $sanSerif;
+      //___
       &.special {
         font-size: 2rem;
+        font-family: $serif;
       }
     }
   }

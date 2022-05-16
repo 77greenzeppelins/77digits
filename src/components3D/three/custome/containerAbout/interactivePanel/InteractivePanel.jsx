@@ -8,20 +8,13 @@ Basic Data
 */
 import { interactivePanelData } from './interactivePanelData';
 
-const InteractivePanel = ({ meshProps }) => {
-  /*
-  Gesture Section
-  */
-  // const { pseudoScrollinGesture } = LimitedPseudoScrolling({
-  //   numberOfSlides: 5,
-  // });
-
+const InteractivePanel = ({ meshProps, slidesNumber }) => {
   /*
   Gesture Section
   */
   const { contAboutNavGest } = ContAboutNavGest({
     // numberOfSlides: interactivePanelData.numberOfSlides, //5
-    numberOfSlides: 5,
+    numberOfSlides: slidesNumber,
   });
 
   /*

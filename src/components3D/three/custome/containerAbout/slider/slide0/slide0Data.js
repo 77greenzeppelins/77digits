@@ -128,10 +128,10 @@ const xlHeaderConfig = {
 };
 
 const mHeaderConfig = {
-  textProps: { position: [0, 0.4, 0.01] },
+  textProps: { position: [0.06, 0.4, 0.01] },
   font: 'garamont',
   fontSize: mFontHeader,
-  letterSpacing: 0.1,
+  letterSpacing: 0.3,
   maxWidthValue: 0.7,
   lineHeight: 1.2,
 };
@@ -174,7 +174,7 @@ const spinningBoxConfig = [
       /*
       in case we want some <UniqueObject> component
       */
-      uniqueObjectName: 'frontUO',
+      uniqueObjectName: 'youAre',
       /*
       for  <DreiText>s
       */
@@ -185,7 +185,7 @@ const spinningBoxConfig = [
           // EN: mobile / no-mobile
           [{ position: [0, 0.2, 0.01] }, { position: [0, 0.34, 0.01] }],
         ],
-        text: ["Here you're", 'Jesteś Ty...'],
+        text: ['', ''],
         ...xlHeaderConfig,
       },
     },
@@ -249,7 +249,7 @@ const spinningBoxConfig = [
       for <DreiText>
       */
       textConfigHeader: {
-        text: ["Imagine you're", 'Może jesteś'],
+        text: ["Imagine you're", 'MOŻE JESTEŚ'],
         ...mHeaderConfig,
       },
       paragraphs: [

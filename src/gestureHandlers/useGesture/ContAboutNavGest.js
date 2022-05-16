@@ -29,6 +29,7 @@ const ContAboutNavGest = ({ numberOfSlides }) => {
         // console.log('from up-to-down movementY:', movementY);
         navY.current++;
         canvasState.containerAboutVisibleSlideIndex = navY.current;
+        canvasState.isSlideComplete = false;
         // console.log('navY.current:', navY.current);
       }
 
@@ -62,7 +63,6 @@ const ContAboutNavGest = ({ numberOfSlides }) => {
         canvasState.containerAboutVisibleSlideIndex = navY.current;
         // console.log('from top-to-bottom / movementY:', movementY);
         // console.log('from top-to-bottom / directionY:', directionY);
-
         // canvasState.containerAboutVisibleSlideIndex -= 1;
       }
       if (
@@ -101,7 +101,8 @@ const ContAboutNavGest = ({ numberOfSlides }) => {
       */
       enabled:
         canvasGlobalState.currentContainer === 'aboutContainer' &&
-        canvasGlobalState.sliderIsReady,
+        canvasGlobalState.sliderIsReady &&
+        canvasGlobalState.isSlideComplete,
       drag: { axis: 'y' },
       wheel: {
         axis: 'y',

@@ -4,8 +4,6 @@ import { useFrame } from '@react-three/fiber';
 Components
 */
 import InstantContactsSection from './instantContactsSection/InstantContactsSection';
-import UniversalFrame from '../../matcapFrames/UniversalFrame';
-import TextSlide from '../../textSlides/textSlide/TextSlide';
 import CustomMeshWithMatcap from '../../_meshesWithMatcap/CustomMeshWithMatcap';
 import TextGeometryFromFont from '../../extrudedObjects/text/TextGeometryFromFont';
 /*
@@ -106,18 +104,6 @@ const EndButtons = () => {
         <InstantContactsSection />
 
         {/*-----X Button------------------------------------------*/}
-        {/* <group {...resetButtonFrame.groupProps}>
-          <UniversalFrame {...resetButtonFrame.frameProps} />
-          <TextSlide
-            groupProps={resetButtonTextSlide.groupProps}
-            textProps={resetButtonTextSlide.textProps}
-            font={resetButtonTextSlide.font}
-            fontSize={resetButtonTextSlide.fontSize}
-            textLinePl={resetButtonTextSlide.textLinePl}
-            textLineEn={resetButtonTextSlide.textLineEn}
-          />
-        </group> */}
-
         <a.group ref={xMark} {...buttonX.groupProps}>
           <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
             <TextGeometryFromFont
