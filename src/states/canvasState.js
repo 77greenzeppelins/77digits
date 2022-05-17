@@ -34,7 +34,7 @@ const canvasState = proxy({
   /*
   decides if <InitialOverlay> is mounted or not;
   <InitialOverlay> is based on useTransition;
-  By means of <Cookies>'s buttons value "false" is set i.e. this button dismounts <Cookies> & <InitialOverlay>
+  By means of <Cookies> / <CookiesBanner> / buttons / onClick  value "false" is set; i.e. this "mighty" button dismounts <Cookies> & <InitialOverlay>
    */
   isInitialOverlayMounted: true,
   // isInitialOverlayMounted: false, // to switch off <InitialContainer>
@@ -49,7 +49,7 @@ const canvasState = proxy({
   ----------------------------------------<IntroContainer> 3D Staff
   /*
   /*
-  this value is required in <ContainerIntr>
+  this value is required in <ContainerIntro>
   it is set in <IntroWheelGesture> & <IntroDragGesture>
   it's used to asset "proper and unique" way of moving to user device / experience;
   it's actually "first part" of condition used in <IntroWheelGesture> & <IntroDragGesture>;
@@ -58,7 +58,7 @@ const canvasState = proxy({
   /*
   idea: when user scrolls/drags to the end, it changes to "true" within <IntroWheelGesture> & <IntroDragGesture> and:
   (1) scrolls/drags gestures are disabled
-  (2) <EndButtons> comes into the scene. i.e. goes on z-axis from fog(-2) 
+  (2) <EndButtons> comes into the scene; i.e. goes on z-axis from fog(-2) 
   (3) <Header> / inline style: display: 'none';
   is set to "false" again in <ContainerIntro2DStaff> / <ResetButton>
   */
@@ -67,7 +67,7 @@ const canvasState = proxy({
   it is changed to true/false in <EndButton> / useSpring / onRest(); it actually works as switcher;
   when is true <AuxiliaryButtons> come into the scene
   */
-  startOfContainerIntroShow: false,
+  // startOfContainerIntroShow: false,
   isRaphaelVisible: false,
   /*
   -----------------------------------------------<Cookies 2D staff>
@@ -95,7 +95,7 @@ const canvasState = proxy({
   /*
   ---------------------------------------------<ContainerAbout>
   */
-  containerAboutGestureType: 'none',
+  // containerAboutGestureType: 'none',
   /*
   is used in "IncrementalSpinOnDrag" / endDragHandler; as condition in logic and is also changed to true/false in toggler way
   */

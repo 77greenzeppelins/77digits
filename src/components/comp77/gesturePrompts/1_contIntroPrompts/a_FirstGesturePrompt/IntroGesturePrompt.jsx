@@ -16,7 +16,7 @@ import { introGesturePromptData } from '../../gesturesPromptData';
 /*
 ------------------------------------------------------------------------
 */
-const IntroGesturePrompt = () => {
+const IntroGesturePrompt = ({ progressValue, wheeledPositionZ, width }) => {
   /*
   Global State Section
   */
@@ -33,7 +33,7 @@ const IntroGesturePrompt = () => {
         */
         useTransitionCondition={
           !canvasGlobalState.isInitialOverlayMounted &&
-          canvasGlobalState.introContainerEventType === 'none' &&
+          // canvasGlobalState.introContainerEventType === 'none' &&
           canvasGlobalState.currentContainer === 'introContainer'
         }
         textChildCondition={canvasGlobalState.languageVersion}
@@ -45,6 +45,12 @@ const IntroGesturePrompt = () => {
         classPromptWrapperCSS={introGesturePromptData.classPromptWrapperCSS}
         textComponentData={introGesturePromptData.textComponentData}
         graphicComponentData={introGesturePromptData.graphicComponentData}
+        /*
+        ...
+        */
+        progressValue={progressValue}
+        wheeledPositionZ={wheeledPositionZ}
+        width={width}
       />
     </>
   );

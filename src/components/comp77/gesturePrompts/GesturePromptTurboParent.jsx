@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 /*
 Components = Direct Children
 */
@@ -36,14 +36,16 @@ const GesturePromptTurboParent = (
     classTextWrapperCSS,
     classGraphicWrapperCSS,
     /*
-    condition based on canvasState.languageVersion
-    */
-    textChildCondition,
-    /*
     simple data from "gesturePromptsData.js"
     */
     graphicComponentData,
     textComponentData,
+    /*
+    ...
+    */
+    progressValue,
+    wheeledPositionZ,
+    width,
   },
   props
 ) => {
@@ -80,8 +82,10 @@ const GesturePromptTurboParent = (
   });
 
   // useEffect(() => {
-  //   console.log('classGraphicWrapperCSS', classGraphicWrapperCSS);
-  // }, []);
+  //   if (progressValue) {
+  //     console.log('progressValue.animation.to', progressValue.animation.to);
+  //   }
+  // }, [progressValue, progressValue.animation.to]);
 
   /*
   JSX
@@ -91,44 +95,61 @@ const GesturePromptTurboParent = (
       condition && (
         <animated.div
           style={styles}
-          className="gesture-prompt-turbo-parent__container"
+          className="gesture-prompt-turbo-parent__container-outher"
         >
-          <div
-            className="gesture-prompt-turbo-parent__prompt-wrapper"
-            style={{
-              height: windowSize.height * classPromptWrapperCSS.highFactor,
-              width: windowSize.height * classPromptWrapperCSS.widthFactor,
-              top: -windowSize.height * classPromptWrapperCSS.highFactor,
-              ...classPromptWrapperCSS,
-            }}
-          >
-            {/*
-            Text component
-            */}
-
-            {textComponentData && (
-              <div
-                className="gesture-prompt-turbo-parent__text-wrapper"
-                style={classTextWrapperCSS}
-              >
-                <TextComponentOfGPTP
-                  textComponentData={textComponentData}
-                  textChildCondition={textChildCondition}
-                />
-              </div>
-            )}
-
-            {/*
-            Graphic component
-            */}
+          <div className="gesture-prompt-turbo-parent__container-inner">
             <div
-              className="gesture-prompt-turbo-parent__graphic-wrapper"
-              style={classGraphicWrapperCSS}
+              className="gesture-prompt-turbo-parent__prompt-wrapper"
+              style={{
+                height: windowSize.height * classPromptWrapperCSS.highFactor,
+                ...classPromptWrapperCSS,
+              }}
             >
-              <GraphicComponentOfGPTP
-                spring={spring}
-                graphicComponentData={graphicComponentData}
-              />
+              {/*
+               Graphic component of <GPTP>
+              */}
+              <div
+                className="gesture-prompt-turbo-parent__graphic-wrapper"
+                // style={classGraphicWrapperCSS}
+              >
+                <div className="gesture-prompt-turbo-parent__symbol-wrapper">
+                  <div className="gesture-prompt-turbo-parent__symbol-vertical" />
+                </div>
+                <GraphicComponentOfGPTP
+                  spring={spring}
+                  graphicComponentData={graphicComponentData}
+                />
+                <div className="gesture-prompt-turbo-parent__symbol-wrapper">
+                  <div className="gesture-prompt-turbo-parent__symbol-vertical" />
+                  <div className="gesture-prompt-turbo-parent__symbol-horizontal" />
+                </div>
+              </div>
+
+              {/*
+            Text component of <GPTP>
+            */}
+              {progressValue && (
+                <div
+                  className="gesture-prompt-turbo-parent__text-wrapper"
+                  style={classTextWrapperCSS}
+                >
+                  {/* <div className="gesture-prompt-turbo-parent__text">
+                    <animated.p
+                      style={{ color: 'white', transform: 'rotateZ(90deg)  ' }}
+                    >
+                      {progressValue.to(v => v.toFixed(0))}
+                    </animated.p>
+                  </div>
+                  <div className="gesture-prompt-turbo-parent__text">
+                    <p
+                      style={{ color: 'white', transform: 'rotateZ(90deg)  ' }}
+                    >
+                      %
+                    </p>
+                  </div> */}
+                  <TextComponentOfGPTP progressValue={progressValue} />
+                </div>
+              )}
             </div>
           </div>
         </animated.div>

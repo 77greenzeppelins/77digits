@@ -1,4 +1,4 @@
-import React, { useRef, Suspense } from 'react';
+import React, { useRef, Suspense, useEffect } from 'react';
 /*
 Global State staff
 */
@@ -15,7 +15,7 @@ import RaphaelSection from './raphaelSection/RaphaelSection';
 Gesture Section
 */
 import IntroDragGesture from '../../../../gestureHandlers/useGesture/IntroDragGesture';
-import IntroWheelGesture from '../../../../gestureHandlers/useGesture/IntroWheelGesture';
+// import IntroWheelGesture from '../../../../gestureHandlers/useGesture/IntroWheelGesture';
 /*
 Spring Section
 */
@@ -24,7 +24,7 @@ import { a } from '@react-spring/three';
 /*
 ------------------------------------------------------------------------
  */
-const ContainerIntro = () => {
+const ContainerIntro = ({ wheeledPositionZ }) => {
   /*
   References
   */
@@ -38,9 +38,15 @@ const ContainerIntro = () => {
   UseGesture Section
   */
   const [draggedPositionZ] = IntroDragGesture();
-  const { wheeledPositionZ } = IntroWheelGesture();
+  // const { wheeledPositionZ } = IntroWheelGesture();
 
   // const { positionZ } = ContIntroGest();
+  // useEffect(() => {
+  //   console.log(
+  //     'ContainerIntro / useEffect /draggedPositionZ:',
+  //     draggedPositionZ.animation.to
+  //   );
+  // }, [draggedPositionZ.animation.to]);
 
   /*
   JSX

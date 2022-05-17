@@ -32,23 +32,13 @@ const introGesturePromptData = {
   */
   springConfig: { ...useSpringConfigVertical },
   /*
-  for <GesturePromptTP> layout
-  */
-  // highFactor: 0.15,
-  // widthFactor: 0.35,
-  /*
   CSS
   */
-  classPromptWrapperCSS: { highFactor: 0.15, widthFactor: 0.35 },
-  /*
-  for <TextComponentOf...>
-  */
-  textComponentData: {
-    text: [
-      { id: 'word1', wordPl: 'przewiń', wordEn: 'scroll' },
-      { id: 'word2', wordPl: 'zawartość', wordEn: 'or' },
-      { id: 'word3', wordPl: 'ekranu', wordEn: 'drag' },
-    ],
+  classPromptWrapperCSS: {
+    highFactor: 0.2,
+    widthFactor: 0.35,
+    left: 0,
+    bottom: 0,
   },
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 /*
 Components
 */
@@ -9,7 +9,13 @@ import RaphaelSectionToggler from './raphaelSectionToggler/RaphaelSectionToggler
 /*
 ----------------------------------------------------------------------
 */
-const ContainerIntro2DStaff = () => {
+const ContainerIntro2DStaff = ({ progressValue, wheeledPositionZ, width }) => {
+  /*
+  ...
+  */
+  // useEffect(() => {
+  //   console.log(progressValue.to(v => v.toFixed(2)));
+  // }, [progressValue]);
   /*
   JSX
   */
@@ -18,12 +24,15 @@ const ContainerIntro2DStaff = () => {
       {/*
       Gesture Prompts that suggest to scroll / drag "down" when <Containerintro> has been mounted
       */}
-      <IntroGesturePrompt />
+      <IntroGesturePrompt
+        progressValue={progressValue}
+        wheeledPositionZ={wheeledPositionZ}
+        width={width}
+      />
       {/*
       Components used bellow are used to map 3D "pseudo-buttons" in <Containerintro>
       */}
       <EndButtons2D />
-
       <RaphaelSectionToggler />
     </>
   );

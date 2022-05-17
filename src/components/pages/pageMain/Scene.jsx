@@ -18,7 +18,7 @@ import ContainerIntro from '../../../components3D/three/custome/containerIntro/C
 -------------------------------------------------------------------------
 */
 
-const Scene = React.memo(() => {
+const Scene = React.memo(({ wheeledPositionZ }) => {
   /*
   JSX
   */
@@ -28,7 +28,7 @@ const Scene = React.memo(() => {
       <DraiPerspectiveCamera />
 
       {/*-----Intro Container----------------------------------------*/}
-      <ContainerIntro />
+      <ContainerIntro wheeledPositionZ={wheeledPositionZ} />
 
       {/*-----About Container----------------------------------------*/}
       <ContainerAbout />

@@ -1,11 +1,18 @@
 .text-component-of-GPTP {
-  &__wrapper {
+  &__container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
+    height: 100%;
   }
-  &__word {
+  &__text-wrapper {
+    height: 50%;
+    &.progress {
+      justify-content: flex-end;
+    }
+  }
+  &__text {
     // width: fit-content;
     color: setColor(light);
     font-size: $fontSmall;
@@ -13,6 +20,7 @@
     font-weight: 400;
     font-family: $sanSerif;
     letter-spacing: 3px;
+    transform: rotateZ(90deg);
     // @media (min-width: 370px) {
     //   font-size: 1.3rem;
     // }

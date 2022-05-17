@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react';
-// import { useThree } from '@react-three/fiber';
+
 import { useSpring, config } from '@react-spring/three';
 import { useGesture } from '@use-gesture/react';
 /*
@@ -22,7 +22,7 @@ const IntroWheelGesture = () => {
   References
   */
   const gestureType = useRef();
-  const endOfWheeling = useRef(false);
+  const onStartCondition = useRef(true);
   /*
   Global States for SpringValues;
   canvasState = { isCanvasScrollableContainerScrollable: false, wheelBounds: { top: 0, bottom: 3550 }, dragBounds: { top: -3350, bottom:0 }, introContainerWheelDragBounds: {top: 0, bottom: 3550}}
@@ -31,37 +31,31 @@ const IntroWheelGesture = () => {
   /*
   Spring Section
   */
-  const [{ someValue, wheeledPositionZ }, api] = useSpring(() => ({
-    someValue: 0,
+  const [{ width, progressValue, wheeledPositionZ }, api] = useSpring(() => ({
+    width: '0%',
+    progressValue: 0,
     wheeledPositionZ: 0,
-    config: config.molasses,
+    config: { ...config.molasses, precision: 0.00001 },
     /*
     "onStart()"; works...but there is still some "tick" in weeling
     */
     onStart: () => {
-      // if (positionZ.current === onWheelData.bottom) {
-      //   canvasState.endOfContainerIntro = true;
-      //   // console.log('onRest / positionZ.current:', positionZ.current);
-      // }
-      if (gestureType.current === 'wheeling') {
+      if (gestureType.current === 'wheeling' && onStartCondition.current) {
         canvasState.introContainerEventType = 'wheeling';
+        onStartCondition.current = false;
       }
     },
-    // onChange: () => {
-    //   if (endOfWheeling.current === true) {
-    //     canvasState.endOfContainerIntro = true;
-    //   }
-    // },
   }));
 
   const onWheelStartHandler = useCallback(
     ({ wheeling, offset: [, offsetY] }) => {
       /*
-      this callback sets 
+      sidenote: I'vetried to use "gestureType.current = 'none'" instead of "bcanvasGlobalState.introContainerEventType === 'none'"; result: if first gesture was "wheeling" it can anyway be replaced by "laptop tap panel" and vice versa;
        */
       if (wheeling && canvasGlobalState.introContainerEventType === 'none') {
         // console.log('is wheeling:', wheeling);
         gestureType.current = 'wheeling';
+        // console.log('IntroWheelGesture / onWheelStartHandler ');
       }
     },
     [canvasGlobalState.introContainerEventType]
@@ -75,7 +69,8 @@ const IntroWheelGesture = () => {
       Spring Section;
       */
       api.start({
-        someValue: offsetY,
+        width: (offsetY / onWheelData.bottom) * 100 + '%',
+        progressValue: (offsetY / onWheelData.bottom) * 100,
         wheeledPositionZ: offsetY * factorPositionY,
       });
     },
@@ -84,20 +79,14 @@ const IntroWheelGesture = () => {
   /*
   Additional Handler for last wheel 
   */
-  const onWheelEndHandler = useCallback(
-    ({ offset: [, offsetY], active }) => {
-      /*
+  const onWheelEndHandler = useCallback(({ offset: [, offsetY], active }) => {
+    /*
       What should happen if user wheels to the end?
       */
-      if (offsetY === onWheelData.bottom && !active) {
-        endOfWheeling.current = true;
-        canvasState.endOfContainerIntro = true;
-      }
-    },
-    [
-      // canvasGlobalState.introContainerWheelDragBounds.bottom
-    ]
-  );
+    if (offsetY === onWheelData.bottom && !active) {
+      canvasState.endOfContainerIntro = true;
+    }
+  }, []);
 
   /*
   Gesture Section
@@ -128,7 +117,7 @@ const IntroWheelGesture = () => {
   /*
   ContainerIntroWheel's return
   */
-  return { someValue, wheeledPositionZ, containerIntroWheel };
+  return { width, progressValue, wheeledPositionZ, containerIntroWheel };
 };
 
 export default IntroWheelGesture;

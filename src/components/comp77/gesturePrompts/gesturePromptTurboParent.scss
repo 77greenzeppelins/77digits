@@ -1,25 +1,72 @@
 .gesture-prompt-turbo-parent {
-  &__container {
+  // &__container {
+  //   position: fixed;
+  //   bottom: 0;
+  //   display: flex;
+  //   justify-content: center;
+  //   height: 0px;
+  //   width: 100%;
+  //   //____
+  //   transform-origin: center bottom;
+  // }
+  &__container-outher {
     position: fixed;
     bottom: 0;
-    display: flex;
-    justify-content: center;
-    height: 0px;
+    // height: 80px;
     width: 100%;
-    //____
-    transform-origin: center bottom;
+    z-index: 300;
+  }
+  &__container-inner {
+    position: relative;
+    margin-inline: auto;
+    max-width: 1000px;
+    width: 90%;
+    height: 10px;
+    padding: 0 20px 0 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    // background-color: #fff;
   }
   &__prompt-wrapper {
     position: absolute;
-    // background-color: #fff;
-    // opacity: 0.2;
     display: flex;
-    // border: 1px solid rgb(55, 54, 54);
   }
   &__text-wrapper {
     flex: 1;
+    height: 100%;
   }
   &__graphic-wrapper {
     flex: 1;
+    height: 100%;
+    width: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__symbol-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    // border: 1px solid setColor(light);
+    // border-radius: 50%;
+    // background-color: lighten(setColor(dark), 10);
+  }
+  &__symbol-vertical {
+    position: absolute;
+    width: 60%;
+    height: 1px;
+    background-color: setColor(light);
+    border-radius: 5px;
+  }
+  &__symbol-horizontal {
+    position: absolute;
+    width: 1px;
+    height: 60%;
+    background-color: setColor(light);
+    border-radius: 5px;
   }
 }

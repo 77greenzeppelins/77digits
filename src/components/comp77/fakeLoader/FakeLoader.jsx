@@ -28,8 +28,8 @@ const FakeLoader = () => {
   const canvasGlobalState = useSnapshot(canvasState);
   /*
   useSpring Section
-  Final result is "opacity: 0" of ".fake-loader__container"
-  It's short-term solution i.e. in final version the whole <FakeLoader>'s parent must get "display: none" or dismount... 
+  Firstly, springValue effects "opacity: 0" of ".fake-loader__container" and fakeLoader smoothly disappears;
+  Secondly, onChange() has a potential to dismount "fakeLoader" as it changes it's "condition of rendering" that is ".fakeLoaderCounter"
   */
   const { springValue } = useSpring({
     springValue: val ? 1 : 0,

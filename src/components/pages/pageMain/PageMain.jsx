@@ -8,7 +8,7 @@ import InitialOverlay from '../../comp77core/initialOverlay/InitialOverlay';
 import ContainerIntro2DStaff from '../../comp77/containerIntroStaff/ContainerIntro2DStaff';
 import ContainerAbout2DStaff from '../../comp77/containerAboutStaff/ContainerAbout2DStaff';
 import ContainerMenu2DStaff from '../../comp77/containerMenuStaff/ContainerMenu2DStaff';
-import CanvasGlobalState from './CanvasGlobalState';
+// import CanvasGlobalState from './CanvasGlobalState';
 /*
 3D Components
 */
@@ -20,7 +20,12 @@ Global State Staff
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../states/canvasState';
 /*
-
+Gestures Section
+*/
+import IntroWheelGesture from '../../../gestureHandlers/useGesture/IntroWheelGesture';
+import IntroDragGesture from '../../../gestureHandlers/useGesture/IntroDragGesture';
+/*
+Basic Data
 */
 import { backgroundColors } from '../../../data/globalData';
 /*
@@ -50,6 +55,13 @@ const PageMain = () => {
   // if (canvasGlobalState.currentContainer !== 'aboutContainer') {
   //   return <fog attach="fog" args={[setCanvasColors(), 2, 3]} />;
   // }
+
+  /*
+  UseGesture Section
+  */
+  const [draggedPositionZ] = IntroDragGesture();
+  const { wheeledPositionZ, progressValue, width } = IntroWheelGesture();
+
   /*
   JSX
   */
@@ -86,25 +98,24 @@ const PageMain = () => {
             // camera={{ fov: 45, position: [0, 0, 3] }}
           >
             {/*-----Canvas "attributes"--------------------------------*/}
-            {/* <color attach="background" args={[setCanvaColors()]} />
-            <fog attach="fog" args={[setCanvaColors(), 2, 3]} /> */}
             <color attach="background" args={[setCanvasColors()]} />
-            {/* {canvasGlobalState.currentContainer !== 'aboutContainer' && (
-              <fog attach="fog" args={[setCanvasColors(), 2, 3]} />
-            )} */}
             <fog attach="fog" args={[setCanvasColors(), 2, 3]} />
 
             {/*-----S C E N E -----------------------------------------*/}
-            <Scene />
+            <Scene wheeledPositionZ={wheeledPositionZ} />
           </Canvas>
         </div>
 
         {/*-----Non-3D Components -------------------------------------*/}
-        <ContainerIntro2DStaff />
+        <ContainerIntro2DStaff
+          progressValue={progressValue}
+          wheeledPositionZ={wheeledPositionZ}
+          width={width}
+        />
         <ContainerAbout2DStaff />
         <ContainerMenu2DStaff />
 
-        <CanvasGlobalState />
+        {/* <CanvasGlobalState /> */}
       </div>
     </>
   );
