@@ -18,28 +18,30 @@ import ContainerIntro from '../../../components3D/three/custome/containerIntro/C
 -------------------------------------------------------------------------
 */
 
-const Scene = React.memo(({ wheeledPositionZ }) => {
-  /*
+const Scene = React.memo(
+  ({ rotateStepByStep, gesturesForSidesRotationsIndicator }) => {
+    /*
   JSX
   */
-  return (
-    <>
-      {/*-----Camera Control Section-------------------------------- */}
-      <DraiPerspectiveCamera />
+    return (
+      <>
+        {/*-----Camera Control Section-------------------------------- */}
+        <DraiPerspectiveCamera />
 
-      {/*-----Intro Container----------------------------------------*/}
-      <ContainerIntro wheeledPositionZ={wheeledPositionZ} />
+        {/*-----Intro Container----------------------------------------*/}
+        <ContainerIntro />
 
-      {/*-----About Container----------------------------------------*/}
-      <ContainerAbout />
+        {/*-----About Container----------------------------------------*/}
+        <ContainerAbout />
 
-      {/*-----Menu Container-----------------------------------------*/}
-      <ContainerMenu />
+        {/*-----Menu Container-----------------------------------------*/}
+        <ContainerMenu />
 
-      {/*-----Helpers------------------------------------------------*/}
-      {/* <CanvasStateObserver /> */}
-    </>
-  );
-});
+        {/*-----Helpers------------------------------------------------*/}
+        {/* <CanvasStateObserver /> */}
+      </>
+    );
+  }
+);
 
 export default Scene;

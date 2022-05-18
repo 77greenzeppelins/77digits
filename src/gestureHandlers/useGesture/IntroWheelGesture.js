@@ -31,21 +31,22 @@ const IntroWheelGesture = () => {
   /*
   Spring Section
   */
-  const [{ width, progressValue, wheeledPositionZ }, api] = useSpring(() => ({
-    width: '0%',
-    progressValue: 0,
-    wheeledPositionZ: 0,
-    config: { ...config.molasses, precision: 0.00001 },
-    /*
+  const [{ wheelProgressValue, wheelProgressToggler, wheeledPositionZ }, api] =
+    useSpring(() => ({
+      wheelProgressToggler: 1,
+      wheelProgressValue: 0,
+      wheeledPositionZ: 0,
+      config: { ...config.molasses, precision: 0.0001 },
+      /*
     "onStart()"; works...but there is still some "tick" in weeling
     */
-    onStart: () => {
-      if (gestureType.current === 'wheeling' && onStartCondition.current) {
-        canvasState.introContainerEventType = 'wheeling';
-        onStartCondition.current = false;
-      }
-    },
-  }));
+      onStart: () => {
+        if (gestureType.current === 'wheeling' && onStartCondition.current) {
+          canvasState.introContainerEventType = 'wheeling';
+          onStartCondition.current = false;
+        }
+      },
+    }));
 
   const onWheelStartHandler = useCallback(
     ({ wheeling, offset: [, offsetY] }) => {
@@ -65,12 +66,14 @@ const IntroWheelGesture = () => {
   */
   const mainWheelHandler = useCallback(
     ({ offset: [, offsetY] }) => {
+      // console.log('offsetY', offsetY);
       /*
       Spring Section;
       */
       api.start({
-        width: (offsetY / onWheelData.bottom) * 100 + '%',
-        progressValue: (offsetY / onWheelData.bottom) * 100,
+        wheelProgressToggler:
+          offsetY === 0 || (offsetY / onWheelData.bottom) * 100 > 99 ? 1 : 0.3,
+        wheelProgressValue: (offsetY / onWheelData.bottom) * 100,
         wheeledPositionZ: offsetY * factorPositionY,
       });
     },
@@ -117,7 +120,12 @@ const IntroWheelGesture = () => {
   /*
   ContainerIntroWheel's return
   */
-  return { width, progressValue, wheeledPositionZ, containerIntroWheel };
+  return {
+    wheelProgressValue,
+    wheelProgressToggler,
+    wheeledPositionZ,
+    containerIntroWheel,
+  };
 };
 
 export default IntroWheelGesture;

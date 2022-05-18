@@ -2,18 +2,33 @@
   &__container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    // justify-content: center;
+    // align-items: center;
     height: 100%;
+    width: 20px;
   }
   &__text-wrapper {
-    height: 50%;
+    // height: 50%;
+    flex: 1;
     &.progress {
+      display: flex;
+      flex-direction: column;
       justify-content: flex-end;
+      padding-bottom: 3px;
+      // height: 50%;
+    }
+    &.percentage {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 3px;
+      // height: 50%;
     }
   }
   &__text {
     // width: fit-content;
+    text-align: end;
+
     color: setColor(light);
     font-size: $fontSmall;
     user-select: none;

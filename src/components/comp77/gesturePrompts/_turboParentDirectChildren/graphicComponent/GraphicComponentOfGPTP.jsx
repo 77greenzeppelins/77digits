@@ -19,7 +19,7 @@ const GraphicComponentOfGPTP = ({ spring, graphicComponentData }) => {
       className="graphic-component-of-GPTP__holder"
       style={
         graphicComponentData && {
-          ...graphicComponentData.classHolderCSS,
+          ...graphicComponentData,
         }
       }
     >

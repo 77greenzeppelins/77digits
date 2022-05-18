@@ -1,4 +1,4 @@
-import React, { useRef, Suspense, useEffect } from 'react';
+import React, { useRef, Suspense } from 'react';
 /*
 Global State staff
 */
@@ -12,19 +12,18 @@ import TextSection from './textSection/TextSection';
 import EndButtons from './endButtonsSection/EndButtons';
 import RaphaelSection from './raphaelSection/RaphaelSection';
 /*
-Gesture Section
-*/
-import IntroDragGesture from '../../../../gestureHandlers/useGesture/IntroDragGesture';
-// import IntroWheelGesture from '../../../../gestureHandlers/useGesture/IntroWheelGesture';
-/*
 Spring Section
 */
 import { a } from '@react-spring/three';
-
+/*
+Gestures Section
+*/
+import IntroWheelGesture from '../../../../gestureHandlers/useGesture/IntroWheelGesture';
+import IntroDragGesture from '../../../../gestureHandlers/useGesture/IntroDragGesture';
 /*
 ------------------------------------------------------------------------
  */
-const ContainerIntro = ({ wheeledPositionZ }) => {
+const ContainerIntro = () => {
   /*
   References
   */
@@ -35,18 +34,10 @@ const ContainerIntro = ({ wheeledPositionZ }) => {
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
-  UseGesture Section
+  UseGesture Section for <ContainerIntro>
   */
-  const [draggedPositionZ] = IntroDragGesture();
-  // const { wheeledPositionZ } = IntroWheelGesture();
-
-  // const { positionZ } = ContIntroGest();
-  // useEffect(() => {
-  //   console.log(
-  //     'ContainerIntro / useEffect /draggedPositionZ:',
-  //     draggedPositionZ.animation.to
-  //   );
-  // }, [draggedPositionZ.animation.to]);
+  const { draggedPositionZ } = IntroDragGesture();
+  const { wheeledPositionZ } = IntroWheelGesture();
 
   /*
   JSX
@@ -56,11 +47,10 @@ const ContainerIntro = ({ wheeledPositionZ }) => {
       ref={introContainer}
       name="GroupForContainerIntro"
       position-z={
-        canvasGlobalState.introContainerEventType === 'dragging'
-          ? draggedPositionZ.to(draggedPositionZ => draggedPositionZ)
-          : wheeledPositionZ.to(wheeledPositionZ => wheeledPositionZ)
+        canvasGlobalState.introContainerEventType === 'wheeling'
+          ? wheeledPositionZ
+          : draggedPositionZ
       }
-      // position-z={positionZ}
     >
       {/*-----Text Slides------------------------------------------*/}
       <TextSection />

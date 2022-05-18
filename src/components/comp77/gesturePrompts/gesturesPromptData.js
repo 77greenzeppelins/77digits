@@ -1,7 +1,6 @@
 /*
-Data for all gestures used in App
+Data for all "gestures" used in App
 */
-
 import { springConfigs } from '../../../data/reactSpring';
 
 //_______________________________COMMON_____________________________
@@ -16,11 +15,13 @@ const useSpringConfigVertical = {
   from: { y: ' -110%', opacity: 0 },
   to: { y: '110 %', opacity: 1 },
   config: { duration: 5000 },
+  loop: true,
 };
 const useSpringConfigHorizontal = {
   from: { x: ' -110%', opacity: 0 },
   to: { x: '110 %', opacity: 1 },
   config: { duration: 5000 },
+  loop: true,
 };
 
 //______________________________<ContainerIntro>_____________________
@@ -32,13 +33,25 @@ const introGesturePromptData = {
   */
   springConfig: { ...useSpringConfigVertical },
   /*
-  CSS
+  CSS configs for <GesturePromptsTurboParent>'s classes: .container-outher, .prompt-wrapper, .graphic-wrapper, ...
   */
+  classContainerOutherCSS: {
+    bottom: 0,
+  },
   classPromptWrapperCSS: {
     highFactor: 0.2,
-    widthFactor: 0.35,
     left: 0,
     bottom: 0,
+  },
+  classGraphicWrapperCSS: {
+    flexDirection: 'column',
+  },
+  /*
+  CSS configs for <GraphicComponentOFGPTP>
+  */
+  graphicComponentData: {
+    height: '60%',
+    width: '1px',
   },
 };
 
@@ -52,21 +65,25 @@ const spinningBoxGesturePromptData = {
   /*
   for <GesturePromptTurboParent> layout / class: gesture-prompt-turbo-parent__prompt-wrapper
   */
-  classPromptWrapperCSS: {
-    highFactor: 0.15,
-    widthFactor: 0.3,
+  classContainerOutherCSS: {
+    bottom: 0,
   },
-  classGraphicWrapperCSS: { flex: 1, display: 'flex', alignItems: 'center' },
+  classPromptWrapperCSS: {
+    widthFactor: 0.25,
+    bottom: '7vh',
+    left: 0,
+    right: 0,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    height: '1px',
+    // backgroundColor: 'red',
+  },
   /*
   for <GraphicComponentOfGPTP>
   */
   graphicComponentData: {
-    classHolderCSS: {
-      height: '1px',
-      width: '100%',
-      marginLeft: 0,
-    },
-    classLineCSS: {},
+    height: '1px',
+    width: '60%',
   },
 };
 

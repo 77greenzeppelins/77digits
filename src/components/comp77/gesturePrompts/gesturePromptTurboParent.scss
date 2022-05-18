@@ -11,8 +11,9 @@
   // }
   &__container-outher {
     position: fixed;
-    bottom: 0;
-    // height: 80px;
+    /*
+    top, bottom are set in "data.js"
+    */
     width: 100%;
     z-index: 300;
   }
@@ -21,15 +22,17 @@
     margin-inline: auto;
     max-width: 1000px;
     width: 90%;
-    height: 10px;
+    // height: 10px;
     padding: 0 20px 0 20px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    // background-color: #fff;
+    // display: flex;
+    // justify-content: flex-start;
+    // align-items: center;
   }
   &__prompt-wrapper {
     position: absolute;
+    /*
+    top, bottom are set in "data.js"
+    */
     display: flex;
   }
   &__text-wrapper {
@@ -38,10 +41,11 @@
   }
   &__graphic-wrapper {
     flex: 1;
-    height: 100%;
-    width: 20px;
-    flex-direction: column;
-    justify-content: space-between;
+    // height: 100%;
+    // width: 20px;
+    display: flex;
+    // flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
   }
   &__symbol-wrapper {

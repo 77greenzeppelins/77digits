@@ -35,10 +35,14 @@ const ContainerAbout2DStaff = () => {
       */
       <div className="container-about__wrapper-empty-class">
         {/*
-        Gestiure prompt that inform what to do with <SpoinningBox>;
+        Gesture prompt that inform what to do with <SpoinningBox>;
         has internal "useTransition()"-based concept of mounting;
         */}
         <SpinningBoxGesturePrompt />
+        {/*
+        Gesture prompt that inform what is going on in  <Slader2D>;
+        has internal "useTransition()"-based concept of mounting;
+        */}
         <SlidesGesturePrompt />
         {/*
         <Slider2D >'s slides have internal ...
@@ -47,7 +51,7 @@ const ContainerAbout2DStaff = () => {
         {/*
         <SlidesProgressIndicator/> has internal "useTransition()"-based concept of mounting;
         */}
-        <SlidesProgressIndicator />
+        {/* <SlidesProgressIndicator /> */}
       </div>
     )
   );

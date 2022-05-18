@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import * as THREE from 'three';
 /*
 2D Components
@@ -19,11 +19,6 @@ Global State Staff
 */
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../states/canvasState';
-/*
-Gestures Section
-*/
-import IntroWheelGesture from '../../../gestureHandlers/useGesture/IntroWheelGesture';
-import IntroDragGesture from '../../../gestureHandlers/useGesture/IntroDragGesture';
 /*
 Basic Data
 */
@@ -55,12 +50,6 @@ const PageMain = () => {
   // if (canvasGlobalState.currentContainer !== 'aboutContainer') {
   //   return <fog attach="fog" args={[setCanvasColors(), 2, 3]} />;
   // }
-
-  /*
-  UseGesture Section
-  */
-  const [draggedPositionZ] = IntroDragGesture();
-  const { wheeledPositionZ, progressValue, width } = IntroWheelGesture();
 
   /*
   JSX
@@ -102,16 +91,12 @@ const PageMain = () => {
             <fog attach="fog" args={[setCanvasColors(), 2, 3]} />
 
             {/*-----S C E N E -----------------------------------------*/}
-            <Scene wheeledPositionZ={wheeledPositionZ} />
+            <Scene />
           </Canvas>
         </div>
 
         {/*-----Non-3D Components -------------------------------------*/}
-        <ContainerIntro2DStaff
-          progressValue={progressValue}
-          wheeledPositionZ={wheeledPositionZ}
-          width={width}
-        />
+        <ContainerIntro2DStaff />
         <ContainerAbout2DStaff />
         <ContainerMenu2DStaff />
 

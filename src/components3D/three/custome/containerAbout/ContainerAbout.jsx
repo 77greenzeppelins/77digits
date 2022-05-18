@@ -1,4 +1,4 @@
-import React, { useMemo, Suspense, useRef } from 'react';
+import React, { useMemo, Suspense, useRef, useEffect } from 'react';
 /*
 Components
 */
@@ -54,14 +54,14 @@ const ContainerAbout = () => {
   });
 
   //_________
-  // useEffect(() => {
-  //   // console.log('ContainerAbout / sideFrontRotation:', sideFrontRotation);
-  //   console.log(
-  //     'ContainerAbout / arrowPromptGroupRotation:',
-  //     arrowPromptGroupRotation
-  //   );
-  // }, [arrowPromptGroupRotation]);
+  useEffect(() => {
+    // console.log('ContainerAbout / sideFrontRotation:', sideFrontRotation);
+    console.log('ContainerAbout / rotateStepByStep:', rotateStepByStep);
+  }, [rotateStepByStep]);
   //_____
+  // const rotateStepByStepInMemo = useMemo(() => {
+  //   return rotateStepByStep;
+  // }, [rotateStepByStep]);
 
   /*
   array of animation for all <SpinningBoxSide>
@@ -79,7 +79,6 @@ const ContainerAbout = () => {
     sideBackRotation,
     sideRightRotation,
   ]);
-
   /*
   array of animation for all <SpinningBoxSide>
   */

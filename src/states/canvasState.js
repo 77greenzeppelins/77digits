@@ -51,6 +51,7 @@ const canvasState = proxy({
   /*
   this value is required in <ContainerIntro>
   it is set in <IntroWheelGesture> & <IntroDragGesture>
+  possible values: "wheeling", "dragging"
   it's used to asset "proper and unique" way of moving to user device / experience;
   it's actually "first part" of condition used in <IntroWheelGesture> & <IntroDragGesture>;
   */

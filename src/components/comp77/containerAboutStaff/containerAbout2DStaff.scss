@@ -7,21 +7,6 @@
     */
     pointer-events: none;
   }
-  // &__top-wrapper {
-  // position: fixed;
-  // // position: absolute;
-  // top: 0;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // // background-color: darken(setColor(light), 90);
-  // background-color: transparent;
-  // /*
-  // "pointer-events: none" => in this case it allowes to enter 3D component <Slide1> or rather its planeGeometry that register "gestures"
-  // */
-  // pointer-events: none;
-  // // touch-action: none;
-  // }
   &__bottom-wrapper {
     position: fixed;
     bottom: 0;

@@ -35,10 +35,13 @@ const IntroDragGesture = () => {
   /*
   Spring Section
   */
-  const [{ draggedPositionZ }, api] = useSpring(() => ({
-    draggedPositionZ: 0,
-    config: config.molasses,
-  }));
+  const [{ dragProgressValue, dragProgressToggler, draggedPositionZ }, api] =
+    useSpring(() => ({
+      dragProgressValue: 0,
+      dragProgressToggler: 1,
+      draggedPositionZ: 0,
+      config: config.molasses,
+    }));
   /*
   Main Handler Section
   */
@@ -51,7 +54,12 @@ const IntroDragGesture = () => {
       if (dragging && canvasGlobalState.introContainerEventType === 'none') {
         canvasState.introContainerEventType = 'dragging';
       }
-      api.start({ draggedPositionZ: offsetY * factorPositionY });
+      api.start({
+        dragProgressValue: (offsetY / onDragData.bottom) * 100,
+        dragProgressToggler:
+          offsetY === 0 || (offsetY / onDragData.bottom) * 100 > 99 ? 1 : 0.3,
+        draggedPositionZ: offsetY * factorPositionY,
+      });
     },
     [api, canvasGlobalState.introContainerEventType]
   );
@@ -95,7 +103,12 @@ const IntroDragGesture = () => {
   /*
   ContainerIntroDrag's return
   */
-  return [draggedPositionZ, containerIntroDrag];
+  return {
+    dragProgressValue,
+    dragProgressToggler,
+    draggedPositionZ,
+    containerIntroDrag,
+  };
 };
 
 export default IntroDragGesture;

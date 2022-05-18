@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 /*
 Components
 */
@@ -16,12 +16,15 @@ import { introGesturePromptData } from '../../gesturesPromptData';
 /*
 ------------------------------------------------------------------------
 */
-const IntroGesturePrompt = ({ progressValue, wheeledPositionZ, width }) => {
+const IntroGesturePrompt = ({ progressValue, progressToggler }) => {
   /*
   Global State Section
   */
   const canvasGlobalState = useSnapshot(canvasState);
 
+  const symbolsClassCSS = useMemo(() => {
+    return { opacity: progressToggler };
+  }, [progressToggler]);
   /*
   JSX
   */
@@ -33,7 +36,7 @@ const IntroGesturePrompt = ({ progressValue, wheeledPositionZ, width }) => {
         */
         useTransitionCondition={
           !canvasGlobalState.isInitialOverlayMounted &&
-          // canvasGlobalState.introContainerEventType === 'none' &&
+          !canvasGlobalState.endOfContainerIntro &&
           canvasGlobalState.currentContainer === 'introContainer'
         }
         textChildCondition={canvasGlobalState.languageVersion}
@@ -42,15 +45,17 @@ const IntroGesturePrompt = ({ progressValue, wheeledPositionZ, width }) => {
         */
         useTransitionConfig={introGesturePromptData.transitionConfig}
         useSpringConfig={introGesturePromptData.springConfig}
+        classContainerOutherCSS={introGesturePromptData.classContainerOutherCSS}
         classPromptWrapperCSS={introGesturePromptData.classPromptWrapperCSS}
-        textComponentData={introGesturePromptData.textComponentData}
+        classGraphicWrapperCSS={introGesturePromptData.classGraphicWrapperCSS}
         graphicComponentData={introGesturePromptData.graphicComponentData}
         /*
-        ...
+        data from 
         */
         progressValue={progressValue}
-        wheeledPositionZ={wheeledPositionZ}
-        width={width}
+        progressToggler={progressToggler}
+        plusAndMinus={true}
+        symbolsClassCSS={symbolsClassCSS}
       />
     </>
   );

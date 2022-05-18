@@ -1,5 +1,4 @@
 import { useCallback, useRef } from 'react';
-// import { useThree } from '@react-three/fiber';
 /*
 GlobalState
 */
@@ -53,6 +52,10 @@ const ContAboutGest = ({ axisLimitation }) => {
       number3,
       number4,
       number77,
+      /*
+      for <ComponentAbout2DStaff>
+      */
+      opacitySetter,
     },
     api,
   ] = useSpring(() => ({
@@ -66,6 +69,8 @@ const ContAboutGest = ({ axisLimitation }) => {
     number3: 1,
     number4: 1,
     number77: 0,
+    //
+    opacitySetter: 1,
     //
     config: config.molasses,
     delay: 200,
@@ -128,7 +133,6 @@ const ContAboutGest = ({ axisLimitation }) => {
         refX.current--;
         // console.log('refX.current', refX.current);
       }
-
       /*
       Spring API
       */
@@ -137,6 +141,7 @@ const ContAboutGest = ({ axisLimitation }) => {
         "rotateStepByStep" animates <SpinningBox>'s rotation
         */
         rotateStepByStep: [0, refX.current * Math.PI * 0.5, 0],
+        opacitySetter: refX.current === 0 ? 1 : 0.3,
       });
     },
     [api]
@@ -278,6 +283,7 @@ const ContAboutGest = ({ axisLimitation }) => {
     number3,
     number4,
     number77,
+    opacitySetter,
     containerAboutGestures,
   };
 };
