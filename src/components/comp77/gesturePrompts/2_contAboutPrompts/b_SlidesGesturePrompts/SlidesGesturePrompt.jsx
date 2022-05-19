@@ -11,30 +11,30 @@ import { canvasState } from '../../../../../states/canvasState';
 /*
 Basic Data
 */
-import { SlideGesturePrompt } from '../../gesturesPromptData';
+import { slideGesturePrompt } from '../../gesturesPromptData';
+
+/*
+...
+*/
+import ContAboutNavGest from '../../../../../gestureHandlers/useGesture/ContAboutNavGest';
 
 /*
 ------------------------------------------------------------------------
 */
 const SlidesGesturePrompt = () => {
   /*
+  ...
+  */
+  const { springValue, progressValue } = ContAboutNavGest();
+
+  /*
   Global State Section
   */
   const canvasGlobalState = useSnapshot(canvasState);
-  /*
-  Local State Section
-  */
-  const [state, setState] = useState(true);
-  /*
-  useEffect Section
-  Why?
-  To eliminate "gesturePrompt" after the very first slide change
-  */
-  useEffect(() => {
-    if (canvasGlobalState.containerAboutVisibleSlideIndex > 0 && state) {
-      setState(false);
-    }
-  }, [canvasGlobalState.containerAboutVisibleSlideIndex, state]);
+
+  // useEffect(() => {
+  //   console.log('springValue', springValue);
+  // }, [springValue]);
 
   /*
   JSX
@@ -47,17 +47,29 @@ const SlidesGesturePrompt = () => {
         */
         useTransitionCondition={
           canvasGlobalState.currentContainer === 'aboutContainer' &&
-          canvasGlobalState.sliderIsReady &&
-          state
+          canvasGlobalState.sliderIsReady
         }
         /*
         taken from external file
         */
-        useTransitionConfig={SlideGesturePrompt.transitionConfig}
-        useSpringConfig={SlideGesturePrompt.springConfig}
-        classPromptWrapperCSS={SlideGesturePrompt.classPromptWrapperCSS}
-        classGraphicWrapperCSS={SlideGesturePrompt.classGraphicWrapperCSS}
-        graphicComponentData={SlideGesturePrompt.graphicComponentData}
+        useTransitionConfig={slideGesturePrompt.transitionConfig}
+        useSpringConfig={slideGesturePrompt.springConfig}
+        classContainerOutherCSS={slideGesturePrompt.classContainerOutherCSS}
+        classPromptWrapperCSS={slideGesturePrompt.classPromptWrapperCSS}
+        classGraphicWrapperCSS={slideGesturePrompt.classGraphicWrapperCSS}
+        graphicComponentData={slideGesturePrompt.graphicComponentData}
+        /*
+        "springValues" taken from gestureHendlers; "progressValue" for innerText that displays progress in numbers; "symbolsClassCSS" for opacity manipulations that effects "=", "-", "progress digits";
+        */
+        progressValue={progressValue}
+        symbolsClassCSS={springValue}
+        /*
+        ...
+        */
+        plusAndMinus={true}
+        columnReverse={
+          canvasGlobalState.introContainerEventType === 'wheeling' ? 0 : 1
+        }
       />
     </>
   );

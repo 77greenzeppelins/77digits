@@ -1,15 +1,13 @@
 /*
 Data for all "gestures" used in App
 */
-import { springConfigs } from '../../../data/reactSpring';
+// import { springConfigs } from '../../../data/reactSpring';
 
 //_______________________________COMMON_____________________________
 const useTransitionConfig = {
   from: { opacity: 0, display: 'none' },
   enter: { opacity: 1, display: 'flex' },
   leave: { opacity: 0, display: 'none' },
-  delay: 200,
-  config: springConfigs.molasses,
 };
 const useSpringConfigVertical = {
   from: { y: ' -110%', opacity: 0 },
@@ -56,6 +54,9 @@ const introGesturePromptData = {
 };
 
 //______________________________<ContainerAbout>_____________________
+/*
+for <SpinningBoxGesturePrompt>
+*/
 const spinningBoxGesturePromptData = {
   transitionConfig: { ...useTransitionConfig },
   /*
@@ -78,6 +79,9 @@ const spinningBoxGesturePromptData = {
     height: '1px',
     // backgroundColor: 'red',
   },
+  classGraphicWrapperCSS: {
+    flexDirection: 'row',
+  },
   /*
   for <GraphicComponentOfGPTP>
   */
@@ -87,36 +91,41 @@ const spinningBoxGesturePromptData = {
   },
 };
 
-const SlideGesturePrompt = {
+/*
+for <SlideGesturePrompt>
+*/
+const slideGesturePrompt = {
   transitionConfig: { ...useTransitionConfig },
   /*
   for <GesturePromptTP> => <GraphicComponentOf...>
   */
   springConfig: { ...useSpringConfigVertical },
+
   /*
-  for <GesturePromptTP> layout
+  CSS configs for <GesturePromptsTurboParent>'s classes: .container-outher, .prompt-wrapper, .graphic-wrapper, ...
   */
-  // highFactor: 0.15,
-  // widthFactor: 0.35,
+  classContainerOutherCSS: {
+    top: 0,
+  },
+  classPromptWrapperCSS: {
+    highFactor: 0.14,
+    left: 0,
+    top: 0,
+  },
+  // classGraphicWrapperCSS: {
+  //   flexDirection: 'column',
+  // },
   /*
-  CSS
+  CSS configs for <GraphicComponentOFGPTP>
   */
-  classPromptWrapperCSS: { highFactor: 0.1, widthFactor: 0.35 },
   graphicComponentData: {
-    classHolderCSS: {
-      height: '90%',
-      width: '1px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-    classLineCSS: {
-      height: '90%',
-    },
+    height: '60%',
+    width: '1px',
   },
 };
 
 export {
   introGesturePromptData,
   spinningBoxGesturePromptData,
-  SlideGesturePrompt,
+  slideGesturePrompt,
 };

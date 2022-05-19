@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React from 'react';
 /*
 Components
 */
@@ -8,13 +8,17 @@ import RaphaelSectionToggler from './raphaelSectionToggler/RaphaelSectionToggler
 /*
 GlobalState Staff
 */
-import { canvasState } from '../../../states/canvasState';
-import { useSnapshot } from 'valtio';
+// import { canvasState } from '../../../states/canvasState';
+// import { useSnapshot } from 'valtio';
 /*
 Gestures Staff
 */
-import IntroDragGesture from '../../../gestureHandlers/useGesture/IntroDragGesture';
-import IntroWheelGesture from '../../../gestureHandlers/useGesture/IntroWheelGesture';
+// import IntroWheelGesture from '../../../gestureHandlers/useGesture/IntroWheelGesture';
+/*
+...
+*/
+// import { animated } from '@react-spring/web';
+
 /*
 ----------------------------------------------------------------------
 */
@@ -28,35 +32,13 @@ const ContainerIntro2DStaff = () => {
   /*
   GlobalState Section
   */
-  const canasGlobalState = useSnapshot(canvasState);
-  /*
-  ...
-  */
-  const { dragProgressValue, dragProgressToggler } = IntroDragGesture();
-  const { wheelProgressValue, wheelProgressToggler } = IntroWheelGesture();
+  // const canvasGlobalState = useSnapshot(canvasState);
 
-  const progressValue = useMemo(
-    () =>
-      canasGlobalState.introContainerEventType === 'wheeling'
-        ? wheelProgressValue
-        : dragProgressValue,
-    [
-      canasGlobalState.introContainerEventType,
-      wheelProgressValue,
-      dragProgressValue,
-    ]
-  );
-  const progressToggler = useMemo(
-    () =>
-      canasGlobalState.introContainerEventType === 'wheeling'
-        ? wheelProgressToggler
-        : dragProgressToggler,
-    [
-      canasGlobalState.introContainerEventType,
-      wheelProgressToggler,
-      dragProgressToggler,
-    ]
-  );
+  /*
+  for  T E S T  sake
+  */
+  // const { wheelProgressToggler, wheelProgressValue } = IntroWheelGesture();
+
   /*
   JSX
   */
@@ -65,15 +47,30 @@ const ContainerIntro2DStaff = () => {
       {/*
       Gesture Prompts that suggest to scroll / drag "down" when <Containerintro> has been mounted
       */}
-      <IntroGesturePrompt
-        progressValue={progressValue}
-        progressToggler={progressToggler}
-      />
+      <IntroGesturePrompt />
       {/*
       Components used bellow are used to map 3D "pseudo-buttons" in <Containerintro>
       */}
       <EndButtons2D />
       <RaphaelSectionToggler />
+
+      {/*----for  T E S T  sake-------------------------------------- */}
+      {/* {canvasGlobalState.currentContainer === 'introContainer' && (
+        <animated.div
+          style={{
+            position: 'fixed',
+            bottom: 0,
+            right: 0,
+            width: '200px',
+            height: `200px`,
+            // backgroundColor: 'white',
+            // opacity: wheelProgressToggler,
+            backgroundColor: wheelProgressValue.to(x => `rgba(210, 57, ${x})`),
+          }}
+        >
+          {wheelProgressToggler.to(x => x.toFixed(2))}
+        </animated.div>
+      )} */}
     </>
   );
 };

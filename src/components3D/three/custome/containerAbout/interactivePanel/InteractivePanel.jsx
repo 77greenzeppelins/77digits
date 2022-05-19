@@ -8,14 +8,11 @@ Basic Data
 */
 import { interactivePanelData } from './interactivePanelData';
 
-const InteractivePanel = ({ meshProps, slidesNumber }) => {
+const InteractivePanel = ({ meshProps }) => {
   /*
   Gesture Section
   */
-  const { contAboutNavGest } = ContAboutNavGest({
-    // numberOfSlides: interactivePanelData.numberOfSlides, //5
-    numberOfSlides: slidesNumber,
-  });
+  // ContAboutNavGest();
 
   /*
   JSX
@@ -24,7 +21,7 @@ const InteractivePanel = ({ meshProps, slidesNumber }) => {
     <mesh
       {...meshProps}
       position={interactivePanelData.position}
-      {...contAboutNavGest()}
+      // {...contAboutNavGest()}
       // {...pseudoScrollinGesture()}
       // {...gestureHandler()}
       //   visible={false}

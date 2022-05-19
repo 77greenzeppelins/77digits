@@ -59,7 +59,7 @@ const BotticelliSection = ({ groupProps }) => {
   Gesture Section
   this animation allowes semi-rotation animation of venus painting
   */
-  const [orbitImitation, dragRotateReturn] = DragRotateReturn(
+  const { orbitImitation, dragRotateReturn } = DragRotateReturn(
     /*
     it's a section of "custome args"
     */

@@ -5,11 +5,19 @@ Global State Staff
 */
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../states/canvasState';
+/*
+Spring Staff
+*/
+import { useSpring, config } from '@react-spring/three';
+/*
+Basic Data
+*/
+import { contAboutSlidesNumber } from '../../data/globalData';
 
 /*
 --------------------------------------------------------------------
 */
-const ContAboutNavGest = ({ numberOfSlides }) => {
+const ContAboutNavGest = () => {
   /*
   References
   */
@@ -18,13 +26,24 @@ const ContAboutNavGest = ({ numberOfSlides }) => {
   Global State Section
   */
   const canvasGlobalState = useSnapshot(canvasState);
+  /*
+  Spring Section
+  */
+  const [{ springValue, progressValue }, api] = useSpring(() => ({
+    springValue: 1,
+    progressValue: 0,
+  }));
 
   const onWheelHandler = useCallback(
     ({ active, direction: [, directionY], movement: [, movementY] }) => {
       /*
       set gesture type; i.e wheeling or draging
       */
-      if (!active && directionY === 1 && navY.current < numberOfSlides - 1) {
+      if (
+        !active &&
+        directionY === 1 &&
+        navY.current < contAboutSlidesNumber - 1
+      ) {
         // console.log('from up-to-down directionY:', directionY);
         // console.log('from up-to-down movementY:', movementY);
         navY.current++;
@@ -40,8 +59,15 @@ const ContAboutNavGest = ({ numberOfSlides }) => {
         canvasState.containerAboutVisibleSlideIndex = navY.current;
         // console.log('navY.current:', navY.current);
       }
+      /*
+      Spring in action
+      */
+      api.start({
+        springValue: navY.current === 0 ? 1 : 0.3,
+        progressValue: (navY.current / (contAboutSlidesNumber - 1)) * 100,
+      });
     },
-    [numberOfSlides]
+    [api]
   );
 
   const endDragHandler = useCallback(
@@ -73,15 +99,24 @@ const ContAboutNavGest = ({ numberOfSlides }) => {
         movementY < -100 &&
         directionY === -1 &&
         !down &&
-        navY.current < numberOfSlides - 1
+        navY.current < contAboutSlidesNumber - 1
       ) {
         navY.current++;
         canvasState.containerAboutVisibleSlideIndex = navY.current;
+        canvasState.isSlideComplete = false;
         // console.log('from bottom-to-top / movementY:', movementY);
         // console.log('from bottom-to-top / directionY:', directionY);
       }
+
+      /*
+      Spring in action
+      */
+      api.start({
+        springValue: navY.current === 0 ? 1 : 0.3,
+        progressValue: (navY.current / (contAboutSlidesNumber - 1)) * 100,
+      });
     },
-    [numberOfSlides]
+    [api]
   );
 
   /*
@@ -99,21 +134,19 @@ const ContAboutNavGest = ({ numberOfSlides }) => {
       /*
       Why "slideIsCompletted"?
       */
+      target: canvasGlobalState.currentContainer === 'aboutContainer' && window,
       enabled:
         canvasGlobalState.currentContainer === 'aboutContainer' &&
         canvasGlobalState.sliderIsReady &&
         canvasGlobalState.isSlideComplete,
       drag: { axis: 'y' },
-      wheel: {
-        axis: 'y',
-        // threshold: 300,
-      },
+      wheel: { axis: 'y' },
     }
   );
   /*
   ContainerIntroDrag's return
   */
-  return { contAboutNavGest };
+  return { springValue, progressValue, contAboutNavGest };
 };
 
 export default ContAboutNavGest;

@@ -9,6 +9,11 @@ Global State Staff
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../../states/canvasState';
 /*
+Gestures Staff
+*/
+import IntroDragGesture from '../../../../../gestureHandlers/useGesture/IntroDragGesture';
+import IntroWheelGesture from '../../../../../gestureHandlers/useGesture/IntroWheelGesture';
+/*
 Basic Data
 */
 import { introGesturePromptData } from '../../gesturesPromptData';
@@ -16,15 +21,42 @@ import { introGesturePromptData } from '../../gesturesPromptData';
 /*
 ------------------------------------------------------------------------
 */
-const IntroGesturePrompt = ({ progressValue, progressToggler }) => {
+const IntroGesturePrompt = () => {
   /*
   Global State Section
   */
   const canvasGlobalState = useSnapshot(canvasState);
+  /*
+  Gestures Section
+  */
+  const { dragProgressValue, dragProgressToggler } = IntroDragGesture();
+  const { wheelProgressValue, wheelProgressToggler } = IntroWheelGesture();
+
+  const progressValue = useMemo(
+    () =>
+      canvasGlobalState.introContainerEventType === 'wheeling'
+        ? wheelProgressValue
+        : dragProgressValue,
+    [
+      canvasGlobalState.introContainerEventType,
+      wheelProgressValue,
+      dragProgressValue,
+    ]
+  );
 
   const symbolsClassCSS = useMemo(() => {
-    return { opacity: progressToggler };
-  }, [progressToggler]);
+    return {
+      opacity:
+        canvasGlobalState.introContainerEventType === 'wheeling'
+          ? wheelProgressToggler
+          : dragProgressToggler,
+    };
+  }, [
+    canvasGlobalState.introContainerEventType,
+    wheelProgressToggler,
+    dragProgressToggler,
+  ]);
+
   /*
   JSX
   */
@@ -39,7 +71,6 @@ const IntroGesturePrompt = ({ progressValue, progressToggler }) => {
           !canvasGlobalState.endOfContainerIntro &&
           canvasGlobalState.currentContainer === 'introContainer'
         }
-        textChildCondition={canvasGlobalState.languageVersion}
         /*
         taken from external file
         */
@@ -50,12 +81,14 @@ const IntroGesturePrompt = ({ progressValue, progressToggler }) => {
         classGraphicWrapperCSS={introGesturePromptData.classGraphicWrapperCSS}
         graphicComponentData={introGesturePromptData.graphicComponentData}
         /*
-        data from 
+        "springValues" taken from gestureHendlers; "progressValue" for innerText that displays progress in numbers; "symbolsClassCSS" for opacity manipulations that effects "=", "-", "progress digits";
         */
         progressValue={progressValue}
-        progressToggler={progressToggler}
-        plusAndMinus={true}
         symbolsClassCSS={symbolsClassCSS}
+        /*
+        ...
+        */
+        plusAndMinus={true}
       />
     </>
   );

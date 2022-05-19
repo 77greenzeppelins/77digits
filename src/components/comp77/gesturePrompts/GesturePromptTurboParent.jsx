@@ -50,6 +50,7 @@ const GesturePromptTurboParent = (
     Boolean that determine wheather "+" & "-" should be rendered  
     */
     plusAndMinus,
+    columnReverse,
   },
   props
 ) => {
@@ -67,7 +68,8 @@ const GesturePromptTurboParent = (
   */
   const transition = useTransition(useTransitionCondition, {
     ...useTransitionConfig,
-    config: config.molasses,
+    config: useTransitionCondition ? config.molasses : { duration: 0 },
+    delay: useTransitionCondition ? 200 : 0,
   });
   /*
   Spring Section to animate graphic component of prompt
@@ -105,7 +107,10 @@ const GesturePromptTurboParent = (
               */}
                 <div
                   className="gesture-prompt-turbo-parent__graphic-wrapper"
-                  style={classGraphicWrapperCSS}
+                  style={{
+                    flexDirection: columnReverse ? ' column-reverse' : 'column',
+                    ...classGraphicWrapperCSS,
+                  }}
                 >
                   {plusAndMinus && (
                     <div className="gesture-prompt-turbo-parent__symbol-wrapper">

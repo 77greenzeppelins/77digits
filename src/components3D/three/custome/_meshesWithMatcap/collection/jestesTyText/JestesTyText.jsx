@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 // import { TransformControls } from '@react-three/drei';
 /*
@@ -33,15 +33,6 @@ const JestesTyText = ({ trigger }) => {
       //   console.log(trigger);
     }
   });
-  /*
-  ...
-  */
-  useEffect(() => {
-    console.log(
-      'JestesTyText / mesh.current.geometry.boundingBox',
-      mesh.current.geometry.boundingBox
-    );
-  }, []);
 
   /*
  JSX

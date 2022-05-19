@@ -38,8 +38,8 @@ const IntroWheelGesture = () => {
       wheeledPositionZ: 0,
       config: { ...config.molasses, precision: 0.0001 },
       /*
-    "onStart()"; works...but there is still some "tick" in weeling
-    */
+      "onStart()"; works...but there is still some "tick" in weeling
+      */
       onStart: () => {
         if (gestureType.current === 'wheeling' && onStartCondition.current) {
           canvasState.introContainerEventType = 'wheeling';

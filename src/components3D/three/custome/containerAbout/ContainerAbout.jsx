@@ -1,4 +1,4 @@
-import React, { useMemo, Suspense, useRef, useEffect } from 'react';
+import React, { useMemo, Suspense, useRef } from 'react';
 /*
 Components
 */
@@ -45,23 +45,7 @@ const ContainerAbout = () => {
     number4,
     number77,
     containerAboutGestures,
-  } = ContAboutGest({
-    /*
-    set axis that is active
-    */
-    axisLimitation: 'x',
-    rotationInitVal: [0, 0, 0],
-  });
-
-  //_________
-  useEffect(() => {
-    // console.log('ContainerAbout / sideFrontRotation:', sideFrontRotation);
-    console.log('ContainerAbout / rotateStepByStep:', rotateStepByStep);
-  }, [rotateStepByStep]);
-  //_____
-  // const rotateStepByStepInMemo = useMemo(() => {
-  //   return rotateStepByStep;
-  // }, [rotateStepByStep]);
+  } = ContAboutGest();
 
   /*
   array of animation for all <SpinningBoxSide>

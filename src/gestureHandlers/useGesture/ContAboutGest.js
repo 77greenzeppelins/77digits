@@ -2,7 +2,7 @@ import { useCallback, useRef } from 'react';
 /*
 GlobalState
 */
-// import { useSnapshot } from 'valtio';
+import { useSnapshot } from 'valtio';
 import { canvasState } from '../../states/canvasState';
 /*
 Spring Staff
@@ -22,12 +22,12 @@ const scaleFactor = 1.6;
 -----------------------------------------------------------------------
 */
 
-const ContAboutGest = ({ axisLimitation }) => {
+const ContAboutGest = () => {
   /*
   Global States for SpringValues;
   canvasState = {}
   */
-  // const canvasGlobalState = useSnapshot(canvasState);
+  const canvasGlobalState = useSnapshot(canvasState);
   /*
   References
   */
@@ -56,6 +56,7 @@ const ContAboutGest = ({ axisLimitation }) => {
       for <ComponentAbout2DStaff>
       */
       opacitySetter,
+      moveX,
     },
     api,
   ] = useSpring(() => ({
@@ -70,7 +71,8 @@ const ContAboutGest = ({ axisLimitation }) => {
     number4: 1,
     number77: 0,
     //
-    opacitySetter: 1,
+    moveX: 0,
+    opacitySetter: 0.8,
     //
     config: config.molasses,
     delay: 200,
@@ -102,7 +104,7 @@ const ContAboutGest = ({ axisLimitation }) => {
     What "down" does ?
     documentation: "true when a mouse button or touch is down"
     */
-    ({ down, movement: [movementX, movementY] }) => {
+    ({ offset: [offsetX], down, movement: [movementX, movementY] }) => {
       /*
       triggers once only; allowes to unmount <SpinningBoxGesturePrompt>
       */
@@ -133,6 +135,9 @@ const ContAboutGest = ({ axisLimitation }) => {
         refX.current--;
         // console.log('refX.current', refX.current);
       }
+
+      // console.log('offset: [offsetX,]', offsetX);
+
       /*
       Spring API
       */
@@ -141,7 +146,10 @@ const ContAboutGest = ({ axisLimitation }) => {
         "rotateStepByStep" animates <SpinningBox>'s rotation
         */
         rotateStepByStep: [0, refX.current * Math.PI * 0.5, 0],
-        opacitySetter: refX.current === 0 ? 1 : 0.3,
+        opacitySetter:
+          refX.current === 1 && isClientSideVisible.current ? 1 : 0.3,
+        // opacitySetter: offsetX > 0 ? 1 : 0.3,
+        moveX: offsetX,
       });
     },
     [api]
@@ -151,7 +159,7 @@ const ContAboutGest = ({ axisLimitation }) => {
     /*
     this "logic" refers to situation when user rotates "spinning box" and something happens when he gets to "the end" of "Client Section"; "the end" in this case means , that bilboard is about to rotate 360deg = back to initial position; but this "final gesture" actually triggers "77digits Section";
     */
-    ({ down, direction: [dirX, dirY] }) => {
+    ({ down, direction: [dirX] }) => {
       if (!down && refX.current === 4 && isClientSideVisible.current === true) {
         isClientSideVisible.current = false;
       }
@@ -260,8 +268,9 @@ const ContAboutGest = ({ axisLimitation }) => {
       onDragEnd: endDragHandler,
     },
     {
+      // target: canvasGlobalState.currentContainer === 'aboutContainer' && window,
       drag: {
-        axis: axisLimitation,
+        axis: 'x',
         // bounds: {  },
         // threshold: -10,
       },
@@ -284,6 +293,7 @@ const ContAboutGest = ({ axisLimitation }) => {
     number4,
     number77,
     opacitySetter,
+    moveX,
     containerAboutGestures,
   };
 };

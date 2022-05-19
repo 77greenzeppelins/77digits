@@ -62,22 +62,8 @@ const DragRotateReturn = ({
     Why "active" is crucial attribute of gesture state?
     Because "dragging" cause by user exist only when "active = 1"; if zero no changes take place; i.e. object rotates only if "active = 1" so automatically return to "initial settings of rotation" 
     */
-    ({ active, movement: [movementX, movementY], last }) => {
-      /*
-      What this "if statement" does / what issue it solves ?
-      I lost from time to time "clickability" of <AnsverYes> / <AnswerNo> buttons
-      I don't know why....
-      It doesn't solve my problem in 100%....
-      */
-      if (last) {
-        canvasState.isYesNoButtonClickable = true;
-        // console.log(
-        //   'DragRotateReturn / canvasState.isYesNoButtonClickable:',
-        //   canvasState.isYesNoButtonClickable
-        // );
-      }
-
-      // console.log('movementX', movementX);
+    ({ active, movement: [movementX] }) => {
+      // console.log('DragRotateReturn / movementX', movementX);
 
       api.start({
         /*
@@ -152,7 +138,7 @@ const DragRotateReturn = ({
   /*
   Final "return staff" of this function
   */
-  return [orbitImitation, dragRotateReturn];
+  return { orbitImitation, dragRotateReturn };
 };
 
 export default DragRotateReturn;

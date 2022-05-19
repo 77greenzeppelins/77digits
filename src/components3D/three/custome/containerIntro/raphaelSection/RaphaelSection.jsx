@@ -53,7 +53,7 @@ const RaphaelSection = () => {
   Gesture Section;
   standard draging to imitate "object limited-spinning"
   */
-  const [orbitImitation, dragRotateReturn] = DragRotateReturn({
+  const { orbitImitation, dragRotateReturn } = DragRotateReturn({
     /*
     set initial value of "rotation.z";
     */

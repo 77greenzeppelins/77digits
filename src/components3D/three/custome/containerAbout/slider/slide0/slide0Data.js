@@ -174,7 +174,7 @@ const spinningBoxConfig = [
       /*
       in case we want some <UniqueObject> component
       */
-      uniqueObjectName: 'youAre',
+      // uniqueObjectName: 'youAre',
       /*
       for  <DreiText>s
       */
@@ -210,7 +210,7 @@ const spinningBoxConfig = [
           ],
         ],
         font: 'garamont',
-        text: ["Here I'am", 'Jestem Ja'],
+        text: ["It's me", 'Jestem Ja'],
         ...xlHeaderConfig,
         lineHeight: 1,
       },
