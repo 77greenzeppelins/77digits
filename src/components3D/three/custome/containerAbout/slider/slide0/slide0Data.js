@@ -174,28 +174,39 @@ const spinningBoxConfig = [
       /*
       in case we want some <UniqueObject> component
       */
-      // uniqueObjectName: 'youAre',
+      uniqueObjectName: 'youAre',
       /*
       for  <DreiText>s
       */
       textConfigHeader: {
         textProps: [
           // PL: mobile / no-mobile
-          [{ position: [0, 0.25, 0.01] }, { position: [0, 0.34, 0.01] }],
+          [{ position: [-0.06, 0.25, 0.01] }, { position: [-0.06, 0.2, 0.01] }],
           // EN: mobile / no-mobile
           [{ position: [0, 0.2, 0.01] }, { position: [0, 0.34, 0.01] }],
         ],
-        text: ['', ''],
+        text: ['', 'Jesteś Ty'],
         ...xlHeaderConfig,
+        textAlign: 'right',
       },
     },
 
     labelPropsReverse: {
+      /*
+      for label's <UniversalFrame> or <UniversalFrameWithoutMap>
+      */
       canvasProps: {
         format: 'verticalFormat',
         image: family,
         meshProps: { rotation: [0, Math.PI, 0] },
       },
+      /*
+      in case we want some <UniqueObject> component
+      */
+      uniqueObjectName: 'youAre',
+      /*
+      for  <DreiText>s
+      */
       textConfigHeader: {
         textProps: [
           // PL: mobile / no-mobile
@@ -309,7 +320,7 @@ const spinningBoxConfig = [
       /*
       in case we want some <UniqueObject> component
       */
-      // uniqueObjectName: 'unique3DText',
+      uniqueObjectName: 'musicNote',
       /*
       for <DreiText>
       */

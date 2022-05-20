@@ -1,4 +1,4 @@
-import React, { useMemo, Suspense, useRef } from 'react';
+import React, { useMemo, Suspense, useRef, useEffect } from 'react';
 /*
 Components
 */
@@ -69,6 +69,13 @@ const ContainerAbout = () => {
   const gesturesForSidesRotationsIndicator = useMemo(() => {
     return [number1, number2, number3, number4, number77];
   }, [number1, number2, number3, number4, number77]);
+
+  /*
+  ...
+  */
+  useEffect(() => {
+    console.log(group.current);
+  }, []);
 
   /*
   JSX 

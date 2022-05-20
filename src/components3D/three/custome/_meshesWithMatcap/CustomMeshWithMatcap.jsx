@@ -13,15 +13,22 @@ const CustomMeshWithMatcap = React.forwardRef((props, ref) => {
   JSX
   */
   return (
-    <mesh
-      ref={ref}
-      {...props}
-      {...props.meshProps}
-      material={MatcapMaterialInMemo()}
-    >
+    <mesh ref={ref} {...props.meshProps} material={MatcapMaterialInMemo()}>
       {props.children}
     </mesh>
   );
 });
 
 export default CustomMeshWithMatcap;
+/*
+How to use it:
+<SomeComponent>
+return (
+    <CustomMeshWithMatcap ref={ref} meshProps={meshProps}>
+      <TextGeometryFromFont
+        fontExtrudeSettings={exclamationMarkConfig.fontExtrudeSettings}
+        text={exclamationMarkConfig.text}
+      />
+    </CustomMeshWithMatcap>
+  );
+*/

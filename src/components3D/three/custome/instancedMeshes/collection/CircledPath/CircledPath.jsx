@@ -27,7 +27,7 @@ const instance = new Object3D();
 /*
 --------------------------------------------------------------
 */
-const CircledPath = () => {
+const CircledPath = ({ trigger }) => {
   /*
   References
   */

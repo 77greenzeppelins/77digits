@@ -5,6 +5,7 @@ import React from 'react';
 /*
 Components
 */
+import Exclamation from './clientSide/exclamationMark/Exclamation';
 import JestesTyText from '../../_meshesWithMatcap/collection/jestesTyText/JestesTyText';
 import MusicNote from './musicNote/MusicNote';
 import MedicineDatail from './clientSide/medicineDetail/MedicineDatail';
@@ -28,11 +29,17 @@ const UniqueObject = ({ uniqueObject }) => {
   /*
   Condition that triggeres animation of particular "uo"
   */
-  const animationTrigger =
+  const clientSideAnimationTrigger =
     canvasGlobalState.currentContainer === 'aboutContainer' &&
     canvasGlobalState.isClientSideVisible &&
     canvasGlobalState.containerAboutVisibleSlideIndex === 0;
   // console.log('animationTrigger', animationTrigger);
+
+  const mySideAnimationTrigger =
+    canvasGlobalState.currentContainer === 'aboutContainer' &&
+    !canvasGlobalState.isClientSideVisible &&
+    canvasGlobalState.containerAboutVisibleSlideIndex === 0;
+
   /*
   Turbo SwitchSelector
   */
@@ -42,11 +49,11 @@ const UniqueObject = ({ uniqueObject }) => {
       clientSection
       */
       case 'youAre':
-        return <JestesTyText trigger={animationTrigger} />;
+        return <Exclamation trigger={clientSideAnimationTrigger} />;
       case 'musicNote':
         return <MusicNote />;
       case 'medicineDetail':
-        return <MedicineDatail trigger={animationTrigger} />;
+        return <MedicineDatail trigger={clientSideAnimationTrigger} />;
       /*
       77digitsSection
       */
@@ -55,7 +62,7 @@ const UniqueObject = ({ uniqueObject }) => {
       case 'circledPath':
         return (
           <>
-            <CircledPath trigger={animationTrigger} />
+            <CircledPath trigger={mySideAnimationTrigger} />
             <AndSign config="circledPath" />
           </>
         );

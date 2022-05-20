@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo } from 'react';
 /*
 Components
 */
@@ -9,32 +9,30 @@ Global State Staff
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../../states/canvasState';
 /*
+Gestures Section
+*/
+import ContAboutNavGest from '../../../../../gestureHandlers/useGesture/ContAboutNavGest';
+/*
 Basic Data
 */
 import { slideGesturePrompt } from '../../gesturesPromptData';
-
-/*
-...
-*/
-import ContAboutNavGest from '../../../../../gestureHandlers/useGesture/ContAboutNavGest';
-
 /*
 ------------------------------------------------------------------------
 */
 const SlidesGesturePrompt = () => {
   /*
-  ...
-  */
-  const { springValue, progressValue } = ContAboutNavGest();
-
-  /*
   Global State Section
   */
   const canvasGlobalState = useSnapshot(canvasState);
+  /*
+  Gestures Section
+  */
+  const { springValue, progressValue } = ContAboutNavGest();
 
-  // useEffect(() => {
-  //   console.log('springValue', springValue);
-  // }, [springValue]);
+  const symbolsClassCSS = useMemo(
+    () => ({ opacity: springValue }),
+    [springValue]
+  );
 
   /*
   JSX
@@ -62,7 +60,7 @@ const SlidesGesturePrompt = () => {
         "springValues" taken from gestureHendlers; "progressValue" for innerText that displays progress in numbers; "symbolsClassCSS" for opacity manipulations that effects "=", "-", "progress digits";
         */
         progressValue={progressValue}
-        symbolsClassCSS={springValue}
+        symbolsClassCSS={symbolsClassCSS}
         /*
         ...
         */

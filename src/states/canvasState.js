@@ -54,6 +54,7 @@ const canvasState = proxy({
   possible values: "wheeling", "dragging"
   it's used to asset "proper and unique" way of moving to user device / experience;
   it's actually "first part" of condition used in <IntroWheelGesture> & <IntroDragGesture>;
+  additionaly, this valu is used in <ContainerAbout> / <SlidesGesturePrompt> "configuration" to specify value of "flex-direction: column-reverse"
   */
   introContainerEventType: 'none',
   /*
@@ -105,7 +106,7 @@ const canvasState = proxy({
   /*
   props used in <Slide1>; all manipilations take place in "contAboutSlide1.js" gesture
   */
-  slide1Part: 0,
+  // slide1Part: 0,
   /*
   props that allows to unmount <SpinningBoxGesturePrompt>
   is set to false in "ContAboutGest" / useSpring() / onChange()
@@ -115,7 +116,7 @@ const canvasState = proxy({
   ------------------------------<ContainerAbout2DStaff> / CA's gestures
   */
   /*
-  "sliderIsReady" is "true" when user rotates <SpinningBox> 360deg; all happens in "ContAboutGest"; it triggers <SliderGesturePrompt> & <SlidesProgressIndicator> & is a value in "ContAboutNavGest" / enable
+  "sliderIsReady" is "true" when user rotates <SpinningBox> 360deg; all happens in "ContAboutGest"; it triggers <SliderGesturePrompt>; its  value plays role in "ContAboutNavGest.js / enable/
   */
   sliderIsReady: false,
   /*

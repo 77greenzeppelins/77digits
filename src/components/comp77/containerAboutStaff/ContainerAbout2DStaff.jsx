@@ -44,7 +44,7 @@ const ContainerAbout2DStaff = () => {
       */
       <div className="container-about__wrapper-empty-class">
         {/*----for  T E S T  sake-------------------------------------- */}
-        {canvasGlobalState.currentContainer === 'aboutContainer' && (
+        {/* {canvasGlobalState.currentContainer === 'aboutContainer' && (
           <animated.div
             style={{
               position: 'fixed',
@@ -58,12 +58,12 @@ const ContainerAbout2DStaff = () => {
           >
             {progressValue.to(x => x.toFixed())}
           </animated.div>
-        )}
+        )} */}
 
         {/*
         Gesture prompt based on <GesturePromptTurboParent>; it informs what to do with <SpinningBox>; has internal "useTransition()"-based concept of mounting;
         */}
-        <SpinningBoxGesturePrompt />
+        {/* <SpinningBoxGesturePrompt /> */}
         {/*
         Gesture prompt that inform what is going on in  <Slader2D>;
         has internal "useTransition()"-based concept of mounting;

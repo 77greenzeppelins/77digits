@@ -77,23 +77,27 @@ const ContAboutGest = () => {
     config: config.molasses,
     delay: 200,
     /*
-    What "onRest()" does?
-    Here two global state props are changed: (i) to close initial gesture prompt  (ii) to open 2D navPanel => or rather to open gesture prompt indicator for slide changes...;  
+    "onRest()" or onChange()?
+    I've made some "experiences"... first seems to be preferable
+ 
     */
-    onChange: () => {
-      if (sliderIsReady.current === true) {
-        canvasState.sliderIsReady = true;
-      }
-      if (isSpinningBoxGesturePromptMounted.current === false) {
-        canvasState.isSpinningBoxGesturePromptMounted = false;
-      }
-    },
-    // },
-    // onRest: () => {
-    //   if (sliderIsReady.current === true) {
+    // onChange: () => {
+    //   if (sliderIsReady.current === true ) {
     //     canvasState.sliderIsReady = true;
     //   }
+    //   // if (isSpinningBoxGesturePromptMounted.current === false) {
+    //   //   canvasState.isSpinningBoxGesturePromptMounted = false;
+    //   // }
     // },
+
+    onRest: () => {
+      if (
+        sliderIsReady.current === true &&
+        canvasGlobalState.sliderIsReady === false
+      ) {
+        canvasState.sliderIsReady = true;
+      }
+    },
   }));
 
   /*
@@ -157,7 +161,7 @@ const ContAboutGest = () => {
 
   const endDragHandler = useCallback(
     /*
-    this "logic" refers to situation when user rotates "spinning box" and something happens when he gets to "the end" of "Client Section"; "the end" in this case means , that bilboard is about to rotate 360deg = back to initial position; but this "final gesture" actually triggers "77digits Section";
+    this "logic" refers to situation when user rotates "spinning box" and something happens when he gets through to "the end" of "Client Section"; "the end" in this case means , that bilboard is about to rotate 360deg = back to initial position; but this "final gesture" actually triggers "77digits Section";
     */
     ({ down, direction: [dirX] }) => {
       if (!down && refX.current === 4 && isClientSideVisible.current === true) {
@@ -169,7 +173,7 @@ const ContAboutGest = () => {
         isClientSideVisible.current === false &&
         refX.current === 0 &&
         /*
-        "dirX" condition is true only on "77digit" side; without "dirX" it triggers after the very firs dragg;
+        "dirX" condition is true only on "77digit" side; without "dirX" it triggers after the very first dragg;
         */
         dirX === -1 &&
         /*
@@ -178,7 +182,6 @@ const ContAboutGest = () => {
         sliderIsReady.current === false
       ) {
         sliderIsReady.current = true;
-        // canvasState.sliderIsReady = true;
       }
 
       /*

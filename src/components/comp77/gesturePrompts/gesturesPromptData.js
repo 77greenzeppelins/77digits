@@ -37,7 +37,7 @@ const introGesturePromptData = {
     bottom: 0,
   },
   classPromptWrapperCSS: {
-    highFactor: 0.2,
+    highFactor: 0.15,
     left: 0,
     bottom: 0,
   },

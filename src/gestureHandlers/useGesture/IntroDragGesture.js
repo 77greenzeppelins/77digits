@@ -55,7 +55,7 @@ const IntroDragGesture = () => {
         canvasState.introContainerEventType = 'dragging';
       }
       api.start({
-        dragProgressValue: (offsetY / onDragData.bottom) * 100,
+        dragProgressValue: (offsetY / onDragData.bottom) * 99,
         dragProgressToggler:
           offsetY === 0 || (offsetY / onDragData.bottom) * 100 > 99 ? 1 : 0.3,
         draggedPositionZ: offsetY * factorPositionY,

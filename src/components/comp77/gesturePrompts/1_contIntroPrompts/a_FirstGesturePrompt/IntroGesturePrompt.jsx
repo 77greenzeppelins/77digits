@@ -44,18 +44,22 @@ const IntroGesturePrompt = () => {
     ]
   );
 
-  const symbolsClassCSS = useMemo(() => {
-    return {
+  const symbolsClassCSS = useMemo(
+    () => ({
       opacity:
         canvasGlobalState.introContainerEventType === 'wheeling'
           ? wheelProgressToggler
           : dragProgressToggler,
-    };
-  }, [
-    canvasGlobalState.introContainerEventType,
-    wheelProgressToggler,
-    dragProgressToggler,
-  ]);
+    }),
+    [
+      canvasGlobalState.introContainerEventType,
+      wheelProgressToggler,
+      dragProgressToggler,
+    ]
+  );
+  // useEffect(() => {
+  //   console.log('IntroGesturePrompt / symbolsClassCSS ', symbolsClassCSS);
+  // }, [symbolsClassCSS]);
 
   /*
   JSX
@@ -67,9 +71,9 @@ const IntroGesturePrompt = () => {
         taken from globalState
         */
         useTransitionCondition={
+          canvasGlobalState.currentContainer === 'introContainer' &&
           !canvasGlobalState.isInitialOverlayMounted &&
-          !canvasGlobalState.endOfContainerIntro &&
-          canvasGlobalState.currentContainer === 'introContainer'
+          !canvasGlobalState.endOfContainerIntro
         }
         /*
         taken from external file

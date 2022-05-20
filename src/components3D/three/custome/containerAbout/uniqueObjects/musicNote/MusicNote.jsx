@@ -6,6 +6,17 @@ Basic Data
 */
 import { noteMeshProps } from './musicNoteData';
 
+/*
+External function
+*/
+// function NotesModel() {
+//   const { nodes } = useGLTF('/assets/glTF/musicNoteDraco.glb');
+//   return <primitive object={nodes.path830.geometry} />;
+// }
+
+/*
+----------------------------------------------------------------------
+*/
 const MusicNote = () => {
   /*
   References

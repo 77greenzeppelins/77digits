@@ -8,7 +8,7 @@ import InitialOverlay from '../../comp77core/initialOverlay/InitialOverlay';
 import ContainerIntro2DStaff from '../../comp77/containerIntroStaff/ContainerIntro2DStaff';
 import ContainerAbout2DStaff from '../../comp77/containerAboutStaff/ContainerAbout2DStaff';
 import ContainerMenu2DStaff from '../../comp77/containerMenuStaff/ContainerMenu2DStaff';
-// import CanvasGlobalState from './CanvasGlobalState';
+import CanvasGlobalState from './CanvasGlobalState';
 /*
 3D Components
 */
@@ -100,7 +100,7 @@ const PageMain = () => {
         <ContainerAbout2DStaff />
         <ContainerMenu2DStaff />
 
-        {/* <CanvasGlobalState /> */}
+        <CanvasGlobalState />
       </div>
     </>
   );

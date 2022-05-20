@@ -23,6 +23,7 @@ const IntroWheelGesture = () => {
   */
   const gestureType = useRef();
   const onStartCondition = useRef(true);
+  const endOfContainerIntro = useRef(false);
   /*
   Global States for SpringValues;
   canvasState = { isCanvasScrollableContainerScrollable: false, wheelBounds: { top: 0, bottom: 3550 }, dragBounds: { top: -3350, bottom:0 }, introContainerWheelDragBounds: {top: 0, bottom: 3550}}
@@ -40,10 +41,14 @@ const IntroWheelGesture = () => {
       /*
       "onStart()"; works...but there is still some "tick" in weeling
       */
-      onStart: () => {
+      onChange: () => {
         if (gestureType.current === 'wheeling' && onStartCondition.current) {
           canvasState.introContainerEventType = 'wheeling';
           onStartCondition.current = false;
+          // console.log(
+          //   'canvasState.introContainerEventType:',
+          //   canvasState.introContainerEventType
+          // );
         }
       },
     }));
@@ -51,12 +56,10 @@ const IntroWheelGesture = () => {
   const onWheelStartHandler = useCallback(
     ({ wheeling, offset: [, offsetY] }) => {
       /*
-      sidenote: I'vetried to use "gestureType.current = 'none'" instead of "bcanvasGlobalState.introContainerEventType === 'none'"; result: if first gesture was "wheeling" it can anyway be replaced by "laptop tap panel" and vice versa;
+      sidenote: I've tried to use "gestureType.current = 'none'" instead of "canvasGlobalState.introContainerEventType === 'none'"; result: if first gesture was "wheeling" it can anyway be replaced by "laptop tap panel" and vice versa;
        */
       if (wheeling && canvasGlobalState.introContainerEventType === 'none') {
-        // console.log('is wheeling:', wheeling);
         gestureType.current = 'wheeling';
-        // console.log('IntroWheelGesture / onWheelStartHandler ');
       }
     },
     [canvasGlobalState.introContainerEventType]
@@ -73,7 +76,7 @@ const IntroWheelGesture = () => {
       api.start({
         wheelProgressToggler:
           offsetY === 0 || (offsetY / onWheelData.bottom) * 100 > 99 ? 1 : 0.3,
-        wheelProgressValue: (offsetY / onWheelData.bottom) * 100,
+        wheelProgressValue: (offsetY / onWheelData.bottom) * 99,
         wheeledPositionZ: offsetY * factorPositionY,
       });
     },

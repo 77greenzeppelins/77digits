@@ -6,7 +6,7 @@ import DraiPerspectiveCamera from '../../../components3D/drei/cameras/DraiPerspe
 /*
 3D Components - Fiber
 */
-// import CanvasStateObserver from '../../../components3D/fiber/canvasStateObserver/CanvasStateObserver';
+import CanvasStateObserver from '../../../components3D/fiber/canvasStateObserver/CanvasStateObserver';
 /*
 3D Components - main content
 */
@@ -38,7 +38,7 @@ const Scene = React.memo(
         <ContainerMenu />
 
         {/*-----Helpers------------------------------------------------*/}
-        {/* <CanvasStateObserver /> */}
+        <CanvasStateObserver />
       </>
     );
   }
