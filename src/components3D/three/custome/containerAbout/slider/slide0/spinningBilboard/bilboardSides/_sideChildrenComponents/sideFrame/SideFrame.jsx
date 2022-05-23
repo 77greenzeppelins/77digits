@@ -3,8 +3,7 @@ import * as THREE from 'three';
 /*
 Components
 */
-
-import MatcapMaterialInMemo from '../matcapMaterials/MatcapMaterialInMemo';
+import MatcapMaterialInMemo from '../../../../../../../matcapMaterials/MatcapMaterialInMemo';
 /*
  useMatcapTexture Staff
  */
@@ -34,7 +33,7 @@ import {
   verticalFormatCorners,
   verticalFormatWidthSize,
   verticalFormatHeightSize,
-} from './UniversalFramesFormats';
+} from './sideFrameData';
 /*
 Basic Data
 This staff is neccesary as frame's concept is based on InstanceMeshes object
@@ -48,7 +47,8 @@ const [thisCorner, thisSideVertical, thisSideHorizontal] = [
 /*
 ---------------------------------------------------------------------------
 */
-const UniversalFrame = React.memo(
+
+const SideFrame = React.memo(
   ({ groupProps, cylinderFi, sphereRadious, format }) => {
     /*
     ...
@@ -204,60 +204,4 @@ const UniversalFrame = React.memo(
   }
 );
 
-export default UniversalFrame;
-
-/*
-_____create instance:
-<UniversalFrame
-  groupProps={{
-    name: 'groupForPanelFront',
-    scale: [0.15, 0.15, 0.15],
-    position: [0, -0.35, 0],
-  }}
-  format="banner"
-  cylinderFi={0.015}
-  sphereRadious={0.03}
-/>
-
-... case of smaller frames:
-
-<UniversalFrame
-        groupProps={{ scale: [0.3, 0.3, 0.3], rotation: [0, 0, Math.PI * 0.5] }}
-/>
-*/
-
-/*
-Constructor
-
-CylinderGeometry(radiusTop : Float, radiusBottom : Float, height : Float, radialSegments : Integer, heightSegments : Integer, openEnded : Boolean, thetaStart : Float, thetaLength : Float)
-
-radiusTop — Radius of the cylinder at the top. Default is 1.
-
-radiusBottom — Radius of the cylinder at the bottom. Default is 1.
-
-height — Height of the cylinder. Default is 1.
-
-radialSegments — Number of segmented faces around the circumference of the cylinder. Default is 8
-heightSegments — Number of rows of faces along the height of the cylinder. Default is 1.
-openEnded — A Boolean indicating whether the ends of the cylinder are open or capped. Default is false, meaning capped.
-thetaStart — Start angle for first segment, default = 0 (three o'clock position).
-thetaLength — The central angle, often called theta, of the circular sector. The default is 2*Pi, which makes for a complete cylinder.
-*/
-
-/*
-    version_1: based on boolean props banner / postrait / column
-    */
-/*
-    Final value of these consts depend on props passed from component that includes instance of <UF>...
-    */
-// const cornersPositions = useMemo(() => {
-//   return (portrait && portraitCorners) || (banner && bannerCorners);
-// }, [portrait, banner]);
-
-// const verticalBars = useMemo(() => {
-//   return (portrait && portraitHeight) || (banner && bannerHeight);
-// }, [portrait, banner]);
-
-// const horizontalBars = useMemo(() => {
-//   return (portrait && portraitWidth) || (banner && bannerWidth);
-// }, [portrait, banner]);
+export default SideFrame;

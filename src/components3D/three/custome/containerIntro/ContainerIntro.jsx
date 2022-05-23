@@ -53,20 +53,23 @@ const ContainerIntro = () => {
       }
     >
       {/*-----Text Slides------------------------------------------*/}
-      <TextSection />
+      {canvasGlobalState.currentContainer === 'introContainer' && (
+        <TextSection />
+      )}
+
       <Suspense fallback={null}>
         {/*-----------Tests----------------------------------------*/}
 
         {/*-----77-------------------------------------------------*/}
-        <BotticelliSection />
-        {/*-----EndButtons-----------------------------------------*/}
-        {canvasGlobalState.currentContainer === 'introContainer' && (
-          <EndButtons />
+        {canvasGlobalState.endOfContainerIntro === false && (
+          <BotticelliSection />
         )}
-        {/*-----RaphaelSection-------------------------------------*/}
-        {canvasGlobalState.currentContainer === 'introContainer' && (
-          <RaphaelSection />
-        )}
+
+        {/*-----EndButtons / has its own useTransition()------------*/}
+        <EndButtons />
+
+        {/*-----RaphaelSection / has its own useTransition()-------*/}
+        <RaphaelSection />
       </Suspense>
     </a.group>
   );

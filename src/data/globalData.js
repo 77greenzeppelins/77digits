@@ -49,6 +49,13 @@ const backgroundColors = {
 RGB is required by react-fast-marque's "gradientColor" property;
 */
 const colorsPalette = {
+  //___Venus Sky
+  venusSky: '2b6873',
+  venusSkyRGB: [43, 104, 115],
+  venusSkyRGBstring: 'rgb(43, 104, 115)',
+  venusSkyHexadecimal: 0x2b6873,
+
+  //___
   p1veryLightBlue: '#bbdef1',
   p1brown: '#4f2f14',
   p1brownRGB: [79, 47, 20],
@@ -79,6 +86,37 @@ const colorsPalette = {
   someGray_2: '#2b2b2b',
 };
 
+/*
+Formats for Canvas & Frames
+  portraitWidthSize,
+  portraitHeightSize,
+
+ bannerWidthSize,
+  bannerHeightSize,
+
+  columnWidthSize,
+  columnHeightSize,
+  verticalFormatWidthSize,
+  verticalFormatHeightSize,
+  sizeFactor,
+*/
+const portraitWidthSize = 0.58;
+const portraitHeightSize = 0.78;
+
+const bannerWidthSize = 0.98;
+const bannerHeightSize = 0.38;
+
+const columnWidthSize = 0.58;
+const columnHeightSize = 1.38;
+
+const verticalFormatWidthSize = 0.77;
+const verticalFormatHeightSize = 1.38;
+
+/*
+Data used in  <UniversalCanvas> 
+*/
+const sizeFactor = 0.02;
+
 export {
   businessMail,
   businessPhone,
@@ -86,4 +124,14 @@ export {
   globalPositionData,
   backgroundColors,
   colorsPalette,
+  //
+  portraitWidthSize,
+  portraitHeightSize,
+  bannerWidthSize,
+  bannerHeightSize,
+  columnWidthSize,
+  columnHeightSize,
+  verticalFormatWidthSize,
+  verticalFormatHeightSize,
+  sizeFactor,
 };

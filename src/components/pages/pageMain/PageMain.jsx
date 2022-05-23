@@ -68,6 +68,14 @@ const PageMain = () => {
       <div className="page-main__container">
         <div className="page-main__canvas">
           <Canvas
+            /*
+            ... 
+            */
+            // sRGB={true}
+            /*
+            suggestion from :https://docs.pmnd.rs/react-three-fiber/advanced/scaling-performance
+            */
+            // frameloop="demand"
             // shadows
             /*
             https://stackoverflow.com/questions/64899716/color-differences-between-threejs-vanilla-js-and-react-three-fiber-create-re

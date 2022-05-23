@@ -19,7 +19,7 @@ import DragRotateReturn from '../../../../../gestureHandlers/useDrag/DragRotateR
 /*
 Spring Staff
 */
-import { a, useSpring } from '@react-spring/three';
+import { a, useTransition } from '@react-spring/three';
 
 /*
 Basic Data
@@ -39,12 +39,15 @@ const RaphaelSection = () => {
   /*
   Spring Animation Section
   */
-  const { springPositionZ } = useSpring({
-    springPositionZ:
-      canvasGlobalState.currentContainer === 'introContainer' &&
-      canvasGlobalState.isRaphaelVisible
-        ? raphaelSectionSpringConfig.positionEnd
-        : raphaelSectionSpringConfig.positionStart,
+
+  const condition =
+    canvasGlobalState.currentContainer === 'introContainer' &&
+    canvasGlobalState.isRaphaelVisible;
+
+  const transition = useTransition(condition, {
+    from: { zPosition: raphaelSectionSpringConfig.positionStart },
+    enter: { zPosition: raphaelSectionSpringConfig.positionEnd },
+    leave: { zPosition: raphaelSectionSpringConfig.positionStart },
     config: raphaelSectionSpringConfig.configBasic,
     delay: raphaelSectionSpringConfig.delay,
   });
@@ -69,24 +72,28 @@ const RaphaelSection = () => {
     rightDragLimitY: raphaelSectionGesturesConfig.rightDragLimitY,
     leftDragLimitY: raphaelSectionGesturesConfig.leftDragLimitY,
   });
-  return (
-    <a.group
-      position={springPositionZ}
-      {...dragRotateReturn()}
-      rotation={orbitImitation}
-    >
-      <PhilosophersAnswers />
-      <RaphaelPainting />
-      {/*-----X Button-----------------------------------*/}
-      <a.group {...buttonX.groupProps}>
-        <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
-          <TextGeometryFromFont
-            fontExtrudeSettings={buttonX.fontExtrudeSettings}
-            text={buttonX.text}
-          />
-        </CustomMeshWithMatcap>
-      </a.group>
-    </a.group>
+
+  return transition(
+    ({ zPosition }, transitionCondition) =>
+      transitionCondition && (
+        <a.group
+          position={zPosition}
+          {...dragRotateReturn()}
+          rotation={orbitImitation}
+        >
+          <PhilosophersAnswers />
+          <RaphaelPainting />
+          {/*-----X Button-----------------------------------*/}
+          <a.group {...buttonX.groupProps}>
+            <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
+              <TextGeometryFromFont
+                fontExtrudeSettings={buttonX.fontExtrudeSettings}
+                text={buttonX.text}
+              />
+            </CustomMeshWithMatcap>
+          </a.group>
+        </a.group>
+      )
   );
 };
 

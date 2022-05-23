@@ -65,6 +65,8 @@ const BraveClientsPictureOnPlane = () => {
         attach="material"
         uColor={[0.0, 0.5, 0.5]}
         uTexture={texture}
+        uTexture-encoding={THREE.sRGBEncoding}
+        toneMapped={false}
       />
     </mesh>
   );

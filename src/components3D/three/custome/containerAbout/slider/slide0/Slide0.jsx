@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 /*
 Components
 */
+import SpinningBilboard from './spinningBilboard/SpinningBilboard';
 import SpinningBox from '../../../spinningBox/SpinningBox';
 import SpinningBoxSideIndicator from '../../../spinningBox/SpinningBoxSideIndicator';
 /*
@@ -21,10 +22,10 @@ import useWindowSize from '../../../../../../hooks/useWindowSize';
 Basic Data
 */
 import {
-  minForTablet,
+  // minForTablet,
   sliderEngineSpring,
-  spinningBoxLayout,
-  spinningBoxConfig,
+  // spinningBoxLayout,
+  // spinningBoxConfig,
   indicatorCongif,
 } from './slide0Data';
 
@@ -40,7 +41,7 @@ const Slide0 = ({
   /*
   References
   */
-  const spinBox = useRef();
+  const group = useRef();
   /*
   Hook Section
   */
@@ -50,6 +51,7 @@ const Slide0 = ({
     {containerAboutVisibleSlideIndex: 0,...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
+
   /*
   "sliderEngine"
   depending on the final valu of this statement: "slideId < canvasGlobalState.containerAboutVisibleSlideIndex" slide can be "in the center of a screen" or "just above the top frame of a screen" (or, in case of <Slide1> "just below the bottom frame of a screen")
@@ -70,43 +72,31 @@ const Slide0 = ({
         : sliderEngineSpring.configDown /* when going down (molasses) */,
   });
 
+  useEffect(() => {
+    console.log(group.current);
+  }, []);
+
   /*
   JSX
   */
   return (
-    <group name="GroupForSlide_0">
-      <a.group name="GroupForSlide_0" position-y={positionY}>
-        {/*-----SpinningBoxSideIndicator Section--------------------------*/}
-        <SpinningBoxSideIndicator
-          indicatorCongif={indicatorCongif}
-          /*
+    <a.group ref={group} name="GroupForSlide_0" position-y={positionY}>
+      {/*-----SpinningBoxSideIndicator Section--------------------------*/}
+      <SpinningBoxSideIndicator
+        indicatorCongif={indicatorCongif}
+        /*
           "scaleValue" name is significantly shorten word then "gesturesForSidesRotationsIndicator"; it matters within <SpinningBoxSideIndicator>
           */
-          springValue={gesturesForSidesRotationsIndicator}
-        />
+        springValue={gesturesForSidesRotationsIndicator}
+      />
 
-        {/*-----SpinningBox Section---------------------------------------*/}
-        <SpinningBox
-          rotateStepByStep={rotateStepByStep}
-          gesturesForSidesRotations={gesturesForSidesRotations}
-          ref={spinBox}
-          groupProps={{
-            name: 'groupForSpinningBox_slide_0',
-            /*
-            a bit of responsiveness; 
-            */
-            scale:
-              windowSize.width < minForTablet
-                ? spinningBoxLayout.mobile.scale
-                : spinningBoxLayout.desktop.scale,
-          }}
-          /*
-          "spinningBoxConfig" is an array with 4 configObjects as items; using map() we get 4 <SpinningBoxSide>s
-          */
-          spinningBoxConfig={spinningBoxConfig}
-        />
-      </a.group>
-    </group>
+      {/*-----SpinningBox Section---------------------------------------*/}
+
+      <SpinningBilboard
+        rotateStepByStep={rotateStepByStep}
+        gesturesForSidesRotations={gesturesForSidesRotations}
+      />
+    </a.group>
   );
 };
 

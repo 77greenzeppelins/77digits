@@ -71,6 +71,8 @@ const BraveClientsPictureOnPlaneShaderMaterial = shaderMaterial(
       // gl_FragColor = vec4(vUv.y * 0.6, vUv.x* 0.6, abs(sin(uTime* 0.3)) * 0.6, 1.0);
   
     gl_FragColor = vec4(texture, 0.5);
+    #include <tonemapping_fragment>
+    #include <encodings_fragment>
     }`
 );
 

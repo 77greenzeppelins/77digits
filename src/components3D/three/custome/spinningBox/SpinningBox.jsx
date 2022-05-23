@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 /*
 Components
 */
@@ -37,46 +37,32 @@ const SpinningBox = React.forwardRef(
     ref
   ) => {
     /*
-    References
-    */
-    const autorotatingGroup = useRef();
-    /*
-    Global State Section
-    */
-    // const canvasGlobalState = useSnapshot(canvasState);
-    // useEffect(() => {
-    //   console.log('gesturesForSidesRotations', gesturesForSidesRotations);
-    // }, [gesturesForSidesRotations]);
-
-    /*
     JSX
     */
     return (
-      <a.group ref={ref} {...groupProps}>
-        <a.group ref={autorotatingGroup} rotation={rotateStepByStep}>
-          {spinningBoxConfig.map(
-            (
-              {
-                sideProps,
-                labelProps,
-                labelPropsReverse,
-                canvasProps,
-                frameProps,
-              },
-              index
-            ) => (
-              <SpinningBoxSide
-                key={index}
-                sideProps={sideProps}
-                animatedRotation={gesturesForSidesRotations[index]}
-                labelProps={labelProps}
-                labelPropsReverse={labelPropsReverse}
-                canvasProps={canvasProps}
-                frameProps={frameProps}
-              />
-            )
-          )}
-        </a.group>
+      <a.group rotation={rotateStepByStep} ref={ref} {...groupProps}>
+        {spinningBoxConfig.map(
+          (
+            {
+              sideProps,
+              labelProps,
+              labelPropsReverse,
+              canvasProps,
+              frameProps,
+            },
+            index
+          ) => (
+            <SpinningBoxSide
+              key={index}
+              sideProps={sideProps}
+              animatedRotation={gesturesForSidesRotations[index]}
+              labelProps={labelProps}
+              labelPropsReverse={labelPropsReverse}
+              canvasProps={canvasProps}
+              frameProps={frameProps}
+            />
+          )
+        )}
       </a.group>
     );
   }

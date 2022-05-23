@@ -174,7 +174,7 @@ const spinningBoxConfig = [
       /*
       in case we want some <UniqueObject> component
       */
-      uniqueObjectName: 'youAre',
+      // uniqueObjectName: 'youAre',
       /*
       for  <DreiText>s
       */
@@ -185,7 +185,7 @@ const spinningBoxConfig = [
           // EN: mobile / no-mobile
           [{ position: [0, 0.2, 0.01] }, { position: [0, 0.34, 0.01] }],
         ],
-        text: ['', 'Jesteś Ty'],
+        text: ["It's You", 'Jesteś Ty'],
         ...xlHeaderConfig,
         textAlign: 'right',
       },
@@ -203,7 +203,7 @@ const spinningBoxConfig = [
       /*
       in case we want some <UniqueObject> component
       */
-      uniqueObjectName: 'youAre',
+      // uniqueObjectName: 'youAre',
       /*
       for  <DreiText>s
       */
@@ -255,7 +255,7 @@ const spinningBoxConfig = [
       /*
       in case we want some <UniqueObject> component
       */
-      // uniqueObjectName: 'unique3DText',
+      uniqueObjectName: 'techPanel',
       /*
       for <DreiText>
       */

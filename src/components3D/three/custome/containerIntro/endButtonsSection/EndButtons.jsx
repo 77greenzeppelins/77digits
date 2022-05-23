@@ -15,7 +15,7 @@ import { canvasState } from '../../../../../states/canvasState';
 /*
 Spring data
 */
-import { a, useSpring } from '@react-spring/three';
+import { a, useSpring, useTransition } from '@react-spring/three';
 /*
 Basic Data
 */
@@ -46,24 +46,33 @@ const EndButtons = () => {
   /*
   Spring Animation Section
   */
-  const { springPositionZ } = useSpring({
-    /*
-    this animation happens when user scrolls to the end of container
-    */
-    springPositionZ: canvasGlobalState.endOfContainerIntro
-      ? springConfig.positionZEnd
-      : springConfig.positionZStart,
+  // const { springPositionZ } = useSpring({
+  //   /*
+  //   this animation happens when user scrolls to the end of container
+  //   */
+  //   springPositionZ: canvasGlobalState.endOfContainerIntro
+  //     ? springConfig.positionZEnd
+  //     : springConfig.positionZStart,
+  //   config: springConfig.configBasic,
+  //   delay: springConfig.delay,
+  // });
+
+  const transition = useTransition(canvasGlobalState.endOfContainerIntro, {
+    from: { zPosition: springConfig.zStart },
+    enter: { zPosition: springConfig.zEnd },
+    leave: { zPosition: springConfig.zStart },
     config: springConfig.configBasic,
     delay: springConfig.delay,
   });
+
   const { springPositionY } = useSpring({
     /*
-    this animation happens when clicks any of auxiliary button: it's actually the very first part of larger animation where the second part referce to "Platon&Aristotles";
+    this animation happens when user clicks  "questionMark-button"; as a result whole <EB> section goes up; it's actually the very first part of "two-stage" animation where the second part take place in <RaphaelSection> whwn "X-button" is clicked;
     */
     springPositionY: canvasGlobalState.isRaphaelVisible
-      ? springConfig.positionYEnd
-      : springConfig.positionYStart,
-    // config: config.molasses,
+      ? springConfig.yEnd
+      : springConfig.yStart,
+    // config: springConfig.molasses,
     config: springConfig.configBasic,
     delay: springConfig.delay,
   });
@@ -91,40 +100,46 @@ const EndButtons = () => {
       !canvasGlobalState.isRaphaelVisible
     ) {
       questionMark.current.rotation.y = -Math.cos(time * 0.4) * 0.8;
-      questionMark.current.rotation.z = -Math.sin(time * 0.4) * 0.02;
+      questionMark.current.rotation.z = Math.sin(time * 0.4) * 0.1;
     }
   });
   /*
   JSX
   */
-  return (
-    <a.group position={springPositionY}>
-      <a.group position={springPositionZ}>
-        {/*-----Instant Contact Buttons-------------------------------*/}
-        <InstantContactsSection />
 
-        {/*-----X Button------------------------------------------*/}
-        <a.group ref={xMark} {...buttonX.groupProps}>
-          <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
-            <TextGeometryFromFont
-              fontExtrudeSettings={buttonX.fontExtrudeSettings}
-              text={buttonX.text}
-            />
-          </CustomMeshWithMatcap>
+  return transition(
+    ({ zPosition }, condition) =>
+      condition && (
+        <a.group
+          position-x={0}
+          position-y={springPositionY}
+          position-z={zPosition}
+        >
+          {/*-----Instant Contact Buttons-------------------------------*/}
+          <InstantContactsSection />
+
+          {/*-----X Button------------------------------------------*/}
+          <a.group ref={xMark} {...buttonX.groupProps}>
+            <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
+              <TextGeometryFromFont
+                fontExtrudeSettings={buttonX.fontExtrudeSettings}
+                text={buttonX.text}
+              />
+            </CustomMeshWithMatcap>
+          </a.group>
+
+          {/*-----? Button------------------------------------------*/}
+
+          <a.group ref={questionMark} {...buttonQuestionMark.groupProps}>
+            <CustomMeshWithMatcap>
+              <TextGeometryFromFont
+                fontExtrudeSettings={buttonQuestionMark.fontExtrudeSettings}
+                text={buttonQuestionMark.text}
+              />
+            </CustomMeshWithMatcap>
+          </a.group>
         </a.group>
-
-        {/*-----? Button------------------------------------------*/}
-
-        <a.group ref={questionMark} {...buttonQuestionMark.groupProps}>
-          <CustomMeshWithMatcap>
-            <TextGeometryFromFont
-              fontExtrudeSettings={buttonQuestionMark.fontExtrudeSettings}
-              text={buttonQuestionMark.text}
-            />
-          </CustomMeshWithMatcap>
-        </a.group>
-      </a.group>
-    </a.group>
+      )
   );
 };
 

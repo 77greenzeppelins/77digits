@@ -2,9 +2,8 @@ import React from 'react';
 /*
 Components
 */
-import UniversalFrame from '../../../matcapFrames/UniversalFrame';
+import Frame1 from '../../../_glbComponents/frame/Frame_1';
 import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
-import TextSlide from '../../../textSlides/textSlide/TextSlide';
 import DreiText from '../../../../../drei/text/dreiText/DreiText';
 /*
 GestureStaff
@@ -14,10 +13,6 @@ import BasicMove from '../../../../../../gestureHandlers/useMove/basicMove';
 Spring Staff
 */
 import { a } from '@react-spring/three';
-/*
-Accesibility staff
-*/
-// import { A11y } from '@react-three/a11y';
 /*
 Basic Data
 */
@@ -44,8 +39,7 @@ const RaphaelPainting = () => {
       {...raphaelPaintingConfig.groupProps}
       rotation={rotateWithMouseMove}
     >
-      <UniversalFrame format={raphaelPaintingConfig.format} />
-      {/* <A11y role="image" description="Raphael. The School of Athens "> */}
+      <Frame1 meshProps={{ scale: [0.66, 1, 0.65] }} />
       <UniversalCanvas
         format={raphaelPaintingConfig.format}
         image={raphaelPaintingConfig.texture}

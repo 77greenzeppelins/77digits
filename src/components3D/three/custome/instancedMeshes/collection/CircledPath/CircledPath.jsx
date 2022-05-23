@@ -74,7 +74,7 @@ const CircledPath = ({ trigger }) => {
       args={[null, null, coordinates.length]}
       frustumCulled={false}
     >
-      <sphereBufferGeometry args={[0.01, 10, 10]} />
+      <sphereBufferGeometry args={[0.01, 7, 7]} />
       <BasicUseMatcapTexture />
     </instancedMesh>
   );

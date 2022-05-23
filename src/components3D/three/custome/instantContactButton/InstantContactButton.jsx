@@ -2,8 +2,8 @@ import React from 'react';
 /*
 Components
 */
+import Frame1 from '../_glbComponents/frame/Frame_1';
 import UniversalCanvas from '../matcapFrames/UniversalCanvas';
-import UniversalFrame from '../matcapFrames/UniversalFrame';
 /*
 Assets
 */
@@ -18,13 +18,14 @@ Basic Data
 ----------------------------------------------------------------------------
 */
 const InstantContactButton = React.forwardRef(
-  ({ groupProps, canvasProps, frameProps }, ref) => {
+  ({ groupProps, canvasProps }, ref) => {
     /*
     JSX
     */
     return (
       <group ref={ref} {...groupProps}>
-        <UniversalFrame {...frameProps} />
+        <Frame1 meshProps={{ scale: [0.65, 1, 0.65] }} />
+        {/* <UniversalFrame {...frameProps} /> */}
         <UniversalCanvas
           {...canvasProps}
           image={

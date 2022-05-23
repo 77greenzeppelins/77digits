@@ -1,4 +1,4 @@
-import raphaelPainting from '../../../../../assets/textures/PlatoAndAristoteles.jpg';
+import raphaelPainting from '../../../../../assets/textures/containerIntro_raphael_445_800_1.webp';
 import { springConfigs } from '../../../../../data/reactSpring';
 /*
 ------------------------------------------------------------------

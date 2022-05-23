@@ -8,16 +8,28 @@ const springConfig = {
   positionZEnd: [0, 0, -18.64],
   positionYStart: [0, 0, 0],
   positionYEnd: [0, 2, 0],
+
+  zStart: -20.64,
+  zEnd: -18.64,
+  yStart: 0,
+  yEnd: 2,
+
   delay: 200,
 };
 const InstantContactButtonPhone = {
-  groupProps: { scale: [0.335, 0.335, 0.335], position: [0, 0.2, 0] },
-  frameProps: { format: 'portrait' },
+  groupProps: {
+    scale: [0.335, 0.335, 0.335],
+    position: [0, 0.2, 0],
+    rotation: [0, 0.1 * Math.PI, 0],
+  },
   canvasProps: { buttonType: 'phone', format: 'portrait' },
 };
 const InstantContactButtonEmail = {
-  groupProps: { scale: [0.335, 0.335, 0.335], position: [0, -0.2, 0] },
-  frameProps: { format: 'portrait' },
+  groupProps: {
+    scale: [0.335, 0.335, 0.335],
+    position: [0, -0.2, 0],
+    rotation: [0, 0.1 * Math.PI, 0],
+  },
   canvasProps: { buttonType: 'email', format: 'portrait' },
 };
 

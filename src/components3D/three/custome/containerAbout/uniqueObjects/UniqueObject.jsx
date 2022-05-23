@@ -5,8 +5,9 @@ import React from 'react';
 /*
 Components
 */
-import Exclamation from './clientSide/exclamationMark/Exclamation';
-import JestesTyText from '../../_meshesWithMatcap/collection/jestesTyText/JestesTyText';
+import TechPanel from './techPanel/TechPanel';
+// import Exclamation from './clientSide/exclamationMark/Exclamation';
+// import JestesTyText from '../../_meshesWithMatcap/collection/jestesTyText/JestesTyText';
 import MusicNote from './musicNote/MusicNote';
 import MedicineDatail from './clientSide/medicineDetail/MedicineDatail';
 import BraveClientsPictureOnPlane from './77side/braveClientsPictureOnPlane/BraveClientsPictureOnPlane';
@@ -48,8 +49,10 @@ const UniqueObject = ({ uniqueObject }) => {
       /*
       clientSection
       */
-      case 'youAre':
-        return <Exclamation trigger={clientSideAnimationTrigger} />;
+      // case 'youAre':
+      //   return <Exclamation trigger={clientSideAnimationTrigger} />;
+      case 'techPanel':
+        return <TechPanel trigger={clientSideAnimationTrigger} />;
       case 'musicNote':
         return <MusicNote />;
       case 'medicineDetail':
@@ -63,7 +66,7 @@ const UniqueObject = ({ uniqueObject }) => {
         return (
           <>
             <CircledPath trigger={mySideAnimationTrigger} />
-            <AndSign config="circledPath" />
+            {/* <AndSign config="circledPath" /> */}
           </>
         );
       default:

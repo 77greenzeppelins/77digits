@@ -73,40 +73,42 @@ const ContainerAbout = () => {
   /*
   ...
   */
-  useEffect(() => {
-    console.log(group.current);
-  }, []);
+  // useEffect(() => {
+  //   console.log(group.current);
+  // }, []);
 
   /*
   JSX 
   */
   return (
-    <group
-      ref={group}
-      scale={[1, 1, 1]}
-      name="GroupForContainerAbout"
-      position={canvasGlobalState.aboutContainerPosition}
-      {...containerAboutGestures()}
-    >
-      <InteractivePanel
-        meshProps={{ name: 'PanelForContainerAbout' }}
-        slidesNumber={contAboutSlidesNumber}
-      />
-      <Suspense fallback={null}>
-        {/*-----Slider Section-----------------------------------
+    canvasGlobalState.currentContainer === 'aboutContainer' && (
+      <group
+        ref={group}
+        scale={[1, 1, 1]}
+        name="GroupForContainerAbout"
+        position={canvasGlobalState.aboutContainerPosition}
+        {...containerAboutGestures()}
+      >
+        <InteractivePanel
+          meshProps={{ name: 'PanelForContainerAbout' }}
+          slidesNumber={contAboutSlidesNumber}
+        />
+        <Suspense fallback={null}>
+          {/*-----Slider Section-----------------------------------
       "rotateStepByStep" gestures for <SpinningBox>
       "gesturesForSidesRotations" gestures for <SpinningBoxSide>
       */}
-        <Slider
-          rotateStepByStep={rotateStepByStep}
-          gesturesForSidesRotations={gesturesForSidesRotations}
-          gesturesForSidesRotationsIndicator={
-            gesturesForSidesRotationsIndicator
-          }
-        />
-        {/*-----Navigation Panel Section------------------------*/}
-      </Suspense>
-    </group>
+          <Slider
+            rotateStepByStep={rotateStepByStep}
+            gesturesForSidesRotations={gesturesForSidesRotations}
+            gesturesForSidesRotationsIndicator={
+              gesturesForSidesRotationsIndicator
+            }
+          />
+          {/*-----Navigation Panel Section------------------------*/}
+        </Suspense>
+      </group>
+    )
   );
 };
 

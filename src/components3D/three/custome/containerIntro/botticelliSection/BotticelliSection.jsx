@@ -8,8 +8,8 @@ import { canvasState } from '../../../../../states/canvasState';
 /*
 Components
 */
+import Frame1 from '../../_glbComponents/frame/Frame_1';
 import Logo from '../../_77logo/Logo';
-import UniversalFrame from '../../matcapFrames/UniversalFrame';
 import UniversalCanvas from '../../matcapFrames/UniversalCanvas';
 import DreiText from '../../../../drei/text/dreiText/DreiText';
 /*
@@ -110,7 +110,7 @@ const BotticelliSection = ({ groupProps }) => {
           rotation={orbitImitation}
         >
           {/*-----Boticelli Painting------------------------------*/}
-          <UniversalFrame {...venusPaintingData.frameProps} />
+          <Frame1 meshProps={{ scale: [0.86, 1, 1.13] }} />
 
           <UniversalCanvas {...venusPaintingData.canvasProps} />
 
