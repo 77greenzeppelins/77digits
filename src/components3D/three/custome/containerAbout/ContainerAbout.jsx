@@ -34,11 +34,20 @@ const ContainerAbout = () => {
   Gesture Section 
   */
   const {
+    /*
+    springValue for rotation of the whole <SpinningBilboard>
+    */
     rotateStepByStep,
+    /*
+    springValues for rotation of each individual <SB>'s sides
+    */
     sideFrontRotation,
     sideLeftRotation,
     sideBackRotation,
     sideRightRotation,
+    /*
+    springValues for SpinningBoxSideIndicator>
+    */
     number1,
     number2,
     number3,
@@ -47,6 +56,9 @@ const ContainerAbout = () => {
     containerAboutGestures,
   } = ContAboutGest();
 
+  const gestureForBilboardRotation = useMemo(() => {
+    return rotateStepByStep;
+  }, [rotateStepByStep]);
   /*
   array of animation for all <SpinningBoxSide>
   */
@@ -94,18 +106,16 @@ const ContainerAbout = () => {
           slidesNumber={contAboutSlidesNumber}
         />
         <Suspense fallback={null}>
-          {/*-----Slider Section-----------------------------------
-      "rotateStepByStep" gestures for <SpinningBox>
-      "gesturesForSidesRotations" gestures for <SpinningBoxSide>
-      */}
+          {/*
+          Slider Section
+          */}
           <Slider
-            rotateStepByStep={rotateStepByStep}
+            gestureForBilboardRotation={gestureForBilboardRotation}
             gesturesForSidesRotations={gesturesForSidesRotations}
             gesturesForSidesRotationsIndicator={
               gesturesForSidesRotationsIndicator
             }
           />
-          {/*-----Navigation Panel Section------------------------*/}
         </Suspense>
       </group>
     )

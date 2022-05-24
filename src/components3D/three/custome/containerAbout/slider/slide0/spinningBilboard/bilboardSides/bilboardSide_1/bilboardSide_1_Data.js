@@ -2,7 +2,7 @@
 Assets
 */
 import family from '../../../../../../../../../assets/textures/containerAbout_Slide1_family_3.webp';
-import manOnTheMoon from '../../../../../../../../../assets/textures/containerAbout_Slide0_moon_5_445_800.webp';
+import manOnTheMoon from '../../../../../../../../../assets/textures/containerAbout_Slide0_moon_1_445_800.webp';
 /*
 Basic Data
 */
@@ -39,13 +39,14 @@ const bilboardSide1Data = {
       for  <DreiText>s
       */
     textConfigHeader: {
+      text: ["It's You", 'Jesteś Ty'],
       textProps: [
         // PL: mobile / no-mobile
         [{ position: [-0.06, 0.25, 0.01] }, { position: [-0.06, 0.2, 0.01] }],
         // EN: mobile / no-mobile
         [{ position: [0, 0.2, 0.01] }, { position: [0, 0.34, 0.01] }],
       ],
-      text: ["It's You", 'Jesteś Ty'],
+
       ...xlHeaderConfig,
       textAlign: 'right',
     },

@@ -9,10 +9,7 @@ import BilboardSide4 from './bilboardSides/bilboardSide_4/BilboardSide_4';
 /*
 Hook Staff
 */
-import useWindowSize from '../../../../../../../hooks/useWindowSize';
-/*
-...
-*/
+// import useWindowSize from '../../../../../../../hooks/useWindowSize';
 /*
 Spring Section
 */
@@ -20,34 +17,29 @@ import { a } from '@react-spring/three';
 /*
 Basic Data
 */
-const spinningBoxLayout = {
-  mobile: { scale: [0.32, 0.32, 0.32] },
-  desktop: { scale: [0.33, 0.33, 0.33] },
+// const spinningBoxLayout = {
+//   mobile: { scale: [0.32, 0.32, 0.32] },
+//   desktop: { scale: [0.33, 0.33, 0.33] },
+// };
+// const minForTablet = 850;
+const basicData = {
+  groupScale: [0.32, 0.32, 0.32],
 };
-const minForTablet = 850;
 
 /*
 -----------------------------------------------------------------------------
 */
 const SpinningBilboard = ({
   /*
-      props for <SpinningBox>'s main <group>; scale & position;
-      */
-  groupProps,
-  /*
-      props for <SpinningBoxSide> layout and its children
-      */
-  spinningBoxConfig, // "slide0Box1Data"
-  /*
-      springValue from "ContainerAboutGesture.js"
-      */
-  rotateStepByStep,
+  springValue from "ContAboutGesture.js"
+  */
+  gestureForBilboardRotation,
   gesturesForSidesRotations,
 }) => {
   /*
   Hook Section
   */
-  const windowSize = useWindowSize();
+  // const windowSize = useWindowSize();
   /*
   scale calculation
   */
@@ -65,19 +57,14 @@ const SpinningBilboard = ({
   */
   return (
     <a.group
-      name="groupForSpoinningBilboard"
-      scale={[0.32, 0.32, 0.32]}
-      rotation={rotateStepByStep}
+      name="groupForSpinningBilboard"
+      scale={basicData.groupScale}
+      rotation={gestureForBilboardRotation}
     >
-      <BilboardSide1 animatedRotation={gesturesForSidesRotations[0]} />
-      <BilboardSide2 animatedRotation={gesturesForSidesRotations[1]} />
-      <BilboardSide3 animatedRotation={gesturesForSidesRotations[2]} />
-      <BilboardSide4 animatedRotation={gesturesForSidesRotations[3]} />
-
-      {/* <mesh>
-        <planeGeometry args={[0.5, 0.5]} />
-        <meshBasicMaterial color={[1, 0, 0]} />
-      </mesh> */}
+      <BilboardSide1 gesturesForSidesRotations={gesturesForSidesRotations[0]} />
+      <BilboardSide2 gesturesForSidesRotations={gesturesForSidesRotations[1]} />
+      <BilboardSide3 gesturesForSidesRotations={gesturesForSidesRotations[2]} />
+      <BilboardSide4 gesturesForSidesRotations={gesturesForSidesRotations[3]} />
     </a.group>
   );
 };

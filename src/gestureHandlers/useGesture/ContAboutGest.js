@@ -95,6 +95,23 @@ const ContAboutGest = () => {
         canvasGlobalState.sliderIsReady === false
       ) {
         canvasState.sliderIsReady = true;
+        console.log(
+          'ContAboutGest / canvasGlobalState.sliderIsReady:',
+          canvasGlobalState.sliderIsReady
+        );
+      }
+      if (isClientSideVisible.current === false) {
+        canvasState.isClientSideVisible = false;
+        // console.log(
+        //   'ContAboutGest / canvasState.isClientSideVisible:',
+        //   canvasGlobalState.isClientSideVisible
+        // );
+      } else {
+        canvasState.isClientSideVisible = true;
+        // console.log(
+        //   'ContAboutGest / canvasState.isClientSideVisible:',
+        //   canvasGlobalState.isClientSideVisible
+        // );
       }
     },
   }));
@@ -167,9 +184,29 @@ const ContAboutGest = () => {
         isClientSideVisible.current = false;
       }
 
+      // if (
+      //   !down &&
+      //   refX.current === 0 &&
+      //   isClientSideVisible.current === false
+      // ) {
+      //   // console.log('isClientSideVisible.current should change');
+      //   isClientSideVisible.current = true;
+      // }
+
+      /*
+      This logic refers to moment when user returns from "77digits Section" to "Client Section" 
+      */
       if (
         !down &&
-        isClientSideVisible.current === false &&
+        refX.current === 0 &&
+        isClientSideVisible.current === false
+      ) {
+        isClientSideVisible.current = true;
+      }
+
+      if (
+        !down &&
+        // isClientSideVisible.current === false &&
         refX.current === 0 &&
         /*
         "dirX" condition is true only on "77digit" side; without "dirX" it triggers after the very first dragg;
@@ -183,16 +220,6 @@ const ContAboutGest = () => {
         sliderIsReady.current = true;
       }
 
-      /*
-      This logic refers to moment when user returns from "77digits Section" to "Client Section" 
-      */
-      if (
-        !down &&
-        refX.current === 0 &&
-        isClientSideVisible.current === false
-      ) {
-        isClientSideVisible.current = true;
-      }
       /*
       Spring API
       */

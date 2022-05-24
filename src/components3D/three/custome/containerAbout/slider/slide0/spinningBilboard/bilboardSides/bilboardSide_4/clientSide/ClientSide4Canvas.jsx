@@ -8,29 +8,28 @@ import PlaneForCanvas from '../../../../../../../_planeForCanvas/PlaneForCanvas'
 /*
 Basic Data
 */
-import { bilboardSide1Data } from '../bilboardSide_1_Data';
-// import { bilboardSide2Data } from '../../bilboardSide_2/bilboardSide_2_Data';
+import { bilboardSide4Data } from '../bilboardSide_4_Data';
 /*
 ---------------------------------------------------------------------
 */
-const DigitsSide1Canvas = () => {
+const ClientSide4Canvas = () => {
   /*
   Image Loader
   */
   const [map] = useLoader(THREE.TextureLoader, [
-    bilboardSide1Data.digitsSideProps.canvasProps.image,
+    bilboardSide4Data.clientSideProps.canvasProps.image,
   ]);
   /*
   JSX
   */
   return (
-    <mesh {...bilboardSide1Data.digitsSideProps.canvasProps.meshProps}>
+    <mesh>
       <PlaneForCanvas
-        format={bilboardSide1Data.digitsSideProps.canvasProps.format}
+        format={bilboardSide4Data.clientSideProps.canvasProps.format}
       />
       <meshBasicMaterial map={map} />
     </mesh>
   );
 };
 
-export default DigitsSide1Canvas;
+export default ClientSide4Canvas;

@@ -32,14 +32,14 @@ const BilboardSide_1 = ({
   /*
   ...
   */
-  animatedRotation,
+  gesturesForSidesRotations,
 }) => {
   return (
     <a.group
       name="GroupForBilboardSide_1"
       // position={bildoardSide1Data.sideProps.position}
       {...bilboardSide1Data.sideProps}
-      rotation={animatedRotation}
+      rotation={gesturesForSidesRotations}
     >
       <SideFrame
         groupProps={{ name: 'groupForFrameInSpiningBoxSide' }}
@@ -47,9 +47,6 @@ const BilboardSide_1 = ({
       />
       <ClientSide1 />
       <DigitSide1 />
-
-      {/* <SideLabel labelProps={labelPropsReverse} />
-      <SideLabel labelProps={labelProps} /> */}
     </a.group>
   );
 };

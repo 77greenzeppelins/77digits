@@ -9,7 +9,7 @@ import Slide0 from './slide0/Slide0';
 -----------------------------------------------------------------
 */
 const Slider = ({
-  rotateStepByStep,
+  gestureForBilboardRotation,
   gesturesForSidesRotations,
   gesturesForSidesRotationsIndicator,
 }) => {
@@ -21,7 +21,7 @@ const Slider = ({
     <group ref={slider} scale={[1, 1, 1]} name="groupForSlider">
       <Slide0
         slideId={0}
-        rotateStepByStep={rotateStepByStep}
+        gestureForBilboardRotation={gestureForBilboardRotation}
         gesturesForSidesRotations={gesturesForSidesRotations}
         gesturesForSidesRotationsIndicator={gesturesForSidesRotationsIndicator}
       />

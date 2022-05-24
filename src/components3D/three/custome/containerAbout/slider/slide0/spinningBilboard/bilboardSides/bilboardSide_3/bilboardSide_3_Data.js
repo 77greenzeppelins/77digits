@@ -28,7 +28,7 @@ const bilboardSide3Data =
     /*
     for <SpinningBoxSide>'s <SideLabel>
     */
-    labelProps: {
+    clientSideProps: {
       /*
       for label's <UniversalFrame>
       */
@@ -36,10 +36,7 @@ const bilboardSide3Data =
         format: 'verticalFormat',
         image: music,
       },
-      /*
-      in case we want some <UniqueObject> component
-      */
-      uniqueObjectName: 'musicNote',
+
       /*
       for <DreiText>
       */
@@ -68,15 +65,25 @@ const bilboardSide3Data =
     /*
     for "77digits Side"
     */
-    labelPropsReverse: {
+    digitsSideProps: {
+      canvasProps: {
+        format: 'verticalFormat',
+        image: blank,
+        meshProps: { rotation: [0, Math.PI, 0] },
+      },
+
       textConfigHeader: {
+        text: ['I build', 'Buduję'],
         ...mHeaderConfig,
         textProps: { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
-        text: ['I build', 'Buduję'],
       },
       paragraphs: [
         {
           textConfig: {
+            text: [
+              'subtle connections between technology  ',
+              'subtelne połączenia powiędzy technologią',
+            ],
             textProps: [
               // PL: mobile / no-mobile
               [
@@ -89,10 +96,7 @@ const bilboardSide3Data =
                 { position: [0, 0.15, -0.01], rotation: [0, Math.PI, 0] },
               ],
             ],
-            text: [
-              'subtle connections between technology  ',
-              'subtelne połączenia powiędzy technologią',
-            ],
+
             ...mParagraphConfig,
           },
         },
@@ -115,15 +119,6 @@ const bilboardSide3Data =
           },
         },
       ],
-      canvasProps: {
-        format: 'verticalFormat',
-        image: blank,
-        meshProps: { rotation: [0, Math.PI, 0] },
-      },
-      /*
-      in case we want some <UniqueObject> component
-      */
-      uniqueObjectName: 'circledPath',
     },
   };
 export { bilboardSide3Data };

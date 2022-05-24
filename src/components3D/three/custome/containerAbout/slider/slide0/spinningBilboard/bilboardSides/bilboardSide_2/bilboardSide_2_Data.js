@@ -19,36 +19,32 @@ const bilboardSide2Data = {
   /* -----Panel Left / TECH & POSZUKUJĘ ------------------------------  */
 
   /*
-    for <SpinningBoxSide>'s general layout
-    */
+  for <SpinningBoxSide>'s general layout
+  */
   sideProps: { position: [-0.455, 0, -0], rotation: [0, -0.5 * Math.PI, 0] },
   /*
-    for <SpinningBoxSide>'s <UniversalFrame>
-    */
+  for <SpinningBoxSide>'s <UniversalFrame>
+  */
   frameProps: {
     groupProps: { name: 'groupForPanelFront' },
     ...frameConfig,
   },
   /*
-    for "Client Side"
-    */
-  labelProps: {
+  for "Client Side"
+  */
+  clientSideProps: {
     /*
-      for label's <UniversalFrame>
-      */
+    for label's <UniversalFrame>
+    */
     canvasProps: {
       format: 'verticalFormat',
       image: tech,
     },
     /*
-      in case we want some <UniqueObject> component
-      */
-    uniqueObjectName: 'techPanel',
-    /*
-      for <DreiText>
-      */
+    for <DreiText>
+    */
     textConfigHeader: {
-      text: ["Imagine you're", 'MOŻE JESTEŚ'],
+      text: ["Imagine you're", 'Może jesteś'],
       ...mHeaderConfig,
     },
     paragraphs: [
@@ -72,16 +68,16 @@ const bilboardSide2Data = {
   /*
     for "77digits Side"
     */
-  labelPropsReverse: {
-    textConfigHeader: {
-      ...mHeaderConfig,
-      textProps: { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
-      text: ['I hunt for', 'Poszukuję'],
-    },
+  digitsSideProps: {
     canvasProps: {
       format: 'verticalFormat',
       image: blank,
       meshProps: { rotation: [0, Math.PI, 0] },
+    },
+    textConfigHeader: {
+      ...mHeaderConfig,
+      textProps: { position: [0, 0.4, -0.01], rotation: [0, Math.PI, 0] },
+      text: ['I hunt for', 'Poszukuję'],
     },
   },
 };

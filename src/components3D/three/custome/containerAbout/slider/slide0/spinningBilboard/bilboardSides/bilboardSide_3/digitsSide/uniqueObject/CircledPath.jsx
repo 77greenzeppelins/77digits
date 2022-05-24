@@ -1,46 +1,30 @@
-/*
-main inspiration: 
-https://medium.com/cortico/3d-data-visualization-with-react-and-three-js-7272fb6de432
-
-secondary inspirations:
-https://tympanus.net/codrops/2020/12/17/recreating-a-dave-whyte-animation-in-react-three-fiber/
-https://onion2k.hashnode.dev/drawing-lots-and-lots-of-cubes-with-react-three-fiber
-*/
-
-import React, { useEffect, useRef } from 'react';
-import BasicUseMatcapTexture from '../../../matcapMaterials/BasicUseMatcapTexture';
+import React, { useRef, useEffect } from 'react';
 import { Object3D } from 'three';
 /*
-Data
+Components
+*/
+import BasicUseMatcapTexture from '../../../../../../../../matcapMaterials/BasicUseMatcapTexture';
+/*
+Basic Data
 */
 import { meshProps, coordinates } from './circledPathData';
 /*
 ...
 */
 const instance = new Object3D();
+// const sphere = new SphereGeometry(0.01, 7, 7);
 
 /*
 --------------------------------------------------------------
 */
-const CircledPath = ({ trigger }) => {
+const CircledPath = () => {
   /*
   References
   */
   const rootMesh = useRef();
   /*
-  ...
+  InstancedMesh Layout
   */
-  //   useEffect(() => {
-  //     for (let i = 1; i < data.length; i++) {
-  //       const x = (i % 10) * 0.05;
-  //       const y = Math.floor(i / 10) * 0.05;
-  //       const z = 0;
-  //       transform.setPosition(x, y, z);
-  //       rootMesh.current.setMatrixAt(i, transform);
-  //     }
-  //     rootMesh.current.instanceMatrix.needsUpdate = true;
-  //   }, []);
-
   useEffect(() => {
     // console.log('CircledPath / data:', data);
     for (let i = 1; i < coordinates.length; i++) {
@@ -52,7 +36,7 @@ const CircledPath = ({ trigger }) => {
         coordinates[i][1],
         coordinates[i][2]
       );
-      instance.rotation.set(0.5 * Math.PI, 0, 0);
+      //   instance.rotation.set(0.5 * Math.PI, 0, 0);
       instance.updateMatrix();
       rootMesh.current.setMatrixAt(i, instance.matrix);
     }
@@ -68,8 +52,9 @@ const CircledPath = ({ trigger }) => {
       ref={rootMesh}
       args={[null, null, coordinates.length]}
       frustumCulled={false}
+      //   geometry={sphere}
     >
-      <sphereBufferGeometry args={[0.01, 7, 7]} />
+      <sphereGeometry args={[0.01, 7, 7]} />
       <BasicUseMatcapTexture />
     </instancedMesh>
   );

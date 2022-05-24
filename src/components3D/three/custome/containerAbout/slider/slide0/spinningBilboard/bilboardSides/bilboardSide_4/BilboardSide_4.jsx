@@ -3,7 +3,8 @@ import React from 'react';
 Components
 */
 import SideFrame from '../_sideChildrenComponents/sideFrame/SideFrame';
-// import SideLabel from './SideLabel';
+import ClientSide4 from './clientSide/ClientSide4';
+import DigitSide4 from './digitsSide/DigitSide4';
 /*
 Spring Section
 */
@@ -31,20 +32,20 @@ const BilboardSide_4 = ({
   /*
   ...
   */
-  animatedRotation,
+  gesturesForSidesRotations,
 }) => {
   return (
     <a.group
       name="GroupForSpinningBoxSide"
       {...bilboardSide4Data.sideProps}
-      rotation={animatedRotation}
+      rotation={gesturesForSidesRotations}
     >
       <SideFrame
         groupProps={{ name: 'groupForFrameInSpiningBoxSide' }}
         {...bilboardSide4Data.frameProps}
       />
-      {/* <SideLabel labelProps={labelPropsReverse} />
-      <SideLabel labelProps={labelProps} /> */}
+      <ClientSide4 />
+      <DigitSide4 />
     </a.group>
   );
 };

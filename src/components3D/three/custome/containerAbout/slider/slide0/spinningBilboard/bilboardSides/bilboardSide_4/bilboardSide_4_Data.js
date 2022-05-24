@@ -28,7 +28,7 @@ const bilboardSide4Data =
     /*
     for <SpinningBoxSide>'s <SideLabel>
     */
-    labelProps: {
+    clientSideProps: {
       /*
       for label's <UniversalFrame>
       */
@@ -68,7 +68,7 @@ const bilboardSide4Data =
     /*
     for "77digits Side"
     */
-    labelPropsReverse: {
+    digitsSideProps: {
       canvasProps: {
         format: 'verticalFormat',
         image: blank,

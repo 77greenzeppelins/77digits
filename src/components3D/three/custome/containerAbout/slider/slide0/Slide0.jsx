@@ -17,24 +17,18 @@ import { a, useSpring } from '@react-spring/three';
 /*
 Hook Staff
 */
-import useWindowSize from '../../../../../../hooks/useWindowSize';
+// import useWindowSize from '../../../../../../hooks/useWindowSize';
 /*
 Basic Data
 */
-import {
-  // minForTablet,
-  sliderEngineSpring,
-  // spinningBoxLayout,
-  // spinningBoxConfig,
-  indicatorCongif,
-} from './slide0Data';
+import { sliderEngineSpring, indicatorCongif } from './slide0Data';
 
 /*
 ----------------------------------------------------------------------
 */
 const Slide0 = ({
   slideId,
-  rotateStepByStep,
+  gestureForBilboardRotation,
   gesturesForSidesRotations,
   gesturesForSidesRotationsIndicator,
 }) => {
@@ -45,7 +39,7 @@ const Slide0 = ({
   /*
   Hook Section
   */
-  const windowSize = useWindowSize();
+  // const windowSize = useWindowSize();
   /*
   Global State Section
     {containerAboutVisibleSlideIndex: 0,...}
@@ -90,10 +84,10 @@ const Slide0 = ({
         springValue={gesturesForSidesRotationsIndicator}
       />
 
-      {/*-----SpinningBox Section---------------------------------------*/}
+      {/*-----SpinningBilboard Section---------------------------------------*/}
 
       <SpinningBilboard
-        rotateStepByStep={rotateStepByStep}
+        gestureForBilboardRotation={gestureForBilboardRotation}
         gesturesForSidesRotations={gesturesForSidesRotations}
       />
     </a.group>

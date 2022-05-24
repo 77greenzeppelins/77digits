@@ -1,5 +1,5 @@
 /*
-Set of props for <SpinningBoxSide>s and their childComponents: <UniversaleFrame> and two <SideLabel>s
+...
 */
 const frameConfig = {
   format: 'verticalFormat',
