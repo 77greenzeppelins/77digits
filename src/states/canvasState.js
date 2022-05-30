@@ -7,8 +7,8 @@ const canvasState = proxy({
   ...is changed within onClick events that allowe user to jump among containers;
   ...options: introContainer, aboutContainer, menuContainer;
   */
-  currentContainer: 'none',
-  // currentContainer: 'introContainer', // to switch off <InitialContainer>
+  // currentContainer: 'none',
+  currentContainer: 'introContainer', // to switch off <InitialContainer>
   /*
   ...
   */
@@ -36,15 +36,22 @@ const canvasState = proxy({
   <InitialOverlay> is based on useTransition;
   By means of <Cookies> / <CookiesBanner> / buttons / onClick  value "false" is set; i.e. this "mighty" button dismounts <Cookies> & <InitialOverlay>
    */
-  isInitialOverlayMounted: true,
-  // isInitialOverlayMounted: false, // to switch off <InitialContainer>
+  // isInitialOverlayMounted: true,
+  isInitialOverlayMounted: false, // to switch off <InitialContainer>
   /*
   FakeLoader should by trigger only one time!
   If not going from <CookiesPage> to <MainPage> triggers <FL> when <Cookies> are mounted i.e. both are visible and overlap...horrror
   Is changed to "1" in <FakeLoader> / useSpring / onRest;
   */
   fakeLoaderCounter: 0,
-
+  /*
+  -----------------------------------------------<Cookies staff>
+  */
+  /*
+  Idea: when used decides about cookies button is clicked; the way the button was used defines how <ContainerIntro> is navigated; we take the following vale from even:  "e.nativeEvent.pointerType"; it might be "mouse" or "touch"
+  It's alternative for "introContainerEventType"
+  */
+  // currentPointerType: 'none',
   /*
   ----------------------------------------<IntroContainer> 3D Staff
   /*
@@ -71,6 +78,8 @@ const canvasState = proxy({
   */
   // startOfContainerIntroShow: false,
   isRaphaelVisible: false,
+  //
+  fake: false,
   /*
   -----------------------------------------------<Cookies 2D staff>
   */
@@ -78,7 +87,6 @@ const canvasState = proxy({
   decides if <Cookies> is mounted or not
   <Cookies> are based on useTransition;
   */
-  // isCookiesPopUpMounted: false,
   isCookiesPopUpMounted: false, // to switch off <InitialContainer>
 
   /*

@@ -10,10 +10,7 @@ import { canvasState } from '../../states/canvasState';
 /*
 Basic Data
 */
-import {
-  onWheelData,
-  factorPositionY,
-} from '../../components3D/three/custome/containerIntro/containerIntroData';
+import { onWheelData, factorPositionY } from '../../data/globalData';
 /*
 -------------------------------------------------------------------------------
 */
@@ -21,8 +18,8 @@ const IntroWheelGesture = () => {
   /*
   References
   */
-  const gestureType = useRef();
-  const onStartCondition = useRef(true);
+  // const gestureType = useRef();
+  // const onStartCondition = useRef(true);
   const endOfContainerIntro = useRef(false);
   /*
   Global States for SpringValues;
@@ -32,34 +29,57 @@ const IntroWheelGesture = () => {
   /*
   Spring Section
   */
-  const [{ wheelProgressValue, wheelProgressToggler, wheeledPositionZ }, api] =
-    useSpring(() => ({
-      wheelProgressToggler: 1,
-      wheelProgressValue: 0,
-      wheeledPositionZ: 0,
-      config: { ...config.molasses, precision: 0.0001 },
-      /*
-      "onStart()"; works...but there is still some "tick" in weeling
-      */
-      onChange: () => {
-        if (gestureType.current === 'wheeling' && onStartCondition.current) {
-          canvasState.introContainerEventType = 'wheeling';
-          onStartCondition.current = false;
-          // console.log(
-          //   'canvasState.introContainerEventType:',
-          //   canvasState.introContainerEventType
-          // );
-        }
-      },
-    }));
+  const [
+    {
+      wheelProgressValue,
+      wheelProgressToggler,
+      wheeledPositionZ,
+      fallDownWheel,
+      riseUpWheel,
+      opacity,
+    },
+    api1,
+  ] = useSpring(() => ({
+    wheelProgressToggler: 1,
+    wheelProgressValue: 0,
+    wheeledPositionZ: 0,
+    fallDownWheel: 0.1,
+    riseUpWheel: -0.1,
+    opacity: 0,
+    config: { ...config.molasses, precision: 0.0001 },
+    /*
+    "onStart()"; works...but there is still some "tick" in weeling
+    */
+    // onChange: () => {
+    //   if (gestureType.current === 'wheeling' && onStartCondition.current) {
+    //     // canvasState.introContainerEventType = 'wheeling';
+    //     onStartCondition.current = false;
+    //     console.log(
+    //       'onChange / canvasGlobalState.introContainerEventType:',
+    //       canvasGlobalState.introContainerEventType
+    //     );
+    //   }
+    // },
+    // onRest: () => {
+    //   if (endOfContainerIntro.current === true) {
+    //     canvasState.endOfContainerIntro = true;
+    //   }
+    // },
+  }));
 
   const onWheelStartHandler = useCallback(
-    ({ wheeling, offset: [, offsetY] }) => {
+    ({ wheeling }) => {
       /*
       sidenote: I've tried to use "gestureType.current = 'none'" instead of "canvasGlobalState.introContainerEventType === 'none'"; result: if first gesture was "wheeling" it can anyway be replaced by "laptop tap panel" and vice versa;
        */
       if (wheeling && canvasGlobalState.introContainerEventType === 'none') {
-        gestureType.current = 'wheeling';
+        // gestureType.current = 'wheeling';
+        canvasState.introContainerEventType = 'wheeling';
+
+        // console.log(
+        //   'onWheelStartHandler / canvasGlobalState.introContainerEventType:',
+        //   canvasGlobalState.introContainerEventType
+        // );
       }
     },
     [canvasGlobalState.introContainerEventType]
@@ -73,26 +93,41 @@ const IntroWheelGesture = () => {
       /*
       Spring Section;
       */
-      api.start({
+      api1.start({
         wheelProgressToggler:
           offsetY === 0 || (offsetY / onWheelData.bottom) * 100 > 99 ? 1 : 0.3,
-        wheelProgressValue: (offsetY / onWheelData.bottom) * 99,
+        wheelProgressValue: (offsetY / onWheelData.bottom) * 100,
         wheeledPositionZ: offsetY * factorPositionY,
       });
     },
-    [api]
+    [api1]
   );
   /*
   Additional Handler for last wheel 
   */
-  const onWheelEndHandler = useCallback(({ offset: [, offsetY], active }) => {
-    /*
+  const onWheelEndHandler = useCallback(
+    ({ offset: [, offsetY], active }) => {
+      /*
       What should happen if user wheels to the end?
       */
-    if (offsetY === onWheelData.bottom && !active) {
-      canvasState.endOfContainerIntro = true;
-    }
-  }, []);
+      if (offsetY === onWheelData.bottom) {
+        // canvasState.endOfContainerIntro = true;
+        endOfContainerIntro.current = true;
+        // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
+      } else {
+        endOfContainerIntro.current = false;
+        // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
+      }
+      /*
+      API section
+      */
+      api1.start({
+        fallDownWheel: endOfContainerIntro.current ? 0.017 : 0.1,
+        riseUpWheel: endOfContainerIntro.current ? -0.017 : -0.1,
+      });
+    },
+    [api1]
+  );
 
   /*
   Gesture Section
@@ -105,14 +140,7 @@ const IntroWheelGesture = () => {
     },
     {
       target: canvasGlobalState.currentContainer === 'introContainer' && window,
-      enabled:
-        /*
-        why two conditions? 
-        (1) about ".currentContainer" - bacause we want...
-        (2) about ".endOfContainerIntro" - it is initially false and changes to true when user scrolls to the end; without this condition user can scroll backward = scrolling doesn't stop
-        */
-        canvasGlobalState.currentContainer === 'introContainer' &&
-        !canvasGlobalState.endOfContainerIntro,
+      enabled: canvasGlobalState.currentContainer === 'introContainer',
       wheel: {
         axis: 'y',
         bounds: { ...onWheelData },
@@ -128,6 +156,9 @@ const IntroWheelGesture = () => {
     wheelProgressToggler,
     wheeledPositionZ,
     containerIntroWheel,
+    fallDownWheel,
+    riseUpWheel,
+    opacity,
   };
 };
 

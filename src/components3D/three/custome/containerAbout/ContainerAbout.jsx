@@ -1,4 +1,4 @@
-import React, { useMemo, Suspense, useRef, useEffect } from 'react';
+import React, { useMemo, Suspense, useRef } from 'react';
 /*
 Components
 */
@@ -12,7 +12,8 @@ import { canvasState } from '../../../../states/canvasState';
 /*
 Gesture Staff
 */
-import ContAboutGest from '../../../../gestureHandlers/useGesture/ContAboutGest';
+import SpinningBilboardGestures from '../../../../gestureHandlers/useGesture/SpinningBoxGest';
+// import ContAboutGest from '../../../../gestureHandlers/useGesture/ContAboutGest';
 /*
 Basic Data
 */
@@ -53,8 +54,8 @@ const ContainerAbout = () => {
     number3,
     number4,
     number77,
-    containerAboutGestures,
-  } = ContAboutGest();
+    spinningBilboardGestures,
+  } = SpinningBilboardGestures();
 
   const gestureForBilboardRotation = useMemo(() => {
     return rotateStepByStep;
@@ -76,7 +77,7 @@ const ContainerAbout = () => {
     sideRightRotation,
   ]);
   /*
-  array of animation for all <SpinningBoxSide>
+  array of animation for...
   */
   const gesturesForSidesRotationsIndicator = useMemo(() => {
     return [number1, number2, number3, number4, number77];
@@ -99,7 +100,7 @@ const ContainerAbout = () => {
         scale={[1, 1, 1]}
         name="GroupForContainerAbout"
         position={canvasGlobalState.aboutContainerPosition}
-        {...containerAboutGestures()}
+        {...spinningBilboardGestures()}
       >
         <InteractivePanel
           meshProps={{ name: 'PanelForContainerAbout' }}

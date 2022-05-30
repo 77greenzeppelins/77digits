@@ -19,19 +19,12 @@ import { a, useSpring, useTransition } from '@react-spring/three';
 /*
 Basic Data
 */
-import {
-  springConfig,
-  //_____
-  // resetButtonFrame,
-  // resetButtonTextSlide,
-  buttonQuestionMark,
-  buttonX,
-} from './endButtonsData';
+import { springConfig, buttonQuestionMark, buttonX } from './endButtonsData';
 
 /*
 -----------------------------------------------------------------------------
 */
-const EndButtons = () => {
+const EndButtons = React.forwardRef(({ groupProps, positionY }, ref) => {
   /*
   References
   */
@@ -46,35 +39,38 @@ const EndButtons = () => {
   /*
   Spring Animation Section
   */
-  // const { springPositionZ } = useSpring({
-  //   /*
-  //   this animation happens when user scrolls to the end of container
-  //   */
-  //   springPositionZ: canvasGlobalState.endOfContainerIntro
-  //     ? springConfig.positionZEnd
-  //     : springConfig.positionZStart,
-  //   config: springConfig.configBasic,
-  //   delay: springConfig.delay,
-  // });
-
-  const transition = useTransition(canvasGlobalState.endOfContainerIntro, {
-    from: { zPosition: springConfig.zStart },
-    enter: { zPosition: springConfig.zEnd },
-    leave: { zPosition: springConfig.zStart },
+  const { zPosition } = useSpring({
+    /*
+    this animation happens when user scrolls to the end of container
+    */
+    zPosition: canvasGlobalState.endOfContainerIntro
+      ? springConfig.zEnd
+      : springConfig.zStart,
     config: springConfig.configBasic,
     delay: springConfig.delay,
   });
 
-  const { springPositionY } = useSpring({
-    /*
-    this animation happens when user clicks  "questionMark-button"; as a result whole <EB> section goes up; it's actually the very first part of "two-stage" animation where the second part take place in <RaphaelSection> whwn "X-button" is clicked;
-    */
-    springPositionY: canvasGlobalState.isRaphaelVisible
-      ? springConfig.yEnd
-      : springConfig.yStart,
-    // config: springConfig.molasses,
+  const transition = useTransition(canvasGlobalState.endOfContainerIntro, {
+    from: { zPosition: springConfig.zStart, yPosition: 2, scale: 0 },
+    enter: { zPosition: springConfig.zEnd, yPosition: 0, scale: 1 },
+    leave: { zPosition: springConfig.zStart, yPosition: 2, scale: 0 },
     config: springConfig.configBasic,
     delay: springConfig.delay,
+  });
+
+  const { springPositionY, scale } = useSpring({
+    /*
+    this animation happens when user clicks  "questionMark-button"; as a result whole <EB> section goes up; it's actually the very first part of "two-stage" animation where the second part take place in <RaphaelSection> when "X-button" is clicked;
+    */
+    // springPositionY: canvasGlobalState.isRaphaelVisible
+    springPositionY: canvasGlobalState.endOfContainerIntro ? 0 : 1,
+    // config: springConfig.molasses,
+    scale: canvasGlobalState.endOfContainerIntro ? 1 : 0,
+    config: springConfig.configBasic,
+    delay: 400,
+    // onRest: () => {
+    // canvasState.isRaphaelVisible = true;
+    // },
   });
 
   // useEffect(() => {
@@ -106,41 +102,78 @@ const EndButtons = () => {
   /*
   JSX
   */
-
-  return transition(
-    ({ zPosition }, condition) =>
-      condition && (
-        <a.group
-          position-x={0}
-          position-y={springPositionY}
-          position-z={zPosition}
-        >
-          {/*-----Instant Contact Buttons-------------------------------*/}
-          <InstantContactsSection />
-
-          {/*-----X Button------------------------------------------*/}
-          <a.group ref={xMark} {...buttonX.groupProps}>
-            <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
-              <TextGeometryFromFont
-                fontExtrudeSettings={buttonX.fontExtrudeSettings}
-                text={buttonX.text}
-              />
-            </CustomMeshWithMatcap>
-          </a.group>
-
-          {/*-----? Button------------------------------------------*/}
-
-          <a.group ref={questionMark} {...buttonQuestionMark.groupProps}>
-            <CustomMeshWithMatcap>
-              <TextGeometryFromFont
-                fontExtrudeSettings={buttonQuestionMark.fontExtrudeSettings}
-                text={buttonQuestionMark.text}
-              />
-            </CustomMeshWithMatcap>
-          </a.group>
-        </a.group>
-      )
+  // return transition(
+  //   ({ zPosition, yPosition }, condition) =>
+  //     condition && (
+  return (
+    <a.group
+      ref={ref}
+      position-x={0}
+      position-z={-17.64}
+      position-y={springPositionY}
+      scale-x={scale}
+      scale-y={scale}
+      scale-z={scale}
+    >
+      {/* <a.group position-y={springPositionY}> */}
+      {/*-----Instant Contact Buttons-------------------------------*/}
+      <InstantContactsSection />
+      {/* </a.group> */}
+      {/*-----X Button------------------------------------------*/}
+      <a.group ref={xMark} {...buttonX.groupProps}>
+        <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
+          <TextGeometryFromFont
+            fontExtrudeSettings={buttonX.fontExtrudeSettings}
+            text={buttonX.text}
+          />
+        </CustomMeshWithMatcap>
+      </a.group>
+      {/*-----? Button------------------------------------------*/}
+      <a.group ref={questionMark} {...buttonQuestionMark.groupProps}>
+        <CustomMeshWithMatcap>
+          <TextGeometryFromFont
+            fontExtrudeSettings={buttonQuestionMark.fontExtrudeSettings}
+            text={buttonQuestionMark.text}
+          />
+        </CustomMeshWithMatcap>
+      </a.group>
+    </a.group>
   );
-};
+  //     )
+  // );
+});
 
 export default EndButtons;
+
+// return (
+//   <a.group
+//     position-x={0}
+//     position-y={0}
+//     // position-y={springPositionY}
+//     // position-y={0}
+//     position-z={zPosition}
+//   >
+//     <a.group position-y={springPositionY}>
+//       {/*-----Instant Contact Buttons-------------------------------*/}
+//       <InstantContactsSection />
+//     </a.group>
+//     {/*-----X Button------------------------------------------*/}
+//     <a.group ref={xMark} {...buttonX.groupProps}>
+//       <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
+//         <TextGeometryFromFont
+//           fontExtrudeSettings={buttonX.fontExtrudeSettings}
+//           text={buttonX.text}
+//         />
+//       </CustomMeshWithMatcap>
+//     </a.group>
+//     {/*-----? Button------------------------------------------*/}
+//     <a.group ref={questionMark} {...buttonQuestionMark.groupProps}>
+//       <CustomMeshWithMatcap>
+//         <TextGeometryFromFont
+//           fontExtrudeSettings={buttonQuestionMark.fontExtrudeSettings}
+//           text={buttonQuestionMark.text}
+//         />
+//       </CustomMeshWithMatcap>
+//     </a.group>
+//   </a.group>
+// );

@@ -6,7 +6,11 @@ import manOnTheMoon from '../../../../../../../../../assets/textures/containerAb
 /*
 Basic Data
 */
-import { frameConfig, xlHeaderConfig } from '../bilboarSidesCommonData';
+import {
+  frameConfig,
+  xlHeaderConfig,
+  bilboardSideProps,
+} from '../bilboarSidesCommonData';
 
 /*
 ------------------------------------------------------------------------------
@@ -15,7 +19,7 @@ const bilboardSide1Data = {
   /*
     for <SpinningBoxSide>'s general layout
     */
-  sideProps: { position: [0, 0, 0.455], rotation: [0, 0, 0] },
+  sideProps: bilboardSideProps[0],
   /*
     for <SpinningBoxSide>'s <UniversalFrame>
     */

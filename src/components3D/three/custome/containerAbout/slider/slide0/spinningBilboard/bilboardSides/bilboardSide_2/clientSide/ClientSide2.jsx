@@ -4,6 +4,8 @@ Components
 */
 import DreiText from '../../../../../../../../../drei/text/dreiText/DreiText';
 import ClientSide2Canvas from './ClientSide2Canvas';
+import TechPanel from './uniqueObject/TechPanel';
+import TestingPlane from '../../../../../../../containerIntro/_testingPlane/TestingPlane';
 /*
 Basic Data
 */
@@ -25,6 +27,10 @@ const ClientSide2 = () => {
       {bilboardSide2Data.clientSideProps.paragraphs.map((paragraph, i) => (
         <DreiText key={i} textConfig={paragraph.textConfig} />
       ))}
+      <TechPanel />
+      <TestingPlane
+        meshProps={{ scale: [1, 1, 1], position: [0.18, -0.25, 0.01] }}
+      />
     </>
   );
 };

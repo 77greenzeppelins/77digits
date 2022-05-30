@@ -12,7 +12,7 @@ import MusicNote from './musicNote/MusicNote';
 import MedicineDatail from './clientSide/medicineDetail/MedicineDatail';
 import BraveClientsPictureOnPlane from './77side/braveClientsPictureOnPlane/BraveClientsPictureOnPlane';
 import CircledPath from '../../instancedMeshes/collection/CircledPath/CircledPath';
-import AndSign from '../../_meshesWithMatcap/collection/andSign/AndSign';
+// import AndSign from '../../_meshesWithMatcap/collection/andSign/AndSign';
 /*
 Global State Staff
 */

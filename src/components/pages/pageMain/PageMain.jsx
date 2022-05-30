@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import * as THREE from 'three';
 /*
 2D Components
@@ -42,6 +42,8 @@ const PageMain = () => {
         return backgroundColors.linen;
       case 'aboutContainer':
         return backgroundColors.containerAbout;
+      case 'raphaelContainer':
+        return backgroundColors.linen;
       default:
         return backgroundColors.default;
     }
@@ -63,7 +65,7 @@ const PageMain = () => {
      isInitialOverlayMounted: false,
      isCookiesPopUpMounted: false,
      */}
-      <InitialOverlay />
+      {/* <InitialOverlay /> */}
 
       <div className="page-main__container">
         <div className="page-main__canvas">
@@ -107,7 +109,6 @@ const PageMain = () => {
         <ContainerIntro2DStaff />
         <ContainerAbout2DStaff />
         <ContainerMenu2DStaff />
-
         <CanvasGlobalState />
       </div>
     </>

@@ -8,7 +8,7 @@ import { canvasState } from '../../states/canvasState';
 /*
 Spring Staff
 */
-import { useSpring, config } from '@react-spring/three';
+import { useSpring } from '@react-spring/three';
 /*
 Basic Data
 */

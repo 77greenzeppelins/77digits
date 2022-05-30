@@ -42,10 +42,18 @@ const CookiesBanner = ({
   /*
   ...
   */
-  const cookieToggler = () => {
+  const cookieToggler = e => {
     canvasState.isCookiesPopUpMounted = false;
     canvasState.isInitialOverlayMounted = false;
+    // canvasState.currentPointerType = e.nativeEvent.pointerType;
+    // console.log('e', e);
   };
+  // useEffect(() => {
+  //   console.log(
+  //     'canvasGlobalState.currentPointerType',
+  //     canvasGlobalState.currentPointerType
+  //   );
+  // }, [canvasGlobalState.currentPointerType]);
   /*
   JSX
   */

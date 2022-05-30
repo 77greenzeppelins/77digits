@@ -19,7 +19,7 @@ import DragRotateReturn from '../../../../../gestureHandlers/useDrag/DragRotateR
 /*
 Spring Staff
 */
-import { a, useTransition } from '@react-spring/three';
+import { a, useTransition, useSpring } from '@react-spring/three';
 
 /*
 Basic Data
@@ -30,71 +30,88 @@ import {
   buttonX,
 } from './raphaelSectionData';
 
-const RaphaelSection = () => {
-  /*
+const RaphaelSection = React.forwardRef(
+  ({ groupProps, positionY, zRaphael }, ref) => {
+    /*
   Global State Section
   canvasState = {currentContainer: none, startOfContainerIntroShow: false, ...}
   */
-  const canvasGlobalState = useSnapshot(canvasState);
-  /*
+    const canvasGlobalState = useSnapshot(canvasState);
+    /*
   Spring Animation Section
   */
 
-  const condition =
-    canvasGlobalState.currentContainer === 'introContainer' &&
-    canvasGlobalState.isRaphaelVisible;
+    const condition =
+      canvasGlobalState.currentContainer === 'introContainer' &&
+      canvasGlobalState.endOfContainerIntro;
 
-  const transition = useTransition(condition, {
-    from: { zPosition: raphaelSectionSpringConfig.positionStart },
-    enter: { zPosition: raphaelSectionSpringConfig.positionEnd },
-    leave: { zPosition: raphaelSectionSpringConfig.positionStart },
-    config: raphaelSectionSpringConfig.configBasic,
-    delay: raphaelSectionSpringConfig.delay,
-  });
+    // const transition = useTransition(condition, {
+    //   from: { zPosition: raphaelSectionSpringConfig.positionStart },
+    //   enter: { zPosition: raphaelSectionSpringConfig.positionEnd },
+    //   leave: { zPosition: raphaelSectionSpringConfig.positionStart },
+    //   config: raphaelSectionSpringConfig.configBasic,
+    //   delay: raphaelSectionSpringConfig.delay,
+    // });
 
-  /*
+    const { zPosition } = useSpring({
+      /*
+    this animation happens when user scrolls to the end of container
+    */
+      zPosition: canvasGlobalState.fake ? -19.7 : -21,
+      delay: 400,
+    });
+
+    /*
   Gesture Section;
   standard draging to imitate "object limited-spinning"
   */
-  const { orbitImitation, dragRotateReturn } = DragRotateReturn({
-    /*
+    const { orbitImitation, dragRotateReturn } = DragRotateReturn({
+      /*
     set initial value of "rotation.z";
     */
-    rotationX: raphaelSectionGesturesConfig.rotationX,
-    /*
+      rotationX: raphaelSectionGesturesConfig.rotationX,
+      /*
     set behaviour along x-axis i.e. should frame lean to top or to bottom or mix top & bottom;
     */
-    rightDragLimitX: raphaelSectionGesturesConfig.rightDragLimitX,
-    leftDragLimitX: raphaelSectionGesturesConfig.leftDragLimitX,
-    /*
+      rightDragLimitX: raphaelSectionGesturesConfig.rightDragLimitX,
+      leftDragLimitX: raphaelSectionGesturesConfig.leftDragLimitX,
+      /*
     set behaviour along y-axis i.e. should frame lean to left or to right or mix left & right;
     */
-    rightDragLimitY: raphaelSectionGesturesConfig.rightDragLimitY,
-    leftDragLimitY: raphaelSectionGesturesConfig.leftDragLimitY,
-  });
+      rightDragLimitY: raphaelSectionGesturesConfig.rightDragLimitY,
+      leftDragLimitY: raphaelSectionGesturesConfig.leftDragLimitY,
+    });
 
-  return transition(
-    ({ zPosition }, transitionCondition) =>
-      transitionCondition && (
-        <a.group
-          position={zPosition}
-          {...dragRotateReturn()}
-          rotation={orbitImitation}
-        >
-          <PhilosophersAnswers />
-          <RaphaelPainting />
-          {/*-----X Button-----------------------------------*/}
-          <a.group {...buttonX.groupProps}>
-            <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
-              <TextGeometryFromFont
-                fontExtrudeSettings={buttonX.fontExtrudeSettings}
-                text={buttonX.text}
-              />
-            </CustomMeshWithMatcap>
-          </a.group>
+    // return transition(
+    // ({ zPosition }, transitionCondition) =>
+    //   transitionCondition && (
+    return (
+      <a.group
+        ref={ref}
+        position-x={0}
+        position-y={0}
+        position-z={zPosition} //  zStart: -21, zEnd: -19.64,
+        // {...groupProps}
+        // position={zPosition}
+        {...dragRotateReturn()}
+        rotation={orbitImitation}
+      >
+        <PhilosophersAnswers />
+        <RaphaelPainting />
+        {/*-----X Button-----------------------------------*/}
+        <a.group {...buttonX.groupProps}>
+          <CustomMeshWithMatcap meshProps={buttonX.meshProps}>
+            <TextGeometryFromFont
+              fontExtrudeSettings={buttonX.fontExtrudeSettings}
+              text={buttonX.text}
+            />
+          </CustomMeshWithMatcap>
         </a.group>
-      )
-  );
-};
+      </a.group>
+    );
+    //     )
+    // );
+  }
+);
 
 export default RaphaelSection;

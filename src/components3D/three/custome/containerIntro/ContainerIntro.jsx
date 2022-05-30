@@ -9,8 +9,9 @@ Components
 */
 import BotticelliSection from './botticelliSection/BotticelliSection';
 import TextSection from './textSection/TextSection';
-import EndButtons from './endButtonsSection/EndButtons';
+// import EndButtons from './endButtonsSection/EndButtons';
 import RaphaelSection from './raphaelSection/RaphaelSection';
+// import TestingPlane from './_testingPlane/TestingPlane';
 /*
 Spring Section
 */
@@ -40,6 +41,38 @@ const ContainerIntro = () => {
   const { wheeledPositionZ } = IntroWheelGesture();
 
   /*
+  ...
+  */
+  // useEffect(() => {
+  //   canvasGlobalState.endOfContainerIntro
+  //     ? canvasGlobalState.isRaphaelVisible
+  //       ? console.log('render <RaphaelSection>')
+  //       : console.log('render <EndButtons>')
+  //     : console.log('canvasGlobalState.endOfContainerIntro is false');
+  // }, [
+  //   canvasGlobalState.endOfContainerIntro,
+  //   canvasGlobalState.isRaphaelVisible,
+  // ]);
+
+  // const transitionCondition = canvasGlobalState.endOfContainerIntro
+  //   ? canvasGlobalState.isRaphaelVisible
+  //     ? true // render <RaphaelSection>
+  //     : false // render <EndButtons>
+  //   : null;
+
+  // const transitionCondition = canvasGlobalState.isRaphaelVisible
+  //   ? true // render <RaphaelSection>
+  //   : false; // render <EndButtons>
+
+  // const transition = useTransition(transitionCondition, {
+  //   from: { raphaelStart: 2, buttonsStart: -2, zRaphael: -21 },
+  //   enter: { raphaelStart: 0, buttonsStart: 0, zRaphael: -19.64 },
+  //   leave: { raphaelStart: 2, buttonsStart: -2, zRaphael: -21 },
+  //   config: config.molasses,
+  //   delay: 400,
+  // });
+
+  /*
   JSX
   */
   return (
@@ -48,7 +81,8 @@ const ContainerIntro = () => {
       name="GroupForContainerIntro"
       position-z={
         canvasGlobalState.introContainerEventType === 'wheeling'
-          ? wheeledPositionZ
+          ? // canvasGlobalState.currentPointerType === 'mouse'
+            wheeledPositionZ
           : draggedPositionZ
       }
     >
@@ -58,18 +92,16 @@ const ContainerIntro = () => {
       )}
 
       <Suspense fallback={null}>
-        {/*-----------Tests----------------------------------------*/}
-
         {/*-----77-------------------------------------------------*/}
         {canvasGlobalState.endOfContainerIntro === false && (
           <BotticelliSection />
         )}
-
-        {/*-----EndButtons / has its own useTransition()------------*/}
-        <EndButtons />
-
         {/*-----RaphaelSection / has its own useTransition()-------*/}
-        <RaphaelSection />
+        {/* {canvasGlobalState.currentContainer === 'introContainer' &&
+          canvasGlobalState.endOfContainerIntro && <RaphaelSection />} */}
+        {/* <RaphaelSection /> */}
+        {/*-----for  T E S T S  sake-------*/}
+        {/* <TestingPlane meshProps={{ position: [0, 0, 0.5] }} /> */}
       </Suspense>
     </a.group>
   );

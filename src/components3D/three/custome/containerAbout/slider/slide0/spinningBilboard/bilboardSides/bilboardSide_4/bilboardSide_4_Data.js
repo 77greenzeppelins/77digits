@@ -10,6 +10,7 @@ import {
   frameConfig,
   mHeaderConfig,
   mParagraphConfig,
+  bilboardSideProps,
 } from '../bilboarSidesCommonData';
 
 /*
@@ -18,7 +19,7 @@ import {
 const bilboardSide4Data =
   /* -----Panel Right / MEDICINE & 77 essence-------------------------------  */
   {
-    sideProps: { position: [0.455, 0, 0], rotation: [0, Math.PI * 0.5, 0] },
+    sideProps: bilboardSideProps[3],
     /*
     for <SpinningBoxSide>'s <UniversalFrame>
     */

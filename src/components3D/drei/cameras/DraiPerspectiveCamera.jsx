@@ -1,12 +1,19 @@
 import React, { useRef, useEffect } from 'react';
 import { PerspectiveCamera } from '@react-three/drei';
-
 /*
 Global State Staff
 */
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../states/canvasState';
-
+/*
+Components
+*/
+import InstantContactsPanel from './navSection/instantContactsPanel/InstantContactsPanel';
+// import SpinningBilboardIndicator from './navSection/spinningBilboardIndicator/SpinningBilboardIndicator';
+/*
+Basic Data
+*/
+import { globalPositionData } from '../../../data/globalData';
 /*
 ----------------------------------------------------------------------------
 */
@@ -26,42 +33,33 @@ const DraiPerspectiveCamera = () => {
     switch (canvasGlobalState.currentContainer) {
       case 'introContainer':
         cameraRef.current.position.set(
-          ...canvasGlobalState.introContainerCameraPosition
+          ...globalPositionData.introContainerCameraPosition
         );
-        cameraRef.current.lookAt(...canvasGlobalState.introContainerPosition);
+        cameraRef.current.lookAt(...globalPositionData.introContainerPosition);
         break;
 
       case 'aboutContainer':
         cameraRef.current.position.set(
-          ...canvasGlobalState.aboutContainerCameraPosition
+          ...globalPositionData.aboutContainerCameraPosition
         );
-        cameraRef.current.lookAt(...canvasGlobalState.aboutContainerPosition);
+        cameraRef.current.lookAt(...globalPositionData.aboutContainerPosition);
         break;
 
-      case 'answerYesContainer':
+      case 'raphaelContainer':
         cameraRef.current.position.set(
-          ...canvasGlobalState.answerYesContainerCameraPosition
+          ...globalPositionData.raphaelContainerCameraPosition
         );
         cameraRef.current.lookAt(
-          ...canvasGlobalState.answerYesContainerPosition
-        );
-        break;
-
-      case 'answerNoContainer':
-        cameraRef.current.position.set(
-          ...canvasGlobalState.answerNoContainerCameraPosition
-        );
-        cameraRef.current.lookAt(
-          ...canvasGlobalState.answerNoContainerPosition
+          ...globalPositionData.raphaelContainerPosition
         );
         break;
 
       case 'menuContainer':
         cameraRef.current.position.set(
-          ...canvasGlobalState.menuContainerCameraPosition
+          ...globalPositionData.menuContainerCameraPosition
         );
         cameraRef.current.lookAt(
-          ...canvasGlobalState.menuContainerCameraPosition
+          ...globalPositionData.menuContainerCameraPosition
         );
         break;
 
@@ -98,9 +96,12 @@ const DraiPerspectiveCamera = () => {
       name="customePerspectiveCamera"
       ref={cameraRef}
       position={[0, 0, 2]}
-      far={5} //_____comments belowe
+      far={5} //_____comments below
       fov={45}
-    />
+    >
+      <InstantContactsPanel />
+      {/* <SpinningBilboardIndicator /> */}
+    </PerspectiveCamera>
   );
 };
 

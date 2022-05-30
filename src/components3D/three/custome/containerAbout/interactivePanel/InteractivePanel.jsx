@@ -2,7 +2,7 @@ import React from 'react';
 /*
 Gesture Staff
 */
-import ContAboutNavGest from '../../../../../gestureHandlers/useGesture/ContAboutNavGest';
+// import ContAboutNavGest from '../../../../../gestureHandlers/useGesture/ContAboutNavGest';
 /*
 Basic Data
 */

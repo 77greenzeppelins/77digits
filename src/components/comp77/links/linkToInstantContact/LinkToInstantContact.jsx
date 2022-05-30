@@ -15,7 +15,7 @@ const LinkToInstantContact = ({ type }) => {
   /*
   OnClick Handler for 'MAILTO'
   */
-  const onClick = (e, contact) => {
+  const onClick = e => {
     e.preventDefault();
     type === 'phone'
       ? (window.location = businessPhone)

@@ -38,7 +38,7 @@ const BilboardSide_3 = ({
     <a.group
       name="GroupForSpinningBoxSide"
       {...bilboardSide3Data.sideProps}
-      rotation={gesturesForSidesRotations}
+      rotation-y={gesturesForSidesRotations}
     >
       <SideFrame
         groupProps={{ name: 'groupForFrameInSpiningBoxSide' }}

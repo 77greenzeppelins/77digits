@@ -1,3 +1,9 @@
+/*
+used in:
+(1) <ContainerAbout>
+(2) "GesturesPrompts" / "2_contAboutPrompts" / >
+*/
+
 import React, { useMemo, useEffect } from 'react';
 /*
 Components
@@ -11,7 +17,8 @@ import { canvasState } from '../../../../../states/canvasState';
 /*
 Gestures Staff
 */
-import ContAboutGest from '../../../../../gestureHandlers/useGesture/ContAboutGest';
+// import ContAboutGest from '../../../../../gestureHandlers/useGesture/ContAboutGest';
+import SpinningBilboardGestures from '../../../../../gestureHandlers/useGesture/SpinningBoxGest';
 /*
 Basic Data
 */
@@ -20,7 +27,7 @@ import { spinningBoxGesturePromptData } from '../../gesturesPromptData';
 /*
 ------------------------------------------------------------------------
 */
-const SpinningBoxGesturePrompt = () => {
+const SpinningBilboardGesturePrompt = () => {
   /*
   Global State Section
   */
@@ -28,7 +35,7 @@ const SpinningBoxGesturePrompt = () => {
   /*
   Gestures Section
   */
-  const { opacitySetter } = ContAboutGest({ axisLimitation: 'x' });
+  const { opacitySetter } = SpinningBilboardGestures();
 
   const symbolsClassCSS = useMemo(() => {
     return { opacity: opacitySetter };
@@ -73,4 +80,4 @@ const SpinningBoxGesturePrompt = () => {
   );
 };
 
-export default SpinningBoxGesturePrompt;
+export default SpinningBilboardGesturePrompt;

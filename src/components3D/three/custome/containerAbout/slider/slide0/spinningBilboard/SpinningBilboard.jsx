@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 /*
 Components
 */
@@ -36,22 +36,6 @@ const SpinningBilboard = ({
   gestureForBilboardRotation,
   gesturesForSidesRotations,
 }) => {
-  /*
-  Hook Section
-  */
-  // const windowSize = useWindowSize();
-  /*
-  scale calculation
-  */
-  //   const scale =
-  //     windowSize.width < minForTablet
-  //       ? spinningBoxLayout.mobile.scale
-  //       : spinningBoxLayout.desktop.scale;
-
-  useEffect(() => {
-    console.log('gesturesForSidesRotations', gesturesForSidesRotations);
-  }, [gesturesForSidesRotations]);
-
   /*
   JSX
   */

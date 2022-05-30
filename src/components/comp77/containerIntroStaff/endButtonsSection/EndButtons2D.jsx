@@ -58,6 +58,10 @@ const EndButtons2D = () => {
     delay: transitionCondition ? 2000 : 0,
   });
 
+  const onClickHandler = () => {
+    canvasState.fake = !canvasGlobalState.fake;
+  };
+
   /*
   JSX
   */
@@ -79,6 +83,28 @@ const EndButtons2D = () => {
             }}
           >
             <button
+              onClick={onClickHandler}
+              style={{
+                width: '100px',
+                height: '500px',
+                backgroundColor: 'red',
+                position: 'absolute',
+                left: 0,
+                color: 'white',
+              }}
+            >
+              {canvasGlobalState.fake !== 'none'
+                ? canvasGlobalState.fake
+                  ? 'fake: is true'
+                  : 'fake: false'
+                : 'fake: none'}
+              <br></br>
+              {canvasGlobalState.endOfContainerIntro === true
+                ? 'endOfContainerIntro: true'
+                : 'endOfContainerIntro: false'}
+            </button>
+
+            <button
               className="end-buttons2D__phone-button"
               style={{
                 height: windowSize.height * instContactButton.height,
@@ -94,7 +120,11 @@ const EndButtons2D = () => {
                 height: windowSize.height * resetButton.height,
               }}
             >
-              <ResetButton />
+              <ResetButton
+              /*
+              It's actually "fake-X-button"
+              */
+              />
             </div>
             <button
               className="end-buttons2D__email-button"

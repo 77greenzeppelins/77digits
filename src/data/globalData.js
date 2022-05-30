@@ -4,14 +4,18 @@ Instant Contact Buttons
 const businessMail = 'mailto:77greenzeppelins@gmail.com';
 const businessPhone = 'tel:798-905-558';
 /*
+Container Intro
+*/
+const onWheelData = { top: 0, bottom: 3790 };
+const onDragData = { top: 0, bottom: 3700 };
+
+const factorPositionY = 0.005;
+/*
 Container About
 */
 const contAboutSlidesNumber = 5;
 
 const globalPositionData = {
-  defaultContainerPosition: [0, -5, 0],
-  defaultContainerCameraPosition: [0, -5, 2],
-
   introContainerPosition: [0, 0, 0],
   introContainerCameraPosition: [0, 0, 2],
 
@@ -20,6 +24,12 @@ const globalPositionData = {
 
   menuContainerPosition: [5, 0, 0],
   menuContainerCameraPosition: [5, 0, 2],
+
+  raphaelContainerPosition: [0, 5, 0],
+  raphaelContainerCameraPosition: [0, 5, 2],
+
+  defaultContainerPosition: [0, -5, 0],
+  defaultContainerCameraPosition: [0, -5, 2],
 };
 
 /*
@@ -54,7 +64,7 @@ const colorsPalette = {
   venusSkyRGB: [43, 104, 115],
   venusSkyRGBstring: 'rgb(43, 104, 115)',
   venusSkyHexadecimal: 0x2b6873,
-
+  venusSkyForShader: [0.168, 0.407, 0.45],
   //___
   p1veryLightBlue: '#bbdef1',
   p1brown: '#4f2f14',
@@ -118,8 +128,18 @@ Data used in  <UniversalCanvas>
 const sizeFactor = 0.02;
 
 export {
+  /*
+  drei / cameras / navSection / ...
+  */
   businessMail,
   businessPhone,
+  /*
+  three / gestures / 
+  */
+  onWheelData,
+  onDragData,
+  factorPositionY,
+  //
   contAboutSlidesNumber,
   globalPositionData,
   backgroundColors,

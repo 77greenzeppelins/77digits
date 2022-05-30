@@ -18,6 +18,9 @@ Global State Staff
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../states/canvasState';
 
+/*
+-----------------------------------------------------------------------------
+*/
 const InitialOverlay = () => {
   /*
   Global State Section

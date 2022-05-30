@@ -4,17 +4,11 @@ import { springConfigs } from '../../../../../data/reactSpring';
 */
 const springConfig = {
   configBasic: springConfigs.configBasic,
-  positionZStart: [0, 0, -20.64],
-  positionZEnd: [0, 0, -18.64],
-  positionYStart: [0, 0, 0],
-  positionYEnd: [0, 2, 0],
-
   zStart: -20.64,
   zEnd: -18.64,
   yStart: 0,
   yEnd: 2,
-
-  delay: 200,
+  // delay: 200,
 };
 const InstantContactButtonPhone = {
   groupProps: {
@@ -90,3 +84,8 @@ export {
   buttonQuestionMark,
   buttonX,
 };
+
+// positionZStart: [0, 0, -20.64],
+// positionZEnd: [0, 0, -18.64],
+// positionYStart: [0, 0, 0],
+// positionYEnd: [0, 2, 0],

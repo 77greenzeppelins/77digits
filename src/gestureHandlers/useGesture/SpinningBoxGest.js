@@ -15,14 +15,14 @@ import { useGesture } from '@use-gesture/react';
 /*
 Basic Data
 */
-import { spinningBoxConfig } from '../../components3D/three/custome/containerAbout/slider/slide0/slide0Data';
+import { bilboardSideProps } from '../../components3D/three/custome/containerAbout/slider/slide0/spinningBilboard/bilboardSides/bilboarSidesCommonData';
 const scaleFactor = 1.6;
 
 /*
 -----------------------------------------------------------------------
 */
 
-const ContAboutGest = () => {
+const SpinningBilboardGestures = () => {
   /*
   Global States for SpringValues;
   canvasState = {}
@@ -60,10 +60,10 @@ const ContAboutGest = () => {
     api,
   ] = useSpring(() => ({
     rotateStepByStep: [0, 0, 0],
-    sideFrontRotation: [0, spinningBoxConfig[0].sideProps.rotation[1], 0],
-    sideLeftRotation: [0, spinningBoxConfig[1].sideProps.rotation[1], 0],
-    sideBackRotation: [0, spinningBoxConfig[2].sideProps.rotation[1], 0],
-    sideRightRotation: [0, spinningBoxConfig[3].sideProps.rotation[1], 0],
+    sideFrontRotation: bilboardSideProps[0].rotationY,
+    sideLeftRotation: bilboardSideProps[1].rotationY,
+    sideBackRotation: bilboardSideProps[2].rotationY,
+    sideRightRotation: bilboardSideProps[3].rotationY,
     number1: 1,
     number2: 1,
     number3: 1,
@@ -74,7 +74,7 @@ const ContAboutGest = () => {
     opacitySetter: 0.8,
     //
     config: config.molasses,
-    delay: 200,
+    // delay: 200,
     /*
     "onRest()" or onChange()?
     I've made some "experiences"... first seems to be preferable
@@ -95,22 +95,26 @@ const ContAboutGest = () => {
         canvasGlobalState.sliderIsReady === false
       ) {
         canvasState.sliderIsReady = true;
-        console.log(
-          'ContAboutGest / canvasGlobalState.sliderIsReady:',
-          canvasGlobalState.sliderIsReady
-        );
+        // console.log(
+        //   'ContAboutGest / canvasGlobalState.sliderIsReady:',
+        //   canvasGlobalState.sliderIsReady
+        // );
+      }
+
+      if (isClientSideVisible.current === true) {
+        canvasState.isClientSideVisible = true;
+        // console.log(
+        //   'ContAboutGest / canvasState.isClientSideVisible:',
+        //   canvasGlobalState.isClientSideVisible,
+        //   refX.current
+        // );
       }
       if (isClientSideVisible.current === false) {
         canvasState.isClientSideVisible = false;
         // console.log(
         //   'ContAboutGest / canvasState.isClientSideVisible:',
-        //   canvasGlobalState.isClientSideVisible
-        // );
-      } else {
-        canvasState.isClientSideVisible = true;
-        // console.log(
-        //   'ContAboutGest / canvasState.isClientSideVisible:',
-        //   canvasGlobalState.isClientSideVisible
+        //   canvasGlobalState.isClientSideVisible,
+        //   refX.current
         // );
       }
     },
@@ -156,8 +160,6 @@ const ContAboutGest = () => {
         // console.log('refX.current', refX.current);
       }
 
-      // console.log('offset: [offsetX,]', offsetX);
-
       /*
       Spring API
       */
@@ -180,33 +182,9 @@ const ContAboutGest = () => {
     this "logic" refers to situation when user rotates "spinning box" and something happens when he gets through to "the end" of "Client Section"; "the end" in this case means , that bilboard is about to rotate 360deg = back to initial position; but this "final gesture" actually triggers "77digits Section";
     */
     ({ down, direction: [dirX] }) => {
-      if (!down && refX.current === 4 && isClientSideVisible.current === true) {
-        isClientSideVisible.current = false;
-      }
-
-      // if (
-      //   !down &&
-      //   refX.current === 0 &&
-      //   isClientSideVisible.current === false
-      // ) {
-      //   // console.log('isClientSideVisible.current should change');
-      //   isClientSideVisible.current = true;
-      // }
-
-      /*
-      This logic refers to moment when user returns from "77digits Section" to "Client Section" 
-      */
       if (
         !down &&
-        refX.current === 0 &&
-        isClientSideVisible.current === false
-      ) {
-        isClientSideVisible.current = true;
-      }
-
-      if (
-        !down &&
-        // isClientSideVisible.current === false &&
+        isClientSideVisible.current === false &&
         refX.current === 0 &&
         /*
         "dirX" condition is true only on "77digit" side; without "dirX" it triggers after the very first dragg;
@@ -220,38 +198,53 @@ const ContAboutGest = () => {
         sliderIsReady.current = true;
       }
 
+      if (!down && refX.current === 4 && isClientSideVisible.current === true) {
+        isClientSideVisible.current = false;
+        // console.log(
+        //   'isClientSideVisible.current = false...sides rotates to digitSection',
+        //   // down,
+        //   // refX.current,
+        //   isClientSideVisible.current
+        // );
+      }
+
+      /*
+      This logic refers to moment when user returns from "77digits Section" to "Client Section" 
+      */
+      if (
+        !down &&
+        refX.current === 0 &&
+        isClientSideVisible.current === false
+      ) {
+        isClientSideVisible.current = true;
+        // console.log(
+        //   'isClientSideVisible.current = true...sides rotates to clientSection',
+        //   // down,
+        //   // refX.current,
+        //   isClientSideVisible.current
+        // );
+      }
+
       /*
       Spring API
       */
       api.start({
-        sideFrontRotation: [
-          0,
-          isClientSideVisible.current
-            ? spinningBoxConfig[0].sideProps.rotation[1]
-            : spinningBoxConfig[0].sideProps.rotation[1] + Math.PI,
-          0,
-        ],
-        sideLeftRotation: [
-          0,
-          isClientSideVisible.current
-            ? spinningBoxConfig[1].sideProps.rotation[1]
-            : spinningBoxConfig[1].sideProps.rotation[1] + Math.PI,
-          0,
-        ],
-        sideBackRotation: [
-          0,
-          isClientSideVisible.current
-            ? spinningBoxConfig[2].sideProps.rotation[1]
-            : spinningBoxConfig[2].sideProps.rotation[1] + Math.PI,
-          0,
-        ],
-        sideRightRotation: [
-          0,
-          isClientSideVisible.current
-            ? spinningBoxConfig[3].sideProps.rotation[1]
-            : spinningBoxConfig[3].sideProps.rotation[1] + Math.PI,
-          0,
-        ],
+        sideFrontRotation: isClientSideVisible.current
+          ? bilboardSideProps[0].rotationY
+          : bilboardSideProps[0].rotationY + Math.PI,
+
+        sideLeftRotation: isClientSideVisible.current
+          ? bilboardSideProps[1].rotationY
+          : bilboardSideProps[1].rotationY + Math.PI,
+
+        sideBackRotation: isClientSideVisible.current
+          ? bilboardSideProps[2].rotationY
+          : bilboardSideProps[2].rotationY + Math.PI,
+
+        sideRightRotation: isClientSideVisible.current
+          ? bilboardSideProps[3].rotationY
+          : bilboardSideProps[3].rotationY + Math.PI,
+
         /*
         set of animations for <SpinningBoxIndicator>
         */
@@ -282,22 +275,19 @@ const ContAboutGest = () => {
         number77: !isClientSideVisible.current ? Math.PI * 2 : 0,
       });
     },
-    [
-      api,
-      // canvasGlobalState.sliderIsReady
-    ]
+    [api]
   );
 
   /*
   Gesture Section
   */
-  const containerAboutGestures = useGesture(
+  const spinningBilboardGestures = useGesture(
     {
       onDrag: mainDragHandler,
       onDragEnd: endDragHandler,
     },
     {
-      // target: canvasGlobalState.currentContainer === 'aboutContainer' && window,
+      // enabled:
       drag: {
         axis: 'x',
         // bounds: {  },
@@ -322,8 +312,8 @@ const ContAboutGest = () => {
     number77,
     opacitySetter,
     moveX,
-    containerAboutGestures,
+    spinningBilboardGestures,
   };
 };
 
-export default ContAboutGest;
+export default SpinningBilboardGestures;

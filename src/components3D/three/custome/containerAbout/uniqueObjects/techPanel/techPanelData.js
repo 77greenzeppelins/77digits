@@ -1,4 +1,3 @@
-import { matchPath } from 'react-router-dom';
 import { colorsPalette } from '../../../../../../data/globalData';
 /*
 ------------------------------------------------------------------

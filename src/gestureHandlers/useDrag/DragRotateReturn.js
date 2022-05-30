@@ -11,7 +11,7 @@ import { useSpring, config } from '@react-spring/three';
 /*
 Global State Staff
 */
-import { canvasState } from '../../states/canvasState';
+// import { canvasState } from '../../states/canvasState';
 /*
 Basic Data
 */

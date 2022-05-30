@@ -10,6 +10,7 @@ import {
   frameConfig,
   mHeaderConfig,
   mParagraphConfig,
+  bilboardSideProps,
 } from '../bilboarSidesCommonData';
 
 /*
@@ -21,7 +22,7 @@ const bilboardSide2Data = {
   /*
   for <SpinningBoxSide>'s general layout
   */
-  sideProps: { position: [-0.455, 0, -0], rotation: [0, -0.5 * Math.PI, 0] },
+  sideProps: bilboardSideProps[1],
   /*
   for <SpinningBoxSide>'s <UniversalFrame>
   */

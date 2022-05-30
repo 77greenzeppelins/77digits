@@ -54,11 +54,13 @@ const RaphaelSectionToggler = () => {
     ...useTransitionConfigButtons,
   });
 
-  const onClickHandlerRight = () => {
-    canvasState.isRaphaelVisible = true;
+  const onClickQuestionMarkButton = () => {
+    canvasState.currentContainer = 'raphaelContainer';
+    // canvasState.fake = true;
   };
   const onClickHandlerLeft = () => {
     canvasState.isRaphaelVisible = false;
+    // canvasState.fake = false;
   };
   /*
   JSX
@@ -80,7 +82,7 @@ const RaphaelSectionToggler = () => {
             {buttonsTransition(({ springValue }, condition) =>
               !condition ? (
                 <animated.button
-                  onClick={onClickHandlerRight}
+                  onClick={onClickQuestionMarkButton}
                   className="raphael-section-toggler__fake-button"
                   style={{
                     scale: springValue.to([0, 0.01, 0.99, 1], [0, 0, 0, 1]),

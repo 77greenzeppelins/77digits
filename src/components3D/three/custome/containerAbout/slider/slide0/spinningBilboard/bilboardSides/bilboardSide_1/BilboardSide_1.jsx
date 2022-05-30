@@ -39,7 +39,7 @@ const BilboardSide_1 = ({
       name="GroupForBilboardSide_1"
       // position={bildoardSide1Data.sideProps.position}
       {...bilboardSide1Data.sideProps}
-      rotation={gesturesForSidesRotations}
+      rotation-y={gesturesForSidesRotations}
     >
       <SideFrame
         groupProps={{ name: 'groupForFrameInSpiningBoxSide' }}

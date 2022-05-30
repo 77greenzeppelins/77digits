@@ -1,10 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 /*
 Components
 */
 import SpinningBilboard from './spinningBilboard/SpinningBilboard';
-import SpinningBox from '../../../spinningBox/SpinningBox';
-import SpinningBoxSideIndicator from '../../../spinningBox/SpinningBoxSideIndicator';
+import SpinningBilboarIndicator from './spinningBilboarIndicator/SpinningBilboarIndicator';
 /*
 Global State Staf
 */
@@ -14,14 +13,17 @@ import { canvasState } from '../../../../../../states/canvasState';
 Spring data
 */
 import { a, useSpring } from '@react-spring/three';
-/*
-Hook Staff
-*/
-// import useWindowSize from '../../../../../../hooks/useWindowSize';
+import { springConfigs } from '../../../../../../data/reactSpring';
 /*
 Basic Data
 */
-import { sliderEngineSpring, indicatorCongif } from './slide0Data';
+const sliderEngineSpring = {
+  centralPosition: 0,
+  topPosition: 1,
+  bottomPosition: -1,
+  config: springConfigs.configBasic,
+  configDown: springConfigs.molasses,
+};
 
 /*
 ----------------------------------------------------------------------
@@ -36,10 +38,6 @@ const Slide0 = ({
   References
   */
   const group = useRef();
-  /*
-  Hook Section
-  */
-  // const windowSize = useWindowSize();
   /*
   Global State Section
     {containerAboutVisibleSlideIndex: 0,...}
@@ -65,10 +63,9 @@ const Slide0 = ({
         ? sliderEngineSpring.config /* when going up */
         : sliderEngineSpring.configDown /* when going down (molasses) */,
   });
-
-  useEffect(() => {
-    console.log(group.current);
-  }, []);
+  // useEffect(() => {
+  //   console.log(group.current);
+  // }, []);
 
   /*
   JSX
@@ -76,16 +73,11 @@ const Slide0 = ({
   return (
     <a.group ref={group} name="GroupForSlide_0" position-y={positionY}>
       {/*-----SpinningBoxSideIndicator Section--------------------------*/}
-      <SpinningBoxSideIndicator
-        indicatorCongif={indicatorCongif}
-        /*
-          "scaleValue" name is significantly shorten word then "gesturesForSidesRotationsIndicator"; it matters within <SpinningBoxSideIndicator>
-          */
+
+      <SpinningBilboarIndicator
         springValue={gesturesForSidesRotationsIndicator}
       />
-
       {/*-----SpinningBilboard Section---------------------------------------*/}
-
       <SpinningBilboard
         gestureForBilboardRotation={gestureForBilboardRotation}
         gesturesForSidesRotations={gesturesForSidesRotations}
