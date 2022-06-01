@@ -1,0 +1,46 @@
+.html-gest-prompt {
+  &__container {
+    height: 15px;
+    width: 160px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+  }
+  &__sign-wrapper {
+    height: 15px;
+    width: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__sign-horizontal {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: setColor(light);
+    border-radius: 5px;
+  }
+  &__sign-vertical {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: setColor(light);
+    border-radius: 5px;
+  }
+
+  &__line-wrapper {
+    height: 100%;
+    width: 100px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__line-prompt {
+    height: 1px;
+    width: 120px;
+    background-color: white;
+    // opacity: 1;
+  }
+}

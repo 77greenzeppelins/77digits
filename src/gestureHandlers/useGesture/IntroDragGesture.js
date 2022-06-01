@@ -73,13 +73,15 @@ const IntroDragGesture = () => {
   ...
   */
   const onDragStartHandler = useCallback(
-    ({ dragging }) => {
+    ({ dragging, direction }) => {
       /*
       sidenote: I've tried to use "gestureType.current = 'none'" instead of "canvasGlobalState.introContainerEventType === 'none'"; result: if first gesture was "wheeling" it can anyway be replaced by "laptop tap panel" and vice versa;
        */
       if (dragging && canvasGlobalState.introContainerEventType === 'none') {
         // gestureType.current = 'dragging';
         canvasState.introContainerEventType = 'dragging';
+        // console.log('dragging', dragging);
+        // console.log('direction', direction);
       }
     },
     [canvasGlobalState.introContainerEventType]
@@ -120,10 +122,10 @@ const IntroDragGesture = () => {
       if (offsetY === onDragData.bottom) {
         // canvasState.endOfContainerIntro = true;
         endOfContainerIntro.current = true;
-        console.log('endOfContainerIntro.current', endOfContainerIntro.current);
+        // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
       } else {
         endOfContainerIntro.current = false;
-        console.log('endOfContainerIntro.current', endOfContainerIntro.current);
+        // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
       }
       /*
       API section

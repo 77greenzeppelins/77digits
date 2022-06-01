@@ -8,23 +8,14 @@ import Slide0 from './slide0/Slide0';
 /*
 -----------------------------------------------------------------
 */
-const Slider = ({
-  gestureForBilboardRotation,
-  gesturesForSidesRotations,
-  gesturesForSidesRotationsIndicator,
-}) => {
+const Slider = () => {
   const slider = useRef();
   /*
   JSX
   */
   return (
     <group ref={slider} scale={[1, 1, 1]} name="groupForSlider">
-      <Slide0
-        slideId={0}
-        gestureForBilboardRotation={gestureForBilboardRotation}
-        gesturesForSidesRotations={gesturesForSidesRotations}
-        gesturesForSidesRotationsIndicator={gesturesForSidesRotationsIndicator}
-      />
+      <Slide0 slideId={0} />
       {/* <Slide1 slideId={1} /> */}
     </group>
   );

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Html } from '@react-three/drei';
 /*
 Spring data
@@ -12,11 +12,12 @@ import { indicatorCongif } from './spinningBilboarIndicatorData';
 /*
 -----------------------------------------------------------------------------
 */
-const SpinningBilboarIndicator = ({ springValue }) => {
+const SpinningBilboarIndicator = ({ indicatorGesture }) => {
   /*
-  Refderences
+  References
   */
   const group = useRef();
+
   /*
   JSX creator
   */
@@ -33,8 +34,8 @@ const SpinningBilboarIndicator = ({ springValue }) => {
           <a.group
             key={i}
             position={position}
-            scale={i === 4 ? 1 : springValue[i]}
-            rotation-z={i === 4 ? springValue[i] : 0}
+            scale={i === 4 ? 1 : indicatorGesture[i]}
+            rotation-z={i === 4 ? indicatorGesture[i] : 0}
           >
             <a.mesh>
               <planeGeometry args={[0.5, 0.5, 1, 1]} />
@@ -70,9 +71,10 @@ const SpinningBilboarIndicator = ({ springValue }) => {
   /*
   ...
   */
-  useEffect(() => {
-    console.log('group.current', group.current);
-  }, []);
+  // useEffect(() => {
+  //   console.log('springValues', springValues);
+  //   console.log('group.current', group.current);
+  // }, [springValues]);
   /*
   JSX
   */

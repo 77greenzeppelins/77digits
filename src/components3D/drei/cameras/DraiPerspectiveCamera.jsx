@@ -9,7 +9,8 @@ import { canvasState } from '../../../states/canvasState';
 Components
 */
 import InstantContactsPanel from './navSection/instantContactsPanel/InstantContactsPanel';
-// import SpinningBilboardIndicator from './navSection/spinningBilboardIndicator/SpinningBilboardIndicator';
+import PlaneOverlay from './turboOverlay/PlaneOverlay';
+
 /*
 Basic Data
 */
@@ -100,7 +101,7 @@ const DraiPerspectiveCamera = () => {
       fov={45}
     >
       <InstantContactsPanel />
-      {/* <SpinningBilboardIndicator /> */}
+      <PlaneOverlay />
     </PerspectiveCamera>
   );
 };

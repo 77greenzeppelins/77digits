@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 Components
 */
 import SpinningBilboard from './spinningBilboard/SpinningBilboard';
-import SpinningBilboarIndicator from './spinningBilboarIndicator/SpinningBilboarIndicator';
+
 /*
 Global State Staf
 */
@@ -28,19 +28,14 @@ const sliderEngineSpring = {
 /*
 ----------------------------------------------------------------------
 */
-const Slide0 = ({
-  slideId,
-  gestureForBilboardRotation,
-  gesturesForSidesRotations,
-  gesturesForSidesRotationsIndicator,
-}) => {
+const Slide0 = ({ slideId }) => {
   /*
   References
   */
   const group = useRef();
   /*
   Global State Section
-    {containerAboutVisibleSlideIndex: 0,...}
+  {containerAboutVisibleSlideIndex: 0,...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
 
@@ -63,25 +58,13 @@ const Slide0 = ({
         ? sliderEngineSpring.config /* when going up */
         : sliderEngineSpring.configDown /* when going down (molasses) */,
   });
-  // useEffect(() => {
-  //   console.log(group.current);
-  // }, []);
 
   /*
   JSX
   */
   return (
     <a.group ref={group} name="GroupForSlide_0" position-y={positionY}>
-      {/*-----SpinningBoxSideIndicator Section--------------------------*/}
-
-      <SpinningBilboarIndicator
-        springValue={gesturesForSidesRotationsIndicator}
-      />
-      {/*-----SpinningBilboard Section---------------------------------------*/}
-      <SpinningBilboard
-        gestureForBilboardRotation={gestureForBilboardRotation}
-        gesturesForSidesRotations={gesturesForSidesRotations}
-      />
+      <SpinningBilboard />
     </a.group>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 /*
 Components
 */
-import ContainerMenuInstantContact from './containerMenuInstantContact/ContainerMenuInstantContact';
+// import ContainerMenuInstantContact from './containerMenuInstantContact/ContainerMenuInstantContact';
 import ContainerMenuBody from './containerMenuBody/ContainerMenuBody';
 /*
 Global State Staff
@@ -77,7 +77,7 @@ const ContainerMenu2DStaff = () => {
               height: isMobileOnly ? windowSize.height * mobileBottomHeight : 0,
             }}
           >
-            <ContainerMenuInstantContact />
+            {/* <ContainerMenuInstantContact /> */}
           </div>
         )}
       </div>

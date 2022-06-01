@@ -14,6 +14,8 @@ Components
 // import SpinningBilboardGesturePrompt from '../gesturePrompts/2_contAboutPrompts/SpinningBilboardGesturePrompt/SpinningBilboardGesturePrompt';
 import SlidesGesturePrompt from '../gesturePrompts/2_contAboutPrompts/b_SlidesGesturePrompts/SlidesGesturePrompt';
 
+// import HtmlSBGP from '../../../components3D/three/custome/containerAbout/slider/slide0/spinningBilboardGesturePrompt/htmlComponent/HtmlSpinningBilboardGesturePrompt';
+
 /*
 -------------------------------------------------------------------------------
 */

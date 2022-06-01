@@ -74,7 +74,7 @@ const SpinningBilboardGesturePrompt = () => {
         }
         graphicComponentData={spinningBoxGesturePromptData.graphicComponentData}
         plusAndMinus={true}
-        symbolsClassCSS={symbolsClassCSS}
+        // symbolsClassCSS={symbolsClassCSS}
       />
     </>
   );

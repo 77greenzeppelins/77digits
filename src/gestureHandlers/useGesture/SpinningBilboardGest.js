@@ -2,7 +2,7 @@ import { useCallback, useRef } from 'react';
 /*
 GlobalState
 */
-import { useSnapshot } from 'valtio';
+// import { useSnapshot } from 'valtio';
 import { canvasState } from '../../states/canvasState';
 /*
 Spring Staff
@@ -27,14 +27,14 @@ const SpinningBilboardGestures = () => {
   Global States for SpringValues;
   canvasState = {}
   */
-  const canvasGlobalState = useSnapshot(canvasState);
+  // const canvasGlobalState = useSnapshot(canvasState);
   /*
   References
   */
   let refX = useRef(0);
   let isClientSideVisible = useRef(true);
   let sliderIsReady = useRef(false);
-  let isSpinningBoxGesturePromptMounted = useRef(true);
+  // let isSpinningBoxGesturePromptMounted = useRef(true);
   /*
   Spring Section
   "rotateStepByStep" refers to <SpinningBox> rotation;
@@ -51,11 +51,7 @@ const SpinningBilboardGestures = () => {
       number3,
       number4,
       number77,
-      /*
-      for <ComponentAbout2DStaff>
-      */
-      opacitySetter,
-      moveX,
+      promptRotation,
     },
     api,
   ] = useSpring(() => ({
@@ -69,9 +65,7 @@ const SpinningBilboardGestures = () => {
     number3: 1,
     number4: 1,
     number77: 0,
-    //
-    moveX: 0,
-    opacitySetter: 0.8,
+    promptRotation: 0,
     //
     config: config.molasses,
     // delay: 200,
@@ -90,16 +84,17 @@ const SpinningBilboardGestures = () => {
     // },
 
     onRest: () => {
-      if (
-        sliderIsReady.current === true &&
-        canvasGlobalState.sliderIsReady === false
-      ) {
-        canvasState.sliderIsReady = true;
-        // console.log(
-        //   'ContAboutGest / canvasGlobalState.sliderIsReady:',
-        //   canvasGlobalState.sliderIsReady
-        // );
-      }
+      // if (
+      //   sliderIsReady.current === true &&
+      //   canvasGlobalState.sliderIsReady === false
+      // ) {
+      //   canvasState.sliderIsReady = true;
+      //   /*this "console.log" doesn't show current value of sliderIsReady*/
+      //   console.log(
+      //     'ContAboutGest / canvasGlobalState.sliderIsReady:',
+      //     canvasGlobalState.sliderIsReady
+      //   );
+      // }
 
       if (isClientSideVisible.current === true) {
         canvasState.isClientSideVisible = true;
@@ -121,6 +116,38 @@ const SpinningBilboardGestures = () => {
   }));
 
   /*
+  onStart Handler
+  */
+  const startDragHandler = useCallback(({ direction: [dirX] }) => {
+    /*
+    logic for changing "canvasState.sliderIsReady" that triggers 2D "GesturePrompt" of <Slider>
+    */
+    if (
+      isClientSideVisible.current === false &&
+      refX.current === 1 &&
+      /*
+      "dirX" condition is true only on "77digit" side; without "dirX" it triggers after the very first dragg;
+      */
+      dirX === -1 &&
+      /*
+      "sliderIsReady.current" condition guarantees "only one" eveluation of the if statement; i.e. buttons appears only once and lasts for ever;
+      */
+      sliderIsReady.current === false
+    ) {
+      sliderIsReady.current = true;
+      canvasState.sliderIsReady = true;
+      // console.log('........time to change "canvasState.sliderIsReady = true" ');
+    }
+    // console.log(
+    //   'isClientSideVisible.current / refX.current / dirX / sliderIsReady.current / dragging:',
+    //   isClientSideVisible.current,
+    //   refX.current,
+    //   dirX,
+    //   sliderIsReady.current,
+    //   dragging
+    // );
+  }, []);
+  /*
   Main Callback Section
   */
   const mainDragHandler = useCallback(
@@ -128,21 +155,7 @@ const SpinningBilboardGestures = () => {
     What "down" does ?
     documentation: "true when a mouse button or touch is down"
     */
-    ({ offset: [offsetX], down, movement: [movementX, movementY] }) => {
-      /*
-      triggers once only; allowes to unmount <SpinningBoxGesturePrompt>
-      */
-      if (
-        !down &&
-        movementX !== 0 &&
-        isSpinningBoxGesturePromptMounted.current === true
-      ) {
-        isSpinningBoxGesturePromptMounted.current = false;
-        // console.log(
-        //   'isSpinningBoxGesturePromptMounted.current:',
-        //   isSpinningBoxGesturePromptMounted.current
-        // );
-      }
+    ({ down, movement: [movementX] }) => {
       /*
       Why such "if statement condition" ?
      "down" is true when a mouse button or touch is down (documentation)
@@ -168,46 +181,19 @@ const SpinningBilboardGestures = () => {
         "rotateStepByStep" animates <SpinningBox>'s rotation
         */
         rotateStepByStep: [0, refX.current * Math.PI * 0.5, 0],
-        opacitySetter:
-          refX.current === 1 && isClientSideVisible.current ? 1 : 0.3,
-        // opacitySetter: offsetX > 0 ? 1 : 0.3,
-        moveX: offsetX,
       });
     },
     [api]
   );
 
   const endDragHandler = useCallback(
-    /*
-    this "logic" refers to situation when user rotates "spinning box" and something happens when he gets through to "the end" of "Client Section"; "the end" in this case means , that bilboard is about to rotate 360deg = back to initial position; but this "final gesture" actually triggers "77digits Section";
-    */
     ({ down, direction: [dirX] }) => {
-      if (
-        !down &&
-        isClientSideVisible.current === false &&
-        refX.current === 0 &&
-        /*
-        "dirX" condition is true only on "77digit" side; without "dirX" it triggers after the very first dragg;
-        */
-        dirX === -1 &&
-        /*
-        "sliderIsReady.current" condition guarantees "only one" eveluation of the if statement; i.e. buttons appears only once and lasts for ever;
-        */
-        sliderIsReady.current === false
-      ) {
-        sliderIsReady.current = true;
-      }
-
+      /*
+      This logic refers to moment when user has reached the end of "Client Section" is about to enter "77digitsSection" 
+      */
       if (!down && refX.current === 4 && isClientSideVisible.current === true) {
         isClientSideVisible.current = false;
-        // console.log(
-        //   'isClientSideVisible.current = false...sides rotates to digitSection',
-        //   // down,
-        //   // refX.current,
-        //   isClientSideVisible.current
-        // );
       }
-
       /*
       This logic refers to moment when user returns from "77digits Section" to "Client Section" 
       */
@@ -217,14 +203,7 @@ const SpinningBilboardGestures = () => {
         isClientSideVisible.current === false
       ) {
         isClientSideVisible.current = true;
-        // console.log(
-        //   'isClientSideVisible.current = true...sides rotates to clientSection',
-        //   // down,
-        //   // refX.current,
-        //   isClientSideVisible.current
-        // );
       }
-
       /*
       Spring API
       */
@@ -273,6 +252,8 @@ const SpinningBilboardGestures = () => {
             : 1,
 
         number77: !isClientSideVisible.current ? Math.PI * 2 : 0,
+        // promptOpacity: (4 - refX.current) * 0.25,
+        promptRotation: !isClientSideVisible.current ? Math.PI : 0,
       });
     },
     [api]
@@ -283,6 +264,7 @@ const SpinningBilboardGestures = () => {
   */
   const spinningBilboardGestures = useGesture(
     {
+      onDragStart: startDragHandler,
       onDrag: mainDragHandler,
       onDragEnd: endDragHandler,
     },
@@ -310,10 +292,35 @@ const SpinningBilboardGestures = () => {
     number3,
     number4,
     number77,
-    opacitySetter,
-    moveX,
+    promptRotation,
     spinningBilboardGestures,
   };
 };
 
 export default SpinningBilboardGestures;
+
+// if (
+//   !down &&
+//   isClientSideVisible.current === false &&
+//   refX.current === 0 &&
+//   /*
+//   "dirX" condition is true only on "77digit" side; without "dirX" it triggers after the very first dragg;
+//   */
+//   dirX === -1 &&
+//   /*
+//   "sliderIsReady.current" condition guarantees "only one" eveluation of the if statement; i.e. buttons appears only once and lasts for ever;
+//   */
+//   sliderIsReady.current === false
+// ) {
+//   sliderIsReady.current = true;
+//   canvasState.sliderIsReady = true;
+// }
+// console.log(
+//   'down / isClientSideVisible.current / refX.current / dirX / sliderIsReady.current___dragging, wheeling, moving:',
+//   down,
+//   isClientSideVisible.current,
+//   refX.current,
+//   dirX,
+//   sliderIsReady.current,
+//   dragging
+// );

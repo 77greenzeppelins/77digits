@@ -20,7 +20,7 @@ const IntroWheelGesture = () => {
   */
   // const gestureType = useRef();
   // const onStartCondition = useRef(true);
-  const endOfContainerIntro = useRef(false);
+  // const endOfContainerIntro = useRef(false);
   /*
   Global States for SpringValues;
   canvasState = { isCanvasScrollableContainerScrollable: false, wheelBounds: { top: 0, bottom: 3550 }, dragBounds: { top: -3350, bottom:0 }, introContainerWheelDragBounds: {top: 0, bottom: 3550}}
@@ -75,6 +75,7 @@ const IntroWheelGesture = () => {
       if (wheeling && canvasGlobalState.introContainerEventType === 'none') {
         // gestureType.current = 'wheeling';
         canvasState.introContainerEventType = 'wheeling';
+        console.log('wheeling', wheeling);
 
         // console.log(
         //   'onWheelStartHandler / canvasGlobalState.introContainerEventType:',
@@ -106,24 +107,24 @@ const IntroWheelGesture = () => {
   Additional Handler for last wheel 
   */
   const onWheelEndHandler = useCallback(
-    ({ offset: [, offsetY], active }) => {
+    ({ offset: [, offsetY] }) => {
       /*
       What should happen if user wheels to the end?
       */
-      if (offsetY === onWheelData.bottom) {
-        // canvasState.endOfContainerIntro = true;
-        endOfContainerIntro.current = true;
-        // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
-      } else {
-        endOfContainerIntro.current = false;
-        // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
-      }
+      // if (offsetY === onWheelData.bottom) {
+      //   // canvasState.endOfContainerIntro = true;
+      //   endOfContainerIntro.current = true;
+      //   // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
+      // } else {
+      //   endOfContainerIntro.current = false;
+      //   // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
+      // }
       /*
       API section
       */
       api1.start({
-        fallDownWheel: endOfContainerIntro.current ? 0.017 : 0.1,
-        riseUpWheel: endOfContainerIntro.current ? -0.017 : -0.1,
+        fallDownWheel: offsetY === onWheelData.bottom ? 0.017 : 0.1,
+        riseUpWheel: offsetY === onWheelData.bottom ? -0.017 : -0.1,
       });
     },
     [api1]
