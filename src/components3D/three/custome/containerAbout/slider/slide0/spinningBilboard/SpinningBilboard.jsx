@@ -9,32 +9,38 @@ import BilboardSide4 from './bilboardSides/bilboardSide_4/BilboardSide_4';
 import SpinningBilboarIndicator from '../spinningBilboarIndicator/SpinningBilboarIndicator';
 import SpinningBilboardGesturePrompt from '../spinningBilboardGesturePrompt/SpinningBilboardGesturePrompt';
 /*
+Global State Staff
+*/
+import { canvasState } from '../../../../../../../states/canvasState';
+import { useSnapshot } from 'valtio';
+/*
 Gesture Staff
 */
 import SpinningBilboardGestures from '../../../../../../../gestureHandlers/useGesture/SpinningBilboardGest';
 /*
 Spring Section
 */
-import { a } from '@react-spring/three';
+import { a, config, useSpring } from '@react-spring/three';
 /*
 Basic Data
 */
 const basicData = {
-  groupScale: [0.32, 0.32, 0.32],
+  groupScale: 0.32,
 };
 
 /*
 -----------------------------------------------------------------------------
 */
 const SpinningBilboard = () =>
-  // {
   /*
   springValue from "ContAboutGesture.js"
   */
-  // gestureForBilboardRotation,
-  // gesturesForSidesRotations,
-  // }
   {
+    /*
+  Global State Section
+  {containerAboutVisibleSlideIndex: 0,...}
+  */
+    const canvasGlobalState = useSnapshot(canvasState);
     /*
     Gesture Section 
     */
@@ -61,7 +67,7 @@ const SpinningBilboard = () =>
       /*
       for <SpinningBilboardGesturePrompt>
       */
-      promptRotation,
+      // promptRotation,
       /*
       main event registrator
       */
@@ -72,9 +78,33 @@ const SpinningBilboard = () =>
       return [number1, number2, number3, number4, number77];
     }, [number1, number2, number3, number4, number77]);
 
-    const promptGesture = useMemo(() => {
-      return promptRotation;
-    }, [promptRotation]);
+    // const promptGesture = useMemo(() => {
+    //   return promptRotation;
+    // }, [promptRotation]);
+
+    const [{ switcher, visibility }] = useSpring(
+      () => ({
+        switcher:
+          canvasGlobalState.containerAboutVisibleSlideIndex === 0
+            ? basicData.groupScale
+            : 0,
+        visibility:
+          canvasGlobalState.containerAboutVisibleSlideIndex === 0
+            ? true
+            : false,
+        // config: { duration: 400 },
+        config:
+          canvasGlobalState.containerAboutVisibleSlideIndex === 0
+            ? config.molasses
+            : { duration: 400 },
+
+        delay:
+          canvasGlobalState.containerAboutVisibleSlideIndex === 0 ? 150 : 0,
+      }),
+      [canvasGlobalState.containerAboutVisibleSlideIndex]
+    );
+
+    const opacity = switcher.to([], []);
 
     /*
   JSX
@@ -83,7 +113,7 @@ const SpinningBilboard = () =>
       <group {...spinningBilboardGestures()}>
         <a.group
           name="groupForSpinningBilboard"
-          scale={basicData.groupScale}
+          scale={switcher}
           rotation={rotateStepByStep}
         >
           <BilboardSide1 gesturesForSidesRotations={sideFrontRotation} />
@@ -92,9 +122,9 @@ const SpinningBilboard = () =>
           <BilboardSide4 gesturesForSidesRotations={sideRightRotation} />
         </a.group>
 
-        <SpinningBilboarIndicator indicatorGesture={indicatorGesture} />
+        {/* <SpinningBilboarIndicator indicatorGesture={indicatorGesture} />
 
-        <SpinningBilboardGesturePrompt promptGesture={promptGesture} />
+        <SpinningBilboardGesturePrompt promptGesture={promptGesture} /> */}
       </group>
     );
   };

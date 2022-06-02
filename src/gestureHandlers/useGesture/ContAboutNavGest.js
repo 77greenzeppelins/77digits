@@ -25,75 +25,49 @@ const ContAboutNavGest = () => {
   const dirY = useRef();
   /*
   Global State Section
+  {sliderToggler:0}
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
   Spring Section
   */
-  const [{ springValue, progressValue, turboOverlayOpacity, fake }, api] =
-    useSpring(() => ({
-      springValue: 1,
-      progressValue: 0,
-      turboOverlayOpacity: 0,
-      fake: 0,
-    }));
-
-  const [{ xxx }, api2] = useSpring(() => ({
-    xxx: 0,
-    reset: true,
-    reverse: true,
+  const [{ springValue, progressValue }, api] = useSpring(() => ({
+    springValue: 1,
+    progressValue: 0,
   }));
 
-  const startWheelHandler = useCallback(
-    ({ active, wheeling }) => {
-      // if (active) console.log('.....startWheelHandler / active', active);
-      // if (!active) console.log('.....startWheelHandler / !active', active);
-
-      // if (wheeling) console.log('.....startWheelHandler / wheeling', wheeling);
-      /*
-      Spring in action
-      */
-      api.start({
-        // turboOverlayOpacity: active ? 1 : 0,
-        // fake: !active ? Math.PI * navY.current : 0,
-        // immediate: active,
-      });
-    },
-    [api]
-  );
-
-  const standardWheelHandler = useCallback(
-    ({ active, direction: [, directionY] }) => {
-      // if (active) console.log('.....standardWheelHandler / active', active);
-    },
-    []
-  );
+  const startWheelHandler = useCallback(({ active, wheeling }) => {}, []);
 
   const endWheelHandler = useCallback(
     ({ active, direction: [, directionY] }) => {
-      if (!active) console.log('.....endWheelHandler / !active', active);
+      // if (!active) console.log('.....endWheelHandler / !active', active);
       /*
       ...
       */
       if (
         !active &&
         directionY === 1 &&
-        navY.current < contAboutSlidesNumber - 1
+        canvasGlobalState.containerAboutVisibleSlideIndex <
+          contAboutSlidesNumber - 1
       ) {
         // console.log('from up-to-down directionY:', directionY);
         // console.log('from up-to-down movementY:', movementY);
-        navY.current++;
-        canvasState.containerAboutVisibleSlideIndex = navY.current;
+        canvasState.containerAboutVisibleSlideIndex =
+          canvasGlobalState.containerAboutVisibleSlideIndex + 1;
         canvasState.isSlideComplete = false;
-        // console.log('navY.current:', navY.current);
+        canvasState.sliderToggler = Number(!canvasGlobalState.sliderToggler);
       }
 
-      if (!active && directionY === -1 && navY.current > 0) {
+      if (
+        !active &&
+        directionY === -1 &&
+        canvasGlobalState.containerAboutVisibleSlideIndex > 0
+      ) {
         // console.log('from down-to-up directionY:', directionY);
         // console.log('from down-to-up movementY:', movementY);
-        navY.current--;
-        canvasState.containerAboutVisibleSlideIndex = navY.current;
-        // console.log('navY.current:', navY.current);
+        canvasState.containerAboutVisibleSlideIndex =
+          canvasGlobalState.containerAboutVisibleSlideIndex - 1;
+        canvasState.sliderToggler = Number(!canvasGlobalState.sliderToggler);
       }
       /*
       Spring in action
@@ -101,15 +75,18 @@ const ContAboutNavGest = () => {
       api.start({
         springValue: navY.current === 0 ? 1 : 0.3,
         progressValue: (navY.current / (contAboutSlidesNumber - 1)) * 100,
-        turboOverlayOpacity: !active ? 1 : 0,
-        fake: !active ? Math.PI * navY.current : 0,
       });
-      api2.start({
-        // xxx: navY.current === 0 ? 0 : 1,
-        xxx: !active ? 1 : 0,
+
+      api.start({
+        fake: !active ? Math.PI * navY.current : 0,
+        config: { duration: 900 },
       });
     },
-    [api, api2]
+    [
+      api,
+      canvasGlobalState.containerAboutVisibleSlideIndex,
+      canvasGlobalState.sliderToggler,
+    ]
   );
 
   /*
@@ -197,8 +174,7 @@ const ContAboutNavGest = () => {
   */
   const contAboutNavGest = useGesture(
     {
-      onWheelStart: startWheelHandler,
-      onWheel: standardWheelHandler,
+      // onWheelStart: startWheelHandler,
       onWheelEnd: endWheelHandler,
       //...
       onDrag: startDragHandler,
@@ -223,10 +199,7 @@ const ContAboutNavGest = () => {
   return {
     springValue,
     progressValue,
-    turboOverlayOpacity,
-    fake,
     contAboutNavGest,
-    xxx,
   };
 };
 

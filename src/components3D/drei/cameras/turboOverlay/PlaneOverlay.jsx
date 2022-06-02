@@ -5,13 +5,9 @@ Global State Staff
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../states/canvasState';
 /*
-...
-*/
-import ContAboutNavGest from '../../../../gestureHandlers/useGesture/ContAboutNavGest';
-/*
 Spring Section
 */
-import { a } from '@react-spring/three';
+import { a, useSpring } from '@react-spring/three';
 /*
 -----------------------------------------------------------------------------
 */
@@ -22,13 +18,22 @@ const PlaneOverlay = () => {
   const mesh = useRef();
   /*
   Global State Section
+  {sliderToggler:0,...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
-
   /*
-  Gestures Section
+  Spring Section
   */
-  const { turboOverlayOpacity, fake, springValue, xxx } = ContAboutNavGest();
+  const [{ togglerValue }] = useSpring(
+    () => ({
+      togglerValue: canvasGlobalState.sliderToggler ? 1 : 0,
+      config: { duration: 600 },
+    }),
+    [canvasGlobalState.sliderToggler]
+  );
+
+  const opacity = togglerValue.to([0, 0.25, 0.75, 1], [0, 1, 1, 0]);
+
   /*
   ...
   */
@@ -44,15 +49,9 @@ const PlaneOverlay = () => {
   */
   return (
     canvasGlobalState.currentContainer === 'aboutContainer' && (
-      <a.mesh
-        ref={mesh}
-        position={[0, 0, -0.11]}
-        scale={1}
-        // scale={springValue}
-        rotation-z={fake}
-      >
-        <planeGeometry args={[0.03, 0.03, 1, 1]} />
-        <a.meshBasicMaterial color={[0, 0.1, 0.1]} transparent opacity={1} />
+      <a.mesh ref={mesh} position={[0, 0, -0.11]} scale={1}>
+        <planeGeometry args={[0.9, 0.9, 1, 1]} />
+        <a.meshBasicMaterial color={[0, 0, 0]} transparent opacity={opacity} />
       </a.mesh>
     )
   );

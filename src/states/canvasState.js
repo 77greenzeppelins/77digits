@@ -139,6 +139,11 @@ const canvasState = proxy({
   */
   isSlideComplete: true,
   /*
+  Used in:
+  1__"ContAboutNavGest"; each gesture change value to oposite
+  */
+  sliderToggler: 0,
+  /*
   -------------------------------------------<Container Manu 2D staff> 
   */
   /*
