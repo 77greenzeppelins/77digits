@@ -3,12 +3,22 @@ import React, { useRef } from 'react';
 Components
 */
 import Slide0 from './slide0/Slide0';
-// import Slide1 from './slide1/Slide1';
+import Slide1 from './slide1/Slide1';
+import Slide2 from './slide2/Slide2';
 
+import Slide4 from './slide4/Slide4';
+// import BackgroundsSwitcher from './slidesBackgrounds/BackgroundsSwitcher';
+/*
+Spring Staff
+*/
+// import { a } from '@react-spring/three';
 /*
 -----------------------------------------------------------------
 */
 const Slider = () => {
+  /*
+  ...
+  */
   const slider = useRef();
   /*
   JSX
@@ -16,7 +26,11 @@ const Slider = () => {
   return (
     <group ref={slider} scale={[1, 1, 1]} name="groupForSlider">
       <Slide0 slideId={0} />
-      {/* <Slide1 slideId={1} /> */}
+      <Slide1 slideId={1} />
+      <Slide2 slideId={2} />
+
+      <Slide4 slideId={4} />
+      {/* <BackgroundsSwitcher /> */}
     </group>
   );
 };

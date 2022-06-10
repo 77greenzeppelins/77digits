@@ -37,30 +37,11 @@ const SpinningBilboarIndicator = ({ indicatorGesture }) => {
             scale={i === 4 ? 1 : indicatorGesture[i]}
             rotation-z={i === 4 ? indicatorGesture[i] : 0}
           >
-            <a.mesh>
-              <planeGeometry args={[0.5, 0.5, 1, 1]} />
-              <meshBasicMaterial
-                // color={[1, 1, 1]}
-                color={[0, 0, 0]}
-              />
-            </a.mesh>
-
             <Html
               transform // If true, applies matrix3d transformations (default=false)
-              // occlude
             >
-              <div
-                style={{
-                  width: '33px',
-                  height: '23px',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignContent: 'center',
-                  // backgroundColor: 'red',
-                  // opacity: 0.5,
-                }}
-              >
-                <p style={{ color: 'white', fontSize: '0.7rem' }}> {number} </p>
+              <div className="contAbout-spinBilbInd__wrapper">
+                <p className="contAbout-spinBilbInd__p"> {number} </p>
               </div>
             </Html>
           </a.group>
@@ -82,6 +63,7 @@ const SpinningBilboarIndicator = ({ indicatorGesture }) => {
 };
 
 export default SpinningBilboarIndicator;
+
 //  SpinningBilboardIndicator;
 
 /*

@@ -1,48 +1,71 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+/*
+Components
+*/
+import ImageAsFlag from '../../../imageAsFlag/ImageAsFlag';
 /*
 Global State Staf
 */
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../../../states/canvasState';
 /*
-Components
+Spring Staff
 */
-import DreiText from '../../../../../drei/text/dreiText/DreiText';
+import { a, config, useSpring } from '@react-spring/three';
 /*
 Basic Data
 */
-import { textConfig } from './slide1Data';
+import { layout } from './slide1Data';
+
 /*
 ----------------------------------------------------------------------
 */
 
 const Slide1 = ({ slideId }) => {
   /*
-  Hook Section
-  Why this hook?
-  */
-  /*
   Global State Section
-    {containerAboutVisibleSlideIndex: 0,...}
+  {containerAboutVisibleSlideIndex: 0,...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
-
-  // useEffect(() => {
-  //   console.log(
-  //     'Slide1 / canvasGlobalState.containerAboutVisibleSlideIndex:',
-  //     canvasGlobalState.containerAboutVisibleSlideIndex
-  //   );
-  //   console.log('Slide1 / slideId:', slideId);
-  // }, [canvasGlobalState.containerAboutVisibleSlideIndex, slideId]);
+  /*
+  Spring for animations that happen when slides changes
+  */
+  const containerCondition =
+    canvasGlobalState.currentContainer === 'aboutContainer';
+  const springCond =
+    canvasGlobalState.containerAboutVisibleSlideIndex === slideId;
+  const [{ bgScale, bgPosY }] = useSpring(
+    () => ({
+      //___
+      bgScale: springCond ? layout.bgScaleFinal : 0,
+      bgPosY: springCond ? layout.bgPosYFinal : layout.bgPosYInitial,
+      //___
+      config: springCond ? config.molasses : { duration: 600 },
+      delay: springCond ? 150 : 0,
+      /*
+      This onRest must be in each slide! Either on 3D side or 2D side; in cese of <Slide1> there is only 3D side though...
+      */
+      // onRest: () => {
+      //   canvasState.isSlideComplete = true;
+      // },
+    }),
+    [canvasGlobalState.containerAboutVisibleSlideIndex]
+  );
 
   /*
   JSX
   */
   return (
-    canvasGlobalState.containerAboutVisibleSlideIndex === slideId && (
-      <DreiText textConfig={textConfig} />
-      // <TextVerse text="TextVerse" />
-    )
+    <>
+      <a.group scale={bgScale} position-x={layout.bgPosX} position-y={bgPosY}>
+        <ImageAsFlag
+          uAlpha={0.1}
+          uTimeCondition={containerCondition && springCond ? 1 : 0}
+          meshProps={{ scale: 0.7 }}
+          geometryArgs={[1, 1, 16, 16]}
+        />
+      </a.group>
+    </>
   );
 };
 

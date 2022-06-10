@@ -10,38 +10,36 @@ import DraiPerspectiveCamera from '../../../components3D/drei/cameras/DraiPerspe
 /*
 3D Components - main content
 */
-// import ContainerMenu from '../../../components3D/three/custome/containerMenu/ContainerMenu';
+
 import ContainerAbout from '../../../components3D/three/custome/containerAbout/ContainerAbout';
 import ContainerIntro from '../../../components3D/three/custome/containerIntro/ContainerIntro';
-
+import ContainerRaphael from '../../../components3D/three/custome/containerRaphael/ContainerRaphael';
 /*
 -------------------------------------------------------------------------
 */
 
-const Scene = React.memo(
-  ({ rotateStepByStep, gesturesForSidesRotationsIndicator }) => {
-    /*
+const Scene = () => {
+  /*
   JSX
   */
-    return (
-      <>
-        {/*-----Camera Control Section-------------------------------- */}
-        <DraiPerspectiveCamera />
+  return (
+    <>
+      {/*-----Camera Control Section-------------------------------- */}
+      <DraiPerspectiveCamera />
 
-        {/*-----Intro Container----------------------------------------*/}
-        <ContainerIntro />
+      {/*-----Intro Container----------------------------------------*/}
+      <ContainerIntro />
 
-        {/*-----About Container----------------------------------------*/}
-        <ContainerAbout />
+      {/*-----About Container----------------------------------------*/}
+      <ContainerAbout />
 
-        {/*-----Menu Container-----------------------------------------*/}
-        {/* <ContainerMenu /> */}
+      {/*-----Raphael Container----------------------------------------*/}
+      <ContainerRaphael />
 
-        {/*-----Helpers------------------------------------------------*/}
-        {/* <CanvasStateObserver /> */}
-      </>
-    );
-  }
-);
+      {/*-----Helpers------------------------------------------------*/}
+      {/* <CanvasStateObserver /> */}
+    </>
+  );
+};
 
 export default Scene;

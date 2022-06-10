@@ -70,16 +70,16 @@ const ContainerMenu2DStaff = () => {
             isMobileOnly={isMobileOnly}
           />
         </div>
-        {isMobileOnly && (
+        {/* {isMobileOnly && (
           <div
             className="container-menu__mobile-bottom"
             style={{
               height: isMobileOnly ? windowSize.height * mobileBottomHeight : 0,
             }}
           >
-            {/* <ContainerMenuInstantContact /> */}
+           <ContainerMenuInstantContact /> 
           </div>
-        )}
+        )} */}
       </div>
     )
   );

@@ -3,12 +3,15 @@ import * as THREE from 'three';
 /*
 2D Components
 */
+// import TestStaff from './testStaff/TestStaff';
+// import ContainerRaphael from '../../comp77/containerRaphael/ContainerRaphael';
 import Header from '../../comp77core/header/Header';
 import InitialOverlay from '../../comp77core/initialOverlay/InitialOverlay';
 import ContainerIntro2DStaff from '../../comp77/containerIntroStaff/ContainerIntro2DStaff';
 import ContainerAbout2DStaff from '../../comp77/containerAboutStaff/ContainerAbout2DStaff';
 import ContainerMenu2DStaff from '../../comp77/containerMenuStaff/ContainerMenu2DStaff';
 import CanvasGlobalState from './CanvasGlobalState';
+import ContainersToggler from '../../comp77/containersToggler/ContainersToggler';
 /*
 3D Components
 */
@@ -22,7 +25,7 @@ import { canvasState } from '../../../states/canvasState';
 /*
 Basic Data
 */
-import { backgroundColors } from '../../../data/globalData';
+import { colorsPalette } from '../../../data/globalData';
 /*
 -------------------------------------------------------------------------
 */
@@ -37,15 +40,16 @@ const PageMain = () => {
   const setCanvasColors = () => {
     switch (canvasGlobalState.currentContainer) {
       case 'introContainer':
-        return backgroundColors.containerIntro;
+        return colorsPalette.darkHexadecimal;
       case 'menuContainer':
-        return backgroundColors.linen;
+        return colorsPalette.linenHexadecimal;
       case 'aboutContainer':
-        return backgroundColors.containerAbout;
+        return colorsPalette.darkHexadecimal;
       case 'raphaelContainer':
-        return backgroundColors.linen;
+        return colorsPalette.darkHexadecimal;
       default:
-        return backgroundColors.default;
+        // return colorsPalette.dark;
+        return colorsPalette.venusSkyHexadecimal;
     }
   };
 
@@ -58,6 +62,7 @@ const PageMain = () => {
   */
   return (
     <>
+      {/* <TestStaff /> */}
       <Header />
       {/*
      To switch off <InitialOverlay> change the following global props:
@@ -109,6 +114,8 @@ const PageMain = () => {
         <ContainerIntro2DStaff />
         <ContainerAbout2DStaff />
         <ContainerMenu2DStaff />
+        <ContainersToggler />
+        {/* <ContainerRaphael /> */}
         <CanvasGlobalState />
       </div>
     </>

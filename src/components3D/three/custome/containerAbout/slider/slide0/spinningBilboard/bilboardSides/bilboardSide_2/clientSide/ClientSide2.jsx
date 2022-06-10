@@ -2,8 +2,8 @@ import React from 'react';
 /*
 Components
 */
+import ImageCanvas from '../../../../../../../_imageCanvas/ImageCanvas';
 import DreiText from '../../../../../../../../../drei/text/dreiText/DreiText';
-import ClientSide2Canvas from './ClientSide2Canvas';
 import TechPanel from './uniqueObject/TechPanel';
 import TestingPlane from '../../../../../../../containerIntro/_testingPlane/TestingPlane';
 /*
@@ -17,7 +17,11 @@ import { bilboardSide2Data } from '../bilboardSide_2_Data';
 const ClientSide2 = () => {
   return (
     <>
-      <ClientSide2Canvas />
+      <ImageCanvas
+        meshProps={bilboardSide2Data.clientSideProps.canvasProps.meshProps}
+        format={bilboardSide2Data.clientSideProps.canvasProps.format}
+        image={bilboardSide2Data.clientSideProps.canvasProps.image}
+      />
       <DreiText
         textConfig={bilboardSide2Data.clientSideProps.textConfigHeader}
       />

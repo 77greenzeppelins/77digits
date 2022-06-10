@@ -18,22 +18,7 @@ import { bilboardSide3Data } from './bilboardSide_3_Data';
 ----------------------------------------------------------------------------
 */
 
-const BilboardSide_3 = ({
-  /*
-  Props used by <SpinningBoxSide>
-  */
-  //   sideProps,
-  /*
-  Props for children components
-  */
-  //   frameProps,
-  labelProps,
-  labelPropsReverse,
-  /*
-  ...
-  */
-  gesturesForSidesRotations,
-}) => {
+const BilboardSide_3 = ({ gesturesForSidesRotations }) => {
   return (
     <a.group
       name="GroupForSpinningBoxSide"

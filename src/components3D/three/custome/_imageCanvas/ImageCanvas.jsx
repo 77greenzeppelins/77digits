@@ -1,56 +1,33 @@
 import React from 'react';
 import * as THREE from 'three';
+// import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
-
-import {
-  bannerWidthSize,
-  bannerHeightSize,
-  portraitWidthSize,
-  portraitHeightSize,
-  columnWidthSize,
-  columnHeightSize,
-  verticalFormatWidthSize,
-  verticalFormatHeightSize,
-  sizeFactor,
-} from '../../../../data/globalData';
 /*
-  Manipulation for planeGeometry's args
-  */
-let planeWidth;
-let planeHeight;
+Components
+*/
+import PlaneForCanvas from '../_planeForCanvas/PlaneForCanvas';
 
 /*
 ---------------------------------------------------------------------------
 */
 
-const ImageCanvas = ({ meshProps, format, image }) => {
+const ImageCanvas = ({ meshProps, format, argsWidth, argsHeight, image }) => {
   /*
   Image Loader
   */
   const [map] = useLoader(THREE.TextureLoader, [image]);
+  // const [map] = useLoader(new TextureLoader(), [image]); //???
 
-  /*
-  switch among formats
-  */
-  switch (format) {
-    case 'portrait':
-      planeWidth = portraitWidthSize + sizeFactor;
-      planeHeight = portraitHeightSize + sizeFactor;
-      break;
-    case 'verticalFormat':
-      planeWidth = verticalFormatWidthSize + sizeFactor;
-      planeHeight = verticalFormatHeightSize + sizeFactor;
-      break;
-    default:
-      planeWidth = 0;
-      planeHeight = 0;
-  }
   /*
   JSX
   */
   return (
     <mesh {...meshProps}>
-      <planeGeometry args={[planeWidth, planeHeight, 1, 1]} />
+      <PlaneForCanvas
+        format={format}
+        argsWidth={argsWidth}
+        argsHeight={argsHeight}
+      />
       <meshBasicMaterial map={map} />
     </mesh>
   );

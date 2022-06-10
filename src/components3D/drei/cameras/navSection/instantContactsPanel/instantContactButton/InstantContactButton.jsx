@@ -1,13 +1,10 @@
 import React, { Suspense } from 'react';
-import { Html } from '@react-three/drei';
+// import { Html } from '@react-three/drei';
 /*
 Components
 */
-// import Frame1 from '../_glbComponents/frame/Frame_1';
 import Frame1 from '../../../../../three/custome/_glbComponents/frame/Frame_1';
 import ImageCanvas from '../../../../../three/custome/_imageCanvas/ImageCanvas';
-// import UniversalCanvas from '../../../../../three/custome/matcapFrames/UniversalCanvas';
-// import PlaneForCanvas from '../../../../../three/custome/_planeForCanvas/PlaneForCanvas';
 
 /*
 Assets
@@ -34,16 +31,16 @@ const InstantContactButton = React.forwardRef(
       buttonImage = emailImage;
     }
     /*
-  onClick Section
-  */
-    const onClickHandler = (e, contact) => {
-      e.preventDefault();
-      if (canvasProps.buttonImage === 'phone') {
-        window.location = 'tel:798-905-558';
-      } else {
-        window.location = 'mailto:77greenzeppelins@gmail.com';
-      }
-    };
+    onClick Section
+    */
+    // const onClickHandler = (e, contact) => {
+    //   e.preventDefault();
+    //   if (canvasProps.buttonImage === 'phone') {
+    //     window.location = 'tel:798-905-558';
+    //   } else {
+    //     window.location = 'mailto:77greenzeppelins@gmail.com';
+    //   }
+    // };
 
     /*
   JSX
@@ -53,7 +50,7 @@ const InstantContactButton = React.forwardRef(
         <group ref={ref} {...groupProps}>
           <Frame1 meshProps={{ scale: scaleForButton }} />
           <ImageCanvas format={canvasProps.format} image={buttonImage} />
-          <Html
+          {/* <Html
             position-z={0}
             position-x={-0.0}
             position-y={0.0}
@@ -74,7 +71,7 @@ const InstantContactButton = React.forwardRef(
                 // opacity: 0.2,
               }}
             />
-          </Html>
+          </Html> */}
         </group>
       </Suspense>
     );

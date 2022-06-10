@@ -51,10 +51,13 @@ const Slide4 = ({ slideId, visibleSlideIndex }) => {
   return transition(
     (styles, condition) =>
       condition && (
-        <animated.div style={styles} className="slide__container">
+        <animated.div
+          style={{ ...styles, height: '100%' }}
+          className="testContainer"
+        >
           <p
-            style={{ color: 'green', fontSize: '5rem', zIndex: '999' }}
-            className="slide__text"
+            style={{ color: '#FA58B6', fontSize: '5rem', zIndex: '999' }}
+            className="slide__text-test"
           >
             Slide4
           </p>

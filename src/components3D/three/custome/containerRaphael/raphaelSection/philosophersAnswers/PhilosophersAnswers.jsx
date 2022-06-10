@@ -3,8 +3,6 @@ import React from 'react';
 Components
 */
 import DialogCloud from '../../../_glbComponents/dialogCloud/DialogCloud';
-// import UniversalFrame from '../../../matcapFrames/UniversalFrame';
-// import BasicUseMatcapTexture from '../../../matcapMaterials/BasicUseMatcapTexture';
 import DreiText from '../../../../../drei/text/dreiText/DreiText';
 /*
 GestureStaff
@@ -20,13 +18,9 @@ Basic Data
 import {
   philosophersAnswersConfig,
   PlatonAnswerGroup,
-  // PlatoAnswerFrame,
   PlatoAnswerTextConfig,
-  // PlatoCone,
   AristotlesAnswerGroup,
-  // AristotlesAnswer,
   AristotlesTextConfig,
-  // AristotlesCone,
 } from '../raphaelSectionData';
 
 const PhilosophersAnswers = () => {
@@ -37,7 +31,8 @@ const PhilosophersAnswers = () => {
   const [rotateWithMouseMove] = BasicMove({
     initialRotateValue: philosophersAnswersConfig.groupProps.rotation,
     target: window,
-    tileFactor: philosophersAnswersConfig.tillFactor,
+    tileFactorX: philosophersAnswersConfig.tillFactor,
+    tileFactorY: philosophersAnswersConfig.tillFactor,
   });
   /*
   JSX
@@ -56,23 +51,11 @@ const PhilosophersAnswers = () => {
             scale: [0.33, 0.33, 0.33],
           }}
         />
-        {/* <UniversalFrame
-          format={PlatoAnswerFrame.format}
-          groupProps={PlatoAnswerFrame.groupProps}
-        /> */}
         <DreiText textConfig={PlatoAnswerTextConfig} />
-        {/* <mesh {...PlatoCone.meshProps}>
-          <coneGeometry args={PlatoCone.args} />
-          <BasicUseMatcapTexture />
-        </mesh> */}
       </group>
 
       {/*-----Aristotles Answer-------------------------------------*/}
       <group {...AristotlesAnswerGroup.groupProps}>
-        {/* <UniversalFrame
-          format={AristotlesAnswer.format}
-          groupProps={AristotlesAnswer.groupProps}
-        /> */}
         <DialogCloud
           meshProps={{
             position: [-0, -0.1, 0],

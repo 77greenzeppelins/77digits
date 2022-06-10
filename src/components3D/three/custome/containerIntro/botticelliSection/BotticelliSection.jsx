@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 /*
 Global State Section
 */
@@ -8,9 +7,9 @@ import { canvasState } from '../../../../../states/canvasState';
 /*
 Components
 */
+import ImageCanvas from '../../_imageCanvas/ImageCanvas';
 import Frame1 from '../../_glbComponents/frame/Frame_1';
 import Logo from '../../_77logo/Logo';
-import UniversalCanvas from '../../matcapFrames/UniversalCanvas';
 import DreiText from '../../../../drei/text/dreiText/DreiText';
 /*
 Gesture Staff
@@ -26,8 +25,8 @@ Basic Data
 "tillFactor" for sake of "BasicMove"
 */
 import {
-  springConfig,
   basicMoveConfig,
+  springConfig,
   venusPaintingData,
   venusLeftSideTextConfig,
   venusGestureConfig,
@@ -53,7 +52,9 @@ const BotticelliSection = ({ groupProps }) => {
   */
   const [rotateWithMouseMove] = BasicMove({
     target: basicMoveConfig.target,
-    tileFactor: basicMoveConfig.tillFactor,
+    //___
+    tileFactorX: basicMoveConfig.tillFactorX,
+    tileFactorY: basicMoveConfig.tillFactorY,
   });
   /*
   Gesture Section
@@ -69,7 +70,6 @@ const BotticelliSection = ({ groupProps }) => {
       */
       rightDragLimitX: venusGestureConfig.rightDragLimitX,
       leftDragLimitX: venusGestureConfig.leftDragLimitX,
-
       /*
       set behaviour along y-axis i.e. should frame lean to left or to right or mix left & right;
       */
@@ -111,13 +111,14 @@ const BotticelliSection = ({ groupProps }) => {
         >
           {/*-----Boticelli Painting------------------------------*/}
           <Frame1 meshProps={{ scale: [0.86, 1, 1.13] }} />
-
-          <UniversalCanvas {...venusPaintingData.canvasProps} />
-
+          <ImageCanvas
+            meshProps={venusPaintingData.meshProps}
+            format={venusPaintingData.format}
+            // argsWidth, argsHeight,
+            image={venusPaintingData.image}
+          />
           {/*-----77 Logo-----------------------------------------*/}
-
           <Logo meshProps={logoConfig} />
-
           {/*----------Funny Text Thanks for Sandro---------------*/}
           <DreiText textConfig={venusLeftSideTextConfig} />
         </a.group>

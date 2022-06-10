@@ -13,9 +13,10 @@ Components
 */
 // import SpinningBilboardGesturePrompt from '../gesturePrompts/2_contAboutPrompts/SpinningBilboardGesturePrompt/SpinningBilboardGesturePrompt';
 import SlidesGesturePrompt from '../gesturePrompts/2_contAboutPrompts/b_SlidesGesturePrompts/SlidesGesturePrompt';
-
-// import HtmlSBGP from '../../../components3D/three/custome/containerAbout/slider/slide0/spinningBilboardGesturePrompt/htmlComponent/HtmlSpinningBilboardGesturePrompt';
-
+/*
+Spring Staff
+*/
+import { animated, useSpring, config } from '@react-spring/web';
 /*
 -------------------------------------------------------------------------------
 */
@@ -25,6 +26,17 @@ const ContainerAbout2DStaff = () => {
   canvasState = {currentContainer: 'none',...}
   */
   const canvasGlobalState = useSnapshot(canvasState);
+
+  const [{ opacityValue, progressValue }] = useSpring(
+    {
+      opacityValue:
+        canvasGlobalState.containerAboutVisibleSlideIndex === 0 ? 1 : 0.3,
+      progressValue:
+        (canvasGlobalState.containerAboutVisibleSlideIndex / (5 - 1)) * 100,
+      config: config.molasses,
+    },
+    [canvasGlobalState.containerAboutVisibleSlideIndex]
+  );
 
   /*
   JSX
@@ -39,18 +51,24 @@ const ContainerAbout2DStaff = () => {
         Gesture prompt based on <GesturePromptTurboParent>; it informs what to do with <SpinningBox>; has internal "useTransition()"-based concept of mounting;
         */}
         {/* <SpinningBoxGesturePrompt /> */}
+
         {/*
         Gesture prompt that inform what is going on in  <Slader2D>;
         has internal "useTransition()"-based concept of mounting;
         */}
-        <SlidesGesturePrompt />
+
+        <SlidesGesturePrompt
+          opacityValue={opacityValue}
+          progressValue={progressValue}
+        />
         {/*
         <Slider2D >'s slides have internal ...
         */}
         <Slader2D />
 
         {/*----for  T E S T  sake-------------------------------------- */}
-        {/* {canvasGlobalState.currentContainer === 'aboutContainer' && (
+        {/* {canvasGlobalState.currentContainer === 'aboutContainer' && ( */}
+        {/* <>
           <animated.div
             style={{
               position: 'fixed',
@@ -59,12 +77,13 @@ const ContainerAbout2DStaff = () => {
               width: '100px',
               height: '100px',
               backgroundColor: 'green',
-              opacity: springValue,
+              opacity: opacityValue,
             }}
           >
             {progressValue.to(x => x.toFixed())}
           </animated.div>
-        )} */}
+        </> */}
+        {/* )} */}
       </div>
     )
   );

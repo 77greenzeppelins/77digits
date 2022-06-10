@@ -16,7 +16,7 @@ import { slideTransitionConfig, slideDelay, slide2 } from '../../slider2DData';
 /*
 -------------------------------------------------------------------------------
 */
-const Slide2 = ({ slideId, visibleSlideIndex }) => {
+const Slide2 = ({ slideId }) => {
   /*
   Global State Staff
   canvasState={slide2Part:0}
@@ -54,7 +54,7 @@ const Slide2 = ({ slideId, visibleSlideIndex }) => {
         <animated.div style={styles} className="slide__container">
           <ul>
             <li className="slide__header-wrapper">
-              <h3 className="slide__header-text-s2">
+              {/* <h3 className="slide__header-text-s2">
                 {canvasGlobalState.languageVersion ? (
                   <>
                     <span>{slide2.headerPl[0]}</span> <br />
@@ -66,7 +66,7 @@ const Slide2 = ({ slideId, visibleSlideIndex }) => {
                     <span>{slide2.headerEn[1]}</span>
                   </>
                 )}
-              </h3>
+              </h3> */}
             </li>
             <li className="slide__paragraph-wrapper">
               <p className="slide__paragraph-text">{slide2.text1Pl}</p>

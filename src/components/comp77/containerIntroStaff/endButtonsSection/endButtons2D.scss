@@ -1,0 +1,44 @@
+.end-buttons2D {
+  &__wrapper {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+  }
+  &__buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__phone-button {
+    position: absolute;
+    top: 13vh;
+    // background-color: #fff;
+    // opacity: 0.3;
+    pointer-events: auto;
+  }
+  &__email-button {
+    position: absolute;
+    bottom: 13vh;
+    // background-color: #fff;
+    // opacity: 0.3;
+    pointer-events: auto;
+  }
+
+  //_________
+  // &__auxiliary-button-bottom {
+  //   position: absolute;
+  //   // bottom: 21.5vh;
+  //   bottom: 3.5vh;
+  /*
+    why "transform: translateX(...%)" ?
+    it allowes position this button on x-axis regarding the center of x-axis
+    it allowes to keep this button in constant distance to "instant-contact-button"; so despite resizing it keep that distance;
+    this "...%" refers to button size I guess...
+    */
+  // transform: translateX(325%);
+  //   transform: translateX(400%);
+
+  //   background-color: #fff;
+  //   opacity: 0.3;
+  // }
+}

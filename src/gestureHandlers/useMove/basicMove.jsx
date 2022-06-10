@@ -15,7 +15,13 @@ GlobalState
 ------------------------------------------------------------------------
 */
 
-const BasicMove = ({ initialRotateValue, enabled, target, tileFactor }) => {
+const BasicMove = ({
+  initialRotateValue,
+  enabled,
+  target,
+  tileFactorX,
+  tileFactorY,
+}) => {
   /*
   Global States for SpringValues;
   */
@@ -60,13 +66,13 @@ const BasicMove = ({ initialRotateValue, enabled, target, tileFactor }) => {
 
       api.start({
         rotateWithMouseMove: [
-          newX < 0 ? newY * tileFactor : newY * tileFactor,
-          newY < 0 ? newX * tileFactor : newX * tileFactor,
+          newX < 0 ? newY * tileFactorY : newY * tileFactorY,
+          newY < 0 ? newX * tileFactorX : newX * tileFactorX,
           0,
         ],
       });
     },
-    [api, size.width, size.height, tileFactor]
+    [api, size.width, size.height, tileFactorX, tileFactorY]
   );
 
   //___2.

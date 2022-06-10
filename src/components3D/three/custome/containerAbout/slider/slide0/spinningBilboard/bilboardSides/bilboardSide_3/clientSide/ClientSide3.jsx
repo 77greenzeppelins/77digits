@@ -2,8 +2,8 @@ import React from 'react';
 /*
 Components
 */
+import ImageCanvas from '../../../../../../../_imageCanvas/ImageCanvas';
 import DreiText from '../../../../../../../../../drei/text/dreiText/DreiText';
-import ClientSide3Canvas from './ClientSide3Canvas';
 /*
 Basic Data
 */
@@ -15,7 +15,11 @@ import { bilboardSide3Data } from '../bilboardSide_3_Data';
 const ClientSide3 = () => {
   return (
     <>
-      <ClientSide3Canvas />
+      <ImageCanvas
+        meshProps={bilboardSide3Data.clientSideProps.canvasProps.meshProps}
+        format={bilboardSide3Data.clientSideProps.canvasProps.format}
+        image={bilboardSide3Data.clientSideProps.canvasProps.image}
+      />
       <DreiText
         textConfig={bilboardSide3Data.clientSideProps.textConfigHeader}
       />

@@ -18,26 +18,13 @@ import { bilboardSide1Data } from './bilboardSide_1_Data';
 ----------------------------------------------------------------------------
 */
 
-const BilboardSide_1 = ({
+const BilboardSide_1 = ({ gesturesForSidesRotations }) => {
   /*
-  Props used by <SpinningBoxSide>
+  JSX
   */
-  //   sideProps,
-  /*
-  Props for children components
-  */
-  //   frameProps,
-  labelProps,
-  labelPropsReverse,
-  /*
-  ...
-  */
-  gesturesForSidesRotations,
-}) => {
   return (
     <a.group
       name="GroupForBilboardSide_1"
-      // position={bildoardSide1Data.sideProps.position}
       {...bilboardSide1Data.sideProps}
       rotation-y={gesturesForSidesRotations}
     >

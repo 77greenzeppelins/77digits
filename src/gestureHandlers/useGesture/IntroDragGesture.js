@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback } from 'react';
 /*
 Spring Staff
 */
@@ -20,12 +20,6 @@ import { onDragData, factorPositionY } from '../../data/globalData';
 -----------------------------------------------------------------------
 */
 const IntroDragGesture = () => {
-  /*
-  References
-  */
-  // const gestureType = useRef();
-  // const onStartCondition = useRef(true);
-  const endOfContainerIntro = useRef(false);
   /*
   Global States for SpringValues;
   canvasState = {..., introContainerEventType: none, introContainerWheelDragBounds: {top: 0, bottom: 3550}}
@@ -64,24 +58,13 @@ const IntroDragGesture = () => {
     //   }
     // },
   }));
-
-  /*
-    ...
-    */
-
   /*
   ...
   */
-  const onDragStartHandler = useCallback(
-    ({ dragging, direction }) => {
-      /*
-      sidenote: I've tried to use "gestureType.current = 'none'" instead of "canvasGlobalState.introContainerEventType === 'none'"; result: if first gesture was "wheeling" it can anyway be replaced by "laptop tap panel" and vice versa;
-       */
+  const startDragHandler = useCallback(
+    ({ dragging }) => {
       if (dragging && canvasGlobalState.introContainerEventType === 'none') {
-        // gestureType.current = 'dragging';
         canvasState.introContainerEventType = 'dragging';
-        // console.log('dragging', dragging);
-        // console.log('direction', direction);
       }
     },
     [canvasGlobalState.introContainerEventType]
@@ -91,7 +74,25 @@ const IntroDragGesture = () => {
   Main Handler Section
   */
   const mainDragHandler = useCallback(
-    ({ offset: [, offsetY], dragging }) => {
+    ({ offset: [, offsetY] }) => {
+      // if (onDragData.bottom === offsetY && !active) {
+      //   // canvasState.endOfContainerIntro = true;
+      //   console.log('....enter the end', offsetY);
+      // } else {
+      //   console.log('....leave the end', offsetY);
+      // }
+      // if (
+      //   onDragData.bottom !== offsetY
+      //   // &&
+      //   // !down
+      //   // !active
+      //   //  &&
+      //   // !active &&
+      //   // canvasGlobalState.endOfContainerIntro === true
+      // ) {
+      //   // canvasState.endOfContainerIntro = false;
+      //   console.log('....leave the end', offsetY);
+      // }
       /*
       this operation sets global state property that is crucial in <ContainerIntroContent> as it determines what was the very first users's gesture; the same operation is in <IntroWheelGesture>
        */
@@ -108,43 +109,45 @@ const IntroDragGesture = () => {
     },
     [
       api,
-      //  canvasGlobalState.introContainerEventType
+      //  canvasGlobalState.endOfContainerIntro
     ]
   );
   /*
   Additional Handler Section for onDragEnd
   */
-  const onDragEndHandler = useCallback(
+  const endDragHandler = useCallback(
     ({ offset: [, offsetY], active }) => {
       /*
-      What should happen if user wheels to the end?
+      ".endOfContainerIntro" allowes to render 2D EndButtons that map 3D "pseudoButtons"; drei's Html is not detected by all browsers so I need such staff...
       */
-      if (offsetY === onDragData.bottom) {
-        // canvasState.endOfContainerIntro = true;
-        endOfContainerIntro.current = true;
-        // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
-      } else {
-        endOfContainerIntro.current = false;
-        // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
+      if (onDragData.bottom === offsetY && !active) {
+        canvasState.endOfContainerIntro = true;
+      }
+      if (
+        onDragData.bottom !== offsetY &&
+        !active &&
+        canvasGlobalState.endOfContainerIntro === true
+      ) {
+        canvasState.endOfContainerIntro = false;
       }
       /*
       API section
       */
       api.start({
-        fallDownDrag: endOfContainerIntro.current ? 0.017 : 0.1,
-        riseUpDrag: endOfContainerIntro.current ? -0.017 : -0.1,
+        fallDownDrag: offsetY === onDragData.bottom ? 0.017 : 0.1,
+        riseUpDrag: offsetY === onDragData.bottom ? -0.017 : -0.1,
       });
     },
-    [api]
+    [api, canvasGlobalState.endOfContainerIntro]
   );
   /*
   Gesture Section
   */
   const containerIntroDrag = useGesture(
     {
-      onDragStart: onDragStartHandler,
+      onDragStart: startDragHandler,
       onDrag: mainDragHandler,
-      onDragEnd: onDragEndHandler,
+      onDragEnd: endDragHandler,
     },
     {
       target: canvasGlobalState.currentContainer === 'introContainer' && window,

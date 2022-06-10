@@ -1,11 +1,15 @@
-const textConfig = {
-  font: 'garamontt', //means: jost
-  text: [
-    "I want to take-off... Let's call!",
-    'Mam ochotę odlecieć... Dzwonię!',
-  ],
-  fontSize: [0.01, 0.02, 0.06], //mobileSmall / mobile / tabletAndDesktop
-  // maxWidthValue: 0.2, //fixed value of maxWidth
-  maxWidth: [0.1, 0.2, 0.3], //responsive value of maxWidth
+const layout = {
+  //___
+  bgScaleFinal: 0.5,
+  bgPosYInitial: 0.2,
+  bgPosYFinal: -0.02,
+  bgPosX: 0.05,
 };
-export { textConfig };
+
+const text = {
+  pl: 'TY',
+  en: 'YOU',
+  digits: '77digits',
+};
+
+export { layout, text };

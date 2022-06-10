@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback } from 'react';
 
 import { useSpring, config } from '@react-spring/three';
 import { useGesture } from '@use-gesture/react';
@@ -73,14 +73,8 @@ const IntroWheelGesture = () => {
       sidenote: I've tried to use "gestureType.current = 'none'" instead of "canvasGlobalState.introContainerEventType === 'none'"; result: if first gesture was "wheeling" it can anyway be replaced by "laptop tap panel" and vice versa;
        */
       if (wheeling && canvasGlobalState.introContainerEventType === 'none') {
-        // gestureType.current = 'wheeling';
         canvasState.introContainerEventType = 'wheeling';
-        console.log('wheeling', wheeling);
-
-        // console.log(
-        //   'onWheelStartHandler / canvasGlobalState.introContainerEventType:',
-        //   canvasGlobalState.introContainerEventType
-        // );
+        // console.log('wheeling', wheeling);
       }
     },
     [canvasGlobalState.introContainerEventType]
@@ -89,8 +83,19 @@ const IntroWheelGesture = () => {
   Main Handler Section
   */
   const mainWheelHandler = useCallback(
-    ({ offset: [, offsetY] }) => {
-      // console.log('offsetY', offsetY);
+    ({ active, offset: [, offsetY] }) => {
+      if (onWheelData.bottom === offsetY && !active) {
+        canvasState.endOfContainerIntro = true;
+        // console.log('....enter the end', offsetY);
+      }
+      if (
+        onWheelData.bottom !== offsetY &&
+        !active &&
+        canvasGlobalState.endOfContainerIntro === true
+      ) {
+        canvasState.endOfContainerIntro = false;
+        // console.log('....leave the end', offsetY);
+      }
       /*
       Spring Section;
       */
@@ -101,24 +106,13 @@ const IntroWheelGesture = () => {
         wheeledPositionZ: offsetY * factorPositionY,
       });
     },
-    [api1]
+    [api1, canvasGlobalState.endOfContainerIntro]
   );
   /*
   Additional Handler for last wheel 
   */
   const onWheelEndHandler = useCallback(
     ({ offset: [, offsetY] }) => {
-      /*
-      What should happen if user wheels to the end?
-      */
-      // if (offsetY === onWheelData.bottom) {
-      //   // canvasState.endOfContainerIntro = true;
-      //   endOfContainerIntro.current = true;
-      //   // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
-      // } else {
-      //   endOfContainerIntro.current = false;
-      //   // console.log('endOfContainerIntro.current', endOfContainerIntro.current);
-      // }
       /*
       API section
       */

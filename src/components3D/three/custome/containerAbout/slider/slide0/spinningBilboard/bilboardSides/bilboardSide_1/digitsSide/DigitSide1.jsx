@@ -2,16 +2,25 @@ import React from 'react';
 /*
 Components
 */
-import DigitsSide1Canvas from './DigitsSide1Canvas';
+import ImageCanvas from '../../../../../../../_imageCanvas/ImageCanvas';
+/*
+Basic Data
+*/
+import { bilboardSide1Data } from '../bilboardSide_1_Data';
 
 /*
 ----------------------------------------------------------------------------
 */
 const DigitSide1 = () => {
+  /*
+  JSX
+  */
   return (
-    <>
-      <DigitsSide1Canvas />
-    </>
+    <ImageCanvas
+      meshProps={bilboardSide1Data.digitsSideProps.canvasProps.meshProps}
+      format={bilboardSide1Data.digitsSideProps.canvasProps.format}
+      image={bilboardSide1Data.digitsSideProps.canvasProps.image}
+    />
   );
 };
 

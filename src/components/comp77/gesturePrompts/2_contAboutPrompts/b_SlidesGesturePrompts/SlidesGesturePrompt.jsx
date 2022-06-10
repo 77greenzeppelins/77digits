@@ -9,29 +9,21 @@ Global State Staff
 import { useSnapshot } from 'valtio';
 import { canvasState } from '../../../../../states/canvasState';
 /*
-Gestures Section
-*/
-import ContAboutNavGest from '../../../../../gestureHandlers/useGesture/ContAboutNavGest';
-/*
 Basic Data
 */
 import { slideGesturePrompt } from '../../gesturesPromptData';
 /*
 ------------------------------------------------------------------------
 */
-const SlidesGesturePrompt = () => {
+const SlidesGesturePrompt = ({ opacityValue, progressValue }) => {
   /*
   Global State Section
   */
   const canvasGlobalState = useSnapshot(canvasState);
-  /*
-  Gestures Section
-  */
-  const { springValue, progressValue } = ContAboutNavGest();
 
   const symbolsClassCSS = useMemo(
-    () => ({ opacity: springValue }),
-    [springValue]
+    () => ({ opacity: opacityValue }),
+    [opacityValue]
   );
 
   /*
@@ -43,10 +35,7 @@ const SlidesGesturePrompt = () => {
         /*
         taken from globalState
         */
-        useTransitionCondition={
-          canvasGlobalState.currentContainer === 'aboutContainer' &&
-          canvasGlobalState.sliderIsReady
-        }
+        useTransitionCondition={canvasGlobalState.sliderIsReady}
         /*
         taken from external file
         */

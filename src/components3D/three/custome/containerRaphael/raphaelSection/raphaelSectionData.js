@@ -8,8 +8,8 @@ const raphaelSectionSpringConfig = {
   Data for basic z-axis animation
   */
   configBasic: springConfigs.configBasic,
-  positionStart: [0, 0, -21],
-  positionEnd: [0, 0, -19.64],
+  positionStart: -2,
+  positionEnd: 0,
   delay: 400,
 };
 
@@ -147,26 +147,6 @@ const AristotlesCone = {
   },
 };
 
-/*
-Close Button
-*/
-const buttonX = {
-  groupProps: {
-    scale: [0.12, 0.12, 0.12],
-    position: [0, -0.75, 0],
-  },
-  meshProps: { rotation: [0, 0, 0.25 * Math.PI] },
-  fontExtrudeSettings: {
-    size: 0.7,
-    height: 0.03,
-    bevelEnabled: true,
-    curveSegments: 2,
-    bevelThickness: 0.01,
-    bevelSize: 0.005,
-  },
-  text: '+',
-};
-
 export {
   raphaelSectionSpringConfig,
   raphaelSectionGesturesConfig,
@@ -183,6 +163,4 @@ export {
   AristotlesAnswer,
   AristotlesTextConfig,
   AristotlesCone,
-  //___Reset Button
-  buttonX,
 };

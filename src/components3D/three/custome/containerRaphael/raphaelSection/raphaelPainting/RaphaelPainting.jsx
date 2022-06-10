@@ -3,7 +3,7 @@ import React from 'react';
 Components
 */
 import Frame1 from '../../../_glbComponents/frame/Frame_1';
-import UniversalCanvas from '../../../matcapFrames/UniversalCanvas';
+import ImageCanvas from '../../../_imageCanvas/ImageCanvas';
 import DreiText from '../../../../../drei/text/dreiText/DreiText';
 /*
 GestureStaff
@@ -28,7 +28,8 @@ const RaphaelPainting = () => {
   */
   const [rotateWithMouseMove] = BasicMove({
     target: window,
-    tileFactor: raphaelPaintingConfig.gestureTillFactor,
+    tileFactorX: raphaelPaintingConfig.gestureTillFactor,
+    tileFactorY: raphaelPaintingConfig.gestureTillFactor,
   });
 
   /*
@@ -40,7 +41,7 @@ const RaphaelPainting = () => {
       rotation={rotateWithMouseMove}
     >
       <Frame1 meshProps={{ scale: [0.66, 1, 0.65] }} />
-      <UniversalCanvas
+      <ImageCanvas
         format={raphaelPaintingConfig.format}
         image={raphaelPaintingConfig.texture}
       />

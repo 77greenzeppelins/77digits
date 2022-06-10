@@ -1,5 +1,4 @@
 import { springConfigs } from '../../../../../data/reactSpring';
-// import venus from '../../../../../assets/textures/venus_1.webp';
 import venus from '../../../../../assets/textures/containerIntro_venus_445_800_1.webp';
 
 const basicMoveConfig = {
@@ -7,7 +6,8 @@ const basicMoveConfig = {
   Data for gesture's "BasicMove.js" animation
   */
   target: window,
-  tillFactor: 0.1,
+  tillFactorX: 0.3,
+  tillFactorY: 0.1,
 };
 
 const springConfig = {
@@ -33,11 +33,9 @@ const venusPaintingData = {
     position: [0, 0.02, 0.4],
     scale: [0.6, 0.6, 0.6],
   },
-  canvasProps: { image: venus, format: 'verticalFormat' },
-  frameProps: {
-    groupProps: { name: 'groupForFrameOfVenusInFrame' },
-    format: 'verticalFormat',
-  },
+  meshProps: { position: [0, 0, 0], scale: [1, 1, 1] },
+  format: 'verticalFormat',
+  image: venus,
 };
 
 const venusLeftSideTextConfig = {
