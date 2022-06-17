@@ -3,6 +3,7 @@ Assets
 */
 import medicine from '../../../../../../../../../assets/textures/containerAbout_Slide0_medicine_2_445_800.webp';
 import blank from '../../../../../../../../../assets/textures/containerAbout_Slide1_blank_verticalFormat_445_800..webp';
+import dama from '../../../../../../../../../assets/textures/containerAbout_Slide0_dama_445_800.webp';
 /*
 Basic Data
 */
@@ -72,7 +73,7 @@ const bilboardSide4Data =
     digitsSideProps: {
       canvasProps: {
         format: 'verticalFormat',
-        image: blank,
+        image: dama,
         meshProps: { rotation: [0, Math.PI, 0] },
       },
       /*
@@ -92,13 +93,13 @@ const bilboardSide4Data =
             textProps: [
               // PL: mobile / no-mobile
               [
-                { position: [0, 0.1, -0.01], rotation: [0, Math.PI, 0] },
-                { position: [0, 0.1, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [-0.01, 0.15, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [-0.01, 0.15, -0.01], rotation: [0, Math.PI, 0] },
               ],
               // EN: mobile / no-mobile
               [
-                { position: [0, 0.1, -0.01], rotation: [0, Math.PI, 0] },
-                { position: [0, 0.1, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [-0.01, 0.15, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [-0.01, 0.15, -0.01], rotation: [0, Math.PI, 0] },
               ],
             ],
             text: [

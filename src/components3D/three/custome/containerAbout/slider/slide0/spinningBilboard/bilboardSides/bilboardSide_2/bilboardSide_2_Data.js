@@ -1,7 +1,7 @@
 /*
 Assets
 */
-import tech from '../../../../../../../../../assets/textures/containerAbout_Slide0_tech_3_445_800.webp';
+import tech from '../../../../../../../../../assets/textures/containerAbout_Slide0_tech_7_445_800.webp';
 import blank from '../../../../../../../../../assets/textures/containerAbout_Slide1_blank_verticalFormat_445_800..webp';
 /*
 Basic Data

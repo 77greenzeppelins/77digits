@@ -41,8 +41,11 @@ html {
   overflow: hidden;
 }
 body {
+  /*
+  basic settings
+  */
+  font-family: $sanSerif, sans-serif;
   // overscroll-behavior-y: none; //for Mac's
-  //___additional
   background-color: #000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -58,21 +61,103 @@ body {
   -webkit-overflow-scrolling: touch;
   // overflow-x: auto; // aooears in some advices
   /*
-  end----------
-  */
-  font-family: $sanSerif, sans-serif;
-  /*
   avoid text selection
   */
-  // user-select: none !important;
-  user-select: none;
+  user-select: none; // !important
   -moz-user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -ms-user-select: none;
+}
+button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: transparent;
+  cursor: pointer;
+  font-family: $sanSerif, sans-serif;
   /*
-  end: avoid text selection
+  property below solve the problem of sparkling button 
   */
+  -webkit-tap-highlight-color: transparent;
+}
+a {
+  color: setColor(light);
+  text-decoration: none;
+  cursor: pointer;
+  /*
+  property below solve the problem of sparkling button 
+  */
+  -webkit-tap-highlight-color: transparent;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#root {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  //_____
+  // -webkit-touch-callout: none;
+  // -webkit-user-select: none;
+  // -khtml-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  // user-select: none;
+  // overflow: hidden;
+  //_____
+}
+
+//_____
+canvas {
+  touch-action: none;
+  overflow: hidden;
+  // width: 100%; // used in many boilerplate
+  // height: 10vh; // used in many boilerplate
+  // position: absolute;
+  // top: 0;
+  // pointer-events: none;
+}
+
+//_____class for font responsivenes
+.responsive-text-medium {
+  font-size: 2rem;
+  @media (min-width: $smallPhone) {
+    font-size: 2.2rem;
+  }
+  @media (min-width: $mediumPhone) {
+    font-size: 2.8rem;
+  }
+  @media (min-width: $smallTablet) {
+    font-size: 3.6rem;
+  }
+}
+
+.turbo-container {
+  margin-inline: auto;
+  max-width: 1000px;
+  padding: 0 20px 0 20px;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.turbo-content {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+//_____01.13 tests start
+.routes-container {
+  width: 100%;
 }
 
 /* hide scrollbar but allow scrolling */
@@ -101,111 +186,3 @@ body {
 // }
 
 /* end of hide scrollbar ... */
-
-button {
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  outline: transparent;
-  cursor: pointer;
-  font-family: $sanSerif, sans-serif;
-  /*
-  property below solve the problem of sparkling button 
-  */
-  -webkit-tap-highlight-color: transparent;
-  // /*
-  // avoid text selection
-  // */
-  // user-select: none !important;
-  // -moz-user-select: none !important;
-  // -webkit-user-select: none !important;
-  // -webkit-touch-callout: none !important;
-  // -ms-user-select: none !important;
-  // /*
-  // end: avoid text selection
-  // */
-}
-a {
-  color: setColor(light);
-  text-decoration: none;
-  cursor: pointer;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-#root {
-  position: relative;
-  width: 100vw;
-  height: 100%;
-  //_____
-  // -webkit-touch-callout: none;
-  // -webkit-user-select: none;
-  // -khtml-user-select: none;
-  // -moz-user-select: none;
-  // -ms-user-select: none;
-  // user-select: none;
-  // overflow: hidden;
-  //_____
-}
-
-//_____
-canvas {
-  // width: 100%;
-  // height: 100%;
-  // position: absolute;
-  // top: 0;
-  // pointer-events: none;
-  touch-action: none;
-  overflow: hidden;
-}
-//_____
-// .route-container {
-//   width: 100%;
-//   height: 100%;
-// }
-
-//_____class for font responsivenes
-.responsive-text-medium {
-  font-size: 2rem;
-  @media (min-width: $smallPhone) {
-    font-size: 2.2rem;
-  }
-  @media (min-width: $mediumPhone) {
-    font-size: 2.8rem;
-  }
-  @media (min-width: $smallTablet) {
-    font-size: 3.6rem;
-  }
-}
-
-// .page-main__container {
-//   width: 100vw;
-//   height: 100vh;
-// }
-
-.turbo-container {
-  margin-inline: auto;
-  max-width: 1000px;
-  padding: 0 20px 0 20px;
-  height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-}
-.turbo-content {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-//_____01.13 tests start
-.routes-container {
-  width: 100%;
-}

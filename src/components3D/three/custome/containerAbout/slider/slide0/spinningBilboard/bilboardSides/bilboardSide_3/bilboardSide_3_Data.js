@@ -2,7 +2,7 @@
 Assets
 */
 import music from '../../../../../../../../../assets/textures/containerAbout_Slide0_music_4_445_800.webp';
-import blank from '../../../../../../../../../assets/textures/containerAbout_Slide1_blank_verticalFormat_445_800..webp';
+import blank from '../../../../../../../../../assets/textures/containerAbout_Slide0_tech&art_7.webp';
 /*
 Basic Data
 */
@@ -83,7 +83,7 @@ const bilboardSide3Data =
           textConfig: {
             text: [
               'subtle connections between technology  ',
-              'subtelne połączenia powiędzy technologią',
+              'wyjątkowe połączenia powiędzy technologią',
             ],
             textProps: [
               // PL: mobile / no-mobile
@@ -106,8 +106,8 @@ const bilboardSide3Data =
             textProps: [
               // PL: mobile / no-mobile
               [
-                { position: [-0.2, -0.596, -0.01], rotation: [0, Math.PI, 0] },
-                { position: [-0.2, -0.596, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [-0.03, -0.593, -0.01], rotation: [0, Math.PI, 0] },
+                { position: [-0.03, -0.593, -0.01], rotation: [0, Math.PI, 0] },
               ],
               // EN: mobile / no-mobile
               [
@@ -115,7 +115,7 @@ const bilboardSide3Data =
                 { position: [-0.2, -0.596, -0.01], rotation: [0, Math.PI, 0] },
               ],
             ],
-            text: ['art...  ', 'sztuką...'],
+            text: ['art...  ', 'sztuką'],
             ...mParagraphConfig,
           },
         },

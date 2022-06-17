@@ -72,7 +72,7 @@ const LogoIn13PartsParent = ({ fakeLoaderStateSetter }) => {
       return {
         from: { opacity: 0, scale: 0 },
         to: { opacity: 1, scale: 1 },
-        // config: { duration: 400 },
+        // config: { duration: 200 },
         config: springConfigs.molasses,
         /*
         "600" is an offset that "skips" initial-opacity-animation of <FakeLoader>; 
@@ -81,16 +81,16 @@ const LogoIn13PartsParent = ({ fakeLoaderStateSetter }) => {
         // delay: index < 7 ? 600 + index * 300 : 2400 + index * 200,
         delay:
           index === 0
-            ? 600
+            ? 400
             : index > 0 && index < 5
-            ? 1000 + 300
+            ? 1000
             : index === 5 || index === 6
-            ? 1500 + 300
+            ? 1500
             : index === 7 || index === 8
-            ? 2800 + 300
+            ? 2800
             : index === 9 || index === 10
-            ? 3000 + 300
-            : 3300 + 300,
+            ? 3000
+            : 3300,
 
         onRest: () => {
           /*
@@ -100,6 +100,7 @@ const LogoIn13PartsParent = ({ fakeLoaderStateSetter }) => {
             // console.log('item index: ', index);
             fakeLoaderStateSetter(false);
           }
+          // fakeLoaderStateSetter(false);
         },
       };
     })

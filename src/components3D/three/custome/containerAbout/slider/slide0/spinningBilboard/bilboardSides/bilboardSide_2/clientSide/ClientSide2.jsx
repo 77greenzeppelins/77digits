@@ -32,9 +32,9 @@ const ClientSide2 = () => {
         <DreiText key={i} textConfig={paragraph.textConfig} />
       ))}
       <TechPanel />
-      <TestingPlane
+      {/* <TestingPlane
         meshProps={{ scale: [1, 1, 1], position: [0.18, -0.25, 0.01] }}
-      />
+      /> */}
     </>
   );
 };

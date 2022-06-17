@@ -151,7 +151,9 @@ const IntroDragGesture = () => {
     },
     {
       target: canvasGlobalState.currentContainer === 'introContainer' && window,
-      enabled: canvasGlobalState.currentContainer === 'introContainer',
+      enabled:
+        canvasGlobalState.currentContainer === 'introContainer' &&
+        canvasGlobalState.isInitialOverlayMounted === false,
       drag: {
         axis: 'y',
         bounds: { ...onDragData },

@@ -39,6 +39,8 @@ const PageMain = () => {
   */
   const setCanvasColors = () => {
     switch (canvasGlobalState.currentContainer) {
+      case 'none':
+        return colorsPalette.darkHexadecimal;
       case 'introContainer':
         return colorsPalette.darkHexadecimal;
       case 'menuContainer':
@@ -70,7 +72,7 @@ const PageMain = () => {
      isInitialOverlayMounted: false,
      isCookiesPopUpMounted: false,
      */}
-      {/* <InitialOverlay /> */}
+      <InitialOverlay />
 
       <div className="page-main__container">
         <div className="page-main__canvas">

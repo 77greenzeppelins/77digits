@@ -4,7 +4,7 @@ import { colorsPalette } from '../../../../../../../../../../../data/globalData'
 */
 const mesh1Data = {
   meshData: { position: [-0.125, -0.2, 0.01], scale: [1, 1, 1] },
-  geometryData: { args: [0.11, 0.1, 8] },
+  geometryData: { args: [0.1, 0.09, 8] },
   materialData: {
     wireframe: true,
     color: colorsPalette.venusSkyHexadecimal,

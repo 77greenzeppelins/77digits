@@ -1,0 +1,27 @@
+.language-selector {
+  &__wrapper {
+    width: 100%;
+    border-bottom: 1px solid lighten(setColor(dark), 30%);
+    min-height: 40px;
+    display: flex;
+    background-color: setColor(dark);
+    @media (min-width: 950px) {
+      min-height: 50px;
+    }
+  }
+  &__button {
+    // border-right: 0px solid lighten(setColor(dark), 30%);
+    border-style: solid;
+    border-color: lighten(setColor(dark), 30%);
+    border-width: 0px;
+  }
+  &__button-label {
+    color: darken(setColor(light), 50%);
+    font-size: $fontSmall;
+    user-select: none;
+    font-weight: 400;
+    font-family: $sanSerif;
+    letter-spacing: 1.2px;
+    text-align: center;
+  }
+}

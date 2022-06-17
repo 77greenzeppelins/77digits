@@ -7,8 +7,8 @@ const canvasState = proxy({
   ...is changed within onClick events that allowe user to jump among containers;
   ...options: introContainer, aboutContainer, menuContainer, raphaelContainer;
   */
-  // currentContainer: 'none',
-  currentContainer: 'introContainer', // to switch off <InitialContainer>
+  currentContainer: 'none',
+  // currentContainer: 'introContainer', // to switch off <InitialContainer>
   /*
   ...
   */
@@ -36,14 +36,28 @@ const canvasState = proxy({
   <InitialOverlay> is based on useTransition;
   By means of <Cookies> / <CookiesBanner> / buttons / onClick  value "false" is set; i.e. this "mighty" button dismounts <Cookies> & <InitialOverlay>
    */
-  // isInitialOverlayMounted: true,
-  isInitialOverlayMounted: false, // to switch off <InitialContainer>
+  isInitialOverlayMounted: true,
+  // isInitialOverlayMounted: false, // to switch off <InitialContainer>
   /*
   FakeLoader should by trigger only one time!
   If not going from <CookiesPage> to <MainPage> triggers <FL> when <Cookies> are mounted i.e. both are visible and overlap...horrror
   Is changed to "1" in <FakeLoader> / useSpring / onRest;
+  It effects <IntroCalendar> cities; changes opacity of Washington and Bejing
   */
   fakeLoaderCounter: 0,
+  /*
+  #####################################################################
+  */
+  isInitialCalendarMounted: true,
+
+  /*
+  Changed in <FakeLoader> / useSpring / onRest; when <FL> ends <LanguageSelector> enter the ecene
+  */
+  isLanguadeSelectorMounted: false,
+  /*
+  #####################################################################
+  */
+
   /*
   -----------------------------------------------<Cookies staff>
   */

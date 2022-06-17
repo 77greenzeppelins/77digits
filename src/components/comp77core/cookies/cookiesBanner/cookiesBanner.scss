@@ -2,60 +2,94 @@
 
 .cookies-banner {
   &__container {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 15px 15px;
-    @media (min-width: 900px) {
-      flex-direction: row;
-      justify-content: space-between;
+    @media (min-width: 950px) {
+      // flex-direction: row;
+      // justify-content: space-between;
       align-items: center;
     }
   }
+  &__main-text-wrapper {
+    position: relative;
+    min-height: 50px;
+    // border-bottom: 1px solid lighten(setColor(dark), 30%);
+    border-right: 0px;
+    @media (min-width: 950px) {
+      min-height: 60px;
+      width: 50%;
+      // border-right: 1px solid lighten(setColor(dark), 30%);
+      border-bottom: none;
+    }
+  }
   &__main-text {
-    display: inline;
-    color: darken(setColor(light), 50%);
+    color: setColor(vividSky);
     font-size: $fontSmall;
     user-select: none;
     font-weight: 400;
     font-family: $sanSerif;
-    letter-spacing: 1.5px;
-    text-align: justify;
+    letter-spacing: 1.2px;
+    // text-align: justify;
   }
+  &__main-text-label {
+    position: absolute;
+    // left: 50%; //I don't want it to be centered horizontally;
+    top: 50%;
+    transform: translate(0, -50%);
+    padding: 15px 20px;
+    @media (min-width: 950px) {
+      padding: 10px 20px;
+    }
+  }
+
   &__buttons {
+    min-height: 50px;
+    width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    padding: 15px 0px 15px 0px;
-    @media (min-width: 900px) {
-      justify-content: flex-end;
-      padding: 15px 5px 15px 35px;
+    background-color: setColor(vividSky);
+    @media (min-width: 950px) {
+      min-height: 60px;
+      width: 50%;
+      justify-content: space-evenly;
     }
   }
   &__button {
-    width: 110px;
-    background-color: setColor(venusSky);
-    border-radius: 5px;
-    padding: 5px 7px;
-    margin: 0 5px;
-  }
-  &__link {
-    display: inline;
-    // white-space: pre;
-    background-color: setColor(venusSky);
-    border-radius: 5px;
-    padding: 5px 7px;
+    flex: 1;
+    width: 120px;
+    // border: 1px solid setColor(dark);
+    &.middle {
+      min-height: 50px;
+      border-left: 2px solid setColor(dark);
+      border-right: 2px solid setColor(dark);
+      @media (min-width: 950px) {
+        min-height: 60px;
+      }
+    }
   }
   &__button-text {
-    // color: setColor(light);
-    // font-size: $fontSmall;
-    // font-weight: 100;
-    // letter-spacing: 1.5px;
-    // line-height: 1;
-    color: darken(setColor(light), 10%);
+    position: relative;
+    color: setColor(dark);
     font-size: $fontSmall;
     user-select: none;
     font-weight: 400;
     font-family: $sanSerif;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
+    text-align: center;
+    white-space: normal;
+  }
+  &__button-text-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
+
+/*
+    @media (min-width: 950px) {
+      // white-space: nowrap;
+    }
+*/

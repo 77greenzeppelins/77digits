@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 /*
 Global State Staff
@@ -8,12 +8,11 @@ import { canvasState } from '../../../../states/canvasState';
 /*
 Spring Staff
 */
-import { animated, useTransition, config } from '@react-spring/web';
-
+import { animated, useTransition } from '@react-spring/web';
 /*
--------------------------------------------------------------------------
+Basic Data
 */
-const CookiesBanner = ({
+import {
   mainTextPl,
   buttonYesPl,
   buttonNoPl,
@@ -22,7 +21,17 @@ const CookiesBanner = ({
   buttonYesEn,
   buttonNoEn,
   linkTextEn,
-}) => {
+} from '../cookiesData';
+
+/*
+-------------------------------------------------------------------------
+*/
+const CookiesBanner = () => {
+  /*
+  References
+  */
+  const text = useRef();
+  const container = useRef();
   /*
   Global State Section
   canvasState = {languageVersion: 1,...}
@@ -32,119 +41,107 @@ const CookiesBanner = ({
   Spring Section
   */
   const transition = useTransition(canvasGlobalState.languageVersion, {
-    from: { opacity: 0, displayInline: 'none', displayFlex: 'none' },
-    enter: { opacity: 1, displayInline: 'inline', displayFlex: 'flex' },
-    leave: { opacity: 0, displayInline: 'none', displayFlex: 'none' },
-    delay: 100,
-    config: config.molasses,
-    // config: { duration: 200 },
+    from: {
+      opacity: 0,
+      position: 'absolute',
+    },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: { duration: 400 },
   });
   /*
   ...
   */
   const cookieToggler = e => {
-    canvasState.isCookiesPopUpMounted = false;
     canvasState.isInitialOverlayMounted = false;
-    // canvasState.currentPointerType = e.nativeEvent.pointerType;
-    // console.log('e', e);
   };
   // useEffect(() => {
+  //   console.log('text.current.clientHeight', text.current?.clientHeight);
   //   console.log(
-  //     'canvasGlobalState.currentPointerType',
-  //     canvasGlobalState.currentPointerType
+  //     'container.current.clientWidth',
+  //     container.current?.clientWidth
   //   );
-  // }, [canvasGlobalState.currentPointerType]);
+  // }, []);
+
+  /*
+  ...
+  */
+  const textCreator = (textPL, textEn, spanClass, styleConfig) => {
+    return transition(({ opacity }, condition) =>
+      condition ? (
+        <animated.span
+          className={spanClass}
+          style={{
+            ...styleConfig,
+            opacity: opacity,
+          }}
+        >
+          {textPL}
+        </animated.span>
+      ) : (
+        <animated.span
+          className={spanClass}
+          style={{
+            ...styleConfig,
+            opacity: opacity,
+          }}
+        >
+          {textEn}
+        </animated.span>
+      )
+    );
+  };
+
   /*
   JSX
   */
-  return transition(({ opacity, displayInline, displayFlex }, condition) =>
-    condition ? (
-      <animated.div
-        className="cookies-banner__container"
-        style={{ opacity: opacity, display: displayFlex }}
-      >
-        <animated.p
-          className="cookies-banner__main-text"
-          style={{ opacity: opacity, display: displayInline }}
-        >
-          {mainTextPl}
-          <Link to="/cookies">
-            <animated.span
-              className="cookies-banner__main-text"
-              style={{
-                opacity: opacity,
-                display: displayInline,
-                textDecoration: 'underline',
-              }}
-            >
-              {linkTextPl}
-            </animated.span>
-          </Link>
-        </animated.p>
-
-        <div className="cookies-banner__buttons">
-          <button onClick={cookieToggler} className="cookies-banner__button">
-            <animated.p
-              className="cookies-banner__button-text"
-              style={{ opacity: opacity, display: displayInline }}
-            >
-              {buttonYesPl}
-            </animated.p>
-          </button>
-          <button onClick={cookieToggler} className="cookies-banner__button">
-            <animated.p
-              className="cookies-banner__button-text"
-              style={{ opacity: opacity, display: displayInline }}
-            >
-              {buttonNoPl}
-            </animated.p>
-          </button>
-        </div>
+  return (
+    <animated.div ref={container} className="cookies-banner__container">
+      <animated.div ref={text} className="cookies-banner__main-text-wrapper">
+        <p className="cookies-banner__main-text">
+          {textCreator(
+            mainTextPl,
+            mainTextEn,
+            'cookies-banner__main-text-label'
+          )}
+        </p>
       </animated.div>
-    ) : (
-      <animated.div
-        className="cookies-banner__container"
-        style={{ opacity: opacity, display: displayFlex }}
-      >
-        <animated.p
-          className="cookies-banner__main-text"
-          style={{ opacity: opacity, display: displayInline }}
-        >
-          {mainTextEn}
-          <Link to="/cookies">
-            <animated.span
-              className="cookies-banner__main-text"
-              style={{
-                opacity: opacity,
-                display: displayInline,
-                textDecoration: 'underline',
-              }}
-            >
-              {linkTextEn}
-            </animated.span>
-          </Link>
-        </animated.p>
 
-        <div className="cookies-banner__buttons">
-          <button onClick={cookieToggler} className="cookies-banner__button">
-            <animated.p
-              className="cookies-banner__button-text"
-              style={{ opacity: opacity, display: displayInline }}
-            >
-              {buttonYesEn}
-            </animated.p>
-          </button>
-          <button onClick={cookieToggler} className="cookies-banner__button">
-            <animated.p
-              className="cookies-banner__button-text"
-              style={{ opacity: opacity, display: displayInline }}
-            >
-              {buttonNoEn}
-            </animated.p>
-          </button>
-        </div>
-      </animated.div>
-    )
+      <div className="cookies-banner__buttons">
+        <button onClick={cookieToggler} className="cookies-banner__button ">
+          <p className="cookies-banner__button-text">
+            {textCreator(
+              buttonYesPl,
+              buttonYesEn,
+              'cookies-banner__button-text-label'
+            )}
+          </p>
+        </button>
+        <button
+          onClick={cookieToggler}
+          className="cookies-banner__button middle"
+        >
+          <p className="cookies-banner__button-text">
+            {textCreator(
+              buttonNoPl,
+              buttonNoEn,
+              'cookies-banner__button-text-label'
+              // { whiteSpace: 'normal' }
+            )}
+          </p>
+        </button>
+
+        <Link to="/cookies" className="cookies-banner__button">
+          <p className="cookies-banner__button-text">
+            {textCreator(
+              linkTextPl,
+              linkTextEn,
+              'cookies-banner__button-text-label'
+            )}
+          </p>
+        </Link>
+      </div>
+    </animated.div>
   );
 };
 

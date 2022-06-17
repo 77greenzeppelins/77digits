@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+/*
+Spring Staff
+*/
+import { animated } from '@react-spring/web';
 
 const Clock = ({ city, style, timeZone }) => {
   //
@@ -21,7 +25,7 @@ const Clock = ({ city, style, timeZone }) => {
   }, [timeZone]);
 
   return (
-    <div style={style} className="clock">
+    <animated.div style={{ ...style }} className="clock">
       <div className="clock__city">{city}</div>
       <div className="clock__digit">{currentTime}</div>
       {/* <div className="clock__colon">:</div>
@@ -29,7 +33,7 @@ const Clock = ({ city, style, timeZone }) => {
       <div className="clock__colon">:</div>
       <div className="clock__digit seconds">00</div>
       <div className="clock__period">am</div> */}
-    </div>
+    </animated.div>
   );
 };
 

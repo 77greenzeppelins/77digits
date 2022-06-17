@@ -2,8 +2,10 @@ import React from 'react';
 /*
 Components
 */
+import InitialOverlayGestureReceiver from './initialOverlayGestureReceiver/InitialOverlayGestureReceiver';
 import InitialOverlayTopSection from './InitialOverlayTopSection/InitialOverlayTopSection';
-import InitialOverlayBottomSection from './InitialOverlayBottomSection/InitialOverlayBottomSection';
+import InitialCalendar from './initialCalendar/InitialCalendar';
+import LanguageSelector from './languageSelector/LanguageSelector';
 /*
 React-router-dom Staf
 */
@@ -24,7 +26,7 @@ import { canvasState } from '../../../states/canvasState';
 const InitialOverlay = () => {
   /*
   Global State Section
-  appState = {isInitialOverlayMounted: true,}; is set to false in <Loader>...,isCookiesPopUpMounted : false}
+  canvasState = {isInitialOverlayMounted: true,}; is set to false in <Loader>;
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
@@ -37,33 +39,20 @@ const InitialOverlay = () => {
   /*
   Spring stuff for ".initial-overlay"
   */
-  const parentTransition = useTransition(
+  const transition = useTransition(
     canvasGlobalState.isInitialOverlayMounted && location.pathname === '/',
-    {
-      from: { opacity: 1 },
-      enter: { opacity: 1 },
-      leave: { opacity: 0 },
-      config: { duration: canvasGlobalState.isCookiesPopUpMounted ? 600 : 600 },
-      delay: canvasGlobalState.isCookiesPopUpMounted ? 100 : 0,
-    }
-  );
-  /*
-  Spring stuff for ".initial-overlay__container"
-  */
-  const childTransition = useTransition(
-    canvasGlobalState.isInitialOverlayMounted,
     {
       from: { opacity: 0 },
       enter: { opacity: 1 },
       leave: { opacity: 0 },
-      config: { duration: canvasGlobalState.isCookiesPopUpMounted ? 600 : 400 },
-      delay: canvasGlobalState.isCookiesPopUpMounted ? 100 : 100,
+      config: { duration: 600 },
+      delay: 100,
     }
   );
   /*
   JSX
   */
-  return parentTransition(
+  return transition(
     ({ opacity }, item) =>
       item && (
         <a.div
@@ -72,24 +61,18 @@ const InitialOverlay = () => {
             opacity: opacity,
           }}
         >
-          <div
-            /* it's a simple overlay that initially covers "canvas staff", due to "position:absolute" it doesn't effect "initial-overlay__container"
-             */
-            className="initial-overlay__cover"
-          />
-          {childTransition(
-            (styles, item) =>
-              item && (
-                <a.div className="initial-overlay__container" style={styles}>
-                  <a.div className="initial-overlay__top-section-container">
-                    <InitialOverlayTopSection />
-                  </a.div>
-                  <div className="initial-overlay__bottom-section-container">
-                    <InitialOverlayBottomSection />
-                  </div>
-                </a.div>
-              )
-          )}
+          <InitialOverlayGestureReceiver />
+          <div className="initial-overlay__container">
+            <div className="initial-overlay__framer">
+              <div className="initial-overlay__top-section__container">
+                <InitialOverlayTopSection />
+              </div>
+              <div className="initial-overlay__bottom-section-container">
+                <InitialCalendar />
+                <LanguageSelector />
+              </div>
+            </div>
+          </div>
         </a.div>
       )
   );

@@ -66,10 +66,10 @@ const TechPanel = () => {
         />
       </mesh>
 
-      <TechPanelFrame
+      {/* <TechPanelFrame
         meshProps={{ position: [0, -0.49, 0.01], scale: [0.3, 0.3, 0.3] }}
         materialProps={{ ...mesh2Data.materialProps }}
-      />
+      /> */}
     </group>
   );
 };

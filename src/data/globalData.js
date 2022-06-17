@@ -68,6 +68,7 @@ const colorsPalette = {
   venusSkyRGBstring: 'rgb(43, 104, 115)',
   venusSkyHexadecimal: 0x2b6873,
   venusSkyForShader: [0.168, 0.407, 0.45],
+  venusSkyHSL: [0.53, 0.46, 0.31],
 };
 
 const springConfigs = {

@@ -57,7 +57,7 @@ const DigitSide3 = () => {
       */}
       <CircledPath />
 
-      <ImageAsFlag
+      {/* <ImageAsFlag
         uAlpha={0.5}
         uTimeCondition={uTimeCondition}
         meshProps={{
@@ -66,7 +66,7 @@ const DigitSide3 = () => {
           position: [0.15, -0.15, -0.02],
         }}
         geometryArgs={[1, 1, 16, 16]}
-      />
+      /> */}
     </>
   );
 };

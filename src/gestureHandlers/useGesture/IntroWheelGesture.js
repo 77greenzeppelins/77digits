@@ -135,7 +135,9 @@ const IntroWheelGesture = () => {
     },
     {
       target: canvasGlobalState.currentContainer === 'introContainer' && window,
-      enabled: canvasGlobalState.currentContainer === 'introContainer',
+      enabled:
+        canvasGlobalState.currentContainer === 'introContainer' &&
+        canvasGlobalState.isInitialOverlayMounted === false,
       wheel: {
         axis: 'y',
         bounds: { ...onWheelData },
