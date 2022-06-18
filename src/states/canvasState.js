@@ -34,7 +34,8 @@ const canvasState = proxy({
   /*
   decides if <InitialOverlay> is mounted or not;
   <InitialOverlay> is based on useTransition;
-  By means of <Cookies> / <CookiesBanner> / buttons / onClick  value "false" is set; i.e. this "mighty" button dismounts <Cookies> & <InitialOverlay>
+  Is modified in:  <Cookies> / <CookiesBanner> / buttons / onClick =>  value is set to "false"; i.e. this "mighty" button dismounts <Cookies> & <InitialOverlay>
+  additional impact: (1) <BotticielliSection>'s springAnimation / scale of botticielli painting;
    */
   isInitialOverlayMounted: true,
   // isInitialOverlayMounted: false, // to switch off <InitialContainer>

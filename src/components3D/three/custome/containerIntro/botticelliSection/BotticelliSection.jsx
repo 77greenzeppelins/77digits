@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 /*
 Global State Section
 */
@@ -19,7 +19,7 @@ import DragRotateReturn from '../../../../../gestureHandlers/useDrag/DragRotateR
 /*
 Spring Staff
 */
-import { a, useSpring } from '@react-spring/three';
+import { a, useSpring, config } from '@react-spring/three';
 /*
 Basic Data
 "tillFactor" for sake of "BasicMove"
@@ -80,29 +80,58 @@ const BotticelliSection = ({ groupProps }) => {
   /*
   Spring Animation Section
   */
-  const { springPositionZ } = useSpring({
-    springPositionZ:
+  const { springPosition, springRotation, springScale } = useSpring({
+    springPosition:
       canvasGlobalState.currentContainer === 'introContainer'
         ? springConfig.positionEnd
         : springConfig.positionStart,
-    config: springConfig.configBasic,
+
+    springScale:
+      canvasGlobalState.currentContainer === 'introContainer' &&
+      canvasGlobalState.isInitialOverlayMounted
+        ? springConfig.scaleStart
+        : springConfig.scaleEnd,
+
+    springRotation:
+      canvasGlobalState.currentContainer === 'introContainer'
+        ? springConfig.rotationEnd
+        : springConfig.rotationStart,
+    // config: springConfig.configBasic,
+    config: config.molasses,
     delay: springConfig.delay,
     /*
     What does onRest() do?
-    Changing state we prevent a sort of odd behaviour; condition besed on ".currentCondition" triggered s-axis animation every time user changes continer; but we want only one such animation;
+    Changing state we prevent a sort of odd behaviour; condition besed on ".currentCondition" triggers animation every time user changes container; but we want only one such animation;
     */
     onRest: () => {
-      setIsDebiut(false);
+      !canvasGlobalState.isInitialOverlayMounted && setIsDebiut(false);
     },
   });
+
+  const botticelliLayout = () => {
+    if (isDebiut === false) {
+      return { position: [0, 0, 0], rotation: [0, 0, 0], scale: [1, 1, 1] };
+    }
+    if (isDebiut) {
+      if (canvasGlobalState.isCookiesPopUpMounted) {
+        return {
+          position: springPosition,
+          rotation: springRotation,
+          scale: springScale,
+        };
+      }
+    }
+  };
+
+  useEffect(() => {
+    console.log('BotticelliSection / isDebiut:', isDebiut);
+  }, [isDebiut]);
+
   /*
   JSX
   */
   return (
-    <a.group
-      {...groupProps}
-      position={isDebiut ? springPositionZ : springConfig.positionEnd}
-    >
+    <a.group {...groupProps} {...botticelliLayout()}>
       <a.group rotation={rotateWithMouseMove}>
         <a.group
           {...venusPaintingData.groupProps}

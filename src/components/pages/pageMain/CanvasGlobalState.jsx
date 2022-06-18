@@ -84,12 +84,19 @@ Global State Section
   //   );
   // }, [canvasGlobalState.isSlideComplete]);
 
-  useEffect(() => {
-    console.log(
-      'canvasGlobalState.sliderIsReady:',
-      canvasGlobalState.sliderIsReady
-    );
-  }, [canvasGlobalState.sliderIsReady]);
+  // useEffect(() => {
+  //   console.log(
+  //     'canvasGlobalState.sliderIsReady:',
+  //     canvasGlobalState.sliderIsReady
+  //   );
+  // }, [canvasGlobalState.sliderIsReady]);
+
+  // useEffect(() => {
+  //   console.log(
+  //     'canvasGlobalState.sliderIsReady:',
+  //     canvasGlobalState.sliderIsReady
+  //   );
+  // }, [canvasGlobalState.sliderIsReady]);
 
   return null;
 };

@@ -15,8 +15,12 @@ const springConfig = {
   Data for basic z-axis animation
   */
   configBasic: springConfigs.configBasic,
-  positionStart: [0, 0, -2],
+  positionStart: [0, -1, -2],
   positionEnd: [0, 0, 0],
+  scaleStart: [0.8, 0.8, 0.8],
+  scaleEnd: [1, 1, 1],
+  rotationStart: [0, Math.PI * -0.5, 0],
+  rotationEnd: [0, 0, 0],
   delay: 400,
 };
 
