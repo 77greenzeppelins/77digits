@@ -7,59 +7,73 @@ import { canvasState } from '../../../../states/canvasState';
 /*
 Spring Staff
 */
-import { animated } from '@react-spring/web';
+import { animated, useSpring, useTransition, config } from '@react-spring/web';
 
 /*
 ----------------------------------------------------------------------------
 */
-const LanguageSelector = () => {
+const LanguageSelector = ({ translate, fakeOpacity }) => {
   /*
   Global State Section
-  canvasState = {languageVersion: 1,...}
+  canvasState = {languageVersion: 1, isLanguadeSelectorMounted: false}
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
   userExperience Section  
   */
-  const onClickHandler = val => {
-    switch (val) {
-      case 'PL':
-        canvasState.languageVersion = 1;
-        break;
-      case 'EN':
-        canvasState.languageVersion = 0;
-        break;
-      default:
-        console.log('default:', val);
-        canvasState.languageVersion = 1;
-        break;
-    }
-    // console.log('default:', val);
-    // canvasState.languageVersion = Number(!canvasGlobalState.languageVersion);
+  const onClickHandler = () => {
+    canvasState.languageVersion = Number(!canvasGlobalState.languageVersion);
   };
+  /*
+  Spring Section
+  */
+  const { springOpacity } = useSpring({
+    springOpacity: canvasGlobalState.isLanguadeSelectorMounted ? 1 : 0,
+    delay: 400,
+    config: config.molasses,
+  });
+
+  const transition = useTransition(!canvasGlobalState.languageVersion, {
+    from: {
+      opacity: 0,
+      position: 'absolute',
+    },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: { duration: 400 },
+  });
+
   /*
   JSX
   */
   return (
     <animated.div
       className="language-selector__wrapper"
-      //   style={{ opacity: springValue }}
+      style={{ opacity: springOpacity }}
     >
-      <button
+      <animated.button
         className="language-selector__button"
-        onClick={() => onClickHandler('PL')}
-        // style={{ width: '50%', color: 'white', borderWidth: '0px 1px 0px 0px' }}
+        onClick={onClickHandler}
+        style={{ transform: translate, opacity: fakeOpacity }}
       >
-        <p className="language-selector__button-label">PL</p>
-      </button>
-
-      <button
-        className="language-selector__button"
-        // style={{ width: '50%', color: 'white' }}
-        onClick={() => onClickHandler('EN')}
-      >
-        <p className="language-selector__button-label">EN</p>
-      </button>
+        {transition(({ opacity }, condition) =>
+          condition ? (
+            <animated.p
+              className="language-selector__button-label"
+              style={{ opacity: opacity }}
+            >
+              PL
+            </animated.p>
+          ) : (
+            <animated.p
+              className="language-selector__button-label"
+              style={{ opacity: opacity }}
+            >
+              EN
+            </animated.p>
+          )
+        )}
+      </animated.button>
     </animated.div>
   );
 };

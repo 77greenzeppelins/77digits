@@ -47,12 +47,12 @@ const canvasState = proxy({
   */
   fakeLoaderCounter: 0,
   /*
-  #####################################################################
+  is changed to "false" in : <FakeLoader> / useSpring / onRest();
   */
   isInitialCalendarMounted: true,
 
   /*
-  Changed in <FakeLoader> / useSpring / onRest; when <FL> ends <LanguageSelector> enter the ecene
+  Changed in <FakeLoader> / useSpring / onRest(); when <FL> ends <LanguageSelector> enter the ecene
   */
   isLanguadeSelectorMounted: false,
   /*

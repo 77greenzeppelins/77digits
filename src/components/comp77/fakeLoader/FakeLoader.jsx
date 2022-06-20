@@ -38,8 +38,8 @@ const FakeLoader = () => {
       canvasState.isCookiesPopUpMounted = true;
       canvasState.currentContainer = 'introContainer';
       canvasState.fakeLoaderCounter = 1;
-
       canvasState.isInitialCalendarMounted = false;
+      canvasState.isLanguadeSelectorMounted = true;
     },
   });
 

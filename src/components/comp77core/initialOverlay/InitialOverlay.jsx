@@ -2,8 +2,10 @@ import React from 'react';
 /*
 Components
 */
-import InitialOverlayGestureReceiver from './initialOverlayGestureReceiver/InitialOverlayGestureReceiver';
-import InitialOverlayTopSection from './InitialOverlayTopSection/InitialOverlayTopSection';
+import FakeLoader from '../../comp77/fakeLoader/FakeLoader';
+// import Cookies from '../cookies/Cookies';
+import Cookies from './cookies/Cookies';
+import InitialOverlayMessage from './initialOverlayMessage/InitialOverlayMessage';
 import InitialCalendar from './initialCalendar/InitialCalendar';
 import LanguageSelector from './languageSelector/LanguageSelector';
 /*
@@ -14,6 +16,10 @@ import { useLocation } from 'react-router-dom';
 Spring Staff
 */
 import { useTransition, animated as a } from '@react-spring/web';
+/*
+...
+*/
+import InitialOverlayGest from '../../../gestureHandlers/useGesture/InitialOverlayGest';
 /*
 Global State Staff
 */
@@ -50,6 +56,18 @@ const InitialOverlay = () => {
     }
   );
   /*
+  Gesture Section
+  */
+  const {
+    overlayOpacity,
+    messageOpacity,
+    translateUp,
+    translateDown,
+    fakeOpacity,
+    initialOverlayGestListener,
+  } = InitialOverlayGest();
+
+  /*
   JSX
   */
   return transition(
@@ -60,16 +78,24 @@ const InitialOverlay = () => {
           style={{
             opacity: opacity,
           }}
+          {...initialOverlayGestListener()}
         >
-          <InitialOverlayGestureReceiver />
+          <InitialOverlayMessage
+            overlayOpacity={overlayOpacity}
+            messageOpacity={messageOpacity}
+          />
           <div className="initial-overlay__container">
             <div className="initial-overlay__framer">
-              <div className="initial-overlay__top-section__container">
-                <InitialOverlayTopSection />
+              <div className="initial-overlay__top-section-container">
+                <Cookies translateUp={translateUp} fakeOpacity={fakeOpacity} />
+                <FakeLoader />
               </div>
               <div className="initial-overlay__bottom-section-container">
                 <InitialCalendar />
-                <LanguageSelector />
+                <LanguageSelector
+                  translate={translateDown}
+                  fakeOpacity={fakeOpacity}
+                />
               </div>
             </div>
           </div>

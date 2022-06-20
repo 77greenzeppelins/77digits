@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 /*
 Global State Section
 */
@@ -80,58 +80,72 @@ const BotticelliSection = ({ groupProps }) => {
   /*
   Spring Animation Section
   */
-  const { springPosition, springRotation, springScale } = useSpring({
-    springPosition:
-      canvasGlobalState.currentContainer === 'introContainer'
-        ? springConfig.positionEnd
-        : springConfig.positionStart,
+  const { springPosition, springRotation, springRotationY, springScale } =
+    useSpring({
+      springPosition:
+        canvasGlobalState.currentContainer === 'introContainer'
+          ? springConfig.positionEnd
+          : springConfig.positionStart,
 
-    springScale:
-      canvasGlobalState.currentContainer === 'introContainer' &&
-      canvasGlobalState.isInitialOverlayMounted
-        ? springConfig.scaleStart
-        : springConfig.scaleEnd,
+      springScale:
+        canvasGlobalState.currentContainer === 'introContainer' &&
+        canvasGlobalState.isInitialOverlayMounted
+          ? springConfig.scaleStart
+          : springConfig.scaleEnd,
 
-    springRotation:
-      canvasGlobalState.currentContainer === 'introContainer'
-        ? springConfig.rotationEnd
-        : springConfig.rotationStart,
-    // config: springConfig.configBasic,
-    config: config.molasses,
-    delay: springConfig.delay,
-    /*
+      springRotation:
+        canvasGlobalState.currentContainer === 'introContainer'
+          ? springConfig.rotationEnd
+          : springConfig.rotationStart,
+
+      springRotationY:
+        canvasGlobalState.currentContainer === 'introContainer'
+          ? 0
+          : Math.PI * 0.3,
+      // config: springConfig.configBasic,
+      config: config.molasses,
+      delay: springConfig.delay,
+      /*
     What does onRest() do?
     Changing state we prevent a sort of odd behaviour; condition besed on ".currentCondition" triggers animation every time user changes container; but we want only one such animation;
     */
-    onRest: () => {
-      !canvasGlobalState.isInitialOverlayMounted && setIsDebiut(false);
-    },
-  });
+      onRest: () => {
+        !canvasGlobalState.isInitialOverlayMounted && setIsDebiut(false);
+      },
+    });
 
   const botticelliLayout = () => {
     if (isDebiut === false) {
-      return { position: [0, 0, 0], rotation: [0, 0, 0], scale: [1, 1, 1] };
+      return {
+        position: springConfig.positionEnd,
+        //  rotation: [0, 0, 0],
+        scale: springConfig.scaleEnd,
+      };
     }
     if (isDebiut) {
       if (canvasGlobalState.isCookiesPopUpMounted) {
         return {
           position: springPosition,
-          rotation: springRotation,
+          // rotation: springRotation,
           scale: springScale,
         };
       }
     }
   };
 
-  useEffect(() => {
-    console.log('BotticelliSection / isDebiut:', isDebiut);
-  }, [isDebiut]);
+  // useEffect(() => {
+  //   console.log('BotticelliSection / isDebiut:', isDebiut);
+  // }, [isDebiut]);
 
   /*
   JSX
   */
   return (
-    <a.group {...groupProps} {...botticelliLayout()}>
+    <a.group
+      {...groupProps}
+      {...botticelliLayout()}
+      rotation-y={isDebiut ? springRotationY : 0}
+    >
       <a.group rotation={rotateWithMouseMove}>
         <a.group
           {...venusPaintingData.groupProps}

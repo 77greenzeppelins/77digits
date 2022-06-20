@@ -23,31 +23,13 @@ const InitialCalendar = () => {
   */
   const canvasGlobalState = useSnapshot(canvasState);
   /*
-  ###############
-  */
-  const onClickHandler = () => {
-    console.log('..........click in <InitialOverlay>');
-    canvasState.fakeLoaderCounter = 1;
-    canvasState.isInitialCalendarMounted =
-      !canvasGlobalState.isInitialCalendarMounted;
-    console.log(
-      '.isInitialCalendarMounted',
-      canvasGlobalState.isInitialCalendarMounted
-    );
-  };
-  /*
-  ###############
-  */
-
-  /*
   Spring Section
   */
   // const [{ val1 }, api] = useSpring(() => ({
   //   val1: canvasState.isInitialCalendarMounted ? 1 : 0,
   // }));
-  const { calendarOpacity, detailOpacity } = useSpring({
-    calendarOpacity: canvasState.isInitialCalendarMounted ? 1 : 0,
-    detailOpacity: canvasGlobalState.fakeLoaderCounter === 0 ? 1 : 0,
+  const { calendarOpacity } = useSpring({
+    calendarOpacity: canvasGlobalState.isInitialCalendarMounted ? 1 : 0,
   });
 
   /*
@@ -55,39 +37,13 @@ const InitialCalendar = () => {
   */
   return (
     <animated.div className="initial-calendar__container">
-      <button
-        onClick={onClickHandler}
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '50px',
-          height: '2px',
-          backgroundColor: '#17d1fb',
-          fontSize: '3rem',
-          zIndex: 999,
-        }}
-      />
-
       <animated.div
         className="initial-calendar__calendar-content"
         style={{ opacity: calendarOpacity }}
-        // style={{
-        //   opacity: val1,
-        // }}
       >
         <div className="initial-calendar__data clocks">
-          <Clock
-            style={{ opacity: detailOpacity }}
-            city={'Washington DC'}
-            timeZone={'America/New_York'}
-          />
-          <Clock
-            style={{ opacity: detailOpacity }}
-            city={'Beijing'}
-            timeZone={'Asia/Shanghai'}
-          />
+          <Clock city={'Washington DC'} timeZone={'America/New_York'} />
+          <Clock city={'Beijing'} timeZone={'Asia/Shanghai'} />
 
           <Clock city={'Dzierżoniów'} timeZone={'Europe/Warsaw'} />
         </div>

@@ -3,13 +3,13 @@ Data for <CookiesBanner>
 */
 const mainTextPl =
   'Używamy plików cookies, aby dostosować naszą stronę do Twoich preferencji. ';
-const linkTextPl = 'Więcej informacji';
+const linkTextPl = 'Szczegóły';
 const buttonYesPl = 'Zgadzam się';
 const buttonNoPl = 'Nie, dziękuję';
 
 const mainTextEn =
   'We use cookies to optimize our service to your preferences. ';
-const linkTextEn = 'Find out more.';
+const linkTextEn = 'Find out more';
 const buttonYesEn = 'I accept';
 const buttonNoEn = 'No, thanks';
 
