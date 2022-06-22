@@ -1,0 +1,28 @@
+.flying-text {
+  &__wrapper {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__text-pipe {
+    position: relative;
+    width: 50%;
+    height: 50%;
+    // background-color: grey;
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+  }
+  &__text {
+    position: absolute;
+    color: darken(setColor(light), 50);
+    // transform: translateX(64.19px);
+    right: 0;
+    font-size: 5rem;
+    white-space: nowrap;
+    overflow-wrap: normal;
+    font-family: $serif;
+  }
+}

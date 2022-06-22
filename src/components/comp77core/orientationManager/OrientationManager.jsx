@@ -1,4 +1,9 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState, useEffect } from 'react';
+/*
+Components
+*/
+import RotationGraphic from './rotatedScreen/rotationGraphic/RotationGraphic';
+import RotationMessage from './rotatedScreen/rotationMessage/RotationMessage';
 /*
 Hook
 */
@@ -19,8 +24,6 @@ const OrientationManager = () => {
   //   });
   const [orientationManager, setOrientationManager] = useState(false);
   const [mobileContent, setMobileContent] = useState(false);
-  // const [noMobileContent, setNoMobileContent] = useState(false);
-
   /*
   useWindowSize Section
   */
@@ -37,44 +40,24 @@ const OrientationManager = () => {
       // console.log('OrientationManager / Is mobile + is horizontal');
       setOrientationManager(true);
       setMobileContent(true);
-      /*
-      How to do this with state in form of object????
-      */
-      //   setState({
-      //     ...state,
-      //     mountOrientationManager: true,
-      //     onlyMobileContent: true,
-      //   });
     } else {
       setOrientationManager(false);
       setMobileContent(false);
-      /*
-      How to accomplish this task with state in form of object????
-      Error appears and suggest something wrong with "else section" 
-      */
-      //   setState({
-      //     ...state,
-      //     mountOrientationManager: false,
-      //     onlyMobileContent: false,
-      //   });
     }
     /*
-    condition for mounting <OrientationManager> & displaying noMobile content
+    condition for mounting <p> & displaying message: "ciemność..."
     */
     if (windowSize.width < 250 || windowSize.height < 450) {
       setOrientationManager(true);
-      // setNoMobileContent(true);
     } else {
       setOrientationManager(false);
-      // setNoMobileContent(true);
     }
   }, [windowSize]);
 
-  //   useEffect(() => {
-  //     console.log('OrientationManager / OrientationManager:', OrientationManager);
-  //     console.log('OrientationManager / MobileContent:', MobileContent);
-  //     console.log('OrientationManager / NoMobileContent:', NoMobileContent);
-  //   }, [OrientationManager, MobileContent, NoMobileContent]);
+  useEffect(() => {
+    console.log('OrientationManager / orientationManager:', orientationManager);
+    console.log('OrientationManager / mobileContent:', mobileContent);
+  }, [orientationManager, mobileContent]);
 
   /*
     JSX
@@ -84,9 +67,17 @@ const OrientationManager = () => {
       <div className="orientation-manager__container">
         <div className="orientation-manager__content">
           {mobileContent ? (
-            <p style={{ color: '#fff' }}>rotate your phone</p>
+            <>
+              {/* <FlyingText /> */}
+              <div style={{ width: '50%' }}>
+                <RotationMessage />
+              </div>
+              <RotationGraphic mountCondition={mobileContent} />
+            </>
           ) : (
-            <p style={{ color: '#fff' }}>strange size of your device</p>
+            <p style={{ color: '#fff' }}>
+              <span>ciemność...</span> <b /> <span>widzę ciemność!</span>
+            </p>
           )}
         </div>
       </div>

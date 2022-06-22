@@ -26,7 +26,7 @@ const MarqueeTextEditor = ({ text, indexOfChanges, style }) => {
       newArray.splice(indexOfChanges[0], 0, dzisiaj);
       /*
       There is an issu; thera is a space / gap between day name and dot when final string in joined with " ' ' parameter"i.e "space" among array's items;
-      How can we join day & dot (only this two items within whole array) befor final joinn(' ') would be applied?
+      How can we join day & dot (only this two items within whole array) befor final join(' ') would be applied?
       Fake solution: add "space-items" to marqueeText and use join('') without space...
       */
     } else {

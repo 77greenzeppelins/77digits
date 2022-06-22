@@ -43,9 +43,8 @@ const InitialCalendar = () => {
       >
         <div className="initial-calendar__data clocks">
           <Clock city={'Washington DC'} timeZone={'America/New_York'} />
-          <Clock city={'Beijing'} timeZone={'Asia/Shanghai'} />
-
           <Clock city={'Dzierżoniów'} timeZone={'Europe/Warsaw'} />
+          <Clock city={'Beijing'} timeZone={'Asia/Shanghai'} />
         </div>
         <div className="initial-calendar__data date">
           <DateDisplayer />

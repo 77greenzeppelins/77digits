@@ -13,7 +13,7 @@ const useWindowSize = () => {
   };
 
   /*
-  State => value in form of object: {width:..., height:...}
+  State => value in form of object: {width: xxx, height: xxx}
   */
   const [windowSize, setWindowSize] = useState(getWindowSize);
 

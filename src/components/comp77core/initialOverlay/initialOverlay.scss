@@ -6,6 +6,7 @@
   height: 100%;
   width: 100%;
   z-index: 350;
+  touch-action: none; // recommended by browser devTool
   &__container {
     margin-inline: auto;
     max-width: 1000px;

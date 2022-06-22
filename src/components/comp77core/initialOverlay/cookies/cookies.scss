@@ -96,7 +96,7 @@
       left: -1px;
       right: -1px;
       bottom: -1px;
-      background: setColor(vividSky);
+      background: setColor(light);
       // border: 1px solid setColor(vividSky);
       z-index: -2;
       filter: blur(1px);
@@ -128,7 +128,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    color: setColor(vividSky);
+    color: setColor(light);
     font-size: $fontSmall;
     user-select: none;
     font-weight: 400;

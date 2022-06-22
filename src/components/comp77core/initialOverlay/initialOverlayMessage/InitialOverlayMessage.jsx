@@ -2,8 +2,12 @@ import React from 'react';
 /*
 Global State Staff
 */
-// import { canvasState } from '../../../../states/canvasState';
-// import { useSnapshot } from 'valtio';
+import { canvasState } from '../../../../states/canvasState';
+import { useSnapshot } from 'valtio';
+/*
+Components
+*/
+import InitialOverlayArtDeco from '../../../comp77/svgComponents/initialOverlayArtDeco/InitialOverlayArtDeco';
 /*
 Spring Staff
 */
@@ -12,6 +16,10 @@ import { animated } from '@react-spring/web';
 Gesture Staff
 */
 // import InitialOverlayGest from '../../../../gestureHandlers/useGesture/InitialOverlayGest';
+/*
+Hook Staff
+*/
+import useWindowSize from '../../../../hooks/useWindowSize';
 
 /*
 --------------------------------------------------------------------------
@@ -25,7 +33,7 @@ const InitialOverlayMessage = ({ overlayOpacity, messageOpacity }) => {
   /*
   Global State Section
   */
-  // const canvasGlobalState = useSnapshot(canvasState);
+  const canvasGlobalState = useSnapshot(canvasState);
   /*
   Gesture Section
   */
@@ -34,6 +42,19 @@ const InitialOverlayMessage = ({ overlayOpacity, messageOpacity }) => {
   //   messageOpacity,
   //   initialOverlayGestListener,
   // } = InitialOverlayGest();
+
+  /*
+  Hook
+  */
+  const { height } = useWindowSize();
+
+  // useEffect(() => {
+  //   let svgHeight = height * 0.8;
+  //   let svgWidth = svgHeight * 0.55625;
+  //   console.log('InitialOverlayMessage / height:', height);
+  //   console.log('InitialOverlayMessage / svgHeight:', svgHeight);
+  //   console.log('InitialOverlayMessage / svgWidth:', svgWidth);
+  // }, [height, width]);
 
   /*
   JSX
@@ -51,11 +72,18 @@ const InitialOverlayMessage = ({ overlayOpacity, messageOpacity }) => {
       <animated.div
         style={{
           opacity: messageOpacity,
-          width: '100px',
-          height: '100px',
-          backgroundColor: 'white',
         }}
-      />
+      >
+        <InitialOverlayArtDeco
+          /*
+          size of SVG: "height" should by 80% of "screenSize"; "width" just need to keep aspect ratio of original image that is: 445/800 = 0.55625
+          */
+          // height={height * 0.8}
+          // width={height * 0.8 * 0.55625}
+          respheight={height} //can't be in camelCase!!!
+          language={canvasGlobalState.languageVersion}
+        />
+      </animated.div>
     </animated.div>
   );
 };
