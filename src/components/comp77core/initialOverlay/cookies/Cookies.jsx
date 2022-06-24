@@ -129,7 +129,11 @@ const Cookies = ({ translateUp, fakeOpacity }) => {
 
         <div className="cookies__buttons">
           <div className="cookies__button-container">
-            <button onClick={cookieToggler} className="cookies__button ">
+            <button
+              type="button"
+              onClick={cookieToggler}
+              className="cookies__button "
+            >
               <p className="cookies__button-text">
                 {textCreator(
                   buttonYesPl,
@@ -141,7 +145,11 @@ const Cookies = ({ translateUp, fakeOpacity }) => {
           </div>
 
           <div className="cookies__button-container">
-            <button onClick={cookieToggler} className="cookies__button ">
+            <button
+              type="button"
+              onClick={cookieToggler}
+              className="cookies__button "
+            >
               <p className="cookies__button-text">
                 {textCreator(
                   buttonNoPl,

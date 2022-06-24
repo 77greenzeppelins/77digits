@@ -21,6 +21,8 @@ const useWindowSize = () => {
   Responsivenes
   */
   useEffect(() => {
+    //___
+    let mounted = true;
     /*
     Event handler with "debounce feature"
     */
@@ -29,11 +31,17 @@ const useWindowSize = () => {
     /*
     Event registration
     */
-    window.addEventListener('resize', resizeHandler());
+    if (mounted) {
+      window.addEventListener('resize', resizeHandler());
+    }
+
     /*
     Event cancellation
     */
-    return () => window.removeEventListener('resize', resizeHandler());
+    return () => {
+      window.removeEventListener('resize', resizeHandler());
+      mounted = false;
+    };
   }, []);
 
   /*
@@ -43,3 +51,19 @@ const useWindowSize = () => {
 };
 
 export default useWindowSize;
+
+//  useEffect(() => {
+/*
+    Event handler with "debounce feature"
+    */
+// const resizeHandler = () =>
+//   debounce(() => setWindowSize(getWindowSize()), 100);
+/*
+    Event registration
+    */
+// window.addEventListener('resize', resizeHandler());
+/*
+    Event cancellation
+    */
+//   return () => window.removeEventListener('resize', resizeHandler());
+// }, []);

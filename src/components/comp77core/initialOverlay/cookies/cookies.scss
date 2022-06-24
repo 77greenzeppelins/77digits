@@ -96,7 +96,8 @@
       left: -1px;
       right: -1px;
       bottom: -1px;
-      background: setColor(light);
+      // background: setColor(light);
+      background: darken(setColor(light), 50);
       // border: 1px solid setColor(vividSky);
       z-index: -2;
       filter: blur(1px);
@@ -109,6 +110,7 @@
     */
     @media (hover: hover) {
       &:hover:after {
+        background: setColor(light);
         filter: blur(4px);
       }
     }
@@ -128,7 +130,8 @@
     width: 100%;
     height: 100%;
     position: relative;
-    color: setColor(light);
+    // color: setColor(light);
+    color: darken(setColor(light), 50);
     font-size: $fontSmall;
     user-select: none;
     font-weight: 400;

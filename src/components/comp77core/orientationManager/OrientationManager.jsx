@@ -54,10 +54,10 @@ const OrientationManager = () => {
     }
   }, [windowSize]);
 
-  useEffect(() => {
-    console.log('OrientationManager / orientationManager:', orientationManager);
-    console.log('OrientationManager / mobileContent:', mobileContent);
-  }, [orientationManager, mobileContent]);
+  // useEffect(() => {
+  //   console.log('OrientationManager / orientationManager:', orientationManager);
+  //   console.log('OrientationManager / mobileContent:', mobileContent);
+  // }, [orientationManager, mobileContent]);
 
   /*
     JSX
@@ -70,7 +70,7 @@ const OrientationManager = () => {
             <>
               {/* <FlyingText /> */}
               <div style={{ width: '50%' }}>
-                <RotationMessage />
+                <RotationMessage mobileContent={mobileContent} />
               </div>
               <RotationGraphic mountCondition={mobileContent} />
             </>

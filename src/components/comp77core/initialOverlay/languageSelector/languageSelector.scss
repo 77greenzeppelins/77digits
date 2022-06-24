@@ -43,7 +43,9 @@
       left: -1px;
       right: -1px;
       bottom: -1px;
-      background: setColor(light);
+      background: darken(setColor(light), 50);
+
+      // background: setColor(light);
       // border: 1px solid setColor(vividSky);
       z-index: -2;
       filter: blur(1px);
@@ -56,14 +58,15 @@
     */
     @media (hover: hover) {
       &:hover:after {
+        background: setColor(light);
         filter: blur(4px);
       }
     }
 
     &-label {
       position: absolute;
-      color: setColor(light);
-      // color: lighten(setColor(dark), 30%);
+      color: darken(setColor(light), 50);
+      // color: setColor(light);
     }
   }
 }

@@ -24,7 +24,7 @@ const RotatingPhone = props => {
       width={svgWidth}
       xmlnsXlink="http://www.w3.org/1999/xlink"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      // {...props}
     >
       <defs>
         <linearGradient id="c">
